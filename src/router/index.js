@@ -1,23 +1,35 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import mixApp from '../views/mix-app.vue';
+import mixDetails from '../views/mix-details.vue';
+import mixEdit from '../views/mix-edit.vue';
+import mixLogin from '../views/mix-login.vue';
+import mixSignup from '../views/mix-signup.vue';
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    component:mixApp
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path:'/login',
+    component:mixLogin
+  },
+  {
+    path:'/signup',
+    component:mixSignup
+  },
+  {
+    path:'/details/:mixId',
+    component:mixDetails
+  },
+  {
+    path:'/edit/:mixId',
+    component:mixEdit
   }
+  
 ]
 
 const router = new VueRouter({
