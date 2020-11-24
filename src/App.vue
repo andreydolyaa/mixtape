@@ -9,7 +9,7 @@
 <script>
 import appHeader from "@/components/app-header.vue";
 import appFooter from "@/components/app-footer.vue";
-import { mixService } from "@/services/mix-service.js";
+import { mixService } from "@/services/mixService.js";
 export default {
 	components: {
 		appHeader,
