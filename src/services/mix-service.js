@@ -1,6 +1,5 @@
 import HttpService from './HttpService'
 // const KEY = 'mixsDB';
-var gMixes = [];
 
 export const mixService = {
     query,
@@ -19,8 +18,7 @@ export const mixService = {
 
 
 function query() {
-    gMixes = HttpService.get('mixes');
-    return gMixes
+    return HttpService.get('mixes');
 }
 
 function getById(mixId) {
