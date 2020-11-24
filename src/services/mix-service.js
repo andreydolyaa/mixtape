@@ -10,14 +10,21 @@ export const mixService = {
     update
 }
 
+
+
+
+
+
+
+
+
 function query() {
     gMixes = HttpService.get('mixes');
     return gMixes
 }
 
 function getById(mixId) {
-    var mix = gMixes.find(mix => mix._id === mixId);
-    return HttpService.get(`mixes/${mix._id}`);
+    return HttpService.get(`mixes/${mixId}`);
 }
 
 function remove(mixId) {
