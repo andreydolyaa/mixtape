@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 
 import mixStore from '../store/mixStore.js';
-import userStore from '../store/userStore.js';
+import songStore from '../store/songStore.js';
 
 Vue.use(Vuex)
 
@@ -18,6 +18,6 @@ export default new Vuex.Store({
   },
   modules: {
     mixStore,
-    userStore
+    songStore
   }
 })
