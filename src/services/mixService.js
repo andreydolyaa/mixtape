@@ -6,9 +6,10 @@ export const mixService = {
     getById,
     remove,
     save,
-    update
+    update,
+    // getSongByIdAndMix
 }
- 
+
 function query() {
     return HttpService.get('mixes');
 }
@@ -30,3 +31,31 @@ function update(mix) {
 }
 
 
+
+
+
+
+// async function getSongById(songId,mixId){
+//     var mix = await getById(mixId);
+//     var currSong = mix.filter(song => song.id === songId);
+//     return currSong
+// }
+
+// function getSongByIdAndMix(songId, mixId) {
+//     console.log(songId,mixId);
+//     getById(mixId)
+//         .then(res => {
+//             return res.songs
+//         }).then(songs => {
+//             var currSong = songs.find(song => song.id === songId)
+//             return currSong;
+//         })
+// }
+
+// async function getSongByIdAndMix(songId,mixId){
+//     var mix = await getById(mixId);
+//     var song = mix.songs.find(song => song.id === songId);
+//     return song;
+// }
+
+// console.log(getSongByIdAndMix('ww','5c09'));
