@@ -4,13 +4,13 @@
 	<section v-if="getMixes">
         <!-- //// THIS CMP IS HIDDEN !!!! -->
 		<div>
-			<youtube :video-id="currSongPlaying" ref="youtube" @playing="playing" class="youtube-window"></youtube>
+			<youtube :video-id="currSongPlayingId" ref="youtube" @playing="playing" class="youtube-window"></youtube>
 		</div>
         <!-- //////////////////////////// -->
 
 
         <div>
-            <h1 v-if="getCurrSong">Now Playing - {{getCurrSong.title}}</h1>
+            <h1 v-if="getCurrSongPlaying">Now Playing - </h1>
         </div>
 
 
@@ -19,27 +19,31 @@
 				<li v-for="song in getMixes[0].songs" :key="song.id">
 					{{song.title}}
 					<button @click="startPlaying(song);playVideo();getSong(song.id,getMixes[0]._id)">play</button>
-					<button @click="stopVideo">pause</button>
+					<button @click="pause()">Pause</button>
+					<button @click="stopVideo()">Stop</button>
                     <input type="range" min="0" max="100" v-model="volume"  @input="changeVolume">
-                    
 				</li>
 			</ul>
 		</div>
-		<globalPlayer />
+		<globalPlayer :refs="$refs"/>
+		{{stopStartMusicGlobally}}
+		
 	</section>
 </template>
 
 <script>
 import { mixService } from "@/services/mixService.js";
 import globalPlayer from '@/components/global-player.cmp.vue';
+import {eventBus,STOP_MUSIC} from '@/main.js';
 export default {
 	data() {
 		return {
             videoId: "lG0Ys-2d4MA",
             currSongTitle:'',
-            currSongPlaying: null,
+			currSongPlayingId: null,
             volume:50,
-            duration:''
+			duration:'',
+			isPlaying:false
 		};
 	},
 	computed: {
@@ -49,8 +53,11 @@ export default {
 		getMixes() {
 			return this.$store.getters.getMixesForDisplay;
 		},
-		getCurrSong(){
-			this.$store.getters.getCurrSong;
+		getCurrSongPlaying(){
+			return this.$store.getters.getCurrSongPlaying;
+		},
+		stopStartMusicGlobally(){
+			return this.$store.getters.stopStartMusicGlobally;
 		}
 	},
 	methods: {
@@ -59,17 +66,24 @@ export default {
 		},
 		stopVideo() {
 			this.$refs.youtube.player.stopVideo();
+			this.isPlaying = false;
+			
 		},
 		playing() {
-			this.duration = this.getTime();
+			// this.duration = this.getTime();
 		},
 		startPlaying(song) {
-            this.currSongPlaying = song.songUrlId;
-            this.currSongTitle = song.title;
+			this.currSongPlayingId = song.songUrlId;
+			this.currSongTitle = song.title;
+			this.isPlaying = true;
+			
         },
         changeVolume(){
             this.$refs.youtube.player.setVolume(this.volume)
-        },
+		},
+		pause(){
+			this.$refs.youtube.player.pauseVideo();
+		},
         async getTime(){
             this.duration = await this.$refs.youtube.player.getDuration();
             return duration;
@@ -81,7 +95,7 @@ export default {
 				songId,
 				mixId
 			})
-		}
+		},
 	},
 	components:{
 		globalPlayer

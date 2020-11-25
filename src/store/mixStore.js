@@ -16,7 +16,7 @@ export default {
         },
         getCurrSongPlaying(state) {
             return state.currSongPlaying;
-        }
+        },
     },
     mutations: {
         setMixes(state, payload) {
@@ -29,7 +29,7 @@ export default {
         },
         setCurrSong(state, payload) {
             state.currSongPlaying = payload.song;
-        }
+        },
     },
     actions: {
         getMixById(contex, { mixId }) {
@@ -43,8 +43,7 @@ export default {
         async getSongById(context, payload) {
             var song = await mixService.getSongByIdAndMix(payload.songId, payload.mixId);
             context.commit({ type: 'setCurrSong', song })
-            console.log('@@: ', song);
             return song;
-        }
+        },
     }
 }
