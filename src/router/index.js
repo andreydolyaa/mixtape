@@ -5,6 +5,7 @@ import mixDetails from '../views/mix-details.vue';
 import mixEdit from '../views/mix-edit.vue';
 import mixLogin from '../views/mix-login.vue';
 import mixSignup from '../views/mix-signup.vue';
+import test from '../components/test.vue';
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,10 @@ const routes = [
   {
     path:'/edit/:mixId',
     component:mixEdit
+  },
+  {
+    path:'/test',
+    component:test
   }
   
 ]
