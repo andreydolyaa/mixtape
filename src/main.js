@@ -8,14 +8,9 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
-
-
-
-
-import VueYoutube from 'vue-youtube'
+import VueYoutube from 'vue-youtube';
  
-Vue.use(VueYoutube)
-
+Vue.use(VueYoutube);
 Vue.use(ElementUI);
 
 
