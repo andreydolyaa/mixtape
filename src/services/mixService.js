@@ -7,7 +7,7 @@ export const mixService = {
     remove,
     save,
     update,
-    // getSongByIdAndMix
+    getSongByIdAndMix
 }
 
 function query() {
@@ -58,4 +58,10 @@ function update(mix) {
 //     return song;
 // }
 
-// console.log(getSongByIdAndMix('ww','5c09'));
+
+async function getSongByIdAndMix(songId,mixId){
+    var mix = await getById(mixId);
+    var currSong = mix.songs.find(song => song.id === songId);
+    return currSong
+}
+// console.log(getSongByIdAndMix('mUkffgfiLjooxs','5c09'));
