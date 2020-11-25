@@ -1,19 +1,18 @@
-
-
 <template>
 	<section>
 		<div class="mix-app">
-			<h1>mix app</h1>
-			<mixList />
+			<!-- <h1>mix app</h1> -->
+			<mixHome />
 		</div>
 	</section>
 </template>
 
 <script>
-import mixList from '../components/mix-list.cmp.vue'
+import mixHome from '../views/mix-home.vue'
+
 export default {
    components: {
-		mixList
+		mixHome
   },
 };
 </script>
