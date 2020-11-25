@@ -8,7 +8,7 @@ export const mixService = {
     save,
     update
 }
-
+ 
 function query() {
     return HttpService.get('mixes');
 }
