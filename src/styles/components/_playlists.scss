@@ -18,19 +18,25 @@
 }
 
 
-iframe{
-    width:1px;
-    height:1px;
-}
+// iframe{
+//     width:1px;
+//     height: 1px;
+//     visibility: hidden;
+// }
 
 
-.youtube-window{
-    visibility:none
-}
+// .youtube-window{
+//     visibility:hidden
+// }
 
 
 
 .global-player{
-    background-color: rgb(255, 255, 255);
-    color:rgb(146, 146, 146);
+    background-color: rgb(184, 184, 184);
+    color:rgb(255, 40, 104);
+    position: fixed;
+    bottom:0;
+    width:100%;
+    height:100px;
+    
 }

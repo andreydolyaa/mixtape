@@ -53,7 +53,6 @@ export default {
         async getSongById(context, payload) {
             var song = await mixService.getSongByIdAndMix(payload.songId, payload.mixId);
             context.commit({ type: 'setCurrSong', song })
-            console.log('@@: ', song);
             return song;
         }
     },
