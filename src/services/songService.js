@@ -12,7 +12,7 @@ export const songService = {
     query,
     
 }
-
+ 
 async function query() {
     // var res = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?maxResults=3&q=NoCopyrightSounds&key=AIzaSyDnI2s9KOByXBAdh2EPIDFE8pKaowsHXjE`);
     // return res.data.items;
