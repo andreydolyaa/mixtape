@@ -18,16 +18,16 @@
 }
 
 
-// iframe{
-//     width:1px;
-//     height: 1px;
-//     visibility: hidden;
-// }
+iframe{
+    width:1px;
+    height: 1px;
+    visibility: hidden;
+}
 
 
-// .youtube-window{
-//     visibility:hidden
-// }
+.youtube-window{
+    visibility:hidden
+}
 
 
 
@@ -38,5 +38,14 @@
     bottom:0;
     width:100%;
     height:100px;
-    
+    button{
+        border:none;
+        background-color: transparent;
+        cursor: pointer;
+        outline: none;
+    }
+    .fa-play-circle,.fa-pause-circle,.fa-stop-circle{
+        font-size:2rem;
+        color:rgb(255, 40, 104);
+    }
 }

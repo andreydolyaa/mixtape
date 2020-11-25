@@ -22,11 +22,11 @@
 					<button @click="pause()">Pause</button>
 					<button @click="stopVideo()">Stop</button>
                     <input type="range" min="0" max="100" v-model="volume"  @input="changeVolume">
+					
 				</li>
 			</ul>
 		</div>
 		<globalPlayer :refs="$refs"/>
-		{{stopStartMusicGlobally}}
 		
 	</section>
 </template>
