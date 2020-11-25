@@ -2,31 +2,36 @@
 	<section>
 		<div class="mixHome">
 			<!-- <h1>mix Home</h1> -->
+			<mixVideo />
 			<mixHero />
-    		<ul> 
+    		<ul class="mixesList container"> 
               <!--  -->
 			   <h2> Mixes </h2> 
-                <li v-for="mix in 8" :key="mix._id" >
-                    
-                   	<mixList/>
+                <li class="mixesListLi" v-for="(item, index) in geners" :key="item" > 
+					{{item}}
+                   	<mixListHome v-bind:genre="geners[index]"/>
                 </li>
             </ul> 
-			
-
 		</div>
 	</section>
 </template>
 
 <script>
-
-import mixList from '../components/mix-list.cmp.vue'
+import mixListHome from '../components/mix-list-home.cmp.vue'
 import mixHero from '../components/mix-hero.cmp.vue'
+import mixVideo from '../components/mix-video-player.cmp.vue'
 
 export default {
 	name:'mix-home',
+	data(){
+		return{
+			geners:['funk','pop','rock','elctro','classic']
+		}
+	},
    components: {
 		mixHero,
-		mixList,
+		mixListHome,
+		mixVideo
   },
 };
 </script>
