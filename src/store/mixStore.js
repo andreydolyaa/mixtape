@@ -1,9 +1,8 @@
-
-
+import {mixService} from '@/services/mixService.js'
 
 export default{
     state:{
-
+        mixes:[]
     },
     getters:{
 
@@ -12,6 +11,8 @@ export default{
 
     },
     actions:{
-        
+        getMixById(contex, {mixId}){
+            return mixService.getById(mixId)
+        }
     }
 }
