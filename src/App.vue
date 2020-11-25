@@ -10,7 +10,14 @@
 import appHeader from "@/components/app-header.vue";
 import appFooter from "@/components/app-footer.vue";
 import { mixService } from "@/services/mixService.js";
+import {songService} from '@/services/songService.js'
+
 export default {
+	created(){
+		this.$store.dispatch({
+			type:'loadSongs'
+		})
+	},
 	components: {
 		appHeader,
 		appFooter,
