@@ -1,6 +1,8 @@
 <template>
   <section class="hero">
     <h2>Pick a mix and join the mixTape</h2>
+    <!-- <button @click="playVideo">play</button> -->
+
     <mixCarousel />
   </section>
 </template>
@@ -13,10 +15,19 @@ export default {
   props:{
    
   },
+  data(){
+    return{
+     
+    }
+  },
+  methods: {
+ 
+  },
   components: {
      mixCarousel
   },
   computed : {
+   
   },
   created(){
     console.log('hero')

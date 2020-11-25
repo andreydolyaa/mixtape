@@ -1,9 +1,15 @@
 <template>
-  <section class="mixListHome">
+  <section class="mixList container">
+           <nav class="mixesNav">
+                <ul class="navShowAllUl" >
+                    <li class="mixLinkShowAll" v-on:click="showList(genre)">Show All</li>     
+                </ul>
+            </nav>
+
             <ul class="ulMixes"> 
               <!--  -->
                 <li class="mix" v-for="mix in mixes" :key="mix._id" > 
-                  <!-- <pre>{{mix}}</pre> -->
+                  <!-- <pre>{{mix.genre}}</pre> -->
                    <mixPreview :mix="mix"/>
                 </li>
             </ul> 
@@ -15,103 +21,48 @@
 import mixPreview from '../components/mix-preview.cmp.vue';
 
 export default {
-  name:'mix-list-home',
-  data(){
-    return{
-    mixes: [
-                {
-                    "_id": "5c09",
-                    "name": "Funky Monks",
-                    "tags": [
-                        "Funk",
-                        "Happy"
-                    ],
-                    "createdBy": {
-                        "_id": "u101",
-                        "fullName": "Puki Ben David",
-                        "imgUrl": "http://some-photo/"
-                    },
-                    "likedByUsers": [
-                        {
-                            "_id": "u102",
-                            "fullName": "Orly Amdadi",
-                            "imgUrl": "http://some-img"
-                        },
-                        {
-                            "_id": "u103",
-                            "fullName": "Harel Hashovav",
-                            "imgUrl": "http://some-img"
-                        }
-                    ],
-                    "songs": [
-                        {
-                            "title": "The Meters - Cissy Strut",
-                            "id": "s1001",
-                            "songUrlId":"4_iC0MyIykM",
-                            "imgUrl": "https://i.ytimg.com/vi/4_iC0MyIykM/mqdefault.jpg",
-                            "addedBy": "minimal-user"
-                        },
-                        {
-                            "title": "The JB's - Pass The Peas",
-                            "id": "mUkfiLjooxs",
-                            "songUrlId":"4_iC0MyIykM",
-                            "imgUrl": "https://i.ytimg.com/vi/mUkfiLjooxs/mqdefault.jpg",
-                            "addedBy": {}
-                        }
-                    ]
-                },
-                {
-                    "_id": "8f25",
-                    "name": "Funky Rocks",
-                    "tags": [
-                        "Funk",
-                        "Happy"
-                    ],
-                    "createdBy": {
-                        "_id": "u101",
-                        "fullName": "Puki Ben David",
-                        "imgUrl": "http://some-photo/"
-                    },
-                    "likedByUsers": [
-                        {
-                            "_id": "u102",
-                            "fullName": "Orly Amdadi",
-                            "imgUrl": "http://some-img"
-                        },
-                        {
-                            "_id": "u103",
-                            "fullName": "Harel Hashovav",
-                            "imgUrl": "http://some-img"
-                        }
-                    ],
-                    "songs": [
-                        {
-                            "title": "The Meters - Cissy Strut",
-                            "id": "s1001",
-                            "songUrlId":"4_iC0MyIykM",
-                            "imgUrl": "https://i.ytimg.com/vi/4_iC0MyIykM/mqdefault.jpg",
-                            "addedBy": "minimal-user"
-                        },
-                        {
-                            "title": "The JB's - Pass The Peas",
-                            "id": "mUkfiLjooxs",
-                            "songUrlId":"4_iC0MyIykM",
-                            "imgUrl": "https://i.ytimg.com/vi/mUkfiLjooxs/mqdefault.jpg",
-                            "addedBy": {}
-                        }
-                    ]
-                }
-            ], //end of mixes
-          }
-  }, //end of data
+    name:'mix-list-home',
+    props:{
+        genre:{
+            type:String,
+            default: null
+        }
+    },
+  	data(){
+	    return{
+          a:null,
+          videoId:'BubwLnPcQjc',
+	    }
+	},
   computed : {
- 
+        mixes(){
+            var mixes = this.$store.getters.getMixesForDisplay
+            if(!mixes) return
+            //console.log('this.genre',this.getGenreToDisplay)
+            if (!this.genre) return mixes
+            //console.log('filter')
+            var res = mixes.filter(item =>{
+                //console.log('item',item.genre)
+                return item.genre.toLowerCase() === this.genre.toLowerCase()
+            })
+            console.log('res',res)
+            return res
+        },
+  },
+  methods: {
+     showList(genre){
+        this.$store.commit({type: 'setGenre',genre })
+        //this.genre = genre
+        //console.log('genre', this.genre)
+        this.$router.push(`mix/list`) 
+      },  
+
   },
   components: {
     mixPreview
   },
   created(){
-    console.log('mix data',this.mixes)
+    console.log('mix data genre',this.genre)
 
   }
 } // end of export default

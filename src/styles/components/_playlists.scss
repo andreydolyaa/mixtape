@@ -2,17 +2,35 @@
 
 
 
-
-
-.list1 ul{
+.player-list{
+    border:1px solid black;
+    display:flex;
     
+    ul{
+        display: flex;
+        flex-direction: column;
+        
+        align-items: flex-start;
+        li{
+            padding:1rem;
+        }
+    }
 }
 
-.list2 ul{
-    display:flex;
-    flex-wrap: wrap;
-    border:1px solid black;
-    h1{
-        color:black;
-    }
+
+iframe{
+    width:1px;
+    height:1px;
+}
+
+
+.youtube-window{
+    visibility:none
+}
+
+
+
+.global-player{
+    background-color: rgb(255, 255, 255);
+    color:rgb(146, 146, 146);
 }

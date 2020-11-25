@@ -1,7 +1,10 @@
 <template>
   <el-carousel direction="vertical" :autoplay="true">
-    <el-carousel-item v-for="item in imgs" >   
-      <img v-bind:src="item">
+
+    <el-carousel-item v-for="item in imgs" > 
+<!-- <youtube :video-id="videoId" :player-vars="playerVars" @playing="playing"></youtube> -->
+  
+      <img v-bind:src="item"/>
       <!-- <h3 class="medium">{{ item }}</h3> -->
     </el-carousel-item>
   </el-carousel>
@@ -16,8 +19,8 @@
             'https://res.cloudinary.com/hw-projects/image/upload/v1606309302/appmixes/party001_etvq6c.jpg',
             'https://res.cloudinary.com/hw-projects/image/upload/v1606309308/appmixes/party002_wln8ni.jpg',
             'https://res.cloudinary.com/hw-projects/image/upload/v1606309300/appmixes/party003_lqrgta.jpg',
-     
-          ],
+         
+         ],
           // img:'party001.jpg'
         }
       },
