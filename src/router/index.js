@@ -7,7 +7,6 @@ import mixLogin from '../views/mix-login.vue';
 import mixSignup from '../views/mix-signup.vue';
 import test from '../components/test.vue';
 import mixList from '../components/mix-list.cmp.vue';
-import test from '../components/test1.vue';
 
 Vue.use(VueRouter)
 
