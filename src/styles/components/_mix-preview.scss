@@ -1,0 +1,18 @@
+
+.mix {
+    color: blue;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    .info.name {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        color: #000;
+        background-color: #ffffffc7;
+        padding: 5px;
+    }
+}
+
+

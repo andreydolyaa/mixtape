@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import appHeader from "@/components/app-header.vue";
-import appFooter from "@/components/app-footer.vue";
+import appHeader from "@/components/app-header.cmp.vue";
+import appFooter from "@/components/app-footer.cmp.vue";
 import { mixService } from "@/services/mixService.js";
 export default {
 	components: {
@@ -23,7 +23,7 @@ export default {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
-	color: #b9cee2;
+	color: #000000;
 }
 
 // #nav {
