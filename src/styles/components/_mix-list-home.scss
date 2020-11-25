@@ -1,0 +1,17 @@
+.mixListHome {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    h2{
+        text-align: left;
+    }
+    
+    ul.ulMixes {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        list-style: none;
+        gap: 20px;
+    }
+}

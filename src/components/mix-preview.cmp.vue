@@ -6,13 +6,13 @@
       <!-- <pre>{{mix}}</pre> -->
       <img :src="mixImg" />
       <div class="info name">{{mix.name}} </div>
-
    </div>
   </section>
 </template>
 
 <script>
 export default {
+    name:'mix-preview',
   props:{
     mix:Object
   },

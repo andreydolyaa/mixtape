@@ -4,11 +4,11 @@
     <h1>Login</h1>
     <div class="checkLogin" v-if="!loggedinUser">
       <form @submit.prevent="login">
-        <input type="text" placeholder="User name" v-model="cerdentials.username" />
+        <el-input type="text" placeholder="User name" v-model="cerdentials.username" required clearable />
         <br/>
-        <input type="text" placeholder="Password" v-model="cerdentials.password" />
+        <el-input type="text" placeholder="Password" v-model="cerdentials.password" show-password required clearable />
         <br/>
-        <button>Login</button>
+        <el-button type="success">Login</el-button>
       </form>
     </div>
   </section>
