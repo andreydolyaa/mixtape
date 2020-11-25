@@ -13,9 +13,13 @@
                 <ul>
 					<li v-for="mixes in getMixes[0].songs" :key="mixes.id">
 						{{mixes.title}}
+                        <button @click="play">play</button>
+
                         <div>
-                            <iframe width="300" height="200" :src="'https://www.youtube.com/embed/'+mixes.songUrlId+'?autoplay=0&showinfo=0'" frameborder="0" allow="accelerometer; autoplay; ; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="300" height="200" :src="'https://www.youtube.com/embed/'+mixes.songUrlId+'?enablejsapi=1&autoplay=0&showinfo=0'" frameborder="0" allow="accelerometer; autoplay; ; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
+
+
 					</li>
 				</ul>
             </div>
@@ -50,7 +54,7 @@ import {mixService} from '@/services/mixService.js';
 export default {
 	data() {
 		return {
-            
+            playOn:'0'
 		};
 	},
 	computed: {
@@ -59,10 +63,14 @@ export default {
         },
 	},
 	methods: {
-        
+        play(){
+            var btn = document.querySelector('.ytp-large-play-button');
+        }
     },
 };
 </script>
 
 <style>
 </style>
+
+// .ytp-large-play-button
