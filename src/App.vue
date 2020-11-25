@@ -10,7 +10,7 @@
 import appHeader from "@/components/app-header.cmp.vue";
 import appFooter from "@/components/app-footer.cmp.vue";
 import { mixService } from "@/services/mixService.js";
-
+import VueYoutube from 'vue-youtube'
 
 export default {
 	created(){
