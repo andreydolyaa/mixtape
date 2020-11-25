@@ -1,18 +1,26 @@
-import {mixService} from '@/services/mixService.js'
+import { mixService } from '@/services/mixService.js'
 
-export default{
-    state:{
-        mixes:[]
+export default {
+    state: {
+        mixes: [],
+        currMix: null
     },
-    getters:{
-
-    },
-    mutations:{
-
-    },
-    actions:{
-        getMixById(contex, {mixId}){
-            return mixService.getById(mixId)
+    getters: {
+        getMix(state){
+            return state.currMix;
         }
+    },
+    mutations: {
+        setMix(state,payload){
+            state.currMix = payload.mix;
+        }
+    },
+    actions: {
+        async getMixById(contex, { mixId }) {
+            console.log('mixId',mixId)
+            const mix = await mixService.getById(mixId);
+            // console.log('mix',mix);
+            contex.commit({type: 'setMix' , mix});
+        }   
     }
 }
