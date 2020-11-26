@@ -5,6 +5,9 @@ width: 100%;
 .mix-full-info  {
     flex-direction: column;
     color:#ffffff;
+    font-size: 1.125rem;
+    max-width: 800px;
+    width: 100%;
 
     .search-song{
         input.el-input__inner{
@@ -14,12 +17,39 @@ width: 100%;
             border-radius: 5px;
         }
     }
+
     .header-mix-info{
         width: 100%;
         flex-direction: row;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        text-align: left;
+
+        .mix-info-main {
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .mix-info{
+        text-align: left;
+        margin-bottom: 10px;
+
+            h2{
+                font-size: 2.625rem;
+            }
+        }
+
+        .user-info{
+            display: flex; 
+            flex-direction: column;
+        }
     }
 
     .mix-actions-social{
+        margin-bottom: 40px;
+        align-items: baseline;
+
         svg{
             cursor: pointer;
         }
@@ -29,7 +59,13 @@ width: 100%;
             }
         }
         .btn-actions{
+
             .mix-like{
+                i{
+                    font-size: 42px;
+                    margin-right: 16px;
+                }
+               
                 svg:hover{
                     fill: red;
                 }
@@ -38,20 +74,44 @@ width: 100%;
         }
     }
 }
+
 .songs-details{
+    gap: 10px;
+    justify-content: left;
+    align-items: center;
+
+    i{
+        font-size: 42px;
+    }
     img{
         width: 50px;
         height: 50px;
     }
 }
-.songs-details{
-    li{
-        width: 100%;
+
+.songs-list{
+    display: flex;
+    ul{
+        display: flex;
+        gap: 16px;
+        flex-direction: column;
+
+        li.songs-details {
+            width: 100%;
+        }
     }
 }
 
 .share-container{
-    flex-direction: column;
+    flex-direction: row;
+    align-items: baseline;
+
+    .mix-social-nav{
+
+        i{
+            font-size: 28px;
+        }
+    }
 }
 
 .mix-chat{

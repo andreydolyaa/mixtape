@@ -2,7 +2,7 @@
 <template>
   <div class="mix-details flex" v-if="mix">
     <div class="mix-chat">
-      <h1 class="title">Mix chat</h1>
+      <h2 class="title">Mix chat</h2>
     </div>
     <div class="mix-full-info flex">
       <section class="search-song">
@@ -11,17 +11,17 @@
       <section class="header-mix-info flex">
         
         <section class="mix-img flex start">
-          <!-- <img :src="mix.imgUrl" /> -->
+          <img :src="mix.imgUrl" />
         </section>
         <section class="mix-info-main">
           <section class="mix-info">
-            <h1>{{ mix.name }}</h1>
+            <h2>{{ mix.name }}</h2>
             <p>{{ mix.desc }}</p>
             <h4>{{ mix.genre }}</h4>
           </section>
           <section class="user-info">
             <h5>
-              Created by: <span><img :src="mix.createdBy.imgUrl" /></span>
+              Created by: <img :src="mix.createdBy.imgUrl" />
               {{ mix.createdBy.fullName }}
             </h5>
           </section>
