@@ -15,25 +15,25 @@
         <section class="mix-info-main">
           <section class="mix-info">
             <h2 v-if="!isTitleHide">
-              {{ mix.name}}<span @click="toggleEditTitle" class="edit-txt"><i class="fas fa-pen"></i></span>
+              {{ currMix.name }}<span @click="toggleEditTitle" class="edit-txt"><i class="fas fa-pen"></i></span>
             </h2>
             <div v-else>
-            <input v-model="currMix.name" type="text" /><span @click.stop="saveChange(currMix)"><i class="far fa-save"></i></span>
+            <input v-model="currMix.name" type="text" /><span @click.prevent="saveChange(currMix)"><i class="far fa-save"></i></span>
             </div>
             <p v-if="!isDescHide">
-              {{ mix.desc }} <span @click="toggleEditDesc"><i class="fas fa-pen"></i></span>
+              {{ currMix.desc }} <span @click="toggleEditDesc"><i class="fas fa-pen"></i></span>
             </p>
             <div v-else>
               <textarea v-model="currMix.desc" name="desc" id="desc" cols="30" rows="10"></textarea><span @click="saveChange(currMix)"><i class="far fa-save"></i></span>
               <!-- <input type="text" /><span :class="toggleEditDesc"><i class="far fa-save"></i></span> -->
             </div>
-            <h4>{{ mix.genre }}</h4>
+            <h4>{{ currMix.genre }}</h4>
             <div class="like"><div class="like-song"><i class="far fa-heart"></i></div></div>
           </section>
           <section class="user-info">
             <h5>
-              Created by: <img :src="mix.createdBy.imgUrl" />
-              {{ mix.createdBy.fullName }}
+              Created by: <img :src="currMix.createdBy.imgUrl" />
+              {{ currMix.createdBy.fullName }}
             </h5>
           </section>
           <section class="general-info">
@@ -113,7 +113,8 @@ export default {
         type: 'saveMix',
         mix
       });
-      this.isTitleHide = true;
+      this.isTitleHide = false;
+      this.isDescHide = false;
     },
   },
   components: {
