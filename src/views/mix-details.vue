@@ -15,11 +15,11 @@
         </section>
         <section class="mix-info-main">
           <section class="mix-info">
-            <h2>{{ mix.name }}<span class="edit-xt"><i class="fas fa-pen"></i></span></h2>
+            <h2>{{ mix.name }}<span class="edit-txt"><i class="fas fa-pen"></i></span></h2>
             <!-- <input type="text" v-model="" hidden> -->
             <p>{{ mix.desc }} <span><i class="fas fa-pen"></i></span></p>            
             <h4>{{ mix.genre }}</h4>
-            <span class="add-song"><i class="far fa-heart"></i></span>
+            <div class="like"><div class="like-song"><i class="far fa-heart"></i></div></div>
           </section>
           <section class="user-info">
             <h5>

@@ -1,10 +1,10 @@
 <template>
-  <el-carousel direction="vertical" :autoplay="true">
+  <el-carousel indicator-position="outside" :interval="24000" :autoplay="true">
 
     <el-carousel-item v-for="item in imgs" > 
 <!-- <youtube :video-id="videoId" :player-vars="playerVars" @playing="playing"></youtube> -->
   
-      <img v-bind:src="item"/>
+      <img class="left" v-bind:src="item"/>
       <!-- <h3 class="medium">{{ item }}</h3> -->
     </el-carousel-item>
   </el-carousel>
