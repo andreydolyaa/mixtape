@@ -54,6 +54,13 @@ export default {
             var song = await mixService.getSongByIdAndMix(payload.songId, payload.mixId);
             context.commit({ type: 'setCurrSong', song })
             return song;
+        },
+        async saveMix(context, payload){
+            console.log(payload.mix)
+            const mix = await mixService.update(payload.mix);
+            context.commit({type:'setMix', mix})
+            console.log('mix in store', mix)
+            return mix
         }
     },
 }
