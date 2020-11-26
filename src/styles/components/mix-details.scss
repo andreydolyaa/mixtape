@@ -18,6 +18,11 @@ flex-direction: column;
      svg{
          cursor: pointer;
      }
+     .add-song{
+        i{
+            color: #be1e2d;
+        }
+     }
     .btn-actions{
         .mix-like{
             svg:hover{
