@@ -4,7 +4,7 @@
     <div class="app-header">
       <!-- <h1>app header</h1> -->
         <div class="logo">
-            <img class="reflect" src="https://res.cloudinary.com/hw-projects/image/upload/v1606400976/appmixes/logo_r_animated_v2_rpqeo0.gif" >
+          <router-link to="/"><img class="reflect" src="https://res.cloudinary.com/hw-projects/image/upload/v1606400976/appmixes/logo_r_animated_v2_rpqeo0.gif" ></router-link> 
           </div>
         <nav>   
           <div class="nav-mix">

@@ -1,12 +1,14 @@
 .mix-details{
-width: 100%;
+    width: 100%;
+    gap: 40px;
 
-i.fas:hover ,i.far:hover , i.fab:hover{
-    color:var(--primary-color);
-    cursor: pointer;
+    i.fas:hover ,i.far:hover , i.fab:hover{
+        color:var(--primary-color);
+        cursor: pointer;
+    }
+
 }
 
-}
 .hide{
     display: none;
 }
@@ -101,6 +103,9 @@ i.fas:hover ,i.far:hover , i.fab:hover{
                 color: #be1e2d;
             }
         }
+
+      
+
         .btn-actions{
             width: auto;
             display: flex;
@@ -118,35 +123,42 @@ i.fas:hover ,i.far:hover , i.fab:hover{
                 }
 
             }
-            input{
+            input {
                 min-width: 240px;
             }
         }
     }
 }
-
-.songs-details{
+.songs-details-main{
     gap: 10px;
-    justify-content: left;
+    justify-content: space-between;
     align-items: center;
     display: flex;
     flex-direction: row;
 
-    i{
-        font-size: 42px;
-    }
-    i.far.fa-trash-alt{
-        font-size: 22px;
-        background-color: #fffadf29;
-        align-self: flex-end;
-    }
-    img{
-        width: 50px;
-        height: 50px;
-        object-fit: cover;
+    .songs-details{
+        gap: 10px;
+        justify-content: left;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        
+        i{
+            font-size: 42px;
+        }
+        i.far.fa-trash-alt{
+            font-size: 22px;
+            background-color: #fffadf29;
+            align-self: flex-end;
+        }
+        img{
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
     }
 }
-
 .songs-details:hover{
     background-color: #fffadf29;
 }
@@ -157,6 +169,7 @@ i.fas:hover ,i.far:hover , i.fab:hover{
         display: flex;
         gap: 16px;
         flex-direction: column;
+        width: 100%;
 
         li.songs-details {
             width: 100%;

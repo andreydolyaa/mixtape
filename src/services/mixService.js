@@ -31,7 +31,11 @@ function update(mix) {
     return HttpService.put(`mixes/${mix._id}`, mix);
 }
 
-
+// async function removeSong(songId, mixId){
+//     var mix = await getById(mixId);
+//     var song = await getSongByIdAndMix(songId, mixId);
+//     var idx = mix.songs.findIndex(currSong => currSong.id === song.id);
+// }
 
 
 
