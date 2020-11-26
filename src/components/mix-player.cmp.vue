@@ -16,7 +16,7 @@
 
 		<div class="player-list">
 			<ul>
-				<li v-for="song in getMixes[0].songs" :key="song.id">
+				<li v-for="song in getMixes[1].songs" :key="song.id">
 					{{song.title}}
 					<button @click="startPlaying(song);playVideo();getSong(song.id,getMixes[0]._id)">play</button>
 					<button @click="pause()">Pause</button>
