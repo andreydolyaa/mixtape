@@ -6,9 +6,7 @@
        <mix-chat/>
     </div>
     <div class="mix-full-info flex">
-      <section class="search-song">
-        <el-input type="text" placeholder="Search song..." clearable></el-input>
-      </section>
+      <mixApiSearch/>
       <section class="header-mix-info flex">
         <section class="mix-img flex start">
           <img :src="mix.songs[0].imgUrl" />
@@ -42,13 +40,14 @@
           </section>
         </section>
       </section>
-
+      <section class="search-song">
+        <el-input type="text" placeholder="Search song..." clearable></el-input>
+      </section>
       <section class="mix-actions-social flex space-between">
         <!-- <div class="btn-actions flex space-evenly">
           <span class="mix-like"><i class="fas fa-plus-circle"></i></span>
-           <el-input class="search-song" type="text" placeholder="Search in mix" clearable></el-input>
+          <el-input class="search-song" type="text" placeholder="Search in mix" clearable></el-input>
         </div> -->
-        <mixApiSearch/>
         <!-- <button>shaffle</button> -->
         <div class="share-container flex">
           <div class="invite">
@@ -60,23 +59,7 @@
           </div>
         </div>
       </section>
-      <section class="songs-list">
-        <ul>
-          <li
-            class="songs-details-main flex"
-            v-for="song in mix.songs"
-            :key="song.id"
-          >
-          <div class="songs-details">
-            <i class="far fa-play-circle"></i>
-            <img :src="song.imgUrl" />
-            <p>{{ song.title }}</p>
-            <span>{{ song.duration }}</span>
-          </div>
-            <span class="delete-song" @click.prevent="removeSongFromMix(currMix._id,song.id)"><i class="far fa-trash-alt"></i></span>
-          </li>
-        </ul>
-      </section>
+      <mix-song :songs="currMix.songs" :mix="currMix" @emitRemoveSong="removeSongFromMix" />
     </div>
   </div>
 </template>
@@ -84,6 +67,7 @@
 <script>
   import mixApiSearch from '@/components/mix-api-search.cmp.vue';
   import mixChat from '@/components/mix-chat.cmp.vue';
+  import mixSong from '@/components/mix-song.cmp.vue';
 export default {
   data() {
     return {
@@ -120,7 +104,7 @@ export default {
       this.isTitleHide = false;
       this.isDescHide = false;
     },
-    removeSongFromMix(mixId,songId){
+    removeSongFromMix(songId){
       var songIdx = this.currMix.songs.findIndex(song => song.id === songId);
       this.currMix.songs.splice(songIdx,1);
       this.$store.dispatch({
@@ -131,7 +115,8 @@ export default {
   },
   components: {
       mixApiSearch,
-      mixChat
+      mixChat,
+      mixSong
   },
   created() {
     const mixId = this.$route.params.mixId;
