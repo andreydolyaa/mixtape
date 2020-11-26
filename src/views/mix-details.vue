@@ -66,11 +66,13 @@
             v-for="song in mix.songs"
             :key="song.id"
           >
+          <div>
             <i class="far fa-play-circle"></i>
             <img :src="song.imgUrl" />
             <p>{{ song.title }}</p>
             <span>{{ song.duration }}</span>
-            <i class="far fa-trash-alt"></i>
+          </div>
+            <span class="delete-song" @click.prevent="removeSongFromMix(currMix._id,song.id)"><i class="far fa-trash-alt"></i></span>
           </li>
         </ul>
       </section>
@@ -116,6 +118,14 @@ export default {
       this.isTitleHide = false;
       this.isDescHide = false;
     },
+    removeSongFromMix(mixId,songId){
+      console.log(songId);
+      this.$store.dispatch({
+        type: 'removeSong',
+        mixId,
+        songId
+      })
+    }
   },
   components: {
       mixApiSearch

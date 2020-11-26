@@ -34,6 +34,11 @@ export default {
         setCurrSong(state, payload) {
             state.currSongPlaying = payload.song;
         },
+        removeCurrSong(state,payload){
+           const idx = state.mixes[state.currMix._id].songs.findIndex(song => song.id === payload.song.id);
+           state.mixes[state.currMix._id].songs.splice(idx,1);
+           console.log(state.mixes[state.currMix._id].songs);
+        },
         setMix(state, payload){
             state.currMix = payload.mix;
         }
@@ -61,6 +66,14 @@ export default {
             context.commit({type:'setMix', mix})
             console.log('mix in store', mix)
             return mix
+        },
+        async removeSong(context, payload){
+            // var song = await mixService.getSongByIdAndMix(payload.songId, payload.mixId);
+            
+            var removedSong = await mixService.removeSong(payload.songId, payload.mixId)
+            console.log('song',song)
+            context.commit({ type: 'removeCurrSong', song })
+            return song;
         }
     },
 }
