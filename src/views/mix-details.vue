@@ -63,11 +63,11 @@
       <section class="songs-list">
         <ul>
           <li
-            class="songs-details flex"
+            class="songs-details-main flex"
             v-for="song in mix.songs"
             :key="song.id"
           >
-          <div>
+          <div class="songs-details">
             <i class="far fa-play-circle"></i>
             <img :src="song.imgUrl" />
             <p>{{ song.title }}</p>
