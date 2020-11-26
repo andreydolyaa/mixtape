@@ -34,7 +34,6 @@ function update(mix) {
 //     var mix = await getById(mixId);
 //     var song = await getSongByIdAndMix(songId, mixId);
 //     var idx = mix.songs.findIndex(currSong => currSong.id === song.id);
-//     mix.songs.splice()
 // }
 
 

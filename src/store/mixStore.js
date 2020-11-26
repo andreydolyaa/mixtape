@@ -67,13 +67,11 @@ export default {
             console.log('mix in store', mix)
             return mix
         },
-        async removeSong(context, payload){
-            // var song = await mixService.getSongByIdAndMix(payload.songId, payload.mixId);
-            
-            var removedSong = await mixService.removeSong(payload.songId, payload.mixId)
-            console.log('song',song)
-            context.commit({ type: 'removeCurrSong', song })
-            return song;
-        }
+        // async removeSong(context, payload){            
+        //     var removedSong = await mixService.removeSong(payload.songId, payload.mixId)
+        //     console.log('song',song)
+        //     context.commit({ type: 'removeCurrSong', song })
+        //     return song;
+        // }
     },
 }

@@ -3,6 +3,7 @@
   <div class="mix-details flex" v-if="mix">
     <div class="mix-chat">
       <h2 class="title">Mix chat</h2>
+       <mix-chat/>
     </div>
     <div class="mix-full-info flex">
       <section class="search-song">
@@ -82,6 +83,7 @@
 
 <script>
   import mixApiSearch from '@/components/mix-api-search.cmp.vue';
+  import mixChat from '@/components/mix-chat.cmp.vue';
 export default {
   data() {
     return {
@@ -119,20 +121,20 @@ export default {
       this.isDescHide = false;
     },
     removeSongFromMix(mixId,songId){
-      console.log(songId);
+      var songIdx = this.currMix.songs.findIndex(song => song.id === songId);
+      this.currMix.songs.splice(songIdx,1);
       this.$store.dispatch({
-        type: 'removeSong',
-        mixId,
-        songId
+        type: 'saveMix',
+        mix: this.currMix
       })
     }
   },
   components: {
-      mixApiSearch
+      mixApiSearch,
+      mixChat
   },
   created() {
     const mixId = this.$route.params.mixId;
-    //  console.log('mixId', mixId);
     this.$store.dispatch({ type: "getMixById", mixId });
   }
 }
