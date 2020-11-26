@@ -8,18 +8,11 @@
 			<button @click="getSearchResults()"><i class="fas fa-search"></i></button>
 		</div>
         <div v-if="searchResults">
-
-			{{searchResults.title}}
             <img :src="searchResults.thumbnails.default.url" alt="">
 			<button @click="addSongToMix()">
 				<i class="fas fa-plus"></i>
 			</button>
-        </div>
-
-
-			{{currMix}}
-            
-			
+        </div>       		
 	</section>
 </template>
 
@@ -55,10 +48,10 @@ export default {
 			this.createNewSong.imgUrl = this.searchResults.thumbnails.default.url;
 			mixCopy.songs.unshift(this.createNewSong);
 			console.log(mixCopy);
-			
+
 			this.$store.dispatch({
-				type:'addSongToMix',
-				updatedMix:mixCopy
+				type:'saveMix',
+				mix:mixCopy
 			})
 		},
 
