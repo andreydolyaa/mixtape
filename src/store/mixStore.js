@@ -6,6 +6,7 @@ export default {
         genre: null,
         currMix: null,
         currSongPlaying: null,
+        isPlaying: false
     },
     getters: {
         getMixesForDisplay(state) {
@@ -18,8 +19,11 @@ export default {
         getCurrSongPlaying(state) {
             return state.currSongPlaying;
         },
-        getMix(state){
+        getMix(state) {
             return state.currMix;
+        },
+        getThisIsPlaying(state) {
+            return state.isPlaying;
         }
     },
     mutations: {
@@ -34,22 +38,25 @@ export default {
         setCurrSong(state, payload) {
             state.currSongPlaying = payload.song;
         },
-        removeCurrSong(state,payload){
-           const idx = state.mixes[state.currMix._id].songs.findIndex(song => song.id === payload.song.id);
-           state.mixes[state.currMix._id].songs.splice(idx,1);
-           console.log(state.mixes[state.currMix._id].songs);
+        removeCurrSong(state, payload) {
+            const idx = state.mixes[state.currMix._id].songs.findIndex(song => song.id === payload.song.id);
+            state.mixes[state.currMix._id].songs.splice(idx, 1);
+            console.log(state.mixes[state.currMix._id].songs);
         },
-        setMix(state, payload){
+        setMix(state, payload) {
             state.currMix = payload.mix;
+        },
+        nowPlaying(state, payload) {
+            state.isPlaying = payload.isPlaying;
         }
     },
     actions: {
         async getMixById(contex, { mixId }) {
-            console.log('mixId',mixId)
+            console.log('mixId', mixId)
             const mix = await mixService.getById(mixId);
             // console.log('mix',mix);
-            contex.commit({type: 'setMix' , mix});
-        },   
+            contex.commit({ type: 'setMix', mix });
+        },
         async loadMixes(context) {
             var mixes = await mixService.query();
             context.commit({ type: 'setMixes', mixes });
@@ -60,10 +67,10 @@ export default {
             context.commit({ type: 'setCurrSong', song })
             return song;
         },
-        async saveMix(context, payload){
+        async saveMix(context, payload) {
             console.log(payload.mix)
             const mix = await mixService.update(payload.mix);
-            context.commit({type:'setMix', mix})
+            context.commit({ type: 'setMix', mix })
             console.log('mix in store', mix)
             return mix
         },

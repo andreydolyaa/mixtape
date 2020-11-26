@@ -32,36 +32,48 @@ export default {
 	},
 	data() {
 		return {
-      songId:null
+      songId:null,
+      isPlaying:false
     };
 	},
 	computed: {
-		async player() {
-			return this.$refs.youtube.player;
-		},
+		// async player() {
+		// 	return this.$refs.youtube.player;
+		// },
 	},
 	methods: {
+    async player() {
+			return this.$refs.youtube.player;
+		},
 		emitSongId(songId) {
 			this.$emit("emitRemoveSong", songId);
 		},
 		async play(songId) {
-      // await this.$refs.youtube.player;
+      this.isPlaying = true;
+      this.setIsPlaying()
       var res = this.mix.songs.find(song => song.id === songId);
       this.songId = res.songUrlId
       return await this.$refs.youtube.player.playVideo();
-      // console.log(this.$refs);
-      // return res;
 		},
 		stopVideo() {
+      this.isPlaying = false;
+      this.setIsPlaying();
 			this.$refs.youtube.player.stopVideo();
-			
 		},
 		playing() {
 			// this.duration = this.getTime();
-		},
+    },
+    setIsPlaying(){
+      console.log('@@@isPALYING:',this.isPlaying);
+      this.$store.commit({
+        type:'nowPlaying',
+        isPlaying:this.isPlaying
+      })
+    }
 	},
 	created() {
     // console.log('mix data', this.mixes)
+    this.Player();
 	},
 };
 </script>

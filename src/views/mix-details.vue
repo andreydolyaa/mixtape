@@ -97,16 +97,11 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import mixPlayer from '@/components/mix-player.cmp.vue';
   import mixApiSearch from '@/components/mix-api-search.cmp.vue';
   import mixChat from '@/components/mix-chat.cmp.vue';
   import mixSong from '@/components/mix-song.cmp.vue';
-=======
-import mixApiSearch from '@/components/mix-api-search.cmp.vue';
-import mixChat from '@/components/mix-chat.cmp.vue';
-import mixSong from '@/components/mix-song.cmp.vue';
->>>>>>> abee19bde91c6494fca3483f05132f6967d4cedb
+
 export default {
   data() {
     return {
@@ -175,16 +170,11 @@ export default {
     }
   },
   components: {
-<<<<<<< HEAD
       mixApiSearch,
       mixChat,
       mixSong,
       mixPlayer
-=======
-    mixApiSearch,
-    mixChat,
-    mixSong
->>>>>>> abee19bde91c6494fca3483f05132f6967d4cedb
+
   },
   created() {
     const mixId = this.$route.params.mixId;
