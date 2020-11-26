@@ -6,12 +6,8 @@
       <mix-chat />
     </div>
     <div class="mix-full-info flex">
-<<<<<<< HEAD
       
       <mixApiSearch/>
-=======
-      <mixApiSearch />
->>>>>>> abee19bde91c6494fca3483f05132f6967d4cedb
       <section class="header-mix-info flex">
         <section class="mix-img flex start">
           <img :src="mix.songs[0].imgUrl" />
