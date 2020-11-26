@@ -1,4 +1,4 @@
-.mix {
+.mix { 
     color: blue;
     position: relative;
     display: flex;
@@ -19,6 +19,8 @@
         font-weight: 900;
         font-size: 1.65em;
         text-shadow: -1px 1px #000000;
+        display: flex;
+        justify-content: space-between;
     }
 }
 

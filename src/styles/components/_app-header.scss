@@ -32,5 +32,17 @@
             height: auto;
         }
     }
+
+    .logo-playing{
+        width:160px;
+        height: auto;
+        content:url(https://res.cloudinary.com/hw-projects/image/upload/v1606400976/appmixes/logo_r_animated_v2_rpqeo0.gif);
+    }
+
+    .logo-stop{
+        width:160px;
+        height: auto;
+        content:url(https://res.cloudinary.com/hw-projects/image/upload/v1606418253/appmixes/logo_r_animated_v2_first_Frame_kwkuym.jpg);
+    }
    
 }

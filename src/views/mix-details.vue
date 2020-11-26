@@ -107,7 +107,7 @@ export default {
       isLiked: false,
       songTxt: '',
       currMix: ''
-    }
+    } 
   },
   computed: {
     mix() {
