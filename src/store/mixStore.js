@@ -61,6 +61,9 @@ export default {
             context.commit({type:'setMix', mix})
             console.log('mix in store', mix)
             return mix
+        },
+        addSongToMix(context,payload){
+            console.log(payload.newSong);
         }
     },
 }

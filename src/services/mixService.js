@@ -7,7 +7,8 @@ export const mixService = {
     remove,
     save,
     update,
-    getSongByIdAndMix
+    getSongByIdAndMix,
+    createNewSong
 }
 
 function query() {
@@ -35,33 +36,49 @@ function update(mix) {
 
 
 
-// async function getSongById(songId,mixId){
-//     var mix = await getById(mixId);
-//     var currSong = mix.filter(song => song.id === songId);
-//     return currSong
-// }
-
-// function getSongByIdAndMix(songId, mixId) {
-//     console.log(songId,mixId);
-//     getById(mixId)
-//         .then(res => {
-//             return res.songs
-//         }).then(songs => {
-//             var currSong = songs.find(song => song.id === songId)
-//             return currSong;
-//         })
-// }
-
-// async function getSongByIdAndMix(songId,mixId){
-//     var mix = await getById(mixId);
-//     var song = mix.songs.find(song => song.id === songId);
-//     return song;
-// }
 
 
-async function getSongByIdAndMix(songId,mixId){
+
+async function getSongByIdAndMix(songId, mixId) {
     var mix = await getById(mixId);
     var currSong = mix.songs.find(song => song.id === songId);
     return currSong
 }
-// console.log(getSongByIdAndMix('mUkffgfiLjooxs','5c09'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function createNewSong() {
+    return {
+        "title": '',
+        "id": makeId(),
+        "songUrlId": '',
+        "imgUrl": '',
+        "addedBy": "minimal-user",
+        "duration": "3:21",
+    }
+}
+
+
+function makeId(length = 5) {
+    var txt = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i = 0; i < length; i++) {
+        txt += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return txt;
+}
