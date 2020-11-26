@@ -51,11 +51,11 @@ export default {
         }
     },
     actions: {
-        async getMixById(contex, { mixId }) {
+        async getMixById(context, { mixId }) {
             console.log('mixId', mixId)
             const mix = await mixService.getById(mixId);
             // console.log('mix',mix);
-            contex.commit({ type: 'setMix', mix });
+            context.commit({ type: 'setMix', mix });
         },
         async loadMixes(context) {
             var mixes = await mixService.query();
