@@ -1,0 +1,16 @@
+
+.chat-room{
+    display: flex;
+    flex-direction: column;
+ 
+    .chat-msgs{
+        background: rgb(190,30,45);
+        background: linear-gradient(0deg, rgba(190,30,45,1) 0%, rgba(173,32,91,1) 24%, rgba(134,56,120,1) 50%, rgba(52,75,113,1) 78%, rgba(47,72,88,1) 100%);
+    
+        color: #fff;
+        width: 100%;
+        height: 70vh;
+    
+    }
+
+}
