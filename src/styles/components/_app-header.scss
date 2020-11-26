@@ -1,6 +1,34 @@
 
 
 .app-header{
-    background-color: rgb(32, 34, 36);
     padding:1rem;
+    display: flex;
+    nav{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        width: 100%;
+        gap: 20px;
+        font-size: 1.6em;    
+    }
+
+    .nav-mix{
+        display: flex;
+        gap: 20px;
+    }
+
+    .nav-user{
+        display: flex;
+        gap: 20px;
+    }
+
+    .logo{
+
+        img{
+            width:100px;
+            height: auto;
+        }
+    }
+   
 }

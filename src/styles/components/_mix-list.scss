@@ -3,13 +3,35 @@
     flex-direction: column;
     gap: 20px;
 
+    .mixesNav{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.6em;
+
+
+
+        .mixLinkShowAll {
+            color: #fff;
+            align-self: flex-end;
+           
+        }
+
+
+        .genreTitle{
+            color: white;
+            align-self: flex-start;
+           
+            text-transform: capitalize;
+        }
+    }
+
     .navShowAllUl{
         display: flex;
         flex-direction: row;
         list-style: none;
         justify-content: flex-end;
         gap: 20px;
-        font-size: 1.2em;
         color: #fff;
     }
 
@@ -26,14 +48,12 @@
     ul.ulMixes {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         list-style: none;
         gap: 20px;
     }
 
-    .mixLinkShowAll {
-        color: #fff;
-        align-self: flex-end;
-    }
+  
+   
 }

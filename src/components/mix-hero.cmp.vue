@@ -3,12 +3,14 @@
     <h2>Pick a mix and join the mixTape</h2>
     <!-- <button @click="playVideo">play</button> -->
 
-    <mixCarousel />
+    <mix-videoPlayer />
+    <!-- <mix-carousel /> -->
   </section>
 </template>
 
 <script>
 import mixCarousel from "../components/mix-Carousel.cmp.vue";
+import mixVideoPlayer from "../components/mix-video-player.cmp.vue";
 
 
 export default {
@@ -24,7 +26,8 @@ export default {
  
   },
   components: {
-     mixCarousel
+     mixCarousel,
+     mixVideoPlayer
   },
   computed : {
    

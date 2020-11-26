@@ -2,13 +2,12 @@
 	<section>
 		<div class="mixHome">
 			<!-- <h1>mix Home</h1> -->
-			<mixVideo />
+			<!-- <mixVideo /> -->
 			<mixHero />
     		<ul class="mixesList container"> 
               <!--  -->
-			   <h2> Mixes </h2> 
+			   <!-- <h2> Mixes </h2>  -->
                 <li class="mixesListLi" v-for="(item, index) in geners" :key="item" > 
-					{{item}}
                    	<mixListHome v-bind:genre="geners[index]"/>
                 </li>
             </ul> 
