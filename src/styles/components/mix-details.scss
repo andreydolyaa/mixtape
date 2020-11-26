@@ -1,5 +1,11 @@
 .mix-details{
 width: 100%;
+
+i.fas:hover ,i.far:hover , i.fab:hover{
+    color:var(--primary-color);
+    cursor: pointer;
+}
+
 }
 .hide{
     display: none;
@@ -18,10 +24,6 @@ width: 100%;
     .search-song{
         align-self: flex-start;
 
-        div.el-input {
-            width: 100%;
-        }
-
         input.el-input__inner{
             width: 250px;
             border: 1px solid #fff;
@@ -37,6 +39,13 @@ width: 100%;
         margin-bottom: 40px;
         text-align: left;
 
+        .mix-img{
+            img{
+                max-width: 320px;
+                margin-right: 20px;
+            }
+        }
+
         .mix-info-main {
             display: flex;
             flex-direction: column;
@@ -51,6 +60,22 @@ width: 100%;
         .mix-info{
         text-align: left;
         margin-bottom: 10px;
+
+        .like{
+            display: flex;
+            width: 100%;
+            flex-direction: row;
+            
+            .like-song{
+                width: 100%;
+                text-align: right;       
+
+                i{
+                    font-size: 42px;
+                    color: #be1e2d;
+                }
+            }
+        }
 
             h2{
                 font-size: 2.625rem;
@@ -72,10 +97,15 @@ width: 100%;
         }
         .add-song{
             i{
+                font-size: 22px;
                 color: #be1e2d;
             }
         }
         .btn-actions{
+            width: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
 
             .mix-like{
                 i{
@@ -99,14 +129,26 @@ width: 100%;
     gap: 10px;
     justify-content: left;
     align-items: center;
+    display: flex;
+    flex-direction: row;
 
     i{
         font-size: 42px;
     }
+    i.far.fa-trash-alt{
+        font-size: 22px;
+        background-color: #fffadf29;
+        align-self: flex-end;
+    }
     img{
         width: 50px;
         height: 50px;
+        object-fit: cover;
     }
+}
+
+.songs-details:hover{
+    background-color: #fffadf29;
 }
 
 .songs-list{
@@ -125,9 +167,16 @@ width: 100%;
 .share-container{
     flex-direction: row;
     align-items: baseline;
+    gap: 8px;
+
+    .invite{
+        flex-direction: row;
+        gap:5px;
+    }
 
     .mix-social-nav{
-
+        display: flex;
+        gap: 6px;
         i{
             font-size: 28px;
         }
@@ -137,3 +186,8 @@ width: 100%;
 .mix-chat{
     width: 30%;
 }
+
+div.el-input {
+    width: 100% !important;
+}
+

@@ -28,7 +28,7 @@
               <!-- <input type="text" /><span :class="toggleEditDesc"><i class="far fa-save"></i></span> -->
             </div>
             <h4>{{ currMix.genre }}</h4>
-            <span class="add-song"><i class="far fa-heart"></i></span>
+            <div class="like"><div class="like-song"><i class="far fa-heart"></i></div></div>
           </section>
           <section class="user-info">
             <h5>
