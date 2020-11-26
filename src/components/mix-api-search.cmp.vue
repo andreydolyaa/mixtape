@@ -3,13 +3,17 @@
 <template>
 	<section>
 		<div class="searchTest">
+			<!-- @keyup.enter="getSearchResults()" -->
 			<!-- <input type="text" v-model="keyword" /> -->
+			<form @submit.prevent="getSearchResults()">
 			<el-input v-model="keyword" type="text" placeholder="Search song..." clearable></el-input>
-			<button @click="getSearchResults()">
+			</form>
+			<button  @click="getSearchResults() ">
 				<i class="fas fa-search"></i>
 			</button>
 		</div>
 		<div v-if="searchResults">
+			<p>{{searchResults.title}}</p>
 			<img :src="searchResults.thumbnails.default.url" alt />
 			<button @click="addSongToMix()">
 				<i class="fas fa-plus"></i>
