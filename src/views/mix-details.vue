@@ -6,6 +6,7 @@
        <mix-chat/>
     </div>
     <div class="mix-full-info flex">
+      
       <mixApiSearch/>
       <section class="header-mix-info flex">
         <section class="mix-img flex start">
@@ -65,6 +66,7 @@
 </template>
 
 <script>
+import mixPlayer from '@/components/mix-player.cmp.vue';
   import mixApiSearch from '@/components/mix-api-search.cmp.vue';
   import mixChat from '@/components/mix-chat.cmp.vue';
   import mixSong from '@/components/mix-song.cmp.vue';
@@ -116,7 +118,8 @@ export default {
   components: {
       mixApiSearch,
       mixChat,
-      mixSong
+      mixSong,
+      mixPlayer
   },
   created() {
     const mixId = this.$route.params.mixId;

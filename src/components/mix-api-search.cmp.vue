@@ -5,20 +5,22 @@
 		<div class="searchTest">
 			<!-- <input type="text" v-model="keyword" /> -->
 			<el-input v-model="keyword" type="text" placeholder="Search song..." clearable></el-input>
-			<button @click="getSearchResults()"><i class="fas fa-search"></i></button>
+			<button @click="getSearchResults()">
+				<i class="fas fa-search"></i>
+			</button>
 		</div>
-        <div v-if="searchResults">
-            <img :src="searchResults.thumbnails.default.url" alt="">
+		<div v-if="searchResults">
+			<img :src="searchResults.thumbnails.default.url" alt />
 			<button @click="addSongToMix()">
 				<i class="fas fa-plus"></i>
 			</button>
-        </div>       		
+		</div>
 	</section>
 </template>
 
 <script>
 import { youTubeService } from "@/services/youTubeService.js";
-import {mixService} from '@/services/mixService.js';
+import { mixService } from "@/services/mixService.js";
 
 export default {
 	data() {
@@ -26,22 +28,22 @@ export default {
 			keyword: "",
 			searchResults: null,
 			createNewSong: mixService.createNewSong(),
-			currMix:''
+			currMix: "",
 		};
 	},
-	computed:{
-		getCurrMix(){
-			this.currMix = this.$store.getters.getMix
-			return this.currMix
-		}
+	computed: {
+		getCurrMix() {
+			this.currMix = this.$store.getters.getMix;
+			return this.currMix;
+		},
 	},
 	methods: {
 		async getSearchResults() {
 			var res = await youTubeService.query(this.keyword);
-            this.searchResults = res;
+			this.searchResults = res;
 			return this.searchResults;
 		},
-		addSongToMix(){
+		addSongToMix() {
 			var mixCopy = JSON.parse(JSON.stringify(this.getCurrMix));
 			this.createNewSong.title = this.searchResults.title;
 			this.createNewSong.songUrlId = this.searchResults.songId;
@@ -50,13 +52,11 @@ export default {
 			console.log(mixCopy);
 
 			this.$store.dispatch({
-				type:'saveMix',
-				mix:mixCopy
-			})
+				type: "saveMix",
+				mix: mixCopy,
+			});
 		},
-
 	},
-
 };
 </script>
 

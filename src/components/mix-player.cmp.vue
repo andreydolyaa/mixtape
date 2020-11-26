@@ -26,7 +26,9 @@
 				</li>
 			</ul>
 		</div>
-		<globalPlayer :refs="$refs"/>
+		<!-- <globalPlayer :refs="$refs"/> -->
+		<!-- <mixDetails :refs="$refs"/> -->
+		<!-- <mixSong :refs="$refs"/> -->
 		
 	</section>
 </template>
@@ -34,7 +36,8 @@
 <script>
 import { mixService } from "@/services/mixService.js";
 import globalPlayer from '@/components/global-player.cmp.vue';
-import {eventBus,STOP_MUSIC} from '@/main.js';
+import mixDetails from '@/views/mix-details.vue';
+import mixSong from '@/components/mix-song.cmp.vue';
 export default {
 	data() {
 		return {
@@ -98,7 +101,9 @@ export default {
 		},
 	},
 	components:{
-		globalPlayer
+		globalPlayer,
+		// mixDetails,
+		// mixSong
 	}
 };
 </script>

@@ -10,8 +10,8 @@
 			<button @click="pause"><i class="far fa-pause-circle"></i></button>
 
 			<button @click="stop"><i class="far fa-stop-circle"></i></button>
-		</div>
 
+		</div>
 	</section>
 
 </template>
@@ -47,6 +47,9 @@ export default {
 			this.refs.youtube.player.playVideo();
 		},
 	},
+	created(){
+		
+	}
 };
 </script>
 
