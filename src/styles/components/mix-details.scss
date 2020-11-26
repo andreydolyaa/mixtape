@@ -1,7 +1,13 @@
 .mix-details{
 width: 100%;
 }
-  
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+
 .mix-full-info  {
     flex-direction: column;
     color:#ffffff;

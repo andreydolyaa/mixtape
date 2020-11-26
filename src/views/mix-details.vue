@@ -9,15 +9,24 @@
         <el-input type="text" placeholder="Search song..." clearable></el-input>
       </section>
       <section class="header-mix-info flex">
-        
         <section class="mix-img flex start">
           <img :src="mix.songs[0].imgUrl" />
         </section>
         <section class="mix-info-main">
           <section class="mix-info">
-            <h2>{{ mix.name }}<span class="edit-xt"><i class="fas fa-pen"></i></span></h2>
-            <!-- <input type="text" v-model="" hidden> -->
-            <p>{{ mix.desc }} <span><i class="fas fa-pen"></i></span></p>            
+            <h2 v-if="!isTitleHide">
+              {{ mix.name}}<span @click="toggleEditTitle" class="edit-txt"><i class="fas fa-pen"></i></span>
+            </h2>
+            <div v-else>
+            <input v-model="currMix.name" type="text" /><span @click.stop="saveChange(currMix)"><i class="far fa-save"></i></span>
+            </div>
+            <p v-if="!isDescHide">
+              {{ mix.desc }} <span @click="toggleEditDesc"><i class="fas fa-pen"></i></span>
+            </p>
+            <div v-else>
+              <textarea v-model="currMix.desc" name="desc" id="desc" cols="30" rows="10"></textarea><span @click="saveChange(currMix)"><i class="far fa-save"></i></span>
+              <!-- <input type="text" /><span :class="toggleEditDesc"><i class="far fa-save"></i></span> -->
+            </div>
             <h4>{{ mix.genre }}</h4>
             <span class="add-song"><i class="far fa-heart"></i></span>
           </section>
@@ -31,7 +40,6 @@
             <!-- <h4>50 Likes</h4> -->
           </section>
         </section>
-
       </section>
 
       <section class="mix-actions-social flex space-between">
@@ -74,24 +82,38 @@
 export default {
   data() {
     return {
-      toggleEdit: false
-      // currMix: 
+      isTitleHide: false,
+      isDescHide: false,
+      songTxt: '',
+      currMix: ''
     }
   },
   computed: {
     mix() {
-      return this.$store.getters.getMix;
+      this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
+      return this.currMix
     },
     user() {
       var newUser = this.$store.getters.getUser;
       console.log(newUser)
       return newUser
-    }
+    },
+
   },
-  methods:{
-    onChangeTxt(){
-      
-    }
+  methods: {
+    toggleEditTitle() {
+     this.isTitleHide = !this.isTitleHide;
+    },
+    toggleEditDesc() {
+     this.isDescHide = !this.isDescHide;  
+    },
+    saveChange(mix){
+      this.$store.dispatch({
+        type: 'saveMix',
+        mix
+      });
+      this.isTitleHide = true;
+    },
   },
   components: {
   },
