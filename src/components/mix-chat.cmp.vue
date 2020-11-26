@@ -10,7 +10,7 @@
       <div class="user-msg flex">
         <el-input type="text" v-model="msg.txt" placeholder="Send a message" />
         <button class="btn send-msg" @click.prevent.stop="onSendMsg(msg)">
-          Send
+          <img src="https://res.cloudinary.com/hw-projects/image/upload/v1606416732/appmixes/send-messege_s_red_my4iaj.png"/>
         </button>
       </div>
     </form>

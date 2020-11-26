@@ -12,5 +12,15 @@
         height: 70vh;
     
     }
-
+    button.btn.send-msg{
+        background: no-repeat;
+        border: none;
+        padding-left: 14px;
+        
+        img{
+            width: 30px;
+            height: auto;
+        }
+    }
+    
 }
