@@ -1,7 +1,7 @@
 <template>
 	<section class="songs-list">
 		<div >
-			<youtube :video-id="songId" ref="youtube" @playing="playing" class="youtube-window"></youtube>
+			<youtube :video-id="songId" ref="youtube" @playing="playing" :player-vars="playerVars" class="youtube-window"></youtube>
 		</div>
 		<ul>
 			<li class="songs-details-main flex" v-for="song in songs" :key="song.id">
@@ -33,7 +33,10 @@ export default {
 	data() {
 		return {
       songId:null,
-      isPlaying:false
+      isPlaying:false,
+      playerVars: {
+        autoplay: 1
+      }
     };
 	},
 	computed: {
@@ -53,7 +56,7 @@ export default {
       this.setIsPlaying()
       var res = this.mix.songs.find(song => song.id === songId);
       this.songId = res.songUrlId
-      return await this.$refs.youtube.player.playVideo();
+      await this.$refs.youtube.player.playVideo();
 		},
 		stopVideo() {
       this.isPlaying = false;
@@ -73,7 +76,7 @@ export default {
 	},
 	created() {
     // console.log('mix data', this.mixes)
-    this.Player();
+    
 	},
 };
 </script>
