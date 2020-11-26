@@ -6,7 +6,7 @@
     </div>
     <div class="mix-full-info flex">
       <section class="search-song">
-        <el-input type="text" placeholder="Search in mix" clearable></el-input>
+        <el-input type="text" placeholder="Search song..." clearable></el-input>
       </section>
       <section class="header-mix-info flex">
         
@@ -15,7 +15,7 @@
         </section>
         <section class="mix-info-main">
           <section class="mix-info">
-            <h2>{{ mix.name }}<span class="editTxt"><i class="fas fa-pen"></i></span></h2>
+            <h2>{{ mix.name }}<span class="edit-xt"><i class="fas fa-pen"></i></span></h2>
             <!-- <input type="text" v-model="" hidden> -->
             <p>{{ mix.desc }} <span><i class="fas fa-pen"></i></span></p>            
             <h4>{{ mix.genre }}</h4>
@@ -37,7 +37,7 @@
       <section class="mix-actions-social flex space-between">
         <div class="btn-actions flex space-evenly">
           <span class="mix-like"><i class="fas fa-plus-circle"></i></span>
-          <input class="search-song" type="text" />
+           <el-input class="search-song" type="text" placeholder="Search in mix" clearable></el-input>
         </div>
         <!-- <button>shaffle</button> -->
         <div class="share-container flex">
@@ -60,7 +60,7 @@
             <i class="far fa-play-circle"></i>
             <img :src="song.imgUrl" />
             <p>{{ song.title }}</p>
-            <!-- Todo (add song-length) -->
+            <span>{{ song.duration }}</span>
             <i class="far fa-trash-alt"></i>
           </li>
         </ul>

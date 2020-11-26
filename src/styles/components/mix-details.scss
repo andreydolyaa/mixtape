@@ -10,6 +10,12 @@ width: 100%;
     width: 100%;
 
     .search-song{
+        align-self: flex-start;
+
+        div.el-input {
+            width: 100%;
+        }
+
         input.el-input__inner{
             width: 250px;
             border: 1px solid #fff;
@@ -29,6 +35,11 @@ width: 100%;
             display: flex;
             flex-direction: column;
 
+            .edit-txt{
+                i{
+                    font-size: 16px;
+                }
+            }
         }
 
         .mix-info{
@@ -70,6 +81,9 @@ width: 100%;
                     fill: red;
                 }
 
+            }
+            input{
+                min-width: 240px;
             }
         }
     }
