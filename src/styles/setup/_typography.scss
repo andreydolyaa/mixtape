@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-
+ //font-family: 'Varela Round', sans-serif;
+ 
 *{
-    font-family: 'Varela Round', sans-serif;
+   
+    font-family: helveticaneue;
 }
+
+@font-face {
+    font-family: helveticaneue;
+    src: url(https://res.cloudinary.com/hw-projects/raw/upload/v1606404566/appmixes/helveticaneue_viy9d2.ttf);
+  }
