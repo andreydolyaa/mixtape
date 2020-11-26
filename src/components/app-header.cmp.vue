@@ -3,9 +3,9 @@
   <section>
     <div class="app-header">
       <!-- <h1>app header</h1> -->
-        <div class="logo" :class="isPlaying">
-          <router-link to="/" ><img class="reflect" src="" ></router-link> 
-          </div>
+        <div class="logo" :class="isPlaying" >
+          <router-link to="/" ><img class="reflect" src="https://res.cloudinary.com/hw-projects/image/upload/v1606418253/appmixes/logo_r_animated_v2_first_Frame_kwkuym.jpg" ></router-link> 
+        </div>
         <nav>   
           <div class="nav-mix">
             <router-link to="/genres">Genres</router-link>
@@ -30,7 +30,7 @@ export default {
   },
   computed: {
     isPlaying() {
-      var currSong = this.$store.getters.getCurrSongPlaying;
+      var currSong = this.$store.getters.getThisIsPlaying;
       console.log('currSong',currSong)
       return currSong ? 'logo-playing' : 'logo-stop'
     },
