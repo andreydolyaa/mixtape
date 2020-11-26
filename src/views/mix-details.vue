@@ -6,18 +6,27 @@
     </div>
     <div class="mix-full-info flex">
       <section class="search-song">
-        <el-input type="text" placeholder="Search in mix" clearable></el-input>
+        <el-input
+          type="text"
+          placeholder="Search in mix"
+          v-model="song.txt"
+          clearable
+        ></el-input>
       </section>
       <section class="header-mix-info flex">
-        
         <section class="mix-img flex start">
           <img :src="mix.songs[0].imgUrl" />
         </section>
         <section class="mix-info-main">
           <section class="mix-info">
-            <h2>{{ mix.name }}<span class="editTxt"><i class="fas fa-pen"></i></span></h2>
+            <h2>
+              {{ mix.name
+              }}<span class="edit-txt"><i class="fas fa-pen"></i></span>
+            </h2>
             <!-- <input type="text" v-model="" hidden> -->
-            <p>{{ mix.desc }} <span><i class="fas fa-pen"></i></span></p>            
+            <p>
+              {{ mix.desc }} <span><i class="fas fa-pen"></i></span>
+            </p>
             <h4>{{ mix.genre }}</h4>
             <span class="add-song"><i class="far fa-heart"></i></span>
           </section>
@@ -31,7 +40,6 @@
             <!-- <h4>50 Likes</h4> -->
           </section>
         </section>
-
       </section>
 
       <section class="mix-actions-social flex space-between">
@@ -74,8 +82,8 @@
 export default {
   data() {
     return {
-      toggleEdit: false
-      // currMix: 
+      toggleEdit: false,
+      songTxt: ''
     }
   },
   computed: {
@@ -88,9 +96,9 @@ export default {
       return newUser
     }
   },
-  methods:{
-    onChangeTxt(){
-      
+  methods: {
+    onChangeTxt() {
+
     }
   },
   components: {
