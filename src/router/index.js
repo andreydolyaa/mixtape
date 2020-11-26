@@ -5,10 +5,11 @@ import mixDetails from '../views/mix-details.vue';
 import mixEdit from '../views/mix-edit.vue';
 import mixLogin from '../views/mix-login.vue';
 import mixSignup from '../views/mix-signup.vue';
-import test from '../components/test.vue';
-import mixApiSearch from '../components/mix-api-search.cmp.vue';
+
+
 import mixList from '../components/mix-list.cmp.vue';
 import mixPlayer from '../components/mix-player.cmp.vue';
+
 
 Vue.use(VueRouter)
 
@@ -32,10 +33,6 @@ const routes = [
   {
     path:'/test',
     component:mixPlayer
-  },
-  {
-    path:'/test1',
-    component:mixApiSearch
   },
   {
     path:'/mix/details/:mixId',
