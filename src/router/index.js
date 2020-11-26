@@ -7,6 +7,7 @@ import mixLogin from '../views/mix-login.vue';
 import mixSignup from '../views/mix-signup.vue';
 import test from '../components/test.vue';
 import mixList from '../components/mix-list.cmp.vue';
+import mixPlayer from '../components/mix-player.cmp.vue';
 
 Vue.use(VueRouter)
 
@@ -37,7 +38,7 @@ const routes = [
   },
   {
     path:'/test',
-    component:test
+    component:mixPlayer
   }
   
 ]
