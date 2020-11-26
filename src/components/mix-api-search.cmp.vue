@@ -10,6 +10,9 @@
 
 			{{searchResults.title}}
             <img :src="searchResults.thumbnails.default.url" alt="">
+			<button>
+				<i class="fas fa-plus"></i>
+			</button>
         </div>
             
 			
