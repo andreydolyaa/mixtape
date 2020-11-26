@@ -1,7 +1,11 @@
 .mix-details{
 width: 100%;
 }
-.mix-full-info{
+ 
+.mix-full-info  {
+    flex-direction: column;
+    color:#ffffff;
+
     .search-song{
         input.el-input__inner{
             width: 250px;
@@ -12,26 +16,27 @@ width: 100%;
     }
     .header-mix-info{
         width: 100%;
+        flex-direction: row;
     }
-flex-direction: column;
- .mix-actions-social{
-     svg{
-         cursor: pointer;
-     }
-     .add-song{
-        i{
-            color: #be1e2d;
-        }
-     }
-    .btn-actions{
-        .mix-like{
-            svg:hover{
-                fill: red;
-            }
 
+    .mix-actions-social{
+        svg{
+            cursor: pointer;
+        }
+        .add-song{
+            i{
+                color: #be1e2d;
+            }
+        }
+        .btn-actions{
+            .mix-like{
+                svg:hover{
+                    fill: red;
+                }
+
+            }
         }
     }
- }
 }
 .songs-details{
     img{

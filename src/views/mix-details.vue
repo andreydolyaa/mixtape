@@ -9,6 +9,7 @@
         <el-input type="text" placeholder="Search in mix" clearable></el-input>
       </section>
       <section class="header-mix-info flex">
+        
         <section class="mix-img flex start">
           <img :src="mix.songs[0].imgUrl" />
         </section>
@@ -30,7 +31,9 @@
             <!-- <h4>50 Likes</h4> -->
           </section>
         </section>
+
       </section>
+
       <section class="mix-actions-social flex space-between">
         <div class="btn-actions flex space-evenly">
           <span class="mix-like"><i class="fas fa-plus-circle"></i></span>
