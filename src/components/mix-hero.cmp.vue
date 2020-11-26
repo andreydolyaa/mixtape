@@ -2,9 +2,8 @@
   <section class="hero">
     <h2>Pick a mix and join the mixTape</h2>
     <!-- <button @click="playVideo">play</button> -->
-
-    <mix-videoPlayer />
-    <!-- <mix-carousel /> -->
+    <mix-video-player />
+    <mix-carousel />
   </section>
 </template>
 

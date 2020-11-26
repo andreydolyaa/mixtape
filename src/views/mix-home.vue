@@ -1,14 +1,11 @@
-<template>
+<template> 
 	<section>
-		<div class="mixHome">
-			<!-- <h1>mix Home</h1> -->
-			<!-- <mixVideo /> -->
+		<div class="mix-home">
 			<mixHero />
-    		<ul class="mixesList container"> 
-              <!--  -->
+    		<ul class="mixes-list container"> 
 			   <!-- <h2> Mixes </h2>  -->
-                <li class="mixesListLi" v-for="(item, index) in geners" :key="item" > 
-                   	<mixListHome v-bind:genre="geners[index]"/>
+                <li class="mixes-list-li" v-for="(item, index) in geners" :key="item" > 
+                   	<mix-list-Home v-bind:genre="geners[index]"/>
                 </li>
             </ul> 
 		</div>

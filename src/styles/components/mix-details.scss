@@ -1,8 +1,21 @@
 .mix-details{
 width: 100%;
 }
-.mix-full-info{
+  
+.mix-full-info  {
+    flex-direction: column;
+    color:#ffffff;
+    font-size: 1.125rem;
+    max-width: 800px;
+    width: 100%;
+
     .search-song{
+        align-self: flex-start;
+
+        div.el-input {
+            width: 100%;
+        }
+
         input.el-input__inner{
             width: 250px;
             border: 1px solid #fff;
@@ -10,43 +23,109 @@ width: 100%;
             border-radius: 5px;
         }
     }
+
     .header-mix-info{
         width: 100%;
-    }
-flex-direction: column;
- .mix-actions-social{
-     svg{
-         cursor: pointer;
-     }
-     .add-song{
-        i{
-            color: #be1e2d;
-        }
-     }
-    .btn-actions{
-        .mix-like{
-            svg:hover{
-                fill: red;
-            }
+        flex-direction: row;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        text-align: left;
 
+        .mix-info-main {
+            display: flex;
+            flex-direction: column;
+
+            .edit-txt{
+                i{
+                    font-size: 16px;
+                }
+            }
+        }
+
+        .mix-info{
+        text-align: left;
+        margin-bottom: 10px;
+
+            h2{
+                font-size: 2.625rem;
+            }
+        }
+
+        .user-info{
+            display: flex; 
+            flex-direction: column;
         }
     }
- }
+
+    .mix-actions-social{
+        margin-bottom: 40px;
+        align-items: baseline;
+
+        svg{
+            cursor: pointer;
+        }
+        .add-song{
+            i{
+                color: #be1e2d;
+            }
+        }
+        .btn-actions{
+
+            .mix-like{
+                i{
+                    font-size: 42px;
+                    margin-right: 16px;
+                }
+               
+                svg:hover{
+                    fill: red;
+                }
+
+            }
+            input{
+                min-width: 240px;
+            }
+        }
+    }
 }
+
 .songs-details{
+    gap: 10px;
+    justify-content: left;
+    align-items: center;
+
+    i{
+        font-size: 42px;
+    }
     img{
         width: 50px;
         height: 50px;
     }
 }
-.songs-details{
-    li{
-        width: 100%;
+
+.songs-list{
+    display: flex;
+    ul{
+        display: flex;
+        gap: 16px;
+        flex-direction: column;
+
+        li.songs-details {
+            width: 100%;
+        }
     }
 }
 
 .share-container{
-    flex-direction: column;
+    flex-direction: row;
+    align-items: baseline;
+
+    .mix-social-nav{
+
+        i{
+            font-size: 28px;
+        }
+    }
 }
 
 .mix-chat{

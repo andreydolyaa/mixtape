@@ -2,34 +2,42 @@
 <template>
   <div class="mix-details flex" v-if="mix">
     <div class="mix-chat">
-      <h1 class="title">Mix chat</h1>
+      <h2 class="title">Mix chat</h2>
     </div>
     <div class="mix-full-info flex">
       <section class="search-song">
-      <el-input type="text" placeholder="Search in mix"></el-input>
+        <el-input type="text" placeholder="Search song..." clearable></el-input>
       </section>
       <section class="header-mix-info flex">
+        
         <section class="mix-img flex start">
-          <!-- <img :src="mix.imgUrl" /> -->
+          <img :src="mix.songs[0].imgUrl" />
         </section>
-        <section class="mix-info">
-          <h1>{{ mix.name }}</h1>
-          <p>{{ mix.desc }}</p>
-          <h4>{{ mix.genre }}</h4>
-          <h5>
-            Created by: <span><img :src="mix.createdBy.imgUrl" /></span>
-            {{ mix.createdBy.fullName }}
-          </h5>
+        <section class="mix-info-main">
+          <section class="mix-info">
+            <h2>{{ mix.name }}<span class="edit-xt"><i class="fas fa-pen"></i></span></h2>
+            <!-- <input type="text" v-model="" hidden> -->
+            <p>{{ mix.desc }} <span><i class="fas fa-pen"></i></span></p>            
+            <h4>{{ mix.genre }}</h4>
+            <span class="add-song"><i class="far fa-heart"></i></span>
+          </section>
+          <section class="user-info">
+            <h5>
+              Created by: <img :src="mix.createdBy.imgUrl" />
+              {{ mix.createdBy.fullName }}
+            </h5>
+          </section>
           <section class="general-info">
             <!-- <h4>50 Likes</h4> -->
           </section>
         </section>
+
       </section>
+
       <section class="mix-actions-social flex space-between">
         <div class="btn-actions flex space-evenly">
-          <span class="add-song"><i class="far fa-heart"></i></span> 
           <span class="mix-like"><i class="fas fa-plus-circle"></i></span>
-          <input class="search-song" type="text" />
+           <el-input class="search-song" type="text" placeholder="Search in mix" clearable></el-input>
         </div>
         <!-- <button>shaffle</button> -->
         <div class="share-container flex">
@@ -40,8 +48,6 @@
             <i class="fab fa-facebook-square"></i>
             <i class="fab fa-whatsapp"></i>
           </div>
-          <!-- <button>facebook share</button> -->
-          <!-- <button>whatsapp share</button> -->
         </div>
       </section>
       <section class="songs-list">
@@ -54,7 +60,8 @@
             <i class="far fa-play-circle"></i>
             <img :src="song.imgUrl" />
             <p>{{ song.title }}</p>
-            <!-- Todo (add song-length) -->
+            <span>{{ song.duration }}</span>
+            <i class="far fa-trash-alt"></i>
           </li>
         </ul>
       </section>
@@ -67,12 +74,23 @@
 export default {
   data() {
     return {
-
+      toggleEdit: false
+      // currMix: 
     }
   },
   computed: {
     mix() {
       return this.$store.getters.getMix;
+    },
+    user() {
+      var newUser = this.$store.getters.getUser;
+      console.log(newUser)
+      return newUser
+    }
+  },
+  methods:{
+    onChangeTxt(){
+      
     }
   },
   components: {
@@ -85,3 +103,9 @@ export default {
 }
 
 </script>
+
+<style lang="css" scoped>
+.mix-details {
+  color: #ffffff;
+}
+</style>
