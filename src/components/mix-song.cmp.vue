@@ -6,9 +6,14 @@
 		<ul>
 			<li class="songs-details-main flex" v-for="song in songs" :key="song.id">
 				<div class="songs-details">
-					<button @click="play(song.id)">
+
+					<button v-if="!isPlaying" @click="play(song.id)">
 						<i class="far fa-play-circle"></i>
 					</button>
+					<button v-else @click="pauseVideo()">
+						<i class="far fa-pause-circle"></i>
+					</button>
+
 					<img :src="song.imgUrl" />
 					<p>{{ song.title }}</p>
 					<span>{{ song.duration }}</span>
@@ -42,7 +47,10 @@ export default {
 	computed: {
 		// async player() {
 		// 	return this.$refs.youtube.player;
-		// },
+    // },
+    isNowPlaying(){
+      return this.$store.getters.getThisIsPlaying;
+    }
 	},
 	methods: {
     async player() {
@@ -53,15 +61,15 @@ export default {
 		},
 		async play(songId) {
       this.isPlaying = true;
-      this.setIsPlaying()
       var res = this.mix.songs.find(song => song.id === songId);
       this.songId = res.songUrlId
+      this.setIsPlaying()
       await this.$refs.youtube.player.playVideo();
 		},
-		stopVideo() {
+		pauseVideo() {
+			this.$refs.youtube.player.pauseVideo();
       this.isPlaying = false;
       this.setIsPlaying();
-			this.$refs.youtube.player.stopVideo();
 		},
 		playing() {
 			// this.duration = this.getTime();
