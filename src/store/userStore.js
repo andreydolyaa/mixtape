@@ -6,13 +6,13 @@ export default {
         users: []
     },
     getters: {
-        user(state) {
+        getUser(state) {
             return state.loggedinUser
         },
         isAdmin() {
 
         },
-        users(state) {
+        getUsers(state) {
             return state.users;
         }
     },
