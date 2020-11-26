@@ -27,6 +27,9 @@
       </section>
       <section class="mix-actions-social flex space-between">
         <div class="btn-actions flex space-evenly">
+          <span class="add-song"><i class="far fa-heart"></i></span> 
+          <span class="mix-like"><i class="fas fa-plus-circle"></i></span>
+          <input class="search-song" type="text" />
         </div>
         <!-- <button>shaffle</button> -->
         <div class="share-container flex">

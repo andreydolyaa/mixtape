@@ -29,6 +29,10 @@ const routes = [
     component:mixList
   },
   {
+    path:'/test',
+    component:mixPlayer
+  },
+  {
     path:'/mix/details/:mixId',
     component:mixDetails
   },
@@ -36,10 +40,6 @@ const routes = [
     path:'/mix/edit/:mixId',
     component:mixEdit
   },
-  {
-    path:'/test',
-    component:mixPlayer
-  }
   
 ]
 
