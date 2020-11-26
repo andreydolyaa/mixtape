@@ -1,5 +1,11 @@
 .mix-details{
 width: 100%;
+
+i.fas:hover ,i.far:hover , i.fab:hover{
+    color:var(--primary-color);
+    cursor: pointer;
+}
+
 }
 .hide{
     display: none;
@@ -123,17 +129,26 @@ width: 100%;
     gap: 10px;
     justify-content: left;
     align-items: center;
+    display: flex;
+    flex-direction: row;
 
     i{
         font-size: 42px;
     }
     i.far.fa-trash-alt{
         font-size: 22px;
+        background-color: #fffadf29;
+        align-self: flex-end;
     }
     img{
         width: 50px;
         height: 50px;
+        object-fit: cover;
     }
+}
+
+.songs-details:hover{
+    background-color: #fffadf29;
 }
 
 .songs-list{
@@ -175,3 +190,4 @@ width: 100%;
 div.el-input {
     width: 100% !important;
 }
+
