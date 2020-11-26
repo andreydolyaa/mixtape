@@ -2,7 +2,7 @@
 <template>
   <div class="mix-details flex" v-if="mix">
     <div class="mix-chat">
-      <h1 class="title">Mix chat</h1>
+      <h2 class="title">Mix chat</h2>
     </div>
     <div class="mix-full-info flex">
       <section class="search-song">
@@ -10,17 +10,19 @@
       </section>
       <section class="header-mix-info flex">
         <section class="mix-img flex start">
-          <!-- <img :src="mix.imgUrl" /> -->
+          <img :src="mix.songs[0].imgUrl" />
         </section>
         <section class="mix-info-main">
           <section class="mix-info">
-            <h1>{{ mix.name }}</h1>
-            <p>{{ mix.desc }}</p>
+            <h2>{{ mix.name }}<span class="editTxt"><i class="fas fa-pen"></i></span></h2>
+            <!-- <input type="text" v-model="" hidden> -->
+            <p>{{ mix.desc }} <span><i class="fas fa-pen"></i></span></p>            
             <h4>{{ mix.genre }}</h4>
+            <span class="add-song"><i class="far fa-heart"></i></span>
           </section>
           <section class="user-info">
             <h5>
-              Created by: <span><img :src="mix.createdBy.imgUrl" /></span>
+              Created by: <img :src="mix.createdBy.imgUrl" />
               {{ mix.createdBy.fullName }}
             </h5>
           </section>
@@ -33,7 +35,6 @@
         <div class="btn-actions flex space-evenly">
           <span class="mix-like"><i class="fas fa-plus-circle"></i></span>
           <input class="search-song" type="text" />
-          <span class="add-song"><i class="far fa-heart"></i></span>
         </div>
         <!-- <button>shaffle</button> -->
         <div class="share-container flex">
@@ -57,7 +58,7 @@
             <img :src="song.imgUrl" />
             <p>{{ song.title }}</p>
             <!-- Todo (add song-length) -->
-            <i class="far fa-trash"></i>
+            <i class="far fa-trash-alt"></i>
           </li>
         </ul>
       </section>
@@ -70,7 +71,8 @@
 export default {
   data() {
     return {
-
+      toggleEdit: false
+      // currMix: 
     }
   },
   computed: {
@@ -81,6 +83,11 @@ export default {
       var newUser = this.$store.getters.getUser;
       console.log(newUser)
       return newUser
+    }
+  },
+  methods:{
+    onChangeTxt(){
+      
     }
   },
   components: {
