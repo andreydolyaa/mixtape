@@ -1,7 +1,25 @@
 .searchTest{
     min-width: 240px;
+    display: flex;
 
     input {
         min-width: 240px;
+    }
+
+    button{
+        i.fas {
+            color:var(--primary-color);
+            font-size: 22px;
+            padding: 0 10px;
+        }
+    }
+    input{
+        font-size: 1.1em;
+        font-weight: 700;
+        letter-spacing: 2px;
+    }
+
+    .el-input input::placeholder{
+
     }
 }
