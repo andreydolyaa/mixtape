@@ -67,8 +67,5 @@ export default {
             console.log('mix in store', mix)
             return mix
         },
-        addSongToMix(context,payload){
-            console.log(payload.newSong);
-        }
     },
 }
