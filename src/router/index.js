@@ -6,7 +6,7 @@ import mixEdit from '../views/mix-edit.vue';
 import mixLogin from '../views/mix-login.vue';
 import mixSignup from '../views/mix-signup.vue';
 import test from '../components/test.vue';
-import searchTest from '../components/searchTest.vue';
+import mixApiSearch from '../components/mix-api-search.cmp.vue';
 import mixList from '../components/mix-list.cmp.vue';
 import mixPlayer from '../components/mix-player.cmp.vue';
 
@@ -35,7 +35,7 @@ const routes = [
   },
   {
     path:'/test1',
-    component:searchTest
+    component:mixApiSearch
   },
   {
     path:'/mix/details/:mixId',
