@@ -1,20 +1,18 @@
 <template>
-  <section class="mixList container">
-           <nav class="mixesNav">
-                <ul class="mixesNavUl">
-                    <li class="mixLink" v-on:click="onListSetFilter('pop')">Pop</li>
-                    <li class="mixLink" v-on:click="onListSetFilter('elctro')">Elctro</li>
-                    <li class="mixLink" v-on:click="onListSetFilter('rock')">Rock</li>
+  <section class="mix-list container">
+           <nav class="mixes-nav">
+                <ul class="mixes-nav-ul">
+                    <li class="mix-link" v-on:click="onListSetFilter('pop')">Pop</li>
+                    <li class="mix-link" v-on:click="onListSetFilter('elctro')">Elctro</li>
+                    <li class="mix-link" v-on:click="onListSetFilter('rock')">Rock</li>
                 </ul>            
             </nav>
-            <ul class="ulMixes"> 
-              <!--  -->
+            <ul class="ul-mixes"> 
                 <li class="mix" v-for="mix in mixes" :key="mix._id" > 
                   <!-- <pre>{{mix.genre}}</pre> -->
-                   <mixPreview :mix="mix"/>
+                   <mix-preview :mix="mix"/>
                 </li>
-            </ul> 
-           
+            </ul>          
   </section>
 </template>
 

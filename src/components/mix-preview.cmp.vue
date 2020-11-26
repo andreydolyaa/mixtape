@@ -5,7 +5,7 @@
    <div class="mix" v-on:click="onMixView(mix._id)">
       <!-- <pre>{{mix}}</pre> -->
       <img :src="mixImg" />
-      <div class="info name">{{mix.name}} </div>
+      <div class="info-name">{{mix.name}} </div>
    </div>
   </section>
 </template>

@@ -9,22 +9,30 @@
       <el-input type="text" placeholder="Search in mix"></el-input>
       </section>
       <section class="header-mix-info flex">
+        
         <section class="mix-img flex start">
           <!-- <img :src="mix.imgUrl" /> -->
         </section>
-        <section class="mix-info">
-          <h1>{{ mix.name }}</h1>
-          <p>{{ mix.desc }}</p>
-          <h4>{{ mix.genre }}</h4>
-          <h5>
-            Created by: <span><img :src="mix.createdBy.imgUrl" /></span>
-            {{ mix.createdBy.fullName }}
-          </h5>
+
+        <section class="mix-info-main">
+          <section class="mix-info">
+              <h1>{{ mix.name }}</h1>
+              <p>{{ mix.desc }}</p>
+              <h4>{{ mix.genre }}</h4>
+          </section>
+          <section class="user-info">
+              <h5>
+                Created by: <span><img :src="mix.createdBy.imgUrl" /></span>
+                {{ mix.createdBy.fullName }}
+              </h5>
+          </section>
           <section class="general-info">
             <!-- <h4>50 Likes</h4> -->
           </section>
         </section>
+
       </section>
+
       <section class="mix-actions-social flex space-between">
         <div class="btn-actions flex space-evenly">
           <span class="add-song"><i class="far fa-heart"></i></span> 

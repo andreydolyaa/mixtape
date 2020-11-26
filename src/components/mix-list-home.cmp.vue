@@ -1,19 +1,17 @@
 <template>
-  <section class="mixList container">
-           <nav class="mixesNav">
-                <div class="genreTitle"> {{genre}}</div>
-                <ul class="navShowAllUl" >
-                    <li class="mixLinkShowAll" v-on:click="showList(genre)">Show all</li>     
+  <section class="mix-list container">
+           <nav class="mixes-nav">
+                <div class="genre-title"> {{genre}}</div>
+                <ul class="nav-show-all-ul" >
+                    <li class="mix-link-show-all" v-on:click="showList(genre)">Show all</li>     
                 </ul>
             </nav>
-
-            
-            <ul class="ulMixes"> 
+             
+            <ul class="ul-mixes"> 
                 <li class="mix" v-for="mix in mixes" :key="mix._id" >          
-                   <mixPreview :mix="mix"/>
+                   <mix-preview :mix="mix"/>
                 </li>
-            </ul> 
-           
+            </ul>         
   </section>
 </template>
 
