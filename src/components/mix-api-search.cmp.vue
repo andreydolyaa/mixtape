@@ -59,6 +59,7 @@ export default {
 				type: "saveMix",
 				mix: mixCopy,
 			});
+			this.createNewSong = mixService.createNewSong();
 		},
 	},
 };
