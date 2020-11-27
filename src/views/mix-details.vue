@@ -133,7 +133,7 @@ export default {
   computed: {
     mix() {
       this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
-      return this.currMix
+      return this.$store.getters.getMix
     },
     user() {
       var newUser = this.$store.getters.getUser;
