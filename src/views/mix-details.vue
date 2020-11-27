@@ -109,9 +109,7 @@
         @emitRemoveSong="removeSongFromMix"
       />
     </div>
-    <!-- <div class="global">
-          <globalPlayer :refs="$refs"/>
-    </div> -->
+
   </div>
 </template>
 
@@ -120,7 +118,6 @@ import mixPlayer from '@/components/mix-player.cmp.vue';
 import mixApiSearch from '@/components/mix-api-search.cmp.vue';
 import mixChat from '@/components/mix-chat.cmp.vue';
 import mixSong from '@/components/mix-song.cmp.vue';
-import globalPlayer from '@/components/global-player.cmp.vue';
 import { uploadImg } from '@/services/imgUploadService.js';
 export default {
   data() {
@@ -210,7 +207,6 @@ export default {
     mixChat,
     mixSong,
     mixPlayer,
-    globalPlayer
 
   },
   created() {

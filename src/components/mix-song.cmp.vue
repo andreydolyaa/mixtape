@@ -3,10 +3,10 @@
 		<ul>
 			<li class="songs-details-main flex" v-for="song in songs" :key="song.id">
 				<div class="songs-details">
-					<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying();">
+					<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,songs);">
 						<i class="far fa-play-circle"></i>
 					</button>
-					<button v-else @click="pauseSong(song);">
+					<button v-else @click="pauseSong(song,songs);">
 						<i class="far fa-pause-circle"></i>
 					</button>
 
@@ -66,7 +66,12 @@ export default {
 				song
 			})
 		},
-		startSongPlaying(){
+		startSongPlaying(song,songs){
+			this.$store.commit({
+				type:'stopAllPlaying',
+				song,
+				songs
+			})
 			this.$store.commit({
 				type:'startSongPlaying'
 			})
