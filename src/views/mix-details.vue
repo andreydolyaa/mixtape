@@ -6,11 +6,30 @@
       <mix-chat />
     </div>
     <div class="mix-full-info flex">
-      
-      <mixApiSearch/>
+      <mixApiSearch />
       <section class="header-mix-info flex">
         <section class="mix-img flex start">
-          <img :src="mix.songs[0].imgUrl" />
+          <!-- <img :src="currMix.imgUrl" /> -->
+          <form>
+            <template v-if="!isLoading">
+              <label for="imgUploader">
+                <img :src="currMix.imgUrl" />
+              </label>
+              <input
+                type="file"
+                name="img-uploader"
+                id="imgUploader"
+                @change="onUploadImg"
+                hidden
+              />
+            </template>
+            <img
+              class="loader"
+              v-else
+              src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif"
+            />
+            <!-- <i class="fas fa-pen"></i> -->
+          </form>
         </section>
         <section class="mix-info-main">
           <section class="mix-info">
@@ -41,7 +60,6 @@
               ><span @click="saveChange(currMix)"
                 ><i class="far fa-save"></i
               ></span>
-              <!-- <input type="text" /><span :class="toggleEditDesc"><i class="far fa-save"></i></span> -->
             </div>
             <h4>{{ currMix.genre }}</h4>
             <div class="like">
@@ -93,26 +111,28 @@
         @emitRemoveSong="removeSongFromMix"
       />
     </div>
-  <globalPlayer/>
+    <globalPlayer />
   </div>
 </template>
 
 <script>
 import mixPlayer from '@/components/mix-player.cmp.vue';
-  import mixApiSearch from '@/components/mix-api-search.cmp.vue';
-  import mixChat from '@/components/mix-chat.cmp.vue';
-  import mixSong from '@/components/mix-song.cmp.vue';
-  import globalPlayer from '@/components/global-player.cmp.vue';
-
+import mixApiSearch from '@/components/mix-api-search.cmp.vue';
+import mixChat from '@/components/mix-chat.cmp.vue';
+import mixSong from '@/components/mix-song.cmp.vue';
+import globalPlayer from '@/components/global-player.cmp.vue';
+import { uploadImg } from '@/services/imgUploadService.js';
 export default {
   data() {
     return {
       isTitleHide: false,
       isDescHide: false,
       isLiked: false,
+      isLoading: false,
+      imgUrls: [],
       songTxt: '',
       currMix: ''
-    } 
+    }
   },
   computed: {
     mix() {
@@ -169,14 +189,29 @@ export default {
           mix: this.currMix
         })
       }
-    }
+    },
+    async onUploadImg(ev) {
+        this.isLoading = true;
+        const res = await uploadImg(ev);
+        console.log('res:', res.url)
+        this.imgUrls.push(res.url)
+        if(this.currMix){
+            console.log('updating item img url')
+            this.currMix.imgUrl = res.url
+        }
+        this.isLoading = false;
+         this.$store.dispatch({
+          type: 'saveMix',
+          mix: this.currMix
+        })
+    },
   },
   components: {
-      mixApiSearch,
-      mixChat,
-      mixSong,
-      mixPlayer,
-      globalPlayer
+    mixApiSearch,
+    mixChat,
+    mixSong,
+    mixPlayer,
+    globalPlayer
 
   },
   created() {
