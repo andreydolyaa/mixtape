@@ -27,12 +27,9 @@ export default {
 		
 	},
 	computed:{
-		// getCurrSongPlaying(){
-		// 	return this.$store.getters.getCurrSongPlaying;
-		// },
-		// async player() {
-		// 	return await this.$refs.youtube.player;
-		// },
+		async player() {
+			return await this.$refs.youtube.player;
+		},
 	},
 	components: {
 		appHeader,

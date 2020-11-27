@@ -74,6 +74,7 @@ function createNewSong() {
         "imgUrl": '',
         "addedBy": "minimal-user",
         "duration": "3:21",
+        "isPlaying":false
     }
 }
 
