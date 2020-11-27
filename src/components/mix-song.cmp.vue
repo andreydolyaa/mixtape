@@ -6,7 +6,7 @@
 		<ul>
 			<li class="songs-details-main flex" v-for="song in songs" :key="song.id">
 				<div class="songs-details">
-					<button v-if="!song.isPlaying" @click="play(song)">
+					<button v-if="!song.isPlaying" @click="play(song,songs)">
 						<i class="far fa-play-circle"></i>
 					</button>
 					<button v-else @click="pauseVideo(song)">
@@ -23,11 +23,15 @@
 			</li>
 		</ul>
 		
+		 <!-- <div class="global">
+          <globalPlayer :refs="$refs"/>
+    </div> -->
 	</section>
 </template>
 
 <script>
 import { mixService } from "@/services/mixService.js";
+import globalPlayer from '@/components/global-player.cmp.vue';
 
 export default {
 	name: "mix-song",
@@ -60,17 +64,18 @@ export default {
 		emitSongId(songId) {
 			this.$emit("emitRemoveSong", songId);
 		},
-		async play(song) {
-			this.songs.forEach(song => song.isPlaying = false);
+		async play(song,songs) {
+			this.stopAllPlaying(song,songs);
 			this.isPlaying = true;
-			song.isPlaying = true;
 			var res = this.mix.songs.find((currSong) => currSong.id === song.id);
 			this.songId = res.songUrlId;
+			this.setCurrSongPlaying(song)
+			this.startCurrSong(song);
 			this.setIsPlaying();
 			await this.$refs.youtube.player.playVideo();
 		},
 		pauseVideo(song) {
-			song.isPlaying = false;
+			this.stopCurrSong(song)
 			this.$refs.youtube.player.pauseVideo();
 			this.isPlaying = false;
 			this.setIsPlaying();
@@ -85,13 +90,38 @@ export default {
 				isPlaying: this.isPlaying,
 			});
 		},
-		
+		setCurrSongPlaying(song){
+			this.$store.commit({
+				type:'setCurrSong',
+				song
+			})
+		},
+		stopCurrSong(song){
+			this.$store.commit({
+				type:'stopSongPlaying',
+				song
+			})
+		},
+		startCurrSong(song){
+			this.$store.commit({
+				type:'startSongPlaying',
+				song
+			})
+		},
+		stopAllPlaying(song,songs){
+			console.log(song);
+			this.$store.commit({
+				type:'stopAllPlaying',
+				song,
+				songs
+			})
+		}
 	},
 	created() {
 		// console.log('mix data', this.mixes)
 	},
 	components:{
-		
+		globalPlayer
 	}
 };
 </script>

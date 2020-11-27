@@ -2,6 +2,9 @@
 	<div id="app">
 		<appHeader />
 		<router-view />
+					<div class="global">
+          				<globalPlayer :refs="$refs"/>
+    				</div>
 		<appFooter />
 	</div>
 </template>
@@ -10,6 +13,7 @@
 import appHeader from "@/components/app-header.cmp.vue";
 import appFooter from "@/components/app-footer.cmp.vue";
 import { mixService } from "@/services/mixService.js";
+import globalPlayer from '@/components/global-player.cmp.vue';
 
 export default {
 	created(){
@@ -17,9 +21,18 @@ export default {
 			type:'loadMixes'
 		})
 	},
+	computed:{
+		// getCurrSongPlaying(){
+		// 	return this.$store.getters.getCurrSongPlaying;
+		// },
+		// async player() {
+		// 	return await this.$refs.youtube.player;
+		// },
+	},
 	components: {
 		appHeader,
 		appFooter,
+		globalPlayer
 	},
 };
 </script>

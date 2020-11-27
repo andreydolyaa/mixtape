@@ -93,7 +93,9 @@
         @emitRemoveSong="removeSongFromMix"
       />
     </div>
-  <globalPlayer/>
+    <!-- <div class="global">
+          <globalPlayer :refs="$refs"/>
+    </div> -->
   </div>
 </template>
 

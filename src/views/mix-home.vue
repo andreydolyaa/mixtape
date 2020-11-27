@@ -8,6 +8,7 @@
                    	<mix-list-Home v-bind:genre="geners[index]"/>
                 </li>
             </ul> 
+
 		</div>
 	</section>
 </template>
@@ -16,6 +17,7 @@
 import mixListHome from '../components/mix-list-home.cmp.vue'
 import mixHero from '../components/mix-hero.cmp.vue'
 import mixVideo from '../components/mix-video-player.cmp.vue'
+import globalPlayer from '@/components/global-player.cmp.vue';
 
 export default {
 	name:'mix-home',
@@ -27,7 +29,8 @@ export default {
    components: {
 		mixHero,
 		mixListHome,
-		mixVideo
+		mixVideo,
+		globalPlayer
   },
 };
 </script>
