@@ -131,7 +131,7 @@ export default {
       isLoading: false,
       imgUrls: [],
       songTxt: '',
-      currMix: ''
+      currMix: '',
     }
   },
   computed: {
