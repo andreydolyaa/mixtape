@@ -31,9 +31,7 @@ export default {
             state.mixes = payload.mixes;
         },
         setGenre(state, payload) {
-            console.log('setGenre', payload)
             state.genre = payload.genre
-            console.log('set state.genre', state.genre)
         },
         setCurrSong(state, payload) {
             state.currSongPlaying = payload.song;
@@ -48,14 +46,26 @@ export default {
         },
         nowPlaying(state, payload) {
             state.isPlaying = payload.isPlaying;
+        },
+        stopSongPlaying(state,payload){
+            state.currSongPlaying.isPlaying = false
+        },
+        startSongPlaying(state,payload){
+            state.currSongPlaying.isPlaying = true
+        },
+        stopAllPlaying(state,payload){
+            payload.songs.forEach(currSong => {
+                if(currSong.id !== payload.song.id){
+                    currSong.isPlaying = false;
+                }
+            })
         }
     },
     actions: {
-        async getMixById(contex, { mixId }) {
-            console.log('mixId', mixId)
+        async getMixById(context, { mixId }) {
             const mix = await mixService.getById(mixId);
             // console.log('mix',mix);
-            contex.commit({ type: 'setMix', mix });
+            context.commit({ type: 'setMix', mix });
         },
         async loadMixes(context) {
             var mixes = await mixService.query();
@@ -68,10 +78,8 @@ export default {
             return song;
         },
         async saveMix(context, payload) {
-            console.log(payload.mix)
             const mix = await mixService.update(payload.mix);
             context.commit({ type: 'setMix', mix })
-            console.log('mix in store', mix)
             return mix
         },
     },
