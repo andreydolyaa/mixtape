@@ -8,16 +8,14 @@
 			<h1 v-if="getCurrSongPlaying">{{getCurrSongPlaying.title}}</h1>
 			<button @click="play"><i class="far fa-play-circle"></i></button>
 			<button @click="pause"><i class="far fa-pause-circle"></i></button>
-
 			<button @click="stop"><i class="far fa-stop-circle"></i></button>
-
 		</div>
 	</section>
 
 </template>
 
 <script>
-import { eventBus, STOP_MUSIC } from "@/main.js";
+
 export default {
 	props: {
 		refs: Object,
