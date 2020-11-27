@@ -9,7 +9,6 @@
       <mixApiSearch />
       <section class="header-mix-info flex">
         <section class="mix-img flex start">
-          <!-- <img :src="currMix.imgUrl" /> -->
           <form>
             <template v-if="!isLoading">
               <label for="imgUploader">
@@ -76,7 +75,6 @@
             </h5>
           </section>
           <section class="general-info">
-            <!-- <h4>50 Likes</h4> -->
           </section>
         </section>
       </section>
