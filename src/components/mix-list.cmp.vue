@@ -13,7 +13,7 @@
                    <mix-preview :mix="mix"/>
                 </li>
             </ul>          
-  </section>
+  </section> 
 </template>
 
 <script>

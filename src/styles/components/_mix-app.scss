@@ -27,3 +27,8 @@ a:visited{
 .reflect {
     -webkit-box-reflect: below -2px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(23%, transparent), to(rgba(255, 255, 255, 0.23)));
 }
+
+.shadow{
+    -webkit-box-shadow: 1px 6px 15px 5px rgba(0,0,0,0.3); 
+    box-shadow: 1px 6px 15px 5px rgba(0,0,0,0.3);
+}

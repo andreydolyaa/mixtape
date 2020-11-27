@@ -1,13 +1,11 @@
-
-
 <template>
-  <section v-if="mix" class="details">
+  <section v-if="mix" class="details shadow">
    <div class="mix" v-on:click="onMixView(mix._id)">
       <!-- <pre>{{mix}}</pre> -->
       <img :src="mixImg" />
-      <div class="info-name">
-          <span>{{mix.name}}</span>
-          <span>{{mix.likes}}<i class="fas fa-heart"></i></span>
+      <div class="info">
+          <span class="mix-name">{{mix.name}}</span>
+          <span class="mix-likes">{{mix.likes}}<i class="fas fa-heart"></i></span>
       </div>
    </div>
   </section>
@@ -29,11 +27,15 @@ export default {
     mixImg(){
             if(!this.mix) return
             //console.log(this.mix)
-             var max = this.mix.songs.length 
-             var songIdx = Math.floor(Math.random() * (max - 0) + 0);
-             var song = this.mix.songs[songIdx]
+
+             //random image not in use
+             //var max = this.mix.songs.length 
+             //var songIdx = Math.floor(Math.random() * (max - 0) + 0);
+             
+             // 
+             var song = this.mix.songs[0]
              var img = song.imgUrl
-             //console.log('img',max,songIdx,img)
+             console.log('img',img)
              return img
              
          },
