@@ -1,15 +1,12 @@
 <template>
 	<section class="songs-list">
-		<div>
-			<youtube :video-id="songId" ref="youtube" @playing="playing" :player-vars="playerVars" class="youtube-window"></youtube>
-		</div>
 		<ul>
 			<li class="songs-details-main flex" v-for="song in songs" :key="song.id">
 				<div class="songs-details">
-					<button v-if="!song.isPlaying" @click="play(song,songs)">
+					<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,songs);">
 						<i class="far fa-play-circle"></i>
 					</button>
-					<button v-else @click="pauseVideo(song)">
+					<button v-else @click="pauseSong(song);">
 						<i class="far fa-pause-circle"></i>
 					</button>
 
@@ -23,22 +20,18 @@
 			</li>
 		</ul>
 		
-		 <!-- <div class="global">
-          <globalPlayer :refs="$refs"/>
-    </div> -->
 	</section>
 </template>
 
 <script>
 import { mixService } from "@/services/mixService.js";
-import globalPlayer from '@/components/global-player.cmp.vue';
+import {eventBus} from '@/main.js';
 
 export default {
 	name: "mix-song",
 	props: {
 		songs: Array,
 		mix: Object,
-		// refs:Object
 	},
 	data() {
 		return {
@@ -52,38 +45,16 @@ export default {
 		};
 	},
 	computed: {
-		async player() {
-			return await this.$refs.youtube.player;
-		},
 		isNowPlaying() {
 			return this.$store.getters.getThisIsPlaying;
 		},
-		getCurrSongPlaying(){
+		currSongPlaying(){
 			return this.$store.getters.getCurrSongPlaying;
-		},
+		}
 	},
 	methods: {	
 		emitSongId(songId) {
 			this.$emit("emitRemoveSong", songId);
-		},
-		async play(song,songs) {
-			this.stopAllPlaying(song,songs);
-			this.isPlaying = true;
-			var res = this.mix.songs.find((currSong) => currSong.id === song.id);
-			this.songId = res.songUrlId;
-			this.setCurrSongPlaying(song)
-			this.startCurrSong(song);
-			this.setIsPlaying();
-			await this.$refs.youtube.player.playVideo();
-		},
-		pauseVideo(song) {
-			this.stopCurrSong(song)
-			this.$refs.youtube.player.pauseVideo();
-			this.isPlaying = false;
-			this.setIsPlaying();
-		},
-		playing() {
-			// this.duration = this.getTime();
 		},
 		setIsPlaying() {
 			console.log("@@@isPALYING:", this.isPlaying);
@@ -98,24 +69,22 @@ export default {
 				song
 			})
 		},
-		stopCurrSong(song){
-			this.$store.commit({
-				type:'stopSongPlaying',
-				song
-			})
-		},
-		startCurrSong(song){
-			this.$store.commit({
-				type:'startSongPlaying',
-				song
-			})
-		},
-		stopAllPlaying(song,songs){
-			console.log(song);
+		startSongPlaying(song,songs){
+			eventBus.$emit('resume-music');
 			this.$store.commit({
 				type:'stopAllPlaying',
 				song,
 				songs
+			})
+			this.$store.commit({
+				type:'startSongPlaying'
+			})
+		},
+		pauseSong(song){
+			eventBus.$emit('pause-music');
+			this.$store.commit({
+				type:'stopSongPlaying',
+				song
 			})
 		}
 	},
@@ -124,19 +93,8 @@ export default {
 
 	},
 	components:{
-		globalPlayer
+		
 	},
-	// watch: {
-	// 	status(newValue, oldValue) {
-	// 		//console.log(`Updating from ${oldValue} to ${newValue}`);
-	// 		// Do whatever makes sense now
-	// 		if (this.getCurrSongPlaying) {
-	// 			console.log('playing',newValue)
-	// 		}else{
-	// 			console.log('Not Playing',newValue)
-	// 		}
-	// 	},
-	// },
 }
 </script>
 

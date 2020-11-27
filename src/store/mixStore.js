@@ -1,5 +1,5 @@
 import { mixService } from '@/services/mixService.js'
- 
+
 export default {
     state: {
         mixes: null,
@@ -24,6 +24,11 @@ export default {
         },
         getThisIsPlaying(state) {
             return state.isPlaying;
+        },
+        getCurrSongIsPlaying(state) {
+            if (state.currSongPlaying) {
+                return state.currSongPlaying.isPlaying;
+            }
         }
     },
     mutations: {
@@ -47,15 +52,15 @@ export default {
         nowPlaying(state, payload) {
             state.isPlaying = payload.isPlaying;
         },
-        stopSongPlaying(state,payload){
+        stopSongPlaying(state, payload) {
             state.currSongPlaying.isPlaying = false
         },
-        startSongPlaying(state,payload){
+        startSongPlaying(state, payload) {
             state.currSongPlaying.isPlaying = true
         },
-        stopAllPlaying(state,payload){
+        stopAllPlaying(state, payload) {
             payload.songs.forEach(currSong => {
-                if(currSong.id !== payload.song.id){
+                if (currSong.id !== payload.song.id) {
                     currSong.isPlaying = false;
                 }
             })

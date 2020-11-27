@@ -109,9 +109,7 @@
         @emitRemoveSong="removeSongFromMix"
       />
     </div>
-    <!-- <div class="global">
-          <globalPlayer :refs="$refs"/>
-    </div> -->
+
   </div>
 </template>
 
@@ -120,16 +118,14 @@ import mixPlayer from '@/components/mix-player.cmp.vue';
 import mixApiSearch from '@/components/mix-api-search.cmp.vue';
 import mixChat from '@/components/mix-chat.cmp.vue';
 import mixSong from '@/components/mix-song.cmp.vue';
-import globalPlayer from '@/components/global-player.cmp.vue';
 import { uploadImg } from '@/services/imgUploadService.js';
 export default {
   data() {
     return {
       isTitleHide: false,
       isDescHide: false,
-      isLiked: false,
+      // isLiked: false,
       isLoading: false,
-      imgUrls: [],
       songTxt: '',
       currMix: '',
     }
@@ -137,7 +133,7 @@ export default {
   computed: {
     mix() {
       this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
-      return this.currMix
+      return this.$store.getters.getMix
     },
     user() {
       var newUser = this.$store.getters.getUser;
@@ -145,7 +141,7 @@ export default {
       return newUser
     },
     heartMode() {
-      return this.isLiked ? 'fas fa-heart' : 'far fa-heart'
+      return this.currMix.isLiked ? 'fas fa-heart' : 'far fa-heart'
     }
   },
   methods: {
@@ -172,8 +168,8 @@ export default {
       })
     },
     addLike() {
-      if (this.isLiked) {
-        this.isLiked = false;
+      if (this.currMix.isLiked) {
+        this.currMix.isLiked = false;
         this.currMix.likes--;
         console.log(this.currMix.likes);
         this.$store.dispatch({
@@ -182,7 +178,7 @@ export default {
         })
       }
       else {
-        this.isLiked = true;
+        this.currMix.isLiked = true;
         this.currMix.likes++;
         this.$store.dispatch({
           type: 'saveMix',
@@ -211,7 +207,6 @@ export default {
     mixChat,
     mixSong,
     mixPlayer,
-    globalPlayer
 
   },
   created() {

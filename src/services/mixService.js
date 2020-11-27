@@ -31,14 +31,6 @@ function update(mix) {
     return HttpService.put(`mixes/${mix._id}`, mix);
 }
 
-// async function removeSong(songId, mixId){
-//     var mix = await getById(mixId);
-//     var song = await getSongByIdAndMix(songId, mixId);
-//     var idx = mix.songs.findIndex(currSong => currSong.id === song.id);
-// }
-
-
-
 
 
 
@@ -53,19 +45,6 @@ async function getSongByIdAndMix(songId, mixId) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 function createNewSong() {
     return {
         "title": '',
@@ -74,6 +53,7 @@ function createNewSong() {
         "imgUrl": '',
         "addedBy": "minimal-user",
         "duration": "3:21",
+        "isPlaying":false
     }
 }
 
