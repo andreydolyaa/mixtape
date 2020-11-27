@@ -127,11 +127,10 @@ export default {
     return {
       isTitleHide: false,
       isDescHide: false,
-      isLiked: false,
+      // isLiked: false,
       isLoading: false,
-      imgUrls: [],
       songTxt: '',
-      currMix: ''
+      currMix: '',
     }
   },
   computed: {
@@ -145,7 +144,7 @@ export default {
       return newUser
     },
     heartMode() {
-      return this.isLiked ? 'fas fa-heart' : 'far fa-heart'
+      return this.currMix.isLiked ? 'fas fa-heart' : 'far fa-heart'
     }
   },
   methods: {
@@ -172,8 +171,8 @@ export default {
       })
     },
     addLike() {
-      if (this.isLiked) {
-        this.isLiked = false;
+      if (this.currMix.isLiked) {
+        this.currMix.isLiked = false;
         this.currMix.likes--;
         console.log(this.currMix.likes);
         this.$store.dispatch({
@@ -182,7 +181,7 @@ export default {
         })
       }
       else {
-        this.isLiked = true;
+        this.currMix.isLiked = true;
         this.currMix.likes++;
         this.$store.dispatch({
           type: 'saveMix',
