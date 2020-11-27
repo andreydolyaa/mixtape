@@ -12,6 +12,9 @@ Vue.use(VueYoutube);
 Vue.use(ElementUI);
 
 
+var bus = new Vue()
+export const eventBus = bus
+
 new Vue({
   router,
   store,

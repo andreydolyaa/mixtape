@@ -6,7 +6,7 @@
 					<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,songs);">
 						<i class="far fa-play-circle"></i>
 					</button>
-					<button v-else @click="pauseSong(song,songs);">
+					<button v-else @click="pauseSong(song);">
 						<i class="far fa-pause-circle"></i>
 					</button>
 
@@ -25,6 +25,7 @@
 
 <script>
 import { mixService } from "@/services/mixService.js";
+import {eventBus} from '@/main.js';
 
 export default {
 	name: "mix-song",
@@ -67,6 +68,7 @@ export default {
 			})
 		},
 		startSongPlaying(song,songs){
+			eventBus.$emit('resume-music');
 			this.$store.commit({
 				type:'stopAllPlaying',
 				song,
@@ -77,6 +79,7 @@ export default {
 			})
 		},
 		pauseSong(song){
+			eventBus.$emit('pause-music');
 			this.$store.commit({
 				type:'stopSongPlaying',
 				song

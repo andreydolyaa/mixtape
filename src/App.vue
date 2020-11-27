@@ -27,9 +27,7 @@ export default {
 		
 	},
 	computed:{
-		async player() {
-			return await this.$refs.youtube.player;
-		},
+		
 	},
 	components: {
 		appHeader,

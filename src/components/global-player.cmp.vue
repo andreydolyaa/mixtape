@@ -2,31 +2,32 @@
 
 
 <template>
-	<section class="globalPlayer">
+	<section class='globalPlayer'>
 		<div>
-			<div v-if="getCurrSongPlaying">
-				<youtube :video-id="getCurrSongPlaying.songUrlId" ref="youtube" @playing="playing" :player-vars="playerVars" class="youtube-window"></youtube>
+			<div v-if='getCurrSongPlaying'>
+				<youtube :video-id='getCurrSongPlaying.songUrlId' ref='youtube' @playing='playing' :player-vars='playerVars' class='youtube-window'></youtube>
 			</div>
 		</div>
-		{{getCurrSongPlaying}}
-		<div class="global-player">
-			<h1 v-if="getCurrSongPlaying">{{getCurrSongPlaying.title}}</h1>
-			<button v-if="!isPlayingNow" @click="play">
-				<i class="far fa-play-circle"></i>
+		<div class='global-player'>
+			<h1 v-if='getCurrSongPlaying'>{{getCurrSongPlaying.title}}</h1>
+			<h1 v-else>Artist - Unknown</h1>
+			<button v-if='!isPlayingNow' @click='play'>
+				<i class='far fa-play-circle'></i>
 			</button>
-			<button v-else @click="pause">
-				<i class="far fa-pause-circle"></i>
+			<button v-else @click='pause'>
+				<i class='far fa-pause-circle'></i>
 			</button>
 		</div>
 	</section>
 </template>
 
 <script>
+import { eventBus } from '@/main.js';
 export default {
-	name: "global-player",
+	name: 'global-player',
 	data() {
 		return {
-			songId: "",
+			songId: '',
 			isPlaying: false,
 			isPause: false,
 			playerVars: {
@@ -35,35 +36,46 @@ export default {
 		};
 	},
 	computed: {
-		player() {
-			return this.$refs.youtube.player;
+		async player() {
+			return await this.$refs.youtube.player;
 		},
 		getCurrSongPlaying() {
 			return this.$store.getters.getCurrSongPlaying;
 		},
-		isPlayingNow(){
+		isPlayingNow() {
 			return this.$store.getters.getCurrSongIsPlaying;
-		}
+		},
 	},
 	methods: {
 		pause() {
 			this.$refs.youtube.player.pauseVideo();
 			this.$store.commit({
-				type: "stopSongPlaying",
+				type: 'stopSongPlaying',
 			});
 		},
 		play() {
 			this.$refs.youtube.player.playVideo();
 			this.$store.commit({
-				type: "startSongPlaying",
+				type: 'startSongPlaying',
 			});
 		},
 		playing() {
-			
+
 		},
+	},
+	created() {
+		eventBus.$on('pause-music', () => {
+			this.pause();
+		});
+		eventBus.$on('resume-music', () => {
+			this.play();
+		});
 	},
 };
 </script>
 
 <style>
 </style>
+
+
+// VLE6Y1q13qE
