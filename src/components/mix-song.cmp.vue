@@ -121,7 +121,7 @@ export default {
 	},
 	created() {
 		// console.log('mix data', this.mixes)
-		this.status()
+		
 	},
 	components:{
 		globalPlayer
