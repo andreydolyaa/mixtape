@@ -48,13 +48,6 @@ export default {
 			return this.$store.getters.getCurrSongPlaying;
 		},
 	},
-	watch: {
-    //    '$route.params.bookId'(prevId,nextId){
-    //        console.log('watch',prevId,nextId)
-    //        //this.getEmail()
-	//     }
-
-    },
 	methods: {
 		stop() {
 			this.$refs.youtube.player.stopVideo();
