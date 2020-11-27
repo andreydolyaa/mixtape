@@ -1,6 +1,6 @@
 <template>
-  <section v-if="mix" class="details shadow">
-   <div class="mix" v-on:click="onMixView(mix._id)">
+  <section v-if="mix" class="details">
+   <div class="mix shadow" v-on:click="onMixView(mix._id)">
       <!-- <pre>{{mix}}</pre> -->
       <img :src="mixImg" />
       <div class="info">

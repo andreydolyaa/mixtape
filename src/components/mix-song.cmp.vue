@@ -46,19 +46,21 @@ export default {
 			isPlaying: false,
 			playerVars: {
 				autoplay: 1,
+				//origin: window.location.origin, // or http(S)://your.domain.com
+				origin:'http://192.168.0.32:8080/'
 			},
 		};
 	},
 	computed: {
 		async player() {
-			return this.$refs.youtube.player;
+			return await this.$refs.youtube.player;
 		},
 		isNowPlaying() {
 			return this.$store.getters.getThisIsPlaying;
 		},
 		getCurrSongPlaying(){
 			return this.$store.getters.getCurrSongPlaying;
-		}
+		},
 	},
 	methods: {	
 		emitSongId(songId) {
@@ -119,10 +121,22 @@ export default {
 	},
 	created() {
 		// console.log('mix data', this.mixes)
+		this.status()
 	},
 	components:{
 		globalPlayer
-	}
-};
+	},
+	// watch: {
+	// 	status(newValue, oldValue) {
+	// 		//console.log(`Updating from ${oldValue} to ${newValue}`);
+	// 		// Do whatever makes sense now
+	// 		if (this.getCurrSongPlaying) {
+	// 			console.log('playing',newValue)
+	// 		}else{
+	// 			console.log('Not Playing',newValue)
+	// 		}
+	// 	},
+	// },
+}
 </script>
 

@@ -184,7 +184,7 @@ export default {
   created() {
     const mixId = this.$route.params.mixId;
     this.$store.dispatch({ type: "getMixById", mixId });
-  }
+  },
 }
 
 </script>

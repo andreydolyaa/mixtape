@@ -15,13 +15,14 @@
 
     .info {
         position: absolute;
-        bottom: -40px;
+        bottom: -47px;
         width: 100%;
-        background-color: #fff0;
+        background-color: #ffffff00;
         padding: 5px;
-        font-weight: 900;    
+        font-weight: 900;
         display: flex;
         justify-content: space-between;
+        padding: 10px 11px;
 
         .mix-name{
             color: var(--white-color);

@@ -33,9 +33,7 @@ export default {
 		globalPlayer
   },
   computed : {
-	  getCurrSongPlaying(){
-			return this.$store.getters.getCurrSongPlaying;
-		},
+	 
   },
 	watch: {
 			status(newValue, oldValue) {
