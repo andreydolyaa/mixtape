@@ -36,7 +36,7 @@ export default {
         mixes(){
             var mixes = this.$store.getters.getMixesForDisplay
             if(!mixes) return
-            //console.log('this.genre',this.getGenreToDisplay)
+            console.log('this.genre',this.genre)
             if (!this.genre) return mixes
             //console.log('filter')
             var res = mixes.filter(item =>{

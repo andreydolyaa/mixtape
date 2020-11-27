@@ -5,7 +5,7 @@
 		<appFooter />
 	</div>
 </template>
-
+ 
 <script>
 import appHeader from "@/components/app-header.cmp.vue";
 import appFooter from "@/components/app-footer.cmp.vue";
