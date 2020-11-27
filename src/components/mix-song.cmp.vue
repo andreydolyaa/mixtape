@@ -47,7 +47,7 @@ export default {
 			playerVars: {
 				autoplay: 1,
 				//origin: window.location.origin, // or http(S)://your.domain.com
-				origin:'http://192.168.0.32:8080/'
+				origin:'http://localhost:8080/'
 			},
 		};
 	},
@@ -121,7 +121,7 @@ export default {
 	},
 	created() {
 		// console.log('mix data', this.mixes)
-		
+
 	},
 	components:{
 		globalPlayer
