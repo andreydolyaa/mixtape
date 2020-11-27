@@ -3,8 +3,9 @@
 		<appHeader />
 		<router-view />
 					<div class="global">
-          				<globalPlayer :refs="$refs"/>
+          				<globalPlayer />
     				</div>
+					
 		<appFooter />
 	</div>
 </template>
@@ -16,10 +17,14 @@ import { mixService } from "@/services/mixService.js";
 import globalPlayer from '@/components/global-player.cmp.vue';
 
 export default {
+	props:{
+		
+	},
 	created(){
 		this.$store.dispatch({
 			type:'loadMixes'
 		})
+		
 	},
 	computed:{
 		// getCurrSongPlaying(){
