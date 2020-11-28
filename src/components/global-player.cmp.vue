@@ -32,6 +32,7 @@ export default {
 			isPause: false,
 			playerVars: {
 				autoplay: 1,
+				origin: window.location.origin,
 			},
 		};
 	},

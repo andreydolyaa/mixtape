@@ -19,23 +19,23 @@
 
 
 iframe{
-    width:1px;
-    height: 1px;
-    visibility: hidden;
+    width:511px;
+    height: 511px;
+    // visibility: hidden;
 }
 
 
-.youtube-window{
-    visibility:hidden
-}
+// .youtube-window{
+//     visibility:hidden
+// }
 
 
 
 .global-player{
     background-color: rgb(184, 184, 184);
     color:rgb(255, 40, 104);
-    position: fixed;
-    bottom:0;
+    // position: fixed;
+    // bottom:0;
     width:100%;
     height:100px;
     button{
@@ -52,7 +52,7 @@ iframe{
 
 .global{
     background-color: red;
-    position: fixed;
-    bottom:0;
-    width:100%;
+    // position: fixed;
+    // bottom:0;
+    // width:100%;
 }
