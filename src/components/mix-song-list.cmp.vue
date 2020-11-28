@@ -6,7 +6,7 @@
 					<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,songs);">
 						<i class="far fa-play-circle"></i>
 					</button>
-					<button v-else @click="pauseSong(song);">
+					<button v-if="song.isPlaying" @click="pauseSong(song);">
 						<i class="far fa-pause-circle"></i>
 					</button>
 
@@ -55,18 +55,16 @@ export default {
 		},
 		currSongPlaying(){
 			return this.$store.getters.getCurrSongPlaying;
-		}
+		},
 	},
 	methods: {
 		emitSongPos(songIdx,diff) {
-			console.log("emitSongPos",songIdx,diff)
 			this.$emit("emitSongPos", {songIdx:songIdx,diff:diff});
 		},	
 		emitSongId(songId) {
 			this.$emit("emitRemoveSong", songId);
 		},
 		setIsPlaying() {
-			console.log("@@@isPALYING:", this.isPlaying);
 			this.$store.commit({
 				type: "nowPlaying",
 				isPlaying: this.isPlaying,

@@ -20,7 +20,7 @@
 			<button v-else @click="pause">
 				<i class="far fa-pause-circle"></i>
 			</button>
-			<!--- THIS IS THE PLAYER PROGRESS BAR  (DIV)! ---->
+			<!--------------- THIS IS THE PLAYER PROGRESS BAR  ! ------------------->
 			<div class="progress-bar">
 				<p v-if="currTime">{{currTime}}</p>
 				<p v-else>00:00</p>
@@ -28,6 +28,7 @@
 				<p v-if="totalTime">{{totalTime}}</p>
 				<p v-else>00:00</p>
 			</div>
+			<!-------------- those are prev song next song buttons ------------->
 			<div>
 				<button @click="onNextSong">NEXT</button>
 				<button @click="onPrevSong">PREV</button>
@@ -105,6 +106,11 @@ export default {
 			const idx = this.currMix.songs.findIndex(
 				(song) => song.songUrlId === songId
 			);
+			this.$store.commit({
+				type:'setPrevSongNotPlaying',
+				songIdx:idx
+			})
+
 			if (idx < this.currMix.songs.length - 1) {
 				nextSong = this.currMix.songs[idx + 1];
 			} else if (idx === this.currMix.songs.length - 1) {
@@ -116,6 +122,9 @@ export default {
 				type: "setCurrSong",
 				song: nextSong,
 			});
+			this.$store.commit({
+				type:'startSongPlaying'
+			})
 		},
 		async moveTo() {
 			await this.$refs.youtube.player.seekTo(this.currTimePlaying);

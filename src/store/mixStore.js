@@ -70,6 +70,9 @@ export default {
                     currSong.isPlaying = false;
                 }
             })
+        },
+        setPrevSongNotPlaying(state,payload){
+            state.currMix.songs[payload.songIdx].isPlaying = false;
         }
     },
     actions: {
