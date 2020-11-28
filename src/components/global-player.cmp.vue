@@ -33,6 +33,10 @@
 				<button @click="onNextSong">NEXT</button>
 				<button @click="onPrevSong">PREV</button>
 			</div>
+			<div>
+				<button v-if="!isMuted" @click="mute"><i class="fas fa-volume-up"></i></button>
+				<button v-else @click="unmute"><i class="fas fa-volume-mute"></i></button>
+			</div>
 		</div>
 	</section>
 </template>
@@ -55,6 +59,7 @@ export default {
 			currTimePlaying: 0,
 			totalTime: 0,
 			totalTimeInput: 0,
+			isMuted:false
 		};
 	},
 	computed: {
@@ -150,7 +155,23 @@ export default {
 				type: "setCurrSong",
 				song: nextSong,
 			});
+			this.$store.commit({
+				type:'startSongPlaying'
+			});
+			this.$store.commit({
+				type:'setPrevSongNotPlaying',
+				songIdx:idx
+			})
+			
 		},
+		mute(){
+			this.isMuted = true;
+			this.$refs.youtube.player.mute();
+		},
+		unmute(){
+			this.isMuted = false;
+			this.$refs.youtube.player.unMute();
+		}
 	},
 	created() {
 		eventBus.$on("pause-music", () => {

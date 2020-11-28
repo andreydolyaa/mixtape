@@ -69,6 +69,9 @@
                 selectType
               />
             </div>
+            <div class="mix-views">
+              <h4>{{ currMix.views }}</h4>
+            </div>
             <div class="like">
               <div class="like-song">
                 <span class="likes-count">{{ currMix.likes }}</span>
@@ -116,7 +119,6 @@
           :mix="currMix"
           @emitRemoveSong="removeSongFromMix"
           @emitSongPos="changeSongPos"
-
         />
       </div>
     </div>
@@ -136,27 +138,30 @@ export default {
     return {
       isTitleHide: false,
       isDescHide: false,
-      // isLiked: false,
       isLoading: false,
-      songTxt: "",
-      currMix: "",
+      songTxt: '',
+      currMix: '',
       newMix: {
         _id: "cerateNewId()",
         name: "Mix Name",
         desc: "Mix description",
         genre: "genre",
-        isLiked: true,
-        imgUrl:
-          "https://res.cloudinary.com/hw-projects/image/upload/v1606479695/appmixes/logo_r_animated_v3_first_Frame_ly0i1c.jpg",
+        isLiked: false,
+        imgUrl: "https://res.cloudinary.com/hw-projects/image/upload/v1606479695/appmixes/logo_r_animated_v3_first_Frame_ly0i1c.jpg",
         likes: 0,
-        tags: ["Funk", "Happy"],
-        createdBy: {
-          _id: "u101",
-          fullName: "Puki Ben David",
-          imgUrl: "http://some-photo/",
+        "tags": [
+          "Funk",
+          "Happy"
+        ],
+        "createdBy": {
+          "_id": "u101",
+          "fullName": "Puki Ben David",
+          "imgUrl": "http://some-photo/"
         },
-        likedByUsers: [],
-        songs: [
+        "likedByUsers": [
+
+        ],
+        "songs": [
           {
             title: "Mac Miller - Good News",
             id: "i6Hdm",
@@ -164,11 +169,12 @@ export default {
             imgUrl: "https://i.ytimg.com/vi/aIHF7u9Wwiw/default.jpg",
             addedBy: "minimal-user",
             duration: "3:21",
-            isPlaying: false,
+            isPlaying: false
           },
-        ],
-      },
-    };
+
+        ]
+      }
+    }
   },
   computed: {
     mix() {
@@ -190,20 +196,20 @@ export default {
       return newUser;
     },
     heartMode() {
-      return this.currMix.isLiked ? "fas fa-heart" : "far fa-heart";
+      return this.currMix.isLiked ? 'fas fa-heart' : 'far fa-heart'
     },
   },
   methods: {
-    changeSongPos(songNewPos){
+    changeSongPos(songNewPos) {
       var lastSong = this.currMix.songs.length
-      if(songNewPos.songIdx===0 && songNewPos.diff===-1) return
-      if(songNewPos.songIdx===lastSong && songNewPos.diff===1) return
-      console.log('songNewPos',songNewPos)
+      if (songNewPos.songIdx === 0 && songNewPos.diff === -1) return
+      if (songNewPos.songIdx === lastSong && songNewPos.diff === 1) return
+      console.log('songNewPos', songNewPos)
       var input = this.currMix.songs
       var from = songNewPos.songIdx
-      var to = songNewPos.songIdx+songNewPos.diff
+      var to = songNewPos.songIdx + songNewPos.diff
 
-      console.log('changeSongPos',input,from,to)
+      console.log('changeSongPos', input, from, to)
       let numberOfDeletedElm = 1;
 
       const elm = input.splice(from, numberOfDeletedElm)[0];
@@ -255,7 +261,7 @@ export default {
       if (this.currMix.isLiked) {
         this.currMix.isLiked = false;
         this.currMix.likes--;
-        console.log(this.currMix.likes);
+        // console.log(this.currMix.likes);
         this.$store.dispatch({
           type: "saveMix",
           mix: this.currMix,
@@ -264,26 +270,38 @@ export default {
         this.currMix.isLiked = true;
         this.currMix.likes++;
         this.$store.dispatch({
-          type: "saveMix",
-          mix: this.currMix,
+          type: 'saveMix',
+          mix: this.currMix
+        })
+        const el = this.$createElement;
+        this.$notify({
+          message: el('i', { style: 'color: green' }, 'You liked the mix')
         });
       }
     },
     async onUploadImg(ev) {
       this.isLoading = true;
       const res = await uploadImg(ev);
-      console.log("res:", res.url);
-      this.imgUrls.push(res.url);
+      console.log('res:', res.url)
+      this.imgUrls.push(res.url)
       if (this.currMix) {
-        console.log("updating item img url");
-        this.currMix.imgUrl = res.url;
+        console.log('updating item img url')
+        this.currMix.imgUrl = res.url
       }
       this.isLoading = false;
       this.$store.dispatch({
-        type: "saveMix",
-        mix: this.currMix,
-      });
+        type: 'saveMix',
+        mix: this.currMix
+      })
     },
+    updateViews() {
+      this.currMix.views++;
+      this.$store.dispatch({
+        type: 'saveMix',
+        mix: this.currMix
+      })
+      console.log('@@@@');
+    }
   },
   components: {
     mixApiSearch,
@@ -292,17 +310,18 @@ export default {
     mixPlayer,
     mixSelectGenre,
   },
-  created() {
+  async created() {
     //if(this.$route.params.mixId){
-    console.log(
-      "mix details this.$route.params.mixId =",
-      this.$route.params.mixId
-    );
+    console.log('mix details this.$route.params.mixId =', this.$route.params.mixId)
     const mixId = this.$route.params.mixId;
-    this.$store.dispatch({ type: "getMixById", mixId });
+    await this.$store.dispatch({ type: "getMixById", mixId });
+    this.updateViews();
     //}
   },
-};
+  mounted() {
+  }
+}
+
 </script>
 
 <style lang="css" scoped>
