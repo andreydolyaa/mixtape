@@ -2,9 +2,10 @@
 	<section>
 		<div class="mix-home">
 			<mixHero />
-    		<ul class="mixes-list container"> 
-			   <!-- <h2> Mixes </h2>  -->
-                <li class="mixes-list-li" v-for="(item, index) in geners" :key="item" > 
+			<!-- <h1>Home</h1> -->
+    		<ul class="mixes-list container" v-if="geners"> 
+			   <!-- <h2> Mixes </h2> class="mix-list-home" -->
+                <li  v-for="(item, index) in geners" :key="item" > 
                    	<mix-list-Home v-bind:genre="geners[index]"/>
                 </li>
             </ul> 
@@ -23,7 +24,7 @@ export default {
 	name:'mix-home',
 	data(){
 		return{
-			geners:['funk','pop','rock','electro','classic','israeli','techno','trance']
+			//geners:['funk','pop','rock','electro','classic','israeli','techno','trance']
 		}
 	},
    components: {
@@ -33,7 +34,11 @@ export default {
 		globalPlayer
   },
   computed : {
-	 
+	  geners(){
+		  return this.$store.getters.getGeners
+		  console.log('geners',this.$store.getters.getGeners)
+
+	  } 
   },
 	watch: {
 			status(newValue, oldValue) {

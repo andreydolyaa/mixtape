@@ -9,8 +9,9 @@
 			</div>
 		</div>
 		<div class='global-player'>
-			<h1 v-if='getCurrSongPlaying'>{{getCurrSongPlaying.title}}</h1>
-			<h1 v-else>Artist - Unknown</h1>
+			<p><i class="fas fa-music"></i></h2>
+			<h2 v-if='getCurrSongPlaying'>{{getCurrSongPlaying.title}}</h2>
+			<h2 v-else>Artist - Unknown</h2>
 			<button v-if='!isPlayingNow' @click='play'>
 				<i class='far fa-play-circle'></i>
 			</button>
@@ -32,6 +33,7 @@ export default {
 			isPause: false,
 			playerVars: {
 				autoplay: 1,
+				origin: window.location.origin
 			},
 		};
 	},

@@ -1,32 +1,3 @@
-.player-list{
-    border:1px solid black;
-    display:flex;
-    
-    ul{
-        display: flex;
-        flex-direction: column;
-        
-        align-items: flex-start;
-        li{
-            padding:1rem;
-        }
-    }
-}
-
-
-iframe{
-    width:1px;
-    height: 1px;
-    visibility: hidden;
-}
-
-
-.youtube-window{
-    visibility:hidden
-}
-
-
-
 .global-player{
     background-color: #b2c5c3;
     color: #ffffff;
@@ -34,7 +5,7 @@ iframe{
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 70px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,7 +15,16 @@ iframe{
     background-repeat: no-repeat;
     background-position-y: -290px;
 
+    p{
+
+    }
+    
+    h2{
+        display: none;
+    }
+
     button{
+        display: none;
         background-color: transparent;
         cursor: pointer;
         outline: none;
@@ -54,10 +34,22 @@ iframe{
         height: 50px;
         border-radius: 10px;
 
+        .fa-play-circle,.fa-pause-circle,.fa-stop-circle{
+            font-size:2rem;
+             color: var(--white-color);
+        }
     }
-    .fa-play-circle,.fa-pause-circle,.fa-stop-circle{
-        font-size:2rem;
-         color: var(--white-color);
+}
+
+.global-player:hover{
+    height: 70px;
+
+    h2{
+        display: block;
+    }
+
+    button{
+        display: block;
     }
 }
 

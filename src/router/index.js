@@ -35,13 +35,14 @@ const routes = [
     component:mixPlayer
   },
   {
-    path:'/mix/details/:mixId',
+    path:'/mix/details',
     component:mixDetails
   },
   {
-    path:'/mix/edit/:mixId',
-    component:mixEdit
+    path:'/mix/details/:mixId',
+    component:mixDetails
   },
+ 
   
 ]
 

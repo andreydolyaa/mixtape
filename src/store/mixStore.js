@@ -6,7 +6,8 @@ export default {
         genre: null,
         currMix: null,
         currSongPlaying: null,
-        isPlaying: false
+        isPlaying: false,
+        geners:['funk','pop','rock','electro','classic','israeli','techno','trance']
     },
     getters: {
         getMixesForDisplay(state) {
@@ -29,11 +30,15 @@ export default {
             if (state.currSongPlaying) {
                 return state.currSongPlaying.isPlaying;
             }
+        },
+        getGeners(state){
+            return state.geners
         }
     },
     mutations: {
         setMixes(state, payload) {
             state.mixes = payload.mixes;
+           
         },
         setGenre(state, payload) {
             state.genre = payload.genre
@@ -48,6 +53,7 @@ export default {
         },
         setMix(state, payload) {
             state.currMix = payload.mix;
+            //console.log('set mix',state.currMix)
         },
         nowPlaying(state, payload) {
             state.isPlaying = payload.isPlaying;
@@ -69,7 +75,7 @@ export default {
     actions: {
         async getMixById(context, { mixId }) {
             const mix = await mixService.getById(mixId);
-            // console.log('mix',mix);
+            //console.log('mix',mix);
             context.commit({ type: 'setMix', mix });
         },
         async loadMixes(context) {

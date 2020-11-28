@@ -1,12 +1,45 @@
-.mix-list-home {
+.mix-list-home  {
     display: flex;
     flex-direction: column;
     gap: 20px;
 
+   
     h2{
         text-align: left;
     }
-    
+
+    .mixes-nav{
+            display: flex;
+            align-items: center;
+            font-size: 1.6em;
+            justify-content: space-between;
+            margin: 0 0 15px 0;
+
+            
+        .nav-show-all-ul{
+            display: flex;
+            flex-direction: row;
+            list-style: none;
+            justify-content: flex-end;
+            gap: 20px;
+            color: #fff;
+        }
+        
+        .genre-title{
+            color: white;
+            font-weight: 900;
+            align-self: flex-start;       
+            text-transform: capitalize;
+        }
+
+        .mix-link-show-all {
+            color: #fff;
+            align-self: flex-end;          
+        }
+
+
+     
+    }
     ul.ul-mixes {
         display: flex;
         justify-content: left;
