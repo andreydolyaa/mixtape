@@ -9,7 +9,7 @@
 			</div>
 		</div>
 		<div class='global-player'>
-			<p><i class="fas fa-music"></i></h2>
+			<p><i class="fas fa-music"></i></p>
 			<h2 v-if='getCurrSongPlaying'>{{getCurrSongPlaying.title}}</h2>
 			<h2 v-else>Artist - Unknown</h2>
 			<button v-if='!isPlayingNow' @click='play'>
