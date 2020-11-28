@@ -63,7 +63,14 @@
             </div>
             <div class="mix-genre">
               <h4>{{ currMix.genre }}</h4>
-              <mix-select-genre class="select-genre" v-on:selectType="setGenre" selectType/>
+              <mix-select-genre
+                class="select-genre"
+                v-on:selectType="setGenre"
+                selectType
+              />
+            </div>
+            <div class="mix-views">
+              <h4>{{ currMix.views }}</h4>
             </div>
             <div class="like">
               <div class="like-song">
@@ -78,8 +85,7 @@
               {{ currMix.createdBy.fullName }}
             </h5>
           </section>
-          <section class="general-info">
-          </section>
+          <section class="general-info"></section>
         </section>
       </section>
       <div class="seach-song-and-social">
@@ -108,14 +114,13 @@
         </section>
       </div>
       <div class="songs">
-          <mix-song-list
-            :songs="currMix.songs"
-            :mix="currMix"
-            @emitRemoveSong="removeSongFromMix"
-          />
+        <mix-song-list
+          :songs="currMix.songs"
+          :mix="currMix"
+          @emitRemoveSong="removeSongFromMix"
+        />
       </div>
     </div>
-
   </section>
 </template>
 
@@ -132,58 +137,56 @@ export default {
     return {
       isTitleHide: false,
       isDescHide: false,
-      // isLiked: false,
       isLoading: false,
       songTxt: '',
       currMix: '',
-      newMix:{
-       _id: "cerateNewId()",
-      name: "Mix Name",
-      desc: "Mix description",
-      genre: "genre",
-      isLiked: true,
-      imgUrl: "https://res.cloudinary.com/hw-projects/image/upload/v1606479695/appmixes/logo_r_animated_v3_first_Frame_ly0i1c.jpg",
-      likes: 0,
-      "tags": [
-        "Funk",
-        "Happy"
-      ],
-      "createdBy": {
-        "_id": "u101",
-        "fullName": "Puki Ben David",
-        "imgUrl": "http://some-photo/"
-      },
-      "likedByUsers": [
-        
-      ],
-      "songs": [
-        {
-          title: "Mac Miller - Good News",
-          id: "i6Hdm",
-          songUrlId: "aIHF7u9Wwiw",
-          imgUrl: "https://i.ytimg.com/vi/aIHF7u9Wwiw/default.jpg",
-          addedBy: "minimal-user",
-          duration: "3:21",
-          isPlaying: false
+      newMix: {
+        _id: "cerateNewId()",
+        name: "Mix Name",
+        desc: "Mix description",
+        genre: "genre",
+        isLiked: false,
+        imgUrl: "https://res.cloudinary.com/hw-projects/image/upload/v1606479695/appmixes/logo_r_animated_v3_first_Frame_ly0i1c.jpg",
+        likes: 0,
+        "tags": [
+          "Funk",
+          "Happy"
+        ],
+        "createdBy": {
+          "_id": "u101",
+          "fullName": "Puki Ben David",
+          "imgUrl": "http://some-photo/"
         },
-        
-      ]
-    }
+        "likedByUsers": [
+
+        ],
+        "songs": [
+          {
+            title: "Mac Miller - Good News",
+            id: "i6Hdm",
+            songUrlId: "aIHF7u9Wwiw",
+            imgUrl: "https://i.ytimg.com/vi/aIHF7u9Wwiw/default.jpg",
+            addedBy: "minimal-user",
+            duration: "3:21",
+            isPlaying: false
+          },
+
+        ]
+      }
     }
   },
   computed: {
     mix() {
-      if(this.$store.getters.getMix){
-        //console.log('get mix by id',this.$store.getters.getMix)
+      console.log('mix from store',this.$store.getters.getMix)
+      if (this.$store.getters.getMix) {
         this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
-        //console.log('this.currMix ',this.currMix )
-        return this.$store.getters.getMix
-     }else{
-       console.log('new mix')
-       this.currMix = this.newMix
-       //console.log('this.currMix',this.currMix)
-       return this.currMix
-     }
+        return this.currMix;
+      } else {
+        console.log('new mix')
+        this.currMix = this.newMix
+        //console.log('this.currMix',this.currMix)
+        return this.currMix
+      }
     },
     user() {
       var newUser = this.$store.getters.getUser;
@@ -192,11 +195,11 @@ export default {
     },
     heartMode() {
       return this.currMix.isLiked ? 'fas fa-heart' : 'far fa-heart'
-    }
+    },
   },
   methods: {
-    setGenre(genre){
-      console.log('genre',genre)
+    setGenre(genre) {
+      console.log('genre', genre)
       this.currMix.genre = genre;
     },
     toggleEditTitle() {
@@ -225,7 +228,7 @@ export default {
       if (this.currMix.isLiked) {
         this.currMix.isLiked = false;
         this.currMix.likes--;
-        console.log(this.currMix.likes);
+        // console.log(this.currMix.likes);
         this.$store.dispatch({
           type: 'saveMix',
           mix: this.currMix
@@ -238,23 +241,35 @@ export default {
           type: 'saveMix',
           mix: this.currMix
         })
+         const el = this.$createElement;
+        this.$notify({
+          message: el('i', { style: 'color: green' }, 'You liked the mix')
+        });
       }
     },
     async onUploadImg(ev) {
-        this.isLoading = true;
-        const res = await uploadImg(ev);
-        console.log('res:', res.url)
-        this.imgUrls.push(res.url)
-        if(this.currMix){
-            console.log('updating item img url')
-            this.currMix.imgUrl = res.url
-        }
-        this.isLoading = false;
-         this.$store.dispatch({
-          type: 'saveMix',
-          mix: this.currMix
-        })
+      this.isLoading = true;
+      const res = await uploadImg(ev);
+      console.log('res:', res.url)
+      this.imgUrls.push(res.url)
+      if (this.currMix) {
+        console.log('updating item img url')
+        this.currMix.imgUrl = res.url
+      }
+      this.isLoading = false;
+      this.$store.dispatch({
+        type: 'saveMix',
+        mix: this.currMix
+      })
     },
+    updateViews(){
+      this.currMix.views++;
+        this.$store.dispatch({
+        type: 'saveMix',
+        mix: this.currMix
+      })
+      console.log('@@@@');
+    }
   },
   components: {
     mixApiSearch,
@@ -263,13 +278,16 @@ export default {
     mixPlayer,
     mixSelectGenre
   },
-  created() {
+  async created() {
     //if(this.$route.params.mixId){
-      console.log('mix details this.$route.params.mixId =',this.$route.params.mixId)
-      const mixId = this.$route.params.mixId;
-      this.$store.dispatch({ type: "getMixById", mixId });
+    console.log('mix details this.$route.params.mixId =', this.$route.params.mixId)
+    const mixId = this.$route.params.mixId;
+    await this.$store.dispatch({ type: "getMixById", mixId });
+    this.updateViews();
     //}
   },
+  mounted() {
+  }
 }
 
 </script>

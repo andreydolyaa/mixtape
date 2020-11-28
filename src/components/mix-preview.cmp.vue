@@ -1,52 +1,56 @@
 <template>
   <section v-if="mix" class="details">
-   <div class="mix shadow" v-on:click="onMixView(mix._id)">
+    <div class="mix shadow" v-on:click="onMixView(mix._id)">
       <!-- <pre>{{mix}}</pre> -->
       <img :src="mixImg" />
-      <img class="img-frame" src="https://res.cloudinary.com/hw-projects/image/upload/v1606518099/appmixes/logo_frame.png" />
+      <img
+        class="img-frame"
+        src="https://res.cloudinary.com/hw-projects/image/upload/v1606518099/appmixes/logo_frame.png"
+      />
       <div class="info">
-          <span class="mix-name">{{mix.name}}</span>
-          <span class="mix-likes">{{mix.likes}}<i class="fas fa-heart"></i></span>
+        <span class="mix-name">{{ mix.name }}</span>
+        <span class="mix-views">{{ mix.views }}</span>
+        <span class="mix-likes"
+          >{{ mix.likes }}<i class="fas fa-heart"></i></span>
       </div>
-   </div>
+    </div>
   </section>
 </template>
  
 <script>
 export default {
-  name:'mix-preview',
-  props:{
-    mix:Object
+  name: 'mix-preview',
+  props: {
+    mix: Object
   },
-  methods:{
-     onMixView(mixId){
-       //console.log('mixId',mixId)
-       this.$router.push(`mix/details/${mixId}`) 
-      },      
+  methods: {
+    onMixView(mixId) {
+      //console.log('mixId',mixId)
+      this.$router.push(`mix/details/${mixId}`)
+    },
   },
-  computed : {
-    mixImg(){
-            if(!this.mix) return
-            //console.log(this.mix)
+  computed: {
+    mixImg() {
+      if (!this.mix) return
+      //console.log(this.mix)
 
-             //random image not in use
-             //var max = this.mix.songs.length 
-             //var songIdx = Math.floor(Math.random() * (max - 0) + 0);
-             
-             // 
-             var song = this.mix.songs[0]
-             var img = song.imgUrl
-             //console.log('img',img)
-             return img
-             
-         },
+      //random image not in use
+      //var max = this.mix.songs.length 
+      //var songIdx = Math.floor(Math.random() * (max - 0) + 0);
+
+      // 
+      var song = this.mix.songs[0]
+      var img = song.imgUrl
+      //console.log('img',img)
+      return img
+
+    },
   },
-  created(){
+  created() {
     //console.log('mix data',this.mix)
   }
 }
 </script>
 
 <style>
-
 </style>
