@@ -1,9 +1,9 @@
 <template> 
 	<section>
 		<div class="mix-home">
-			<mixHero />
+			<mixHero v-on:refName="scrollMeTo"  />
 			<!-- <h1>Home</h1> -->
-    		<ul class="mixes-list container" v-if="geners"> 
+    		<ul class="mix-list-home-container" ref="mix-list-home-container" v-if="geners"> 
 			   <!-- <h2> Mixes </h2> class="mix-list-home" -->
                 <li  v-for="(item, index) in geners" :key="item" > 
                    	<mix-list-Home v-bind:genre="geners[index]"/>
@@ -32,6 +32,16 @@ export default {
 		mixListHome,
 		mixVideo,
 		globalPlayer
+  },
+    methods: {
+    scrollMeTo(refName) {
+		console.log('scrollMeTo',refName)
+      var element = this.$refs[refName];
+      console.log('element',element,this.$refs)
+      var top = element.offsetTop;
+      window.scrollTo(0, top);
+    },
+
   },
   computed : {
 	  geners(){

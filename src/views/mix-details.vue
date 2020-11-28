@@ -1,7 +1,7 @@
 
 <template>
   <section class="mix-details flex" v-if="mix">
-    <h2>mix details </h2>
+    <!-- <h2>mix details </h2> -->
     <div class="mix-chat">
       <!-- <h2 class="title">Mix chat</h2> -->
       <mix-chat />

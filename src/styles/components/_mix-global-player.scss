@@ -16,9 +16,13 @@
     background-position-y: -290px;
 
     p{
-
+        i{
+            color: var(--primary-color);
+            font-size: 1em;
+            padding: 10px;
+        }
     }
-    
+
     h2{
         display: none;
     }
@@ -50,6 +54,12 @@
 
     button{
         display: block;
+    }
+
+    p{
+        i{
+            font-size: 2em;
+        }
     }
 }
 
