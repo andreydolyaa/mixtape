@@ -91,31 +91,7 @@
           <section class="general-info"></section>
         </section>
       </section>
-      <div class="seach-song-and-social">
-        <section class="search-song">
-          <el-input
-            type="text"
-            placeholder="Search song..."
-            clearable
-          ></el-input>
-        </section>
-        <section class="mix-actions-social flex space-between">
-          <!-- <div class="btn-actions flex space-evenly">
-          <span class="mix-like"><i class="fas fa-plus-circle"></i></span>
-          <el-input class="search-song" type="text" placeholder="Search in mix" clearable></el-input>
-          </div> -->
-          <!-- <button>shaffle</button> -->
-          <div class="share-container flex">
-            <div class="invite">
-              <p>invite a friend to join you:</p>
-            </div>
-            <div class="mix-social-nav flex space-evenly">
-              <i class="fab fa-facebook-square"></i>
-              <i class="fab fa-whatsapp"></i>
-            </div>
-          </div>
-        </section>
-      </div>
+      <mix-social />
       <div class="songs">
         <mix-song-list
           :songs="currMix.songs"
@@ -136,6 +112,7 @@ import mixChat from "@/components/mix-chat.cmp.vue";
 import mixSongList from "@/components/mix-song-list.cmp.vue";
 import mixSelectGenre from "@/components/mix-select-genre.cmp.vue";
 import { uploadImg } from "@/services/imgUploadService.js";
+import mixSocial from '@/components/social-mix.cmp.vue'
 
 export default {
   data() {
@@ -301,6 +278,7 @@ export default {
     mixSongList,
     mixPlayer,
     mixSelectGenre,
+    mixSocial
   },
   async created() {
     //if(this.$route.params.mixId){
