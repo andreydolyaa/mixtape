@@ -150,6 +150,14 @@ export default {
 				type: "setCurrSong",
 				song: nextSong,
 			});
+			this.$store.commit({
+				type:'startSongPlaying'
+			});
+			this.$store.commit({
+				type:'setPrevSongNotPlaying',
+				songIdx:idx
+			})
+			
 		},
 	},
 	created() {
