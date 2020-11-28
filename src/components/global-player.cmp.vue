@@ -23,7 +23,7 @@
 			<div>
 				<p v-if="currTime">{{currTime}}</p>
 				<p v-else>00:00</p>
-				<input @input="moveTo" type="range" :min="currTime" :max="totalTime" v-model="moveTime">
+				<input @input="moveTo" type="range" :min="currTime" :max="totalTimeInput" v-model="moveTime">
 				<p>{{totalTime}}</p>
 			</div>
 		</div>
@@ -44,10 +44,11 @@ export default {
 				autoplay: 1,
 				origin: window.location.origin,
 			},
-			currTime:'',
-			totalTime:'',
-			moveTime:'',
-			newTime:''
+			currTime:0,
+			totalTime:0,
+			totalTimeInput:0,
+			moveTime:0,
+			newTime:0
 		};
 	},
 	computed: {
@@ -81,6 +82,7 @@ export default {
 			});
 		},
 		playing(event) {
+			this.totalTimeInput = Math.floor(event.getDuration());
 			this.totalTime = utilService.convertSecondsToTime(Math.floor(event.getDuration()));
 			setInterval(()=>{
 				this.currTime = utilService.convertSecondsToTime(Math.floor(event.getCurrentTime()))
@@ -114,9 +116,10 @@ export default {
 		moveTo(event){
 			console.log('time To move to: ',this.moveTime);
 			console.log('move toEVENT: ',event)
+			console.log('REFS: ',this.$refs);
 			if(this.moveTime){
 				this.$refs.youtube.player.seekTo(this.moveTime);
-				// this.moveTime = '';
+				this.moveTime = '';
 			}
 		}
 	},
