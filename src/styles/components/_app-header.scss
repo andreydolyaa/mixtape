@@ -11,7 +11,12 @@
         justify-content: flex-end;
         width: 100%;
         gap: 20px;
-        font-size: 1.6em;    
+        font-size: 1.6em; 
+        
+        a:hover{
+            color:var(--primary-color)
+        }
+        
     }
 
     .nav-mix{
@@ -34,6 +39,16 @@
         }
     }
  
+    .logo:hover{
+
+        img{
+            width:160px;
+            height: auto;
+            content:url(https://res.cloudinary.com/hw-projects/image/upload/v1606477296/appmixes/logo_r_animated_v3.gif);
+
+        }
+    }
+
     .logo-playing{
         img{
             width:160px;

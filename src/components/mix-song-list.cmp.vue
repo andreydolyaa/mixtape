@@ -10,9 +10,14 @@
 						<i class="far fa-pause-circle"></i>
 					</button>
 
+
 					<img :src="song.imgUrl" />
 					<p>{{ song.title }}</p>
 					<span>{{ song.duration }}</span>
+				</div>
+				<div class="sort-songs-buttons">
+					<button><i class="fas fa-sort-up"></i></button>
+					<button><i class="fas fa-sort-down"></i></button>
 				</div>
 				<span class="delete-song" @click="emitSongId(song.id)">
 					<i class="far fa-trash-alt"></i>
@@ -39,6 +44,8 @@ export default {
 			isPlaying: false,
 			playerVars: {
 				autoplay: 1,
+				//origin: window.location.origin, // or http(S)://your.domain.com
+				origin:'http://localhost:8080/'
 			},
 		};
 	},
@@ -88,7 +95,7 @@ export default {
 	},
 	created() {
 		// console.log('mix data', this.mixes)
-		
+
 	},
 	components:{
 		

@@ -1,10 +1,16 @@
 <template>
-  <section class="mix-list container">
+  <section class="mix-list-page container">
+          <div>
+            <el-input type="text" v-model="filterBySongName" placeholder="Search song..." clearable></el-input>    
+          </div>
            <nav class="mixes-nav">
                 <ul class="mixes-nav-ul">
+                    <li class="mix-link" v-on:click="onListSetFilter('funk')">Funk</li>
                     <li class="mix-link" v-on:click="onListSetFilter('pop')">Pop</li>
-                    <li class="mix-link" v-on:click="onListSetFilter('elctro')">Elctro</li>
                     <li class="mix-link" v-on:click="onListSetFilter('rock')">Rock</li>
+                    <li class="mix-link" v-on:click="onListSetFilter('electro')">Electro</li>
+                    <li class="mix-link" v-on:click="onListSetFilter('israeli')">Israeli</li>
+                    <li class="mix-link" v-on:click="onListSetFilter('Techno')">Trance</li>
                 </ul>            
             </nav>
             <ul class="ul-mixes"> 
@@ -27,40 +33,46 @@ export default {
             default: null
         }
     },
-  	data(){
-		return{
-			 a:null,
-		}
+  data(){
+      return{
+        filterBySongName:'',      
+      }
 	},
   computed : {
         mixes(){
             var mixes = this.$store.getters.getMixesForDisplay
             if(!mixes) return
+            // console.log('f= ',this.filterBySongName)
+            //if(!this.filterBySongName) return
             //console.log('this.genre',this.getGenreToDisplay)
             if (!this.getGenreToDisplay) return mixes
             //console.log('filter')
-            var res = mixes.filter(item =>{
+            var res = mixes.filter(mix =>{
                 //console.log('item',item.genre)
-                return item.genre.toLowerCase() === this.getGenreToDisplay.toLowerCase()
+                return mix.genre.toLowerCase() === this.getGenreToDisplay.toLowerCase() 
+                && mix.songs.filter(song =>{
+                    //console.log('song.title',song.title,'f= ',this.filterBySongName)
+                    song.title.toLowerCase().includes(this.filterBySongName.toLowerCase());
+                })
             })
-            console.log('res',res)
+            //console.log('res',res)
             return res
         },
         getGenreToDisplay(){
-            console.log('this.$store.getters.getGenre',this.$store.getters.getGenreToDisplay)
+            //console.log('this.$store.getters.getGenre',this.$store.getters.getGenreToDisplay)
             return this.$store.getters.getGenreToDisplay
         }
   },
   methods: {
      onListSetFilter(genre){
-        console.log('genre',genre)
+        //console.log('genre',genre)
         this.$store.commit({type: 'setGenre',genre })
-        console.log('genre',genre)
+        //console.log('genre',genre)
         //this.$router.push(`mix/list$`) 
       },  
      showList(genre){
         this.genre = genre
-        console.log('genre', this.genre)
+        //console.log('genre', this.genre)
         this.$router.push(`mix/list`) 
       },  
   },
@@ -68,7 +80,7 @@ export default {
     mixPreview
   },
   created(){
-    console.log('mix data genre',this.getGenreToDisplay)
+    //console.log('mix data genre',this.getGenreToDisplay)
 
   }
 } // end of export default

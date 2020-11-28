@@ -1,0 +1,15 @@
+
+
+.songs-list{
+    display: flex;
+    ul{
+        display: flex;
+        gap: 16px;
+        flex-direction: column;
+        width: 100%;
+
+        li.songs-details {
+            width: 100%;
+        }
+    }
+}

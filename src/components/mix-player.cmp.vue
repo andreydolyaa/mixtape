@@ -37,7 +37,7 @@
 import { mixService } from "@/services/mixService.js";
 import globalPlayer from '@/components/global-player.cmp.vue';
 import mixDetails from '@/views/mix-details.vue';
-import mixSong from '@/components/mix-song.cmp.vue';
+import mixSongList from '@/components/mix-song-list.cmp.vue';
 export default {
 	data() {
 		return {

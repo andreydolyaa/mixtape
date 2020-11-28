@@ -16,9 +16,9 @@
       data(){
         return{
           imgs:[
-            'https://res.cloudinary.com/hw-projects/image/upload/v1606309302/appmixes/party001_etvq6c.jpg',
-            'https://res.cloudinary.com/hw-projects/image/upload/v1606309308/appmixes/party002_wln8ni.jpg',
-            'https://res.cloudinary.com/hw-projects/image/upload/v1606309300/appmixes/party003_lqrgta.jpg',
+            'https://res.cloudinary.com/hw-projects/image/upload/v1606309302/appmixes/party001.jpg',
+            'https://res.cloudinary.com/hw-projects/image/upload/v1606309308/appmixes/party002.jpg',
+            'https://res.cloudinary.com/hw-projects/image/upload/v1606309300/appmixes/party003.jpg',
          
          ],
           // img:'party001.jpg'

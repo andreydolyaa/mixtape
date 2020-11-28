@@ -1,6 +1,7 @@
 
 <template>
-  <div class="mix-details flex" v-if="mix">
+  <section class="mix-details flex" v-if="mix">
+    <h2>mix details </h2>
     <div class="mix-chat">
       <!-- <h2 class="title">Mix chat</h2> -->
       <mix-chat />
@@ -35,7 +36,7 @@
             <h2 v-if="!isTitleHide">
               {{ currMix.name
               }}<span @click="toggleEditTitle" class="edit-txt"
-                ><i class="fas fa-pen"></i
+                ><i class="edit fas fa-pen"></i
               ></span>
             </h2>
             <div v-else>
@@ -60,13 +61,16 @@
                 ><i class="far fa-save"></i
               ></span>
             </div>
-            <h4>{{ currMix.genre }}</h4>
+            <div class="mix-genre">
+              <h4>{{ currMix.genre }}</h4>
+              <mix-select-genre class="select-genre" v-on:selectType="setGenre" selectType/>
+            </div>
             <div class="like">
               <div class="like-song">
                 <i @click="addLike" :class="heartMode" class="far fa-heart"></i>
+                <span>{{ currMix.likes }}</span>
               </div>
             </div>
-            <span>{{ currMix.likes }}</span>
           </section>
           <section class="user-info">
             <h5>
@@ -103,22 +107,26 @@
           </div>
         </section>
       </div>
-      <mix-song
-        :songs="currMix.songs"
-        :mix="currMix"
-        @emitRemoveSong="removeSongFromMix"
-      />
+      <div class="songs">
+          <mix-song-list
+            :songs="currMix.songs"
+            :mix="currMix"
+            @emitRemoveSong="removeSongFromMix"
+          />
+      </div>
     </div>
 
-  </div>
+  </section>
 </template>
 
 <script>
 import mixPlayer from '@/components/mix-player.cmp.vue';
 import mixApiSearch from '@/components/mix-api-search.cmp.vue';
 import mixChat from '@/components/mix-chat.cmp.vue';
-import mixSong from '@/components/mix-song.cmp.vue';
+import mixSongList from '@/components/mix-song-list.cmp.vue';
+import mixSelectGenre from '@/components/mix-select-genre.cmp.vue';
 import { uploadImg } from '@/services/imgUploadService.js';
+
 export default {
   data() {
     return {
@@ -128,12 +136,54 @@ export default {
       isLoading: false,
       songTxt: '',
       currMix: '',
+      newMix:{
+       _id: "cerateNewId()",
+      name: "Mix Name",
+      desc: "Mix description",
+      genre: "genre",
+      isLiked: true,
+      imgUrl: "https://res.cloudinary.com/hw-projects/image/upload/v1606479695/appmixes/logo_r_animated_v3_first_Frame_ly0i1c.jpg",
+      likes: 0,
+      "tags": [
+        "Funk",
+        "Happy"
+      ],
+      "createdBy": {
+        "_id": "u101",
+        "fullName": "Puki Ben David",
+        "imgUrl": "http://some-photo/"
+      },
+      "likedByUsers": [
+        
+      ],
+      "songs": [
+        {
+          title: "Mac Miller - Good News",
+          id: "i6Hdm",
+          songUrlId: "aIHF7u9Wwiw",
+          imgUrl: "https://i.ytimg.com/vi/aIHF7u9Wwiw/default.jpg",
+          addedBy: "minimal-user",
+          duration: "3:21",
+          isPlaying: false
+        },
+        
+      ]
+    }
     }
   },
   computed: {
     mix() {
-      this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
-      return this.$store.getters.getMix
+      if(this.$store.getters.getMix){
+        //console.log('get mix by id',this.$store.getters.getMix)
+        this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
+        //console.log('this.currMix ',this.currMix )
+        return this.$store.getters.getMix
+     }else{
+       console.log('new mix')
+       this.currMix = this.newMix
+       //console.log('this.currMix',this.currMix)
+       return this.currMix
+     }
     },
     user() {
       var newUser = this.$store.getters.getUser;
@@ -145,6 +195,10 @@ export default {
     }
   },
   methods: {
+    setGenre(genre){
+      console.log('genre',genre)
+      this.currMix.genre = genre;
+    },
     toggleEditTitle() {
       this.isTitleHide = !this.isTitleHide;
     },
@@ -205,13 +259,16 @@ export default {
   components: {
     mixApiSearch,
     mixChat,
-    mixSong,
+    mixSongList,
     mixPlayer,
-
+    mixSelectGenre
   },
   created() {
-    const mixId = this.$route.params.mixId;
-    this.$store.dispatch({ type: "getMixById", mixId });
+    //if(this.$route.params.mixId){
+      console.log('mix details this.$route.params.mixId =',this.$route.params.mixId)
+      const mixId = this.$route.params.mixId;
+      this.$store.dispatch({ type: "getMixById", mixId });
+    //}
   },
 }
 
