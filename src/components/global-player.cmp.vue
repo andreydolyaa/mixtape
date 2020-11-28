@@ -20,11 +20,17 @@
 			<button v-else @click="pause">
 				<i class="far fa-pause-circle"></i>
 			</button>
-			<div>
+			<!--- THIS IS THE PLAYER PROGRESS BAR  (DIV)! ---->
+			<div class="progress-bar">
 				<p v-if="currTime">{{currTime}}</p>
 				<p v-else>00:00</p>
-				<input @input="moveTo()" type="range" :min="currTime" :max="totalTimeInput" v-model="currTimePlaying"  >
-				<p>{{totalTime}}</p>
+				<input @input="moveTo()" type="range" :min="currTime" :max="totalTimeInput" v-model="currTimePlaying" />
+				<p v-if="totalTime">{{totalTime}}</p>
+				<p v-else>00:00</p>
+			</div>
+			<div>
+				<button @click="onNextSong">NEXT</button>
+				<button @click="onPrevSong">PREV</button>
 			</div>
 		</div>
 	</section>
@@ -32,7 +38,7 @@
 
 <script>
 import { eventBus } from "@/main.js";
-import {utilService} from "@/services/utilService.js";
+import { utilService } from "@/services/utilService.js";
 export default {
 	name: "global-player",
 	data() {
@@ -44,12 +50,10 @@ export default {
 				autoplay: 1,
 				origin: window.location.origin,
 			},
-			currTime:0,
-			currTimePlaying:0,
-			totalTime:0,
-			totalTimeInput:0,
-			moveTime:0,
-			newTime:0
+			currTime: 0,
+			currTimePlaying: 0,
+			totalTime: 0,
+			totalTimeInput: 0,
 		};
 	},
 	computed: {
@@ -66,9 +70,6 @@ export default {
 			return this.$store.getters.getMix;
 		},
 	},
-	watch: {
-
-	},
 	methods: {
 		pause() {
 			this.$refs.youtube.player.pauseVideo();
@@ -84,27 +85,29 @@ export default {
 		},
 		playing(event) {
 			this.totalTimeInput = Math.floor(event.getDuration());
-			this.totalTime = utilService.convertSecondsToTime(Math.floor(event.getDuration()));
-			setInterval(()=>{
-				this.currTime = utilService.convertSecondsToTime(Math.floor(event.getCurrentTime()))
-				this.currTimePlaying = Math.floor(event.getCurrentTime())
-			},1000)
-		},
-		change(){
-			
+			this.totalTime = utilService.convertSecondsToTime(
+				Math.floor(event.getDuration())
+			);
+			setInterval(() => {
+				this.currTime = utilService.convertSecondsToTime(
+					Math.floor(event.getCurrentTime())
+				);
+				this.currTimePlaying = Math.floor(event.getCurrentTime());
+			}, 1000);
 		},
 		ended() {
-			this.playNextSong();
+			this.autoPlayNextSong();
 		},
-		playNextSong() {
+		autoPlayNextSong() {
 			var mixLength = this.currMix.songs.length;
 			var nextSong;
 			var songId = this.getCurrSongPlaying.songUrlId;
-			const idx = this.currMix.songs.findIndex((song) => song.songUrlId === songId);
-			if (idx < this.currMix.songs.length - 1){
+			const idx = this.currMix.songs.findIndex(
+				(song) => song.songUrlId === songId
+			);
+			if (idx < this.currMix.songs.length - 1) {
 				nextSong = this.currMix.songs[idx + 1];
-			}
-			else if(idx  === this.currMix.songs.length -1){
+			} else if (idx === this.currMix.songs.length - 1) {
 				nextSong = this.currMix.songs[0];
 			}
 			var nextSongId = nextSong.songUrlId;
@@ -114,18 +117,31 @@ export default {
 				song: nextSong,
 			});
 		},
-		async moveTo(){
-			// console.log('time To move to: ',this.moveTime);
-			// console.log('move toEVENT: ',event)
-			// console.log('REFS: ',this.$refs);
-			
-				
-				await this.$refs.youtube.player.seekTo(this.currTimePlaying);
-				// this.$refs.youtube.player.pauseVideo();
-				// this.play();
-			
-				
-		}
+		async moveTo() {
+			await this.$refs.youtube.player.seekTo(this.currTimePlaying);
+		},
+		onNextSong() {
+			this.autoPlayNextSong();
+		},
+		onPrevSong() {
+			var mixLength = this.currMix.songs.length;
+			var nextSong;
+			var songId = this.getCurrSongPlaying.songUrlId;
+			const idx = this.currMix.songs.findIndex(
+				(song) => song.songUrlId === songId
+			);
+			if (idx > 0) {
+				nextSong = this.currMix.songs[idx - 1];
+			} else if (idx === 0) {
+				nextSong = this.currMix.songs[this.currMix.songs.length - 1];
+			}
+			var nextSongId = nextSong.songUrlId;
+			this.$refs.youtube.player.loadVideoById(nextSongId);
+			this.$store.commit({
+				type: "setCurrSong",
+				song: nextSong,
+			});
+		},
 	},
 	created() {
 		eventBus.$on("pause-music", () => {
@@ -142,6 +158,3 @@ export default {
 </style>
 
 
-// VLE6Y1q13qE
-//getCurrentTime
-//getDuration
