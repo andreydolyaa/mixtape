@@ -74,8 +74,8 @@
             </div>
             <div class="like">
               <div class="like-song">
+                <span class="likes-count">{{ currMix.likes }}</span>
                 <i @click="addLike" :class="heartMode" class="far fa-heart"></i>
-                <span>{{ currMix.likes }}</span>
               </div>
             </div>
           </section>
@@ -118,6 +118,8 @@
           :songs="currMix.songs"
           :mix="currMix"
           @emitRemoveSong="removeSongFromMix"
+          @emitSongPos="changeSongPos"
+
         />
       </div>
     </div>
@@ -125,12 +127,12 @@
 </template>
 
 <script>
-import mixPlayer from '@/components/mix-player.cmp.vue';
-import mixApiSearch from '@/components/mix-api-search.cmp.vue';
-import mixChat from '@/components/mix-chat.cmp.vue';
-import mixSongList from '@/components/mix-song-list.cmp.vue';
-import mixSelectGenre from '@/components/mix-select-genre.cmp.vue';
-import { uploadImg } from '@/services/imgUploadService.js';
+import mixPlayer from "@/components/mix-player.cmp.vue";
+import mixApiSearch from "@/components/mix-api-search.cmp.vue";
+import mixChat from "@/components/mix-chat.cmp.vue";
+import mixSongList from "@/components/mix-song-list.cmp.vue";
+import mixSelectGenre from "@/components/mix-select-genre.cmp.vue";
+import { uploadImg } from "@/services/imgUploadService.js";
 
 export default {
   data() {
@@ -177,29 +179,61 @@ export default {
   },
   computed: {
     mix() {
-      console.log('mix from store',this.$store.getters.getMix)
       if (this.$store.getters.getMix) {
+        //console.log('get mix by id',this.$store.getters.getMix)
         this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
-        return this.currMix;
+        //console.log('this.currMix ',this.currMix )
+        return this.$store.getters.getMix;
       } else {
-        console.log('new mix')
-        this.currMix = this.newMix
+        console.log("new mix");
+        this.currMix = this.newMix;
         //console.log('this.currMix',this.currMix)
-        return this.currMix
+        return this.currMix;
       }
     },
     user() {
       var newUser = this.$store.getters.getUser;
-      console.log(newUser)
-      return newUser
+      console.log(newUser);
+      return newUser;
     },
     heartMode() {
       return this.currMix.isLiked ? 'fas fa-heart' : 'far fa-heart'
     },
   },
   methods: {
+    changeSongPos(songNewPos){
+      var lastSong = this.currMix.songs.length
+      if(songNewPos.songIdx===0 && songNewPos.diff===-1) return
+      if(songNewPos.songIdx===lastSong && songNewPos.diff===1) return
+      console.log('songNewPos',songNewPos)
+      var input = this.currMix.songs
+      var from = songNewPos.songIdx
+      var to = songNewPos.songIdx+songNewPos.diff
+
+      console.log('changeSongPos',input,from,to)
+      let numberOfDeletedElm = 1;
+
+      const elm = input.splice(from, numberOfDeletedElm)[0];
+
+      numberOfDeletedElm = 0;
+
+      input.splice(to, numberOfDeletedElm, elm);
+
+      //mix-details.vue?d76e:198 songPosition {songIdx: 0, diff: -1}
+      //console.log('songDetails',songDetails,this.currMix.songs)
+      //const song = this.currMix.songs[songDetails.songIdx]
+      //console.log('song',song)
+      //this.currMix.songs.splice(songDetails.songpos , 1);
+      //var newSongPosition = songDetails.songIdx+songDetails.diff
+      //console.log('newSongPosition',newSongPosition)
+      //this.currMix.songs.splice(newSongPosition , 1, song )
+      // this.$store.dispatch({
+      //  type: "saveMix",
+      //  mix:this.currMix,
+      //});
+    },
     setGenre(genre) {
-      console.log('genre', genre)
+      console.log("genre", genre);
       this.currMix.genre = genre;
     },
     toggleEditTitle() {
@@ -210,19 +244,19 @@ export default {
     },
     saveChange(mix) {
       this.$store.dispatch({
-        type: 'saveMix',
-        mix
+        type: "saveMix",
+        mix,
       });
       this.isTitleHide = false;
       this.isDescHide = false;
     },
     removeSongFromMix(songId) {
-      var songIdx = this.currMix.songs.findIndex(song => song.id === songId);
+      var songIdx = this.currMix.songs.findIndex((song) => song.id === songId);
       this.currMix.songs.splice(songIdx, 1);
       this.$store.dispatch({
-        type: 'saveMix',
-        mix: this.currMix
-      })
+        type: "saveMix",
+        mix: this.currMix,
+      });
     },
     addLike() {
       if (this.currMix.isLiked) {
@@ -230,26 +264,31 @@ export default {
         this.currMix.likes--;
         // console.log(this.currMix.likes);
         this.$store.dispatch({
-          type: 'saveMix',
-          mix: this.currMix
-        })
-      }
-      else {
+          type: "saveMix",
+          mix: this.currMix,
+        });
+      } else {
         this.currMix.isLiked = true;
         this.currMix.likes++;
         this.$store.dispatch({
+<<<<<<< HEAD
           type: 'saveMix',
           mix: this.currMix
         })
          const el = this.$createElement;
         this.$notify({
           message: el('i', { style: 'color: green' }, 'You liked the mix')
+=======
+          type: "saveMix",
+          mix: this.currMix,
+>>>>>>> a5000c6a04b78650d378bcced43984233cc9cb59
         });
       }
     },
     async onUploadImg(ev) {
       this.isLoading = true;
       const res = await uploadImg(ev);
+<<<<<<< HEAD
       console.log('res:', res.url)
       this.imgUrls.push(res.url)
       if (this.currMix) {
@@ -261,6 +300,19 @@ export default {
         type: 'saveMix',
         mix: this.currMix
       })
+=======
+      console.log("res:", res.url);
+      this.imgUrls.push(res.url);
+      if (this.currMix) {
+        console.log("updating item img url");
+        this.currMix.imgUrl = res.url;
+      }
+      this.isLoading = false;
+      this.$store.dispatch({
+        type: "saveMix",
+        mix: this.currMix,
+      });
+>>>>>>> a5000c6a04b78650d378bcced43984233cc9cb59
     },
     updateViews(){
       this.currMix.views++;
@@ -276,10 +328,11 @@ export default {
     mixChat,
     mixSongList,
     mixPlayer,
-    mixSelectGenre
+    mixSelectGenre,
   },
   async created() {
     //if(this.$route.params.mixId){
+<<<<<<< HEAD
     console.log('mix details this.$route.params.mixId =', this.$route.params.mixId)
     const mixId = this.$route.params.mixId;
     await this.$store.dispatch({ type: "getMixById", mixId });
@@ -290,6 +343,17 @@ export default {
   }
 }
 
+=======
+    console.log(
+      "mix details this.$route.params.mixId =",
+      this.$route.params.mixId
+    );
+    const mixId = this.$route.params.mixId;
+    this.$store.dispatch({ type: "getMixById", mixId });
+    //}
+  },
+};
+>>>>>>> a5000c6a04b78650d378bcced43984233cc9cb59
 </script>
 
 <style lang="css" scoped>

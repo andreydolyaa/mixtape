@@ -104,7 +104,11 @@
                 
                 .like-song{
                     width: 100%;
-                    text-align: right;       
+                    text-align: right;   
+
+                    .likes-count{
+                        margin-right: 8px;
+                    }
 
                     i{
                         font-size: 42px;

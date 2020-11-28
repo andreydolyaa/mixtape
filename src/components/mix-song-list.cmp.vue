@@ -1,12 +1,12 @@
 <template>
 	<section class="songs-list">
 		<ul>
-			<li class="songs-details-main flex" v-for="song in songs" :key="song.id">
+			<li class="songs-details-main flex" v-for="(song,index) in songs" :key="song.id">
 				<div class="songs-details">
 					<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,songs);">
 						<i class="far fa-play-circle"></i>
 					</button>
-					<button v-else @click="pauseSong(song);">
+					<button v-if="song.isPlaying" @click="pauseSong(song);">
 						<i class="far fa-pause-circle"></i>
 					</button>
 
@@ -16,8 +16,8 @@
 					<span>{{ song.duration }}</span>
 				</div>
 				<div class="sort-songs-buttons">
-					<button><i class="fas fa-sort-up"></i></button>
-					<button><i class="fas fa-sort-down"></i></button>
+					<button v-on:click="emitSongPos(index,-1)"><i class="fas fa-sort-up"></i></button>
+					<button v-on:click="emitSongPos(index,1)"><i class="fas fa-sort-down"></i></button>
 				</div>
 				<span class="delete-song" @click="emitSongId(song.id)">
 					<i class="far fa-trash-alt"></i>
@@ -33,7 +33,7 @@ import { mixService } from "@/services/mixService.js";
 import {eventBus} from '@/main.js';
 
 export default {
-	name: "mix-song",
+	name: "mix-song-list",
 	props: {
 		songs: Array,
 		mix: Object,
@@ -55,14 +55,16 @@ export default {
 		},
 		currSongPlaying(){
 			return this.$store.getters.getCurrSongPlaying;
-		}
+		},
 	},
-	methods: {	
+	methods: {
+		emitSongPos(songIdx,diff) {
+			this.$emit("emitSongPos", {songIdx:songIdx,diff:diff});
+		},	
 		emitSongId(songId) {
 			this.$emit("emitRemoveSong", songId);
 		},
 		setIsPlaying() {
-			console.log("@@@isPALYING:", this.isPlaying);
 			this.$store.commit({
 				type: "nowPlaying",
 				isPlaying: this.isPlaying,
