@@ -4,7 +4,6 @@
     <div class="app-header">
       <!-- <h1>app header</h1> -->
         <div class="logo" :class="isPlaying" >
-          <span style="color:#fff">{{isPlaying}}</span>
           <router-link to="/" ><img class="reflect" src="https://res.cloudinary.com/hw-projects/image/upload/v1606479695/appmixes/logo_r_animated_v3_first_Frame" ></router-link> 
         </div>
         <nav>   
