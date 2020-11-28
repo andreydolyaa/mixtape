@@ -12,9 +12,12 @@
         <section class="mix-img flex start">
           <form>
             <template v-if="!isLoading">
-              <label for="imgUploader">
-                <img :src="currMix.imgUrl" />
-              </label>
+              <div class="update-img-mix">
+                <label for="imgUploader">
+                  <img :src="currMix.imgUrl" />
+                  <span><i class="fas fa-pen"></i></span>
+                </label>
+              </div>
               <input
                 type="file"
                 name="img-uploader"
@@ -33,7 +36,7 @@
         </section>
         <section class="mix-info-main">
           <section class="mix-info">
-            <h2 v-if="!isTitleHide">
+            <h2 class="mix-title" v-if="!isTitleHide">
               {{ currMix.name
               }}<span @click="toggleEditTitle" class="edit-txt"
                 ><i class="edit fas fa-pen"></i
@@ -246,6 +249,10 @@ export default {
         type: "saveMix",
         mix,
       });
+      // const el = this.$createElement;
+      // this.$notify({
+      //   message: el('i', { style: 'color: green' }, 'You updated the mix')
+      // });
       this.isTitleHide = false;
       this.isDescHide = false;
     },
@@ -273,10 +280,10 @@ export default {
           type: 'saveMix',
           mix: this.currMix
         })
-        const el = this.$createElement;
-        this.$notify({
-          message: el('i', { style: 'color: green' }, 'You liked the mix')
-        });
+        // const el = this.$createElement;
+        // this.$notify({
+        //   message: el('i', { style: 'color: green' }, 'You liked the mix')
+        // });
       }
     },
     async onUploadImg(ev) {
@@ -327,5 +334,15 @@ export default {
 <style lang="css" scoped>
 .mix-details {
   color: #ffffff;
+}
+.update-img-mix {
+  position: relative;
+}
+.update-img-mix span {
+  position: absolute;
+  left: 150px;
+  top: 100px;
+  opacity: 0.7;
+  font-size: 2.5rem
 }
 </style>
