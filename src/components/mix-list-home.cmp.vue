@@ -1,7 +1,7 @@
 <template>
   <section  ref="mix-list-home" class="mix-list-home container">
           <!-- <h2>Home mix list </h2> -->
-          <div ref="mix-list-home-container">
+          <div ref="mix-list-home container">
            <nav class="mixes-nav">
                 <div class="genre-title"> {{genre}}</div>
                 <ul class="nav-show-all-ul" >

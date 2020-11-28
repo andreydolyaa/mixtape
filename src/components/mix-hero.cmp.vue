@@ -1,9 +1,9 @@
 <template>
   <section class="hero">
-    <div class="hero-text-area">
+    <div class="hero-text-area" ref="baba">
     <h2>Pick a mix and join the mixTape</h2>
     <div class="buttons">
-      <a class="button start-listening" @click="scrollMeTo('mix-list-home')">Start listening</a>
+      <a class="button start-listening" @click="emitScrollMeTo('mix-list-home-container')">Start listening</a>
       <a class="button create-playlist" @click="createNewPlaylist()">Create PLaylist</a>
     </div>
     </div>
@@ -27,12 +27,10 @@ export default {
     }
   },
   methods: {
-    scrollMeTo(refName) {
-      var element = this.$refs[refName];
-      console.log('element',element,this.$refs)
-      var top = element.offsetTop;
+    emitScrollMeTo(refName) {
+      console.log(' emitScrollMeTo( refName',refName)
+      this.$emit('refName', refName)
 
-      window.scrollTo(0, top);
     },
     createNewPlaylist(){
       this.$router.push(`mix/details`) 
