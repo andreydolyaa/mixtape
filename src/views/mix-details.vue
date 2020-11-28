@@ -119,6 +119,7 @@
           :mix="currMix"
           @emitRemoveSong="removeSongFromMix"
           @emitSongPos="changeSongPos"
+          @updateMix="saveChange"
         />
       </div>
     </div>
@@ -208,28 +209,11 @@ export default {
       var input = this.currMix.songs
       var from = songNewPos.songIdx
       var to = songNewPos.songIdx + songNewPos.diff
-
       console.log('changeSongPos', input, from, to)
       let numberOfDeletedElm = 1;
-
       const elm = input.splice(from, numberOfDeletedElm)[0];
-
       numberOfDeletedElm = 0;
-
       input.splice(to, numberOfDeletedElm, elm);
-
-      //mix-details.vue?d76e:198 songPosition {songIdx: 0, diff: -1}
-      //console.log('songDetails',songDetails,this.currMix.songs)
-      //const song = this.currMix.songs[songDetails.songIdx]
-      //console.log('song',song)
-      //this.currMix.songs.splice(songDetails.songpos , 1);
-      //var newSongPosition = songDetails.songIdx+songDetails.diff
-      //console.log('newSongPosition',newSongPosition)
-      //this.currMix.songs.splice(newSongPosition , 1, song )
-      // this.$store.dispatch({
-      //  type: "saveMix",
-      //  mix:this.currMix,
-      //});
     },
     setGenre(genre) {
       console.log("genre", genre);
@@ -242,6 +226,7 @@ export default {
       this.isDescHide = !this.isDescHide;
     },
     saveChange(mix) {
+      console.log('mix',mix)
       this.$store.dispatch({
         type: "saveMix",
         mix,

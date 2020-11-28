@@ -5,8 +5,8 @@
    				<div v-for="element in myArray" :key="element.id">{{element.name}}</div>
 		</draggable> -->
 		<ul>
-			<draggable v-model="songsCopy" group="people" @start="drag=true" @end="drag=false" @end="onEnd">
-				<li class="songs-details-main flex" v-for="(song,index) in songsCopy" :key="song.id">
+			<draggable v-model="mixCopy.songs" group="people" @start="drag=true" @end="stopDrag" >
+				<li class="songs-details-main flex" v-for="(song,index) in mixCopy.songs" :key="song.id">
 					<div class="songs-details">
 						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,songs);">
 							<i class="far fa-play-circle"></i>
@@ -54,7 +54,7 @@ export default {
 				//origin: window.location.origin, // or http(S)://your.domain.com
 				origin:'http://localhost:8080/'
 			},
-			songsCopy: JSON.parse(JSON.stringify(this.songs)),
+			mixCopy: JSON.parse(JSON.stringify(this.mix)),
 		};
 	},
 	computed: {
@@ -66,8 +66,9 @@ export default {
 		},
 	},
 	methods: {
-		onEnd(){
-			console.log('drag end');
+		stopDrag(){
+			console.log('drag end',this.mixCopy);
+			this.$emit("updateMix", this.mixCopy);
 		},
 		emitSongPos(songIdx,diff) {
 			this.$emit("emitSongPos", {songIdx:songIdx,diff:diff});
