@@ -71,7 +71,6 @@ export default {
 		mix(){		
 			var mix =  this.$store.getters.getMix
 			this.mixCopy =  JSON.parse(JSON.stringify(mix))
-			console.log('this.mixCopy',this.mixCopy)
 			return this.mixCopy
 		},
 		isNowPlaying() {
@@ -93,8 +92,7 @@ export default {
     }
 	},
 	methods: {
-		stopDrag(){
-			console.log('drag end',this.mixCopy);		
+		stopDrag(){		
 			this.$emit("updateMix", this.mixCopy);
 		},
 		emitSongPos(songIdx,diff) {

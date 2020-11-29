@@ -109,12 +109,15 @@ export default {
   computed : {
  
   },
+  methods:{
+      
+  },
   components: {
     mixListHome,
 
   },
   created(){
-    console.log('mix data',this.mixes)
+    
 
   }
 } // end of export default

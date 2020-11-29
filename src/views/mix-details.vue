@@ -165,7 +165,6 @@ export default {
         //console.log('this.currMix ',this.currMix )
         return this.$store.getters.getMix;
       } else {
-        console.log("new mix");
         this.currMix = this.newMix;
         //console.log('this.currMix',this.currMix)
         return this.currMix;
@@ -173,7 +172,6 @@ export default {
     },
     user() {
       var newUser = this.$store.getters.getUser;
-      console.log(newUser);
       return newUser;
     },
     heartMode() {
@@ -201,7 +199,6 @@ export default {
       });
     },
     setGenre(genre) {
-      console.log("genre", genre);
       this.currMix.genre = genre;
     },
     toggleEditTitle() {
@@ -211,7 +208,6 @@ export default {
       this.isDescHide = !this.isDescHide;
     },
     saveChange(mix) {
-      console.log('mix',mix)
       this.$store.dispatch({
         type: "saveMix",
         mix,
@@ -256,7 +252,6 @@ export default {
     async onUploadImg(ev) {
       this.isLoading = true;
       const res = await uploadImg(ev);
-      console.log('res:', res.url)
       this.imgUrls.push(res.url)
       if (this.currMix) {
         console.log('updating item img url')
@@ -287,7 +282,6 @@ export default {
   },
   async created() {
     if(this.$route.params.mixId){
-      console.log('mix details this.$route.params.mixId =', this.$route.params.mixId)
       const mixId = this.$route.params.mixId;
       await this.$store.dispatch({ type: "getMixById", mixId });
       this.updateViews();
