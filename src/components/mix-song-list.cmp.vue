@@ -5,14 +5,17 @@
    				<div v-for="element in myArray" :key="element.id">{{element.name}}</div>
 		</draggable> -->
 		<ul v-if="mix">
-				<div class="search-song">
+			<i @click="openInputApi" class="fas fa-plus-circle"></i>
+			<i @click="openInputSearch" class="fas fa-search"></i>
+			<mixApiSearch v-if="isAdd" />
+				<div class="search-song" v-if="!isAdd">
 					<el-input
        					 type="text"
        					 placeholder="Search song in mix..."
   		     			 v-model="songTxt"
   		     			 @input="filterBySong"
   		     			 clearable>
-						</el-input>
+					</el-input>
   				</div>
 			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag" >
 
@@ -48,6 +51,7 @@
 import { mixService } from "@/services/mixService.js";
 import {eventBus} from '@/main.js';
 import draggable from 'vuedraggable'
+import mixApiSearch from "@/components/mix-api-search.cmp.vue";
 
 export default {
 	name: "mix-song-list",
@@ -58,6 +62,7 @@ export default {
 	data() {
 		return {
 			songId: null,
+			isAdd: false,
 			isPlaying: false,
 			playerVars: {
 				autoplay: 1,
@@ -132,6 +137,12 @@ export default {
 				type:'stopSongPlaying',
 				song
 			})
+		},
+		openInputApi(){
+			this.isAdd = true;
+		},
+		openInputSearch(){
+			this.isAdd = false;
 		}
 	},
 	created() {
@@ -139,6 +150,7 @@ export default {
 
 	},
 	components:{
+		mixApiSearch,
 		draggable
 	},
 }
