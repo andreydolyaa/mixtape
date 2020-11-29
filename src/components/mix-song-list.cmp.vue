@@ -17,6 +17,7 @@
 					</el-input>
   				</div>
 		</div>
+		{{currSongPlaying}}
 		<ul v-if="mix">
 			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag">
 				<li class="songs-details-main flex" v-for="(song,index) in filterBySong" :key="song.id">
@@ -24,11 +25,11 @@
 						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,mixCopy.songs);">
 							<i class="far fa-play-circle"></i>
 						</button>
-						<button v-if="song.isPlaying" @click="pauseSong(song);">
+						<button v-else @click="pauseSong(song);">
 							<i class="far fa-pause-circle"></i>
 						</button>
 						<img :src="song.imgUrl" />
-						<p :class="highlight">{{ song.title }}</p>
+						<p :class="song.isPlaying  ? 'highlight-color' : 'default-color'">{{ song.title }}</p>
 						<span>{{ song.duration }}</span>
 					</div>
 					<div class="sort-songs-buttons">
@@ -96,17 +97,15 @@ export default {
 				});
 				return res;
 		},
-		highlight(){
-			if(this.getCurrSongPlaying){
-				return this.song ? 'song-highlight' : 'song-default-color'
-			}
+		isSongPlaying(){
+			return this.$store.getters.getCurrSongIsPlaying;
 		}
 	},
 	methods: {
 		stopDrag() {
 			this.$emit("updateMix", this.mixCopy);
-			this.$store.commit({ type: "resetIconsState" });
-			this.$store.commit({ type: "startSongPlaying" });
+			// this.$store.commit({ type: "resetIconsState" });
+			// this.$store.commit({ type: "startSongPlaying" });
 		},
 		emitSongPos(songIdx, diff) {
 			this.$emit("emitSongPos", { songIdx: songIdx, diff: diff });

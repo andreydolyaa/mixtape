@@ -18,7 +18,7 @@
         <span class="mix-likes">{{ mix.likes }} <i class="fas fa-heart"></i></span>
     </div>
     </div>
-    <!-------- THIS BUTTON CSS IS IN STYLE/CMPS/_MIX-PREVIEW (AT THE BOTTOM OF THE CSS FILE)------------------->
+    
         <button class="preview-play-btn" @click="playMixFromPreview"><i class="fas fa-play"></i></button>
   </section>
 </template>
@@ -41,7 +41,8 @@ export default {
       this.$store.commit({
 				type: "setCurrSong",
 				song: autoPlaySong,
-			});
+      });
+      this.$store.dispatch({type:'saveMix',mix:this.mix})
       eventBus.$emit('play-music');
       this.$store.commit({
 				type: "startSongPlaying",
