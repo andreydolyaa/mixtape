@@ -8,7 +8,7 @@
 			<draggable v-if="mixCopy" v-model="mixCopy.songs" group="people" @start="drag=true" @end="stopDrag" >
 				<li class="songs-details-main flex" v-for="(song,index) in mixCopy.songs" :key="song.id">
 					<div class="songs-details">
-						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,songs);">
+						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,mixCopy.songs);">
 							<i class="far fa-play-circle"></i>
 						</button>
 						<button v-if="song.isPlaying" @click="pauseSong(song);">
@@ -70,6 +70,9 @@ export default {
 		currSongPlaying(){
 			return this.$store.getters.getCurrSongPlaying;
 		},
+		getMix(){
+			return this.$store.getters.getMix;
+		}
 	},
 	methods: {
 		stopDrag(){

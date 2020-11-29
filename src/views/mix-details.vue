@@ -12,9 +12,12 @@
         <section class="mix-img flex start">
           <form>
             <template v-if="!isLoading">
-              <label for="imgUploader">
-                <img :src="currMix.imgUrl" />
-              </label>
+              <div class="update-img-mix">
+                <label for="imgUploader">
+                  <img :src="currMix.imgUrl" />
+                  <span><i class="fas fa-pen"></i></span>
+                </label>
+              </div>
               <input
                 type="file"
                 name="img-uploader"
@@ -33,7 +36,7 @@
         </section>
         <section class="mix-info-main">
           <section class="mix-info">
-            <h2 v-if="!isTitleHide">
+            <h2 class="mix-title" v-if="!isTitleHide">
               {{ currMix.name
               }}<span @click="toggleEditTitle" class="edit-txt"
                 ><i class="edit fas fa-pen"></i
@@ -88,31 +91,7 @@
           <section class="general-info"></section>
         </section>
       </section>
-      <div class="seach-song-and-social">
-        <section class="search-song">
-          <el-input
-            type="text"
-            placeholder="Search song..."
-            clearable
-          ></el-input>
-        </section>
-        <section class="mix-actions-social flex space-between">
-          <!-- <div class="btn-actions flex space-evenly">
-          <span class="mix-like"><i class="fas fa-plus-circle"></i></span>
-          <el-input class="search-song" type="text" placeholder="Search in mix" clearable></el-input>
-          </div> -->
-          <!-- <button>shaffle</button> -->
-          <div class="share-container flex">
-            <div class="invite">
-              <p>invite a friend to join you:</p>
-            </div>
-            <div class="mix-social-nav flex space-evenly">
-              <i class="fab fa-facebook-square"></i>
-              <i class="fab fa-whatsapp"></i>
-            </div>
-          </div>
-        </section>
-      </div>
+      <mix-social />
       <div class="songs">
         <mix-song-list
           :songs="currMix.songs"
@@ -133,6 +112,7 @@ import mixChat from "@/components/mix-chat.cmp.vue";
 import mixSongList from "@/components/mix-song-list.cmp.vue";
 import mixSelectGenre from "@/components/mix-select-genre.cmp.vue";
 import { uploadImg } from "@/services/imgUploadService.js";
+import mixSocial from '@/components/social-mix.cmp.vue'
 
 export default {
   data() {
@@ -231,6 +211,10 @@ export default {
         type: "saveMix",
         mix,
       });
+      // const el = this.$createElement;
+      // this.$notify({
+      //   message: el('i', { style: 'color: green' }, 'You updated the mix')
+      // });
       this.isTitleHide = false;
       this.isDescHide = false;
     },
@@ -258,10 +242,10 @@ export default {
           type: 'saveMix',
           mix: this.currMix
         })
-        const el = this.$createElement;
-        this.$notify({
-          message: el('i', { style: 'color: green' }, 'You liked the mix')
-        });
+        // const el = this.$createElement;
+        // this.$notify({
+        //   message: el('i', { style: 'color: green' }, 'You liked the mix')
+        // });
       }
     },
     async onUploadImg(ev) {
@@ -294,6 +278,7 @@ export default {
     mixSongList,
     mixPlayer,
     mixSelectGenre,
+    mixSocial
   },
   async created() {
     //if(this.$route.params.mixId){
@@ -312,5 +297,15 @@ export default {
 <style lang="css" scoped>
 .mix-details {
   color: #ffffff;
+}
+.update-img-mix {
+  position: relative;
+}
+.update-img-mix span {
+  position: absolute;
+  left: 150px;
+  top: 100px;
+  opacity: 0.7;
+  font-size: 2.5rem
 }
 </style>
