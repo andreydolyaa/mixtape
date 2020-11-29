@@ -26,7 +26,7 @@ export default {
   methods: {
     onMixView(mixId) {
       //console.log('mixId',mixId)
-      this.$router.push(`mix/details/${mixId}`)
+      this.$router.push(`/mix/details/${mixId}`)
     },
   },
   computed: {
