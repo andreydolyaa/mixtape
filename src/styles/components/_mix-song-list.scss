@@ -14,7 +14,14 @@
     .search-song{
         margin-bottom: 20px;
         .el-input__inner::placeholder{
-            color:$black-color;
+            color:white;
+        }
+        input.el-input__inner{
+            max-width: 50%;
+            background-color:inherit;
+            color: white;
+            border-style: none;
+            border-bottom: 2px solid $primary-color;
         }
     }
 

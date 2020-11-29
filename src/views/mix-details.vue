@@ -93,7 +93,6 @@
       <mix-social /> 
        <!-- v-if="currMix.songs" -->
       <div class="songs">
-        {{currMix.songs}}
         <mix-song-list 
           :songs="currMix.songs"
           :mix="currMix"
