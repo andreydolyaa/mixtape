@@ -8,14 +8,14 @@
             <nav class="mixes-nav">
                   <div class="genre-title"> {{genre}}</div>
                   <ul class="nav-show-all-ul" >
-                      <li class="mix-link-show-all" v-on:click="showList(genre);startAutoPlay()">
+                      <li class="mix-link-show-all" v-on:click="showList(genre)">
                       Show all <span><i class="fas fa-angle-double-right"></i></span></li>     
                   </ul>
               </nav>
               
               <ul class="ul-mixes"> 
                   <li class="mix" v-for="mix in mixes" :key="mix._id" >          
-                    <mix-preview :mix="mix"/>
+                    <mix-preview :mix="mix" @click.native="startAutoPlay(mix)"/>
                   </li>
               </ul>         
           </div>
@@ -24,7 +24,7 @@
 
 <script>
 import mixPreview from '../components/mix-preview.cmp.vue';
-
+import { eventBus } from "@/main.js";
 export default {
     name:'mix-list-home',
     props:{
@@ -57,12 +57,18 @@ export default {
        
   },
   methods: {
+    startAutoPlay(mix){
+      this.$store.commit({type:'setMix',mix})
+      eventBus.$emit('play-music');
+      this.$store.commit({type: "startSongPlaying"});
+    },
      showList(genre){
         this.$store.commit({type: 'setGenre',genre })
         //this.genre = genre
         //console.log('genre', this.genre)
         this.$router.push(`mix/list`) 
       },
+<<<<<<< HEAD
       startAutoPlay(){
         console.log('START AUTO PLAY');
       } , 
@@ -71,6 +77,13 @@ export default {
           console.log('mixTop',mix)
           this.mixTopA = mix
         }
+=======
+        // getMixTopA(){
+        //   var mix =  this.$store.dispatch({type: 'getMixByIdPrivate',mixId:'5c013' })
+        //   console.log('mixTop',mix)
+        //   this.mixTopA = mix
+        // }
+>>>>>>> 2b2e6ca0aed2d3128683f825c20d5d7a01ad1323
   },
   components: {
     mixPreview
