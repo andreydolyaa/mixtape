@@ -13,9 +13,9 @@
           <form>
             <template v-if="!isLoading">
               <div class="update-img-mix">
-                <label for="imgUploader">
+                <label class="imgUploader" for="imgUploader">
                   <img :src="currMix.imgUrl" />
-                  <span><i class="fas fa-pen"></i></span>
+                  <span class="image-edit-button"><i class="fas fa-pen"></i></span>
                 </label>
               </div>
               <input
@@ -128,7 +128,7 @@ export default {
         desc: "Mix description",
         genre: "genre",
         isLiked: false,
-        imgUrl: "https://res.cloudinary.com/hw-projects/image/upload/v1606479695/appmixes/logo_r_animated_v3_first_Frame_ly0i1c.jpg",
+        imgUrl: "https://res.cloudinary.com/hw-projects/image/upload/v1606479695/appmixes/logo_r_animated_v3_first_Frame.jpg",
         likes: 0,
         "tags": [
           "Funk",
@@ -281,12 +281,12 @@ export default {
     mixSocial
   },
   async created() {
-    //if(this.$route.params.mixId){
-    console.log('mix details this.$route.params.mixId =', this.$route.params.mixId)
-    const mixId = this.$route.params.mixId;
-    await this.$store.dispatch({ type: "getMixById", mixId });
-    this.updateViews();
-    //}
+    if(this.$route.params.mixId){
+      console.log('mix details this.$route.params.mixId =', this.$route.params.mixId)
+      const mixId = this.$route.params.mixId;
+      await this.$store.dispatch({ type: "getMixById", mixId });
+      this.updateViews();
+    }
   },
   mounted() {
   }
@@ -295,17 +295,6 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.mix-details {
-  color: #ffffff;
-}
-.update-img-mix {
-  position: relative;
-}
-.update-img-mix span {
-  position: absolute;
-  left: 150px;
-  top: 100px;
-  opacity: 0.7;
-  font-size: 2.5rem
-}
+
+
 </style>

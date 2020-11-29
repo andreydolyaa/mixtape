@@ -2,19 +2,22 @@
   <section  ref="mix-list-home" class="mix-list-home container">
           <!-- <h2>Home mix list </h2> -->
           <div ref="mix-list-home container">
-           <nav class="mixes-nav">
-                <div class="genre-title"> {{genre}}</div>
-                <ul class="nav-show-all-ul" >
-                    <li class="mix-link-show-all" v-on:click="showList(genre)">Show all <span><i class="fas fa-long-arrow-alt-right"></i></span></li>     
-                </ul>
-            </nav>
-             
-            <ul class="ul-mixes"> 
-                <li class="mix" v-for="mix in mixes" :key="mix._id" >          
-                   <mix-preview :mix="mix"/>
-                </li>
-            </ul>         
-            </div>
+            <!-- <mix-preview :mix="mixTopA"/> -->
+
+            <nav class="mixes-nav">
+                  <div class="genre-title"> {{genre}}</div>
+                  <ul class="nav-show-all-ul" >
+                      <li class="mix-link-show-all" v-on:click="showList(genre)">
+                      Show all <span><i class="fas fa-angle-double-right"></i></span></li>     
+                  </ul>
+              </nav>
+              
+              <ul class="ul-mixes"> 
+                  <li class="mix" v-for="mix in mixes" :key="mix._id" >          
+                    <mix-preview :mix="mix"/>
+                  </li>
+              </ul>         
+          </div>
   </section>
 </template>
 
@@ -27,7 +30,7 @@ export default {
         genre:{
             type:String,
             default: null
-        }
+        },
     },
   	data(){
 	    return{
@@ -49,6 +52,11 @@ export default {
             //console.log('res',res)
             return res
         },
+        async mixTopA(){
+          var mix =  await this.$store.dispatch({type: 'getMixByIdPrivate',mixId:'5c013' })
+          if(!mix) return
+          return mix
+        }
   },
   methods: {
      showList(genre){

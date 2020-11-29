@@ -41,6 +41,7 @@ export default {
   computed : {
         mixes(){
             var mixes = this.$store.getters.getMixesForDisplay
+            console.log('mixes',mixes)
             if(!mixes) return
             // console.log('f= ',this.filterBySongName)
             //if(!this.filterBySongName) return
@@ -55,7 +56,7 @@ export default {
                     song.title.toLowerCase().includes(this.filterBySongName.toLowerCase());
                 })
             })
-            //console.log('res',res)
+            console.log('mix list mixes res',res)
             return res
         },
         getGenreToDisplay(){

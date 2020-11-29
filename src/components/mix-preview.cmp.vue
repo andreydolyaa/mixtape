@@ -7,14 +7,15 @@
         class="img-frame"
         src="https://res.cloudinary.com/hw-projects/image/upload/v1606518099/appmixes/logo_frame.png"
       />
-    <div  class="info-stats">
+    <!-- <div  class="info-stats">
         <span class="mix-views">{{ mix.views }} <i class="fas fa-eye"></i></span>
         <span class="mix-likes">{{ mix.likes }} <i class="fas fa-heart"></i></span>
-    </div>
+    </div> -->
 
     <div class="info">
       <span class="mix-name"  :class="checkLang">{{ mix.name }}</span>
-      
+       <!-- <span class="mix-views">{{ mix.views }} <i class="fas fa-eye"></i></span> -->
+        <span class="mix-likes">{{ mix.likes }} <i class="fas fa-heart"></i></span>
     </div>
     </div>
   </section>
