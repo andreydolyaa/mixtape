@@ -61,6 +61,7 @@ export default {
         },
         getGenreToDisplay(){
             //console.log('this.$store.getters.getGenre',this.$store.getters.getGenreToDisplay)
+            console.log('this.$store.getters.getGenreToDisplay',this.$store.getters.getGenreToDisplay)
             return this.$store.getters.getGenreToDisplay
         }
   },
@@ -75,7 +76,7 @@ export default {
         this.genre = genre
         //console.log('genre', this.genre)
         this.$router.push(`mix/list`) 
-      },  
+      }, 
   },
   components: {
     mixPreview

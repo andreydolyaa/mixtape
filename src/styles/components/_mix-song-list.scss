@@ -10,4 +10,12 @@
             width: 100%;
         }
     }
+
+    .search-song{
+        margin-bottom: 20px;
+        .el-input__inner::placeholder{
+            color:$black-color;
+        }
+    }
+
 }
