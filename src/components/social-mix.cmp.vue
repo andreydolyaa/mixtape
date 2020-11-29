@@ -1,14 +1,5 @@
 <template>
   <div class="search-song-and-social">
-    <!-- <section class="search-song">
-      <el-input
-        type="text"
-        placeholder="Search song in mix..."
-        v-model="songTxt"
-        @input="filterBySong"
-        clearable
-      ></el-input>
-    </section> -->
     <section class="mix-social flex space-between">
       <!-- <button>shaffle</button> -->
       <div class="share-container flex">
