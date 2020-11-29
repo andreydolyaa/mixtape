@@ -17,7 +17,7 @@
 
     p{
         i{
-            color: var(--primary-color);
+            color: $primary-color;
             font-size: 1em;
             padding: 10px;
         }
@@ -44,8 +44,8 @@
         }
     }
 }
-
-.global-player:hover{
+//:hover
+.global-player{
     height: 70px;
 
     h2{

@@ -24,7 +24,7 @@ section.hero {
             justify-content: center;
             gap: 20px;
             .button{
-                background-color: var(--primary-color);
+                background-color: $primary-color;
                 color: #ffffff;
                 padding: 10px;
                 font-size: 1.6em; 

@@ -4,7 +4,7 @@
     margin-top: 60px;
 
     i.fas:hover ,i.far:hover , i.fab:hover{
-        color:var(--primary-color);
+        color:$primary-color;
         cursor: pointer;
     }
 
@@ -192,7 +192,7 @@
         width: 100%;
 
         button{
-            color: var(--primary-color);
+            color: $primary-color;
             background: #fff0;
             outline: none;
             border: none;

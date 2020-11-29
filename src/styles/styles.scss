@@ -25,23 +25,23 @@
 
 
 //COMPONENTS
+@import 'views/mix-app.scss';
+@import 'views/app-footer.scss';
 @import 'components/app-header.scss';
-@import 'components/app-footer.scss';
-@import 'components/mix-app.scss';
 @import 'components/playlists.scss';
 
 
 
 
 //adding Eilon
-@import 'components/mix-details.scss';
+@import 'views/mix-details.scss';
 
 
 
 
 
 //adding Harel
-@import 'components/mix-home.scss';
+@import 'views/mix-home.scss';
 @import 'components/mix-hero.scss';
 @import 'components/mix-carousel.scss';
 @import 'components/mix-list.scss';
@@ -56,6 +56,6 @@
 
 
 //adding 
+@import 'views/mix-login.scss';
 @import 'components/mix-list.scss';
 @import 'components/mix-preview.scss';
-@import 'components/mix-login.scss';

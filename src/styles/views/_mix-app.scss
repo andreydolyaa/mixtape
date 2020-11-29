@@ -1,5 +1,6 @@
 
 body{
+    @include niceScrollBar(5px , #be1e2d);
     background-color: #18191a;  
     color:#fff;
     letter-spacing: 1px;
@@ -35,4 +36,10 @@ a:visited{
 .shadow{
     -webkit-box-shadow: 1px 6px 15px 5px rgba(0,0,0,0.3); 
     box-shadow: 1px 6px 15px 5px rgba(0,0,0,0.3);
+}
+
+.isreali{
+    font-family: "Rubik", sans-serif;
+    font-size: 1.45em !important;
+    font-weight: 100;
 }
