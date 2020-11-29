@@ -37,21 +37,21 @@ export default {
       //console.log('this.mix.genre',this.mix.genre)
       return this.mix.genre === 'israeli' ? 'mix-name isreali' : 'mix-name'
     },
-    mixImg() {
-      if (!this.mix) return
-      //console.log(this.mix)
+    // mixImg() {
+    //   if (!this.mix) return
+    //   //console.log(this.mix)
 
-      //random image not in use
-      //var max = this.mix.songs.length 
-      //var songIdx = Math.floor(Math.random() * (max - 0) + 0);
+    //   //random image not in use
+    //   //var max = this.mix.songs.length 
+    //   //var songIdx = Math.floor(Math.random() * (max - 0) + 0);
 
-      // 
-      var song = this.mix.songs[0]
-      var img = song.imgUrl
-      //console.log('img',img)
-      return img
+    //   // 
+    //   var song = this.mix.songs[0]
+    //   var img = song.imgUrl
+    //   //console.log('img',img)
+    //   return img
 
-    },
+    // },
   },
   created() {
     //console.log('mix data',this.mix)
