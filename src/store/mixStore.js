@@ -117,12 +117,9 @@ export default {
             return song;
         },
         async saveMix(context, payload) {
-            //const mix = await mixService.update(payload.mix);
+            const mix = await mixService.update(payload.mix);
             // context.commit({type:'resetIconsState'})
             // context.commit({type:'startSongPlaying'})
-            const mix = await mixService.upnum(payload.mix);
-            context.commit({type:'resetIconsState'})
-            context.commit({type:'startSongPlaying'})
             context.commit({ type: 'setMix', mix })
             return mix
         },

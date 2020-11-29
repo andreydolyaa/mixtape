@@ -7,7 +7,6 @@
       <mix-chat />
     </div>
     <div class="mix-full-info flex">
-      <mixApiSearch />
       <section class="header-mix-info flex">
         <section class="mix-img flex start">
           <form>
@@ -109,7 +108,6 @@
 
 <script>
 import mixPlayer from "@/components/mix-player.cmp.vue";
-import mixApiSearch from "@/components/mix-api-search.cmp.vue";
 import mixChat from "@/components/mix-chat.cmp.vue";
 import mixSongList from "@/components/mix-song-list.cmp.vue";
 import mixSelectGenre from "@/components/mix-select-genre.cmp.vue";
@@ -274,7 +272,6 @@ export default {
     }
   },
   components: {
-    mixApiSearch,
     mixChat,
     mixSongList,
     mixPlayer,

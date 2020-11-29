@@ -1,21 +1,24 @@
 <template>
 	<section class="songs-list">
-
 		<!-- <draggable v-model="myArray" group="people" @start="drag=true" @end="drag=false">
    				<div v-for="element in myArray" :key="element.id">{{element.name}}</div>
 		</draggable> -->
-		<div class="search-song">
-			<el-input
-					type="text"
-					placeholder="Search song in mix..."
-					v-model="songTxt"
-					@input="filterBySong"
-					clearable>
-				</el-input>
+		<div v-if="mix">
+			<i @click="openInputApi" class="fas fa-plus-circle"></i>
+			<i @click="openInputSearch" class="fas fa-search"></i>
+			<mixApiSearch v-if="isAdd" />
+				<div class="search-song" v-if="!isAdd">
+					<el-input
+       					 type="text"
+       					 placeholder="Search song in mix..."
+  		     			 v-model="songTxt"
+  		     			 @input="filterBySong"
+  		     			 clearable>
+					</el-input>
+  				</div>
 		</div>
 		<ul v-if="mix">
-			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag" >
-
+			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag">
 				<li class="songs-details-main flex" v-for="(song,index) in filterBySong" :key="song.id">
 					<div class="songs-details">
 						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,mixCopy.songs);">
@@ -29,8 +32,12 @@
 						<span>{{ song.duration }}</span>
 					</div>
 					<div class="sort-songs-buttons">
-						<button v-on:click="emitSongPos(index,-1)"><i class="fas fa-sort-up"></i></button>
-						<button v-on:click="emitSongPos(index,1)"><i class="fas fa-sort-down"></i></button>
+						<button v-on:click="emitSongPos(index,-1)">
+							<i class="fas fa-sort-up"></i>
+						</button>
+						<button v-on:click="emitSongPos(index,1)">
+							<i class="fas fa-sort-down"></i>
+						</button>
 					</div>
 					<span class="delete-song" @click="emitSongId(song.id)">
 						<i class="far fa-trash-alt"></i>
@@ -38,7 +45,6 @@
 				</li>
 			</draggable>
 		</ul>
-		
 	</section>
 </template>
 
@@ -46,6 +52,7 @@
 import { mixService } from "@/services/mixService.js";
 import {eventBus} from '@/main.js';
 import draggable from 'vuedraggable'
+import mixApiSearch from "@/components/mix-api-search.cmp.vue";
 
 export default {
 	name: "mix-song-list",
@@ -56,50 +63,48 @@ export default {
 	data() {
 		return {
 			songId: null,
+			isAdd: false,
 			isPlaying: false,
 			playerVars: {
 				autoplay: 1,
 				//origin: window.location.origin, // or http(S)://your.domain.com
-				origin:'http://localhost:8080/'
+				origin: "http://localhost:8080/",
 			},
-			mixCopy:null,
-			songTxt: ''
+			mixCopy: null,
+			songTxt: "",
 		};
 	},
 	computed: {
-		mix(){		
-			var mix =  this.$store.getters.getMix
-			this.mixCopy =  JSON.parse(JSON.stringify(mix))
-			return this.mixCopy
+		mix() {
+			var mix = this.$store.getters.getMix;
+			this.mixCopy = JSON.parse(JSON.stringify(mix));
+			return this.mixCopy;
 		},
 		isNowPlaying() {
 			return this.$store.getters.getThisIsPlaying;
 		},
-		currSongPlaying(){
+		currSongPlaying() {
 			return this.$store.getters.getCurrSongPlaying;
 		},
-		getMix(){
+		getMix() {
 			return this.$store.getters.getMix;
 		},
 		filterBySong() {
-     	 	var res = this.mix.songs.filter(song => {
-       	 	//console.log('song title', song.title);
-      	 	return song.title.toLowerCase().includes(this.songTxt.toLowerCase());
-     		 })
-      		//console.log('res',res);
-      		return res
-    	}
+				var res = this.mix.songs.filter((song) => {
+					return song.title.toLowerCase().includes(this.songTxt.toLowerCase());
+				});
+				return res;
+		},
 	},
 	methods: {
-		stopDrag(){		
+		stopDrag() {
 			this.$emit("updateMix", this.mixCopy);
-			this.$store.commit({type:'resetIconsState'});
-			this.$store.commit({type:'startSongPlaying'})
+			this.$store.commit({ type: "resetIconsState" });
+			this.$store.commit({ type: "startSongPlaying" });
 		},
-		emitSongPos(songIdx,diff) {
-			this.$emit("emitSongPos", {songIdx:songIdx,diff:diff});
-
-		},	
+		emitSongPos(songIdx, diff) {
+			this.$emit("emitSongPos", { songIdx: songIdx, diff: diff });
+		},
 		emitSongId(songId) {
 			this.$emit("emitRemoveSong", songId);
 		},
@@ -109,38 +114,44 @@ export default {
 				isPlaying: this.isPlaying,
 			});
 		},
-		setCurrSongPlaying(song){
+		setCurrSongPlaying(song) {
 			this.$store.commit({
-				type:'setCurrSong',
-				song
-			})
-		},
-		startSongPlaying(song,songs){
-			eventBus.$emit('resume-music');
-			this.$store.commit({
-				type:'stopAllPlaying',
+				type: "setCurrSong",
 				song,
-				songs
-			})
-			this.$store.commit({
-				type:'startSongPlaying'
-			})
+			});
 		},
-		pauseSong(song){
-			eventBus.$emit('pause-music');
+		startSongPlaying(song, songs) {
+			eventBus.$emit("resume-music");
+			this.$store.commit({
+				type: "stopAllPlaying",
+				song,
+				songs,
+			});
+			this.$store.commit({
+				type: "startSongPlaying",
+			});
+		},
+		pauseSong(song) {
+			eventBus.$emit("pause-music");
 			this.$store.commit({
 				type:'stopSongPlaying',
 				song
 			})
+		},
+		openInputApi(){
+			this.isAdd = true;
+		},
+		openInputSearch(){
+			this.isAdd = false;
 		}
 	},
 	created() {
 		// console.log('mix data', this.mixes)
-
 	},
 	components:{
+		mixApiSearch,
 		draggable
 	},
-}
+};
 </script>
 
