@@ -190,10 +190,7 @@ export default {
 		});
 		eventBus.$on("play-music", () => {
 			var autoPlaySong = this.currMix.songs[0];
-			this.$store.commit({
-				type: "setCurrSong",
-				song: autoPlaySong,
-			});
+			
 			this.$store.commit({
 				type: "startSongPlaying",
 			});

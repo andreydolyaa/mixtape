@@ -93,7 +93,7 @@ export default {
         },
         resetIconsState(state){
                 state.currMix.songs.forEach(song => song.isPlaying = false)
-        }
+        },
     },
     actions: {
         async getTopMixes(context) {

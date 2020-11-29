@@ -18,6 +18,8 @@
         <span class="mix-likes">{{ mix.likes }} <i class="fas fa-heart"></i></span>
     </div>
     </div>
+    <!-------- THIS BUTTON CSS IS IN STYLE/CMPS/_MIX-PREVIEW (AT THE BOTTOM OF THE CSS FILE)------------------->
+        <button class="preview-play-btn" @click="playMixFromPreview"><i class="fas fa-play"></i></button>
   </section>
 </template>
  
@@ -32,6 +34,18 @@ export default {
       //console.log('mixId',mixId)
       this.$router.push(`/mix/details/${mixId}`)
     },
+    playMixFromPreview(){
+      this.$store.commit({ type: 'setMix', mix:this.mix })
+      var autoPlaySong = this.mix.songs[0];
+      this.$store.commit({
+				type: "setCurrSong",
+				song: autoPlaySong,
+			});
+      eventBus.$emit('play-music');
+      this.$store.commit({
+				type: "startSongPlaying",
+			});
+    }
   },
   computed: {
     checkLang() {

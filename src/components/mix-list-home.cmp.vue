@@ -61,9 +61,15 @@ export default {
   methods: {
     startAutoPlay(mix) {
       this.$store.commit({ type: 'setMix', mix })
+      var autoPlaySong = mix.songs[0];
+      this.$store.commit({
+				type: "setCurrSong",
+				song: autoPlaySong,
+			});
       eventBus.$emit('play-music');
-      eventBus.$emit('auto-play-start');
-      this.$store.commit({ type: "startSongPlaying" });
+      this.$store.commit({
+				type: "startSongPlaying",
+			});
     },
     showList(genre) {
       this.$store.commit({ type: 'setGenre', genre })
