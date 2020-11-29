@@ -3,6 +3,7 @@ import { mixService } from '@/services/mixService.js'
 export default {
     state: {
         mixes: null,
+        topMixes:null,
         genre: null,
         currMix: null,
         currSongPlaying: null,
@@ -31,11 +32,17 @@ export default {
                 return state.currSongPlaying.isPlaying;
             }
         },
+        getTopMixes(){
+            return topMixes
+        },
         getGeners(state) {
             return state.geners
         }
     },
     mutations: {
+        setSortedMixes(state, payload){
+            console.log(' setSortedMixes',payload.mixes)
+        },
         setMixes(state, payload) {
             state.mixes = payload.mixes;
         },
@@ -81,10 +88,8 @@ export default {
     },
     actions: {
         async getMixByIdPrivate(context, { mixId }) {
-            console.log('mix id', mixId)
-            const mix = await mixService.getById(mixId);
-            return mix
-            // console.log('mix',mix);
+            var mixes = await mixService.query();
+            context.commit({ type: 'setSortedMixes', mixes });
         },
         async getMixById(context, { mixId }) {
             const mix = await mixService.getById(mixId);
@@ -108,5 +113,13 @@ export default {
             context.commit({ type: 'setMix', mix })
             return mix
         },
+        sortByNumber(array, sortby) {
+            console.log('sort')
+            array.sort(function (a, b) {
+                var dateA = a[sortby];
+                var dateB = b[sortby];
+                return dateA - dateB;
+            });
+        }
     },
 }

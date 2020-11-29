@@ -68,7 +68,6 @@ export default {
         //console.log('genre', this.genre)
         this.$router.push(`mix/list`) 
       },
-<<<<<<< HEAD
       startAutoPlay(){
         console.log('START AUTO PLAY');
       } , 
@@ -77,13 +76,7 @@ export default {
           console.log('mixTop',mix)
           this.mixTopA = mix
         }
-=======
-        // getMixTopA(){
-        //   var mix =  this.$store.dispatch({type: 'getMixByIdPrivate',mixId:'5c013' })
-        //   console.log('mixTop',mix)
-        //   this.mixTopA = mix
-        // }
->>>>>>> 2b2e6ca0aed2d3128683f825c20d5d7a01ad1323
+
   },
   components: {
     mixPreview
