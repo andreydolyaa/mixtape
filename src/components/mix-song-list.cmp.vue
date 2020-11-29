@@ -5,16 +5,17 @@
    				<div v-for="element in myArray" :key="element.id">{{element.name}}</div>
 		</draggable> -->
 		<ul v-if="mix">
-			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag" >
-				  <div class="search-song">
+				<div class="search-song">
 					<el-input
        					 type="text"
        					 placeholder="Search song in mix..."
   		     			 v-model="songTxt"
   		     			 @input="filterBySong"
-  		     			 clearable
-  		    >		</el-input>
-  				 </div>
+  		     			 clearable>
+						</el-input>
+  				</div>
+			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag" >
+
 				<li class="songs-details-main flex" v-for="(song,index) in filterBySong" :key="song.id">
 					<div class="songs-details">
 						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,mixCopy.songs);">
@@ -97,7 +98,7 @@ export default {
 		},
 		emitSongPos(songIdx,diff) {
 			this.$emit("emitSongPos", {songIdx:songIdx,diff:diff});
-			
+
 		},	
 		emitSongId(songId) {
 			this.$emit("emitRemoveSong", songId);

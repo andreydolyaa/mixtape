@@ -61,6 +61,7 @@ export default {
         },
         getGenreToDisplay(){
             //console.log('this.$store.getters.getGenre',this.$store.getters.getGenreToDisplay)
+            console.log('this.$store.getters.getGenreToDisplay',this.$store.getters.getGenreToDisplay)
             return this.$store.getters.getGenreToDisplay
         }
   },
