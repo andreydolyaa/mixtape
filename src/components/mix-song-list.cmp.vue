@@ -28,7 +28,7 @@
 							<i class="far fa-pause-circle"></i>
 						</button>
 						<img :src="song.imgUrl" />
-						<p>{{ song.title }}</p>
+						<p :class="highlight">{{ song.title }}</p>
 						<span>{{ song.duration }}</span>
 					</div>
 					<div class="sort-songs-buttons">
@@ -62,7 +62,7 @@ export default {
 	},
 	data() {
 		return {
-			// autoPlay:false,
+			autoPlay:false,
 			songId: null,
 			isAdd: false,
 			isPlaying: false,
@@ -96,6 +96,11 @@ export default {
 				});
 				return res;
 		},
+		highlight(){
+			if(this.getCurrSongPlaying){
+				return this.song ? 'song-highlight' : 'song-default-color'
+			}
+		}
 	},
 	methods: {
 		stopDrag() {
