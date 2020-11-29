@@ -95,6 +95,8 @@ export default {
 	methods: {
 		stopDrag(){		
 			this.$emit("updateMix", this.mixCopy);
+			this.$store.commit({type:'resetIconsState'});
+			this.$store.commit({type:'startSongPlaying'})
 		},
 		emitSongPos(songIdx,diff) {
 			this.$emit("emitSongPos", {songIdx:songIdx,diff:diff});
