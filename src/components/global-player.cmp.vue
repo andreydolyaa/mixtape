@@ -14,24 +14,26 @@
 			</p>
 			<h2 v-if="getCurrSongPlaying">{{getCurrSongPlaying.title}}</h2>
 			<h2 v-else>Artist - Unknown</h2>
-			<button v-if="!isPlayingNow" @click="play">
-				<i class="far fa-play-circle"></i>
-			</button>
-			<button v-else @click="pause">
-				<i class="far fa-pause-circle"></i>
-			</button>
+			
+			
 			<!--------------- THIS IS THE PLAYER PROGRESS BAR  ! ------------------->
 			<div class="progress-bar">
 				<p v-if="currTime">{{currTime}}</p>
 				<p v-else>00:00</p>
-				<input @input="moveTo()" type="range" :min="currTime" :max="totalTimeInput" v-model="currTimePlaying" />
+				<input  @input="moveTo()" type="range" :min="currTime" :max="totalTimeInput" v-model="currTimePlaying" />
 				<p v-if="totalTime">{{totalTime}}</p>
 				<p v-else>00:00</p>
 			</div>
 			<!-------------- those are prev song next song buttons ------------->
-			<div>
-				<button @click="onNextSong">NEXT</button>
-				<button @click="onPrevSong">PREV</button>
+			<div class="step-btn">
+				<button @click="onPrevSong"><i class="fas fa-step-backward"></i></button>
+				<button v-if="!isPlayingNow" @click="play">
+				<i class="fas fa-play"></i>
+			</button>
+			<button v-else @click="pause">
+				<i class="far fa-pause-circle"></i>
+			</button>
+				<button @click="onNextSong"><i class="fas fa-step-forward"></i></button>
 			</div>
 			<div>
 				<button v-if="!isMuted" @click="mute"><i class="fas fa-volume-up"></i></button>
@@ -132,7 +134,7 @@ export default {
 			})
 		},
 		async moveTo() {
-			await this.$refs.youtube.player.seekTo(this.currTimePlaying);
+			await this.$refs.youtube.player.seekTo(this.currTimePlaying,true);
 		},
 		onNextSong() {
 			this.autoPlayNextSong();

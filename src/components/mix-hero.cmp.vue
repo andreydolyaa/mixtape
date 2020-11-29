@@ -33,6 +33,7 @@ export default {
 
     },
     createNewPlaylist(){
+      this.$store.commit({type:'setMixEmpty'})
       this.$router.push(`mix/details`) 
     }
   },

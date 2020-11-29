@@ -7,7 +7,7 @@ export default {
         currMix: null,
         currSongPlaying: null,
         isPlaying: false,
-        geners:['funk','pop','rock','electro','classic','israeli','techno','trance']
+        geners: ['funk', 'pop', 'rock', 'electro', 'classic', 'israeli', 'techno', 'trance']
     },
     getters: {
         getMixesForDisplay(state) {
@@ -31,7 +31,7 @@ export default {
                 return state.currSongPlaying.isPlaying;
             }
         },
-        getGeners(state){
+        getGeners(state) {
             return state.geners
         }
     },
@@ -53,6 +53,9 @@ export default {
         setMix(state, payload) {
             state.currMix = payload.mix;
         },
+        setMixEmpty(state, payload) {
+            state.currMix = null;
+        },
         nowPlaying(state, payload) {
             state.isPlaying = payload.isPlaying;
         },
@@ -69,8 +72,11 @@ export default {
                 }
             })
         },
-        setPrevSongNotPlaying(state,payload){
+        setPrevSongNotPlaying(state, payload) {
             state.currMix.songs[payload.songIdx].isPlaying = false;
+        },
+        resetIconsState(state){
+            state.currMix.songs.forEach(song => song.isPlaying = false)
         }
     },
     actions: {
@@ -91,6 +97,7 @@ export default {
         },
         async saveMix(context, payload) {
             const mix = await mixService.update(payload.mix);
+            // context.commit({type:'resetIconsState'})
             context.commit({ type: 'setMix', mix })
             return mix
         },

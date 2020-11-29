@@ -31,7 +31,8 @@ export default {
   },
   computed: {
     checkLang() {
-      return this.mix.isLiked ? 'fas fa-heart' : 'far fa-heart'
+      //console.log('this.mix.genre',this.mix.genre)
+      return this.mix.genre === 'israeli' ? 'mix-name isreali' : 'mix-name'
     },
     // mixImg() {
     //   if (!this.mix) return
