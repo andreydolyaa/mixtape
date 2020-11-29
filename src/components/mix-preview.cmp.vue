@@ -2,14 +2,13 @@
   <section v-if="mix" class="details">
     <div class="mix shadow" v-on:click="onMixView(mix._id)">
       <!-- <pre>{{checkTitleLang}}</pre> -->
-      <span style="color:#fff">{{checkTitleLang}}</span>
       <img :src="mixImg" />
       <img
         class="img-frame"
         src="https://res.cloudinary.com/hw-projects/image/upload/v1606518099/appmixes/logo_frame.png"
       />
       <div class="info">
-        <span class="mix-name">{{ mix.name }}</span>
+        <span class="mix-name"  :class="checkLang">{{ mix.name }}</span>
         <span class="mix-views">{{ mix.views }}</span>
         <span class="mix-likes"
           >{{ mix.likes }}<i class="fas fa-heart"></i></span>
@@ -31,16 +30,8 @@ export default {
     },
   },
   computed: {
-    checkTitleLang(){
-      //if(this.mix.genre === 'israeli')
-
-      // if(!this.mix) return
-      // return this.mix.title.includes('א') 
-      // var res = this.mix.songs.filter(song =>{
-      //   console.log('mix',song)
-      //    return song.title.toLowerCase().includes('א') 
-      // })  
-      // return res  
+    checkLang() {
+      return this.mix.isLiked ? 'fas fa-heart' : 'far fa-heart'
     },
     mixImg() {
       if (!this.mix) return

@@ -5,8 +5,8 @@
    				<div v-for="element in myArray" :key="element.id">{{element.name}}</div>
 		</draggable> -->
 		<ul v-if="mix">
-			<draggable v-if="mixCopy" v-model="mixCopy.songs" group="people" @start="drag=true" @end="stopDrag" >
-				<li class="songs-details-main flex" v-for="(song,index) in mixCopy.songs" :key="song.id">
+			<draggable v-if="mix" v-model="mix.songs" group="people" @start="drag=true" @end="stopDrag" >
+				<li class="songs-details-main flex" v-for="(song,index) in mix.songs" :key="song.id">
 					<div class="songs-details">
 						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,mixCopy.songs);">
 							<i class="far fa-play-circle"></i>
@@ -58,11 +58,11 @@ export default {
 		};
 	},
 	computed: {
-		async mix(){
-			//console.log(this.$store.getters.getMix)
-			var mix =  await this.$store.getters.getMix
+		mix(){		
+			var mix =  this.$store.getters.getMix
 			this.mixCopy =  JSON.parse(JSON.stringify(mix))
-			return mix
+			console.log('this.mixCopy',this.mixCopy)
+			return this.mixCopy
 		},
 		isNowPlaying() {
 			return this.$store.getters.getThisIsPlaying;
