@@ -128,7 +128,7 @@ export default {
         desc: "Mix description",
         genre: "genre",
         isLiked: false,
-        imgUrl: "https://res.cloudinary.com/hw-projects/image/upload/v1606479695/appmixes/logo_r_animated_v3_first_Frame_ly0i1c.jpg",
+        imgUrl: "https://res.cloudinary.com/hw-projects/image/upload/v1606479695/appmixes/logo_r_animated_v3_first_Frame.jpg",
         likes: 0,
         "tags": [
           "Funk",
