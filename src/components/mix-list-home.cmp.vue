@@ -5,7 +5,7 @@
            <nav class="mixes-nav">
                 <div class="genre-title"> {{genre}}</div>
                 <ul class="nav-show-all-ul" >
-                    <li class="mix-link-show-all" v-on:click="showList(genre)">Show all</li>     
+                    <li class="mix-link-show-all" v-on:click="showList(genre)">Show all <span><i class="fas fa-long-arrow-alt-right"></i></span></li>     
                 </ul>
             </nav>
              
