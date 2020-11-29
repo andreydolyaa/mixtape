@@ -48,7 +48,7 @@
                 ><i class="far fa-save"></i
               ></span>
             </div>
-            <p v-if="!isDescHide">
+            <p class="description" v-if="!isDescHide">
               {{ currMix.desc }}
               <span @click="toggleEditDesc"><i class="fas fa-pen"></i></span>
             </p>

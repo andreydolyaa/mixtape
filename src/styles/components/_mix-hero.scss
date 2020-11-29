@@ -23,15 +23,15 @@ section.hero {
             display: flex;
             justify-content: center;
             gap: 20px;
+
             .button{
                 background-color: $primary-color;
                 color: #ffffff;
                 padding: 10px;
                 font-size: 1.6em; 
             }
-            .button.start-listening:hover{
-                background-color: var(--primary-color-random-shade-c);
-
+            .button.start-listening:hover ,.button.create-playlist:hover{
+                background-color: $primary-color-random-shade-c;
 
             }
         }
