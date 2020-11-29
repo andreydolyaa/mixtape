@@ -134,7 +134,7 @@ export default {
 			})
 		},
 		async moveTo() {
-			await this.$refs.youtube.player.seekTo(this.currTimePlaying);
+			await this.$refs.youtube.player.seekTo(this.currTimePlaying,true);
 		},
 		onNextSong() {
 			this.autoPlayNextSong();
