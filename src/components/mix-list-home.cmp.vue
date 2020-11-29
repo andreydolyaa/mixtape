@@ -3,7 +3,7 @@
     <!-- <h2>Home mix list </h2> -->
     <div ref="mix-list-home container">
       <h2>test</h2>
-      <mix-preview v-if="mixTopA" :mix="mixTopA" />
+      <!-- <mix-preview v-if="mixTopA" :mix="mixTopA" /> -->
 
       <nav class="mixes-nav">
         <div class="genre-title">{{ genre }}</div>
@@ -55,7 +55,11 @@ export default {
       //console.log('res',res)
       return res
     },
-
+    topMixes(){
+      var mixes = this.$store.getters.getTopMixes
+      console.log('mixes',mixes)
+      return mixes 
+    }
   },
   methods: {
     startAutoPlay(mix) {
@@ -69,10 +73,9 @@ export default {
       //console.log('genre', this.genre)
       this.$router.push(`mix/list`)
     },
-    getMixTopA() {
+    getMixTop() {
       var mix = this.$store.dispatch({ type: 'getMixByIdPrivate', mixId: '5c013' })
       console.log('mixTop', mix)
-      this.mixTopA = mix
     }
   },
   components: {
@@ -80,7 +83,7 @@ export default {
   },
   created() {
     //console.log('mix data genre',this.genre)
-    this.getMixTopA();
+     this.$store.dispatch({type: "getTopMixes"});
   }
 } // end of export default
 </script>

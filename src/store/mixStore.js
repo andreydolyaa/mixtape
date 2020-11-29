@@ -32,8 +32,8 @@ export default {
                 return state.currSongPlaying.isPlaying;
             }
         },
-        getTopMixes(){
-            return topMixes
+        getTopMixes(state){
+            return state.topMixes
         },
         getGeners(state) {
             return state.geners
@@ -41,7 +41,16 @@ export default {
     },
     mutations: {
         setSortedMixes(state, payload){
-            console.log(' setSortedMixes',payload.mixes)
+            //console.log(' setSortedMixes',payload.mixes)
+            var sortby = 'likes'
+            var res = payload.mixes.sort(function (a, b) {
+                var numA = a[sortby];
+                var numB = b[sortby];
+                return  numB - numA;
+            });
+            var resSliced = res.slice(0, 2);
+            //console.log('resSliced',resSliced)
+            state.topMixes = res;
         },
         setMixes(state, payload) {
             state.mixes = payload.mixes;
@@ -87,7 +96,8 @@ export default {
         }
     },
     actions: {
-        async getMixByIdPrivate(context, { mixId }) {
+        async getTopMixes(context) {
+            console.log('getTopMixes')
             var mixes = await mixService.query();
             context.commit({ type: 'setSortedMixes', mixes });
         },
@@ -107,7 +117,7 @@ export default {
             return song;
         },
         async saveMix(context, payload) {
-            const mix = await mixService.update(payload.mix);
+            const mix = await mixService.upnum(payload.mix);
             context.commit({type:'resetIconsState'})
             // context.commit({type:'startSongPlaying'})
             context.commit({ type: 'setMix', mix })
@@ -116,9 +126,9 @@ export default {
         sortByNumber(array, sortby) {
             console.log('sort')
             array.sort(function (a, b) {
-                var dateA = a[sortby];
-                var dateB = b[sortby];
-                return dateA - dateB;
+                var numA = a[sortby];
+                var numB = b[sortby];
+                return numA - numB;
             });
         }
     },
