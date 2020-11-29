@@ -6,7 +6,16 @@
 		</draggable> -->
 		<ul v-if="mix">
 			<draggable v-if="mix" v-model="mix.songs" group="people" @start="drag=true" @end="stopDrag" >
-				<li class="songs-details-main flex" v-for="(song,index) in mix.songs" :key="song.id">
+				  <div class="search-song">
+					<el-input
+       					 type="text"
+       					 placeholder="Search song in mix..."
+  		     			 v-model="songTxt"
+  		     			 @input="filterBySong"
+  		     			 clearable
+  		    >		</el-input>
+  				 </div>
+				<li class="songs-details-main flex" v-for="(song,index) in filterBySong" :key="song.id">
 					<div class="songs-details">
 						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,mixCopy.songs);">
 							<i class="far fa-play-circle"></i>
@@ -54,7 +63,8 @@ export default {
 				//origin: window.location.origin, // or http(S)://your.domain.com
 				origin:'http://localhost:8080/'
 			},
-			mixCopy:null
+			mixCopy:null,
+			songTxt: ''
 		};
 	},
 	computed: {
@@ -72,7 +82,15 @@ export default {
 		},
 		getMix(){
 			return this.$store.getters.getMix;
-		}
+		},
+		filterBySong() {
+     	 var res = this.mix.songs.filter(song => {
+       	 console.log('song title', song.title);
+      	 	return song.title.toLowerCase().includes(this.songTxt.toLowerCase());
+     		 })
+      		console.log('res',res);
+      		return res
+    }
 	},
 	methods: {
 		stopDrag(){
