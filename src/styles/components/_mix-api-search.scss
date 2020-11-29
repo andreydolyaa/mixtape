@@ -4,6 +4,10 @@
 
     input {
         min-width: 240px;
+        background-color:inherit;
+        color: white;
+        border-style: none;
+        border-bottom: 2px solid $primary-color;
     }
 
     button{
@@ -20,6 +24,6 @@
     }
 
     .el-input input::placeholder{
-        color: $black-color;
+        color: white;
     }
 }

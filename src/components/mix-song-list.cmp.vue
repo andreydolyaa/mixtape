@@ -1,5 +1,5 @@
 <template>
-	<section class="songs-list">
+	<section class="songs-list flex column">
 		<!-- <draggable v-model="myArray" group="people" @start="drag=true" @end="drag=false">
    				<div v-for="element in myArray" :key="element.id">{{element.name}}</div>
 		</draggable> -->
