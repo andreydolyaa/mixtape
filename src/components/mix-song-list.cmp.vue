@@ -3,7 +3,7 @@
 		<!-- <draggable v-model="myArray" group="people" @start="drag=true" @end="drag=false">
    				<div v-for="element in myArray" :key="element.id">{{element.name}}</div>
 		</draggable> -->
-		<ul v-if="mix">
+		<div v-if="mix">
 			<i @click="openInputApi" class="fas fa-plus-circle"></i>
 			<i @click="openInputSearch" class="fas fa-search"></i>
 			<mixApiSearch v-if="isAdd" />
@@ -16,7 +16,7 @@
   		     			 clearable>
 					</el-input>
   				</div>
-		</ul>
+		</div>
 		<ul v-if="mix">
 			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag">
 				<li class="songs-details-main flex" v-for="(song,index) in filterBySong" :key="song.id">
