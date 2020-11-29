@@ -52,11 +52,11 @@ export default {
             //console.log('res',res)
             return res
         },
-        async mixTopA(){
-          var mix =  await this.$store.dispatch({type: 'getMixByIdPrivate',mixId:'5c013' })
-          if(!mix) return
-          return mix
-        }
+        // async mixTopA(){
+        //   var mix =  await this.$store.dispatch({type: 'getMixByIdPrivate',mixId:'5c013' })
+        //   if(!mix) return
+        //   return mix
+        // }
   },
   methods: {
      showList(genre){
