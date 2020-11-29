@@ -5,7 +5,7 @@
    				<div v-for="element in myArray" :key="element.id">{{element.name}}</div>
 		</draggable> -->
 		<ul v-if="mix">
-			<draggable v-if="mix" v-model="mix.songs" group="people" @start="drag=true" @end="stopDrag" >
+			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag" >
 				  <div class="search-song">
 					<el-input
        					 type="text"
@@ -99,6 +99,7 @@ export default {
 		},
 		emitSongPos(songIdx,diff) {
 			this.$emit("emitSongPos", {songIdx:songIdx,diff:diff});
+			
 		},	
 		emitSongId(songId) {
 			this.$emit("emitRemoveSong", songId);

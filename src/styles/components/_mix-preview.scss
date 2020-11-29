@@ -41,14 +41,15 @@
         .mix-name{
             color: $white-color;
             text-shadow: -1px 1px #000;
-            font-size: 1.45em;
+            font-size: 1.65em;
+            font-family: 'Caveat', cursive;
         }
 
         .mix-likes{
             color: $primary-color;
             text-shadow: -1px 1px #bd1628;
             font-size: 1em;
-            align-self: flex-end;
+            align-self: center;
             i{
                 margin-right:5px
             }

@@ -189,11 +189,16 @@ export default {
       var input = this.currMix.songs
       var from = songNewPos.songIdx
       var to = songNewPos.songIdx + songNewPos.diff
-      //console.log('changeSongPos', input, from, to)
+      console.log('changeSongPos', input, from, to)
       let numberOfDeletedElm = 1;
       const elm = input.splice(from, numberOfDeletedElm)[0];
       numberOfDeletedElm = 0;
       input.splice(to, numberOfDeletedElm, elm);
+
+      this.$store.dispatch({
+        type: "saveMix",
+        mix:this.currMix
+      });
     },
     setGenre(genre) {
       console.log("genre", genre);
@@ -210,7 +215,7 @@ export default {
       this.$store.dispatch({
         type: "saveMix",
         mix,
-      });
+      }); 
       // const el = this.$createElement;
       // this.$notify({
       //   message: el('i', { style: 'color: green' }, 'You updated the mix')

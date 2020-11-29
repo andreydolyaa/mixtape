@@ -274,11 +274,14 @@
     }
 
     .sort-songs-buttons{
-        i{
-            font-size: 19px;
-            padding: 2px 11px;
-            color: #be1e2d;
-            height: 0;
+        button{
+            color: #fff;
+            i{
+                font-size: 19px;
+                padding: 2px 11px;
+                color: #be1e2d;
+                height: 0;
+            }
         }
     }
 }

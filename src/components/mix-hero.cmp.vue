@@ -4,7 +4,7 @@
     <h2>Pick a mix and join the mixTape</h2>
     <div class="buttons">
       <a class="button start-listening" @click="emitScrollMeTo('mix-list-home-container')">Start listening</a>
-      <a class="button create-playlist" @click="createNewPlaylist()">Create PLaylist</a>
+      <a class="button create-playlist" @click="createNewPlaylist()">Create Playlist</a>
     </div>
     </div>
     <!-- <mix-video-player /> -->
