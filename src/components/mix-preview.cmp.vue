@@ -1,7 +1,8 @@
 <template>
   <section v-if="mix" class="details">
     <div class="mix shadow" v-on:click="onMixView(mix._id)">
-      <!-- <pre>{{mix}}</pre> -->
+      <!-- <pre>{{checkTitleLang}}</pre> -->
+      <span style="color:#fff">{{checkTitleLang}}</span>
       <img :src="mixImg" />
       <img
         class="img-frame"
@@ -30,6 +31,17 @@ export default {
     },
   },
   computed: {
+    checkTitleLang(){
+      //if(this.mix.genre === 'israeli')
+
+      // if(!this.mix) return
+      // return this.mix.title.includes('א') 
+      // var res = this.mix.songs.filter(song =>{
+      //   console.log('mix',song)
+      //    return song.title.toLowerCase().includes('א') 
+      // })  
+      // return res  
+    },
     mixImg() {
       if (!this.mix) return
       //console.log(this.mix)
