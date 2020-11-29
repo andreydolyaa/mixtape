@@ -9,7 +9,7 @@
       />
       <div class="info">
         <span class="mix-name"  :class="checkLang">{{ mix.name }}</span>
-        <span class="mix-views">{{ mix.views }}</span>
+        <span class="mix-views"><i class="fas fa-eye"></i>{{ mix.views }}</span>
         <span class="mix-likes"
           >{{ mix.likes }}<i class="fas fa-heart"></i></span>
       </div>
