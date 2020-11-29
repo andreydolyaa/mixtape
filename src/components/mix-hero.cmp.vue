@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     emitScrollMeTo(refName) {
-      console.log(' emitScrollMeTo( refName',refName)
       this.$emit('refName', refName)
 
     },

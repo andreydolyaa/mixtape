@@ -31,7 +31,7 @@
       computed : {
       },
       created(){
-        console.log('hero')
+        
       }
     }
 </script>
