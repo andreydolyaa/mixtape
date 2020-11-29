@@ -5,7 +5,7 @@
    				<div v-for="element in myArray" :key="element.id">{{element.name}}</div>
 		</draggable> -->
 		<ul v-if="mix">
-			<draggable  v-model="mixCopy.songs" group="people" @start="drag=true" @end="stopDrag" >
+			<draggable v-if="mixCopy" v-model="mixCopy.songs" group="people" @start="drag=true" @end="stopDrag" >
 				<li class="songs-details-main flex" v-for="(song,index) in mixCopy.songs" :key="song.id">
 					<div class="songs-details">
 						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,songs);">
