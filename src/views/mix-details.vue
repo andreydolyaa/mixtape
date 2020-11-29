@@ -185,11 +185,11 @@ export default {
       var lastSong = this.currMix.songs.length
       if (songNewPos.songIdx === 0 && songNewPos.diff === -1) return
       if (songNewPos.songIdx === lastSong && songNewPos.diff === 1) return
-      console.log('songNewPos', songNewPos)
+      //console.log('songNewPos', songNewPos)
       var input = this.currMix.songs
       var from = songNewPos.songIdx
       var to = songNewPos.songIdx + songNewPos.diff
-      console.log('changeSongPos', input, from, to)
+      //console.log('changeSongPos', input, from, to)
       let numberOfDeletedElm = 1;
       const elm = input.splice(from, numberOfDeletedElm)[0];
       numberOfDeletedElm = 0;

@@ -2,7 +2,7 @@
   <section v-if="mix" class="details">
     <div class="mix shadow" v-on:click="onMixView(mix._id)">
       <!-- <pre>{{checkTitleLang}}</pre> -->
-      <img :src="mixImg" />
+      <img :src="mix.imgUrl" />
       <img
         class="img-frame"
         src="https://res.cloudinary.com/hw-projects/image/upload/v1606518099/appmixes/logo_frame.png"
@@ -31,23 +31,24 @@ export default {
   },
   computed: {
     checkLang() {
-      return this.mix.isLiked ? 'fas fa-heart' : 'far fa-heart'
+      //console.log('this.mix.genre',this.mix.genre)
+      return this.mix.genre === 'israeli' ? 'mix-name isreali' : 'mix-name'
     },
-    mixImg() {
-      if (!this.mix) return
-      //console.log(this.mix)
+    // mixImg() {
+    //   if (!this.mix) return
+    //   //console.log(this.mix)
 
-      //random image not in use
-      //var max = this.mix.songs.length 
-      //var songIdx = Math.floor(Math.random() * (max - 0) + 0);
+    //   //random image not in use
+    //   //var max = this.mix.songs.length 
+    //   //var songIdx = Math.floor(Math.random() * (max - 0) + 0);
 
-      // 
-      var song = this.mix.songs[0]
-      var img = song.imgUrl
-      //console.log('img',img)
-      return img
+    //   // 
+    //   var song = this.mix.songs[0]
+    //   var img = song.imgUrl
+    //   //console.log('img',img)
+    //   return img
 
-    },
+    // },
   },
   created() {
     //console.log('mix data',this.mix)

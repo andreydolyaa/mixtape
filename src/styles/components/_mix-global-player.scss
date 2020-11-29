@@ -19,7 +19,7 @@
     
     p{
         i{
-            color: var(--primary-color);
+            color: $primary-color;
             font-size: 1em;
             padding: 10px;
         }
@@ -60,6 +60,10 @@
     //     }
     // }
 }
+//:hover
+
+// .global-player{
+//     height: 70px;
 
 // .global-player:hover{
 //     height: 70px;

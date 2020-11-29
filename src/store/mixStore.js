@@ -53,6 +53,9 @@ export default {
         setMix(state, payload) {
             state.currMix = payload.mix;
         },
+        setMixEmpty(state, payload) {
+            state.currMix = null;
+        },
         nowPlaying(state, payload) {
             state.isPlaying = payload.isPlaying;
         },
