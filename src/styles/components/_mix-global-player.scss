@@ -10,12 +10,13 @@
     align-items: center;
     justify-content: center;
     gap: 50px;
-    background-image: url(https://i.pinimg.com/originals/1d/73/5a/1d735ad8eee8350adc96d50e1421ee6d.gif);
+    background-image: url(https://coinglobefx.com/img/711.gif);
     // background-image: url(https://res.cloudinary.com/hw-projects/image/upload/v1606521981/appmixes/sony-wallkam-_wallpaper.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    background-position-y: -800px;
-
+    // background-position-y: -00px;
+    box-shadow: 1px 1px 3px rgb(141, 141, 141);
+    
     p{
         i{
             color: $primary-color;
@@ -25,7 +26,8 @@
     }
 
     h2{
-        // display: none;
+        font-size:1rem;
+        margin-right:1rem;
     }
     .step-btn{
         button{
@@ -36,8 +38,9 @@
         background:transparent;
         border:none;
         color:white;
-        font-size:1.7rem;
+        font-size:1.4rem;
         outline:none;
+        cursor: pointer;
     }
 
     // button{
@@ -97,7 +100,7 @@
         -webkit-appearance: none;
         appearance: none;
         width:450px;
-        height:15px;
+        height:11px;
         background-color: rgb(255, 255, 255);
         border:none;
         transition: 0.3s;
@@ -115,7 +118,7 @@
       -webkit-appearance: none;
       appearance: none;
       width: 20px;
-      height: 30px;
+      height: 20px;
       background: #ff0101;
       cursor: pointer;
       border-radius:5px;
