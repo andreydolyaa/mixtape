@@ -81,6 +81,7 @@ export default {
     },
     actions: {
         async getMixByIdPrivate(context, { mixId }) {
+            console.log('mix id', mixId)
             const mix = await mixService.getById(mixId);
             return mix
             // console.log('mix',mix);

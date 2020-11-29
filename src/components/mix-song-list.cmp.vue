@@ -85,10 +85,10 @@ export default {
 		},
 		filterBySong() {
      	 var res = this.mix.songs.filter(song => {
-       	 console.log('song title', song.title);
+       	 //console.log('song title', song.title);
       	 	return song.title.toLowerCase().includes(this.songTxt.toLowerCase());
      		 })
-      		console.log('res',res);
+      		//console.log('res',res);
       		return res
     }
 	},

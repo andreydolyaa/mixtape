@@ -2,7 +2,7 @@
   <section  ref="mix-list-home" class="mix-list-home container">
           <!-- <h2>Home mix list </h2> -->
           <div ref="mix-list-home container">
-            <!-- <mix-preview :mix="mixTopA"/> -->
+            <!-- <mix-preview v-if="mixTopA" :mix="mixTopA"/> -->
 
             <nav class="mixes-nav">
                   <div class="genre-title"> {{genre}}</div>
@@ -36,7 +36,8 @@ export default {
 	    return{
           a:null,
           videoId:'BubwLnPcQjc',
-	    }
+          mixTopA:null,
+      }
 	},
   computed : {
         mixes(){
@@ -52,11 +53,7 @@ export default {
             //console.log('res',res)
             return res
         },
-        // async mixTopA(){
-        //   var mix =  await this.$store.dispatch({type: 'getMixByIdPrivate',mixId:'5c013' })
-        //   if(!mix) return
-        //   return mix
-        // }
+       
   },
   methods: {
      showList(genre){
@@ -65,14 +62,18 @@ export default {
         //console.log('genre', this.genre)
         this.$router.push(`mix/list`) 
       },  
-
+        // getMixTopA(){
+        //   var mix =  this.$store.dispatch({type: 'getMixByIdPrivate',mixId:'5c013' })
+        //   console.log('mixTop',mix)
+        //   this.mixTopA = mix
+        // }
   },
   components: {
     mixPreview
   },
   created(){
     //console.log('mix data genre',this.genre)
-
+    // this.getMixTopA();
   }
 } // end of export default
 </script>
