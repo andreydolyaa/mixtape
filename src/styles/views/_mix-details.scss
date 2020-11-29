@@ -274,13 +274,24 @@
     }
 
     .sort-songs-buttons{
+        display: flex;
+        flex-direction: column;
+        margin-top: -8px;
+        
         button{
             color: #fff;
+            background: none;
+            outline: none;
+            border: 1px solid #18191a;
+            height: 12px;
+
             i{
                 font-size: 19px;
-                padding: 2px 11px;
-                color: #be1e2d;
+                color: #fff; 
                 height: 0;
+            }
+            i:hover{
+                color: #be1e2d;
             }
         }
     }
