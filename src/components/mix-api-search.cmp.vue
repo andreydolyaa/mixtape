@@ -6,7 +6,7 @@
 			<!-- @keyup.enter="getSearchResults()" -->
 			<!-- <input type="text" v-model="keyword" /> -->
 			<form @submit.prevent="getSearchResults()">
-			<el-input v-model="keyword" type="text" placeholder="Search song..." clearable></el-input>
+			<el-input v-model="keyword" type="text" placeholder="Add song to mix..." clearable></el-input>
 			</form>
 			<button  @click="getSearchResults() ">
 				<i class="fas fa-search"></i>
