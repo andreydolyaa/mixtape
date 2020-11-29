@@ -4,7 +4,6 @@
 		<!-- <draggable v-model="myArray" group="people" @start="drag=true" @end="drag=false">
    				<div v-for="element in myArray" :key="element.id">{{element.name}}</div>
 		</draggable> -->
-		<ul v-if="mix">
 				<div class="search-song">
 					<el-input
        					 type="text"
@@ -14,6 +13,7 @@
   		     			 clearable>
 						</el-input>
   				</div>
+		<ul v-if="mix">
 			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag" >
 
 				<li class="songs-details-main flex" v-for="(song,index) in filterBySong" :key="song.id">

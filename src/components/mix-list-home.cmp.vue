@@ -1,30 +1,41 @@
 <template>
+<<<<<<< HEAD
   <section ref="mix-list-home" class="mix-list-home container">
     <!-- <h2>Home mix list </h2> -->
     <div ref="mix-list-home container">
       <h2>test</h2>
       <!-- <mix-preview v-if="mixTopA" :mix="mixTopA" /> -->
+=======
+	<section ref="mix-list-home" class="mix-list-home container">
+		<!-- <h2>Home mix list </h2> -->
+		<div ref="mix-list-home container">
+			<h2>test</h2>
+			<mix-preview v-if="mixTopA" :mix="mixTopA" />
+>>>>>>> 3426025459849a8549db7c7b7ae2a43fd5abc435
 
-      <nav class="mixes-nav">
-        <div class="genre-title">{{ genre }}</div>
-        <ul class="nav-show-all-ul">
-          <li class="mix-link-show-all" v-on:click="showList(genre)">
-            Show all <span><i class="fas fa-angle-double-right"></i></span>
-          </li>
-        </ul>
-      </nav>
+			<nav class="mixes-nav">
+				<div class="genre-title">{{ genre }}</div>
+				<ul class="nav-show-all-ul">
+					<li class="mix-link-show-all" v-on:click="showList(genre)">
+						Show all
+						<span>
+							<i class="fas fa-angle-double-right"></i>
+						</span>
+					</li>
+				</ul>
+			</nav>
 
-      <ul class="ul-mixes">
-        <li class="mix" v-for="mix in mixes" :key="mix._id">
-          <mix-preview :mix="mix" @click.native="startAutoPlay(mix)" />
-        </li>
-      </ul>
-    </div>
-  </section>
+			<ul class="ul-mixes">
+				<li class="mix" v-for="mix in mixes" :key="mix._id">
+					<mix-preview :mix="mix" @click.native="startAutoPlay(mix)" />
+				</li>
+			</ul>
+		</div>
+	</section>
 </template>
 
 <script>
-import mixPreview from '../components/mix-preview.cmp.vue';
+import mixPreview from "../components/mix-preview.cmp.vue";
 import { eventBus } from "@/main.js";
 export default {
   name: 'mix-list-home',
