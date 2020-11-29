@@ -2,10 +2,20 @@
 	<section class="songs-list">
 		<!-- <draggable v-model="myArray" group="people" @start="drag=true" @end="drag=false">
    				<div v-for="element in myArray" :key="element.id">{{element.name}}</div>
-		</draggable>-->
-		<div class="search-song">
-			<el-input type="text" placeholder="Search song in mix..." v-model="songTxt" @input="filterBySong" clearable></el-input>
-		</div>
+		</draggable> -->
+		<ul v-if="mix">
+			<i @click="openInputApi" class="fas fa-plus-circle"></i>
+			<i @click="openInputSearch" class="fas fa-search"></i>
+			<mixApiSearch v-if="isAdd" />
+				<div class="search-song" v-if="!isAdd">
+					<el-input
+       					 type="text"
+       					 placeholder="Search song in mix..."
+  		     			 v-model="songTxt"
+  		     			 @input="filterBySong"
+  		     			 clearable>
+					</el-input>
+  				</div>
 		<ul v-if="mix">
 			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag">
 				<li class="songs-details-main flex" v-for="(song,index) in filterBySong" :key="song.id">
@@ -40,8 +50,9 @@
 
 <script>
 import { mixService } from "@/services/mixService.js";
-import { eventBus } from "@/main.js";
-import draggable from "vuedraggable";
+import {eventBus} from '@/main.js';
+import draggable from 'vuedraggable'
+import mixApiSearch from "@/components/mix-api-search.cmp.vue";
 
 export default {
 	name: "mix-song-list",
@@ -52,6 +63,7 @@ export default {
 	data() {
 		return {
 			songId: null,
+			isAdd: false,
 			isPlaying: false,
 			playerVars: {
 				autoplay: 1,
@@ -126,16 +138,23 @@ export default {
 		pauseSong(song) {
 			eventBus.$emit("pause-music");
 			this.$store.commit({
-				type: "stopSongPlaying",
-				song,
-			});
+				type:'stopSongPlaying',
+				song
+			})
 		},
+		openInputApi(){
+			this.isAdd = true;
+		},
+		openInputSearch(){
+			this.isAdd = false;
+		}
 	},
 	created() {
 		// console.log('mix data', this.mixes)
 	},
-	components: {
-		draggable,
+	components:{
+		mixApiSearch,
+		draggable
 	},
 };
 </script>
