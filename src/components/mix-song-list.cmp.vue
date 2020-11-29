@@ -63,6 +63,7 @@ export default {
 	},
 	data() {
 		return {
+			autoPlay:false,
 			songId: null,
 			isAdd: false,
 			isPlaying: false,
@@ -148,6 +149,9 @@ export default {
 	},
 	created() {
 		// console.log('mix data', this.mixes)
+		eventBus.$on('auto-play-start',()=>{
+			
+		})
 	},
 	components:{
 		mixApiSearch,
