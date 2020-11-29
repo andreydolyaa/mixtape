@@ -62,6 +62,7 @@ export default {
     startAutoPlay(mix) {
       this.$store.commit({ type: 'setMix', mix })
       eventBus.$emit('play-music');
+      eventBus.$emit('auto-play-start');
       this.$store.commit({ type: "startSongPlaying" });
     },
     showList(genre) {
