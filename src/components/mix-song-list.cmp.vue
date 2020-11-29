@@ -90,14 +90,10 @@ export default {
 			return this.$store.getters.getMix;
 		},
 		filterBySong() {
-			if (this.mix) {
 				var res = this.mix.songs.filter((song) => {
-					return song.title
-						.toLowerCase()
-						.includes(this.songTxt.toLowerCase());
+					return song.title.toLowerCase().includes(this.songTxt.toLowerCase());
 				});
 				return res;
-			}
 		},
 	},
 	methods: {
