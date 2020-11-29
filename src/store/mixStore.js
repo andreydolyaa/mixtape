@@ -48,7 +48,7 @@ export default {
                 var numB = b[sortby];
                 return  numB - numA;
             });
-            var resSliced = res.slice(0, 2);
+            var resSliced = res.slice(0, 3);
             //console.log('resSliced',resSliced)
             state.topMixes = resSliced;
         },
@@ -117,15 +117,12 @@ export default {
             return song;
         },
         async saveMix(context, payload) {
-<<<<<<< HEAD
-            const mix = await mixService.update(payload.mix);
+            //const mix = await mixService.update(payload.mix);
             // context.commit({type:'resetIconsState'})
             // context.commit({type:'startSongPlaying'})
-=======
             const mix = await mixService.upnum(payload.mix);
             context.commit({type:'resetIconsState'})
             context.commit({type:'startSongPlaying'})
->>>>>>> 5efd881af074cfac0d9dee4b058530607ea60812
             context.commit({ type: 'setMix', mix })
             return mix
         },

@@ -4,15 +4,15 @@
 		<!-- <draggable v-model="myArray" group="people" @start="drag=true" @end="drag=false">
    				<div v-for="element in myArray" :key="element.id">{{element.name}}</div>
 		</draggable> -->
-				<div class="search-song">
-					<el-input
-       					 type="text"
-       					 placeholder="Search song in mix..."
-  		     			 v-model="songTxt"
-  		     			 @input="filterBySong"
-  		     			 clearable>
-						</el-input>
-  				</div>
+		<div class="search-song">
+			<el-input
+					type="text"
+					placeholder="Search song in mix..."
+					v-model="songTxt"
+					@input="filterBySong"
+					clearable>
+				</el-input>
+		</div>
 		<ul v-if="mix">
 			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag" >
 
@@ -24,8 +24,6 @@
 						<button v-if="song.isPlaying" @click="pauseSong(song);">
 							<i class="far fa-pause-circle"></i>
 						</button>
-
-
 						<img :src="song.imgUrl" />
 						<p>{{ song.title }}</p>
 						<span>{{ song.duration }}</span>
@@ -84,13 +82,13 @@ export default {
 			return this.$store.getters.getMix;
 		},
 		filterBySong() {
-     	 var res = this.mix.songs.filter(song => {
-       	 //console.log('song title', song.title);
+     	 	var res = this.mix.songs.filter(song => {
+       	 	//console.log('song title', song.title);
       	 	return song.title.toLowerCase().includes(this.songTxt.toLowerCase());
      		 })
       		//console.log('res',res);
       		return res
-    }
+    	}
 	},
 	methods: {
 		stopDrag(){		
