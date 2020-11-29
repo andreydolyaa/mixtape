@@ -16,6 +16,7 @@
   		     			 clearable>
 					</el-input>
   				</div>
+		</ul>
 		<ul v-if="mix">
 			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag">
 				<li class="songs-details-main flex" v-for="(song,index) in filterBySong" :key="song.id">
