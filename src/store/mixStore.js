@@ -63,9 +63,7 @@ export default {
             state.currSongPlaying.isPlaying = false
         },
         startSongPlaying(state, payload) {
-            if(state.currSongPlaying){
-                state.currSongPlaying.isPlaying = true
-            }
+            state.currSongPlaying.isPlaying = true
         },
         stopAllPlaying(state, payload) {
             payload.songs.forEach(currSong => {
@@ -100,7 +98,6 @@ export default {
         async saveMix(context, payload) {
             const mix = await mixService.update(payload.mix);
             // context.commit({type:'resetIconsState'})
-            // context.commit({type:'startSongPlaying'})
             context.commit({ type: 'setMix', mix })
             return mix
         },
