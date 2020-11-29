@@ -34,10 +34,13 @@
 
         .mix-link-show-all {
             color: #fff;
-            align-self: flex-end;          
+            font-weight: bold;
+            align-self: flex-end;  
+            cursor: pointer;       
         }
-
-
+        .mix-link-show-all i{
+            color: $primary-color;     
+        }
      
     }
     ul.ul-mixes {
