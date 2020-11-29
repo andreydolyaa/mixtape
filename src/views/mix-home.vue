@@ -2,7 +2,13 @@
 	<section>
 		<div class="mix-home">
 			<mixHero v-on:refName="scrollMeTo"  />
-			<!-- <h1>Home</h1> -->
+			<div class="top-mixes">
+				<ul>
+					<li v-for="(mix, index) in topMixes" :key="mix._id" >
+						<mix-preview :mix="mix" />
+					</li>
+				</ul> 
+			</div>
     		<ul class="mix-list-home-container" ref="mix-list-home-container" v-if="geners"> 
 			   <!-- <h2> Mixes </h2> class="mix-list-home" -->
                 <li  v-for="(item, index) in geners" :key="item" > 
@@ -19,6 +25,7 @@ import mixListHome from '../components/mix-list-home.cmp.vue'
 import mixHero from '../components/mix-hero.cmp.vue'
 import mixVideo from '../components/mix-video-player.cmp.vue'
 import globalPlayer from '@/components/global-player.cmp.vue';
+import mixPreview from "../components/mix-preview.cmp.vue";
 
 export default {
 	name:'mix-home',
@@ -31,9 +38,22 @@ export default {
 		mixHero,
 		mixListHome,
 		mixVideo,
-		globalPlayer
+		globalPlayer,
+		mixPreview
   },
-    methods: {
+  computed : {
+	  geners(){
+		  return this.$store.getters.getGeners
+		  console.log('geners',this.$store.getters.getGeners)
+
+	  },
+	   topMixes(){
+			var mixes = this.$store.getters.getTopMixes
+			console.log('mixes',mixes)
+			return mixes 
+	   }
+  },
+   methods: {
     scrollMeTo(refName) {
 		console.log('scrollMeTo',refName)
       var element = this.$refs[refName];
@@ -41,14 +61,10 @@ export default {
       var top = element.offsetTop;
       window.scrollTo(0, top);
     },
-
-  },
-  computed : {
-	  geners(){
-		  return this.$store.getters.getGeners
-		  console.log('geners',this.$store.getters.getGeners)
-
-	  } 
+ 	getMixTop() {
+	  var mix = this.$store.dispatch({ type: 'getMixByIdPrivate', mixId: '5c013' })
+	  console.log('mixTop', mix)
+    }
   },
 	watch: {
 			status(newValue, oldValue) {
@@ -61,8 +77,11 @@ export default {
 				console.log('Not Playing')
 			}
 		},
-	}
-
+	},
+  	created() {
+    //console.log('mix data genre',this.genre)
+     	this.$store.dispatch({type: "getTopMixes"});
+  	}
 };
 </script>
 

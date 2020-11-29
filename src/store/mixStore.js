@@ -48,7 +48,7 @@ export default {
                 var numB = b[sortby];
                 return  numB - numA;
             });
-            var resSliced = res.slice(0, 2);
+            var resSliced = res.slice(0, 3);
             //console.log('resSliced',resSliced)
             state.topMixes = resSliced;
         },

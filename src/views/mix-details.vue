@@ -90,9 +90,11 @@
           <section class="general-info"></section>
         </section>
       </section>
-      <mix-social />
+      <mix-social /> 
+       <!-- v-if="currMix.songs" -->
       <div class="songs">
-        <mix-song-list
+        {{currMix.songs}}
+        <mix-song-list 
           :songs="currMix.songs"
           :mix="currMix"
           @emitRemoveSong="removeSongFromMix"
@@ -128,19 +130,19 @@ export default {
         isLiked: false,
         imgUrl: "https://res.cloudinary.com/hw-projects/image/upload/v1606479695/appmixes/logo_r_animated_v3_first_Frame.jpg",
         likes: 0,
-        "tags": [
+        tags: [
           "Funk",
           "Happy"
         ],
-        "createdBy": {
+        createdBy: {
           "_id": "u101",
           "fullName": "Puki Ben David",
           "imgUrl": "http://some-photo/"
         },
-        "likedByUsers": [
+        likedByUsers: [
 
         ],
-        "songs": [
+        songs: [
           {
             title: "Mac Miller - Good News",
             id: "i6Hdm",
@@ -164,7 +166,7 @@ export default {
         return this.$store.getters.getMix;
       } else {
         this.currMix = this.newMix;
-        //console.log('this.currMix',this.currMix)
+        console.log('this.currMix',this.currMix)
         return this.currMix;
       }
     },
@@ -267,7 +269,6 @@ export default {
         type: 'saveMix',
         mix: this.currMix
       })
-      console.log('@@@@');
     }
   },
   components: {

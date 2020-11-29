@@ -27,7 +27,6 @@
 						<button v-if="song.isPlaying" @click="pauseSong(song);">
 							<i class="far fa-pause-circle"></i>
 						</button>
-
 						<img :src="song.imgUrl" />
 						<p>{{ song.title }}</p>
 						<span>{{ song.duration }}</span>
