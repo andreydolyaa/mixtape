@@ -1,17 +1,9 @@
 <template>
-<<<<<<< HEAD
-  <section ref="mix-list-home" class="mix-list-home container">
-    <!-- <h2>Home mix list </h2> -->
-    <div ref="mix-list-home container">
-      <h2>test</h2>
-      <!-- <mix-preview v-if="mixTopA" :mix="mixTopA" /> -->
-=======
 	<section ref="mix-list-home" class="mix-list-home container">
 		<!-- <h2>Home mix list </h2> -->
 		<div ref="mix-list-home container">
 			<h2>test</h2>
 			<mix-preview v-if="mixTopA" :mix="mixTopA" />
->>>>>>> 3426025459849a8549db7c7b7ae2a43fd5abc435
 
 			<nav class="mixes-nav">
 				<div class="genre-title">{{ genre }}</div>

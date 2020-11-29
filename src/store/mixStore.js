@@ -50,7 +50,7 @@ export default {
             });
             var resSliced = res.slice(0, 2);
             //console.log('resSliced',resSliced)
-            state.topMixes = res;
+            state.topMixes = resSliced;
         },
         setMixes(state, payload) {
             state.mixes = payload.mixes;
