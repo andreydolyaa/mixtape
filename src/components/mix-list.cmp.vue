@@ -75,7 +75,7 @@ export default {
         this.genre = genre
         //console.log('genre', this.genre)
         this.$router.push(`mix/list`) 
-      },  
+      }, 
   },
   components: {
     mixPreview

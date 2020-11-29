@@ -14,30 +14,37 @@
 			</p>
 			<h2 v-if="getCurrSongPlaying">{{getCurrSongPlaying.title}}</h2>
 			<h2 v-else>Artist - Unknown</h2>
-			
-			
+
 			<!--------------- THIS IS THE PLAYER PROGRESS BAR  ! ------------------->
 			<div class="progress-bar">
 				<p v-if="currTime">{{currTime}}</p>
 				<p v-else>00:00</p>
-				<input  @input="moveTo()" type="range" :min="currTime" :max="totalTimeInput" v-model="currTimePlaying" />
+				<input @input="moveTo()" type="range" :min="currTime" :max="totalTimeInput" v-model="currTimePlaying" />
 				<p v-if="totalTime">{{totalTime}}</p>
 				<p v-else>00:00</p>
 			</div>
 			<!-------------- those are prev song next song buttons ------------->
 			<div class="step-btn">
-				<button @click="onPrevSong"><i class="fas fa-step-backward"></i></button>
+				<button @click="onPrevSong">
+					<i class="fas fa-step-backward"></i>
+				</button>
 				<button v-if="!isPlayingNow" @click="play">
-				<i class="fas fa-play"></i>
-			</button>
-			<button v-else @click="pause">
-				<i class="far fa-pause-circle"></i>
-			</button>
-				<button @click="onNextSong"><i class="fas fa-step-forward"></i></button>
+					<i class="fas fa-play"></i>
+				</button>
+				<button v-else @click="pause">
+					<i class="far fa-pause-circle"></i>
+				</button>
+				<button @click="onNextSong">
+					<i class="fas fa-step-forward"></i>
+				</button>
 			</div>
 			<div>
-				<button v-if="!isMuted" @click="mute"><i class="fas fa-volume-up"></i></button>
-				<button v-else @click="unmute"><i class="fas fa-volume-mute"></i></button>
+				<button v-if="!isMuted" @click="mute">
+					<i class="fas fa-volume-up"></i>
+				</button>
+				<button v-else @click="unmute">
+					<i class="fas fa-volume-mute"></i>
+				</button>
 			</div>
 		</div>
 	</section>
@@ -61,7 +68,7 @@ export default {
 			currTimePlaying: 0,
 			totalTime: 0,
 			totalTimeInput: 0,
-			isMuted:false
+			isMuted: false,
 		};
 	},
 	computed: {
@@ -114,9 +121,9 @@ export default {
 				(song) => song.songUrlId === songId
 			);
 			this.$store.commit({
-				type:'setPrevSongNotPlaying',
-				songIdx:idx
-			})
+				type: "setPrevSongNotPlaying",
+				songIdx: idx,
+			});
 
 			if (idx < this.currMix.songs.length - 1) {
 				nextSong = this.currMix.songs[idx + 1];
@@ -130,11 +137,11 @@ export default {
 				song: nextSong,
 			});
 			this.$store.commit({
-				type:'startSongPlaying'
-			})
+				type: "startSongPlaying",
+			});
 		},
 		async moveTo() {
-			await this.$refs.youtube.player.seekTo(this.currTimePlaying,true);
+			await this.$refs.youtube.player.seekTo(this.currTimePlaying, true);
 		},
 		onNextSong() {
 			this.autoPlayNextSong();
@@ -158,28 +165,38 @@ export default {
 				song: nextSong,
 			});
 			this.$store.commit({
-				type:'startSongPlaying'
+				type: "startSongPlaying",
 			});
 			this.$store.commit({
-				type:'setPrevSongNotPlaying',
-				songIdx:idx
-			})
-			
+				type: "setPrevSongNotPlaying",
+				songIdx: idx,
+			});
 		},
-		mute(){
+		mute() {
 			this.isMuted = true;
 			this.$refs.youtube.player.mute();
 		},
-		unmute(){
+		unmute() {
 			this.isMuted = false;
 			this.$refs.youtube.player.unMute();
-		}
+		},
 	},
 	created() {
 		eventBus.$on("pause-music", () => {
 			this.pause();
 		});
 		eventBus.$on("resume-music", () => {
+			this.play();
+		});
+		eventBus.$on("play-music", () => {
+			var autoPlaySong = this.currMix.songs[0];
+			this.$store.commit({
+				type: "setCurrSong",
+				song: autoPlaySong,
+			});
+			this.$store.commit({
+				type: "startSongPlaying",
+			});
 			this.play();
 		});
 	},
