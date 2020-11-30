@@ -14,19 +14,18 @@
         </button>
       </div>
     </form>
+
   </section>
 </template>
 
 <script>
 export default {
   props: {
-    msgs: {
-      type: Array
-    },
 
   },
   data() {
     return {
+      msgs: [],
       msg: { from: '', txt: '' },
     }
   },
