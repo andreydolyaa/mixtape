@@ -118,9 +118,9 @@ export default {
         },
         async saveMix(context, payload) {
             const mix = await mixService.update(payload.mix);
+            context.commit({ type: 'setMix', mix })
             // context.commit({type:'resetIconsState'})
             // context.commit({type:'startSongPlaying'})
-            context.commit({ type: 'setMix', mix })
             return mix
         },
         sortByNumber(array, sortby) {

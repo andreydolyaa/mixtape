@@ -27,7 +27,7 @@
 				<!-- <div>	{{song}} </div> -->
 				<!-- <div>	{{currSongPlaying}} </div> -->
 					<div class="songs-details">
-						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,mixCopy.songs)">
+						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,filterBySong)">
 							<i class="far fa-play-circle"></i>
 						</button>
 						<button v-else @click="pauseSong(song);">
@@ -36,11 +36,12 @@
 						<img :src="song.imgUrl" />						
 						<div>	{{song.isPlaying}} </div>
 						<p :class="song.isPlaying  ? 'highlight-color' : 'default-color'">{{ song.title }}</p>
+						{{song.isPlaying}}
 						<span>{{ song.duration }}</span>
 					</div>
-					<div class="img-equalizer">
-						<!-- <img src="" /> -->
-					</div>
+					<!-- <div v-if="song.isPlaying" class="img-equalizer">
+						<img src="" />
+					</div> -->
 					<div class="sort-songs-buttons">
 						<button v-on:click="emitSongPos(index,-1)">
 							<i class="fas fa-sort-up"></i>
@@ -78,6 +79,7 @@ export default {
 			isPlaying: false,
 			mixCopy: null,
 			songTxt: "",
+			equalizer: ''
 		};
 	},
 	computed: {
@@ -98,10 +100,14 @@ export default {
 			return this.$store.getters.getMix;
 		},
 		filterBySong() {
+			if(!this.songTxt){
+				return this.mix.songs
+			}
 				var res = this.mix.songs.filter((song) => {
 					//console.log('song',song.isPlaying)
 					return song.title.toLowerCase().includes(this.songTxt.toLowerCase());
 				});
+				console.log('@@@@@@@@@@@@@@@@@@22: ',res);
 				return res;
 		},
 		isSongPlaying(){
@@ -135,23 +141,56 @@ export default {
 		},
 		startSongPlaying(song, songs) {
 			this.$store.commit({
-				type: "stopAllPlaying",
+				type: "setCurrSong",
 				song,
-				songs,
 			});
-			this.$store.commit({
-				type: "startSongPlaying",
-			});
+			eventBus.$emit("resume-music");
+			// this.$store.commit({
+			// 	type: "stopAllPlaying",
+			// 	song,
+			// 	songs,
+			// });
+			// this.$store.commit({
+			// 	type: "startSongPlaying",
+			// });
+			// var songId = this.currSongPlaying.songUrlId;
+			// const idx = this.getMix.songs.findIndex(
+			// 	(song) => song.songUrlId === songId
+			// );
+			// var updatedMix = JSON.parse(JSON.stringify(this.getMix));
+			// updatedMix.songs[idx].isPlaying = true;
+			// this.$store.dispatch({
+			// 	type: "saveMix",
+			// 	mix: updatedMix
+			// })
+			var songs = JSON.parse(JSON.stringify(this.getMix))
+			var songId = this.currSongPlaying.songUrlId;
+			const idx = this.getMix.songs.findIndex(
+				(song) => song.songUrlId === songId
+			);
+			songs.songs.forEach(song => song.isPlaying = false);
+			songs.songs[idx].isPlaying = true;
 			this.$store.dispatch({
-					type: "saveMix",
-					mix:this.mix
-			});
+				type: "saveMix",
+				mix: songs
+			})
+
 		},
 		pauseSong(song) {
 			eventBus.$emit("pause-music");
 			this.$store.commit({
 				type:'stopSongPlaying',
 				song
+			})
+			var songId = this.currSongPlaying.songUrlId;
+			const idx = this.getMix.songs.findIndex(
+				(song) => song.songUrlId === songId
+			);
+			var updatedMix = JSON.parse(JSON.stringify(this.getMix));
+			updatedMix.songs[idx].isPlaying = false;
+			this.$store.dispatch({
+				type: "saveMix",
+				mix: updatedMix
 			})
 		},
 		openInputApi(){
@@ -162,7 +201,17 @@ export default {
 		},
 	},
 	created() {
-		eventBus.$emit('play-music');
+		eventBus.$on('play-music',()=>{
+		// 	var updatedMix = JSON.parse(JSON.stringify(this.mix));
+		// 	updatedMix.songs[0].isPlaying = true;
+		// 	console.log("@@@: ", updatedMix);
+
+		// 	this.$store.dispatch({
+		// 		type: "saveMix",
+		// 		mix: updatedMix,
+		// })
+		})
+		
 	},
 	components:{
 		mixApiSearch,

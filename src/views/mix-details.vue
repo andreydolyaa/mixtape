@@ -164,9 +164,20 @@ export default {
   computed: {
     mix() {
       if (this.$store.getters.getMix) {
-        //console.log('get mix by id',this.$store.getters.getMix)
+      var count = 0;
+      var songIdx;
         this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
-        //console.log('this.currMix ',this.currMix )
+        this.currMix.songs.forEach((song,idx) => {
+          if(!song.isPlaying) count +=1;
+          else if(song.isPlaying) songIdx = idx;
+        })
+        if(count === 0){
+          this.currMix.songs[0].isPlaying = true;
+        }else{
+          this.currMix.songs[songIdx].isPlaying = true;
+        }
+        
+// this.currMix.songs[0].isPlaying = true;
         return this.$store.getters.getMix;
       } else {
         this.currMix = this.newMix;
