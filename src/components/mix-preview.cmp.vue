@@ -13,9 +13,12 @@
         <span class="mix-likes">{{ mix.likes }} <i class="fas fa-heart"></i></span>
     </div> -->
     <div class="info">
-      <span class="mix-name"  :class="checkLang">{{ mix.name }}</span>
-       <!-- <span class="mix-views">{{ mix.views }} <i class="fas fa-eye"></i></span> -->
-        <span class="mix-likes">{{ mix.likes }} <i class="fas fa-heart"></i></span>
+        <span class="mix-name"  :class="checkLang">{{ mix.name }}</span>
+        <span class="mix-desc">{{ mix.desc }} <i class="fas fa-heart"></i></span>
+        <div class="stats">
+          <span class="mix-likes">{{ mix.likes }} <i class="fas fa-heart"></i></span>
+          <span class="mix-views">{{ mix.views }} <i class="fas fa-eye"></i></span>
+        </div>
     </div>
     </div>
     
@@ -32,6 +35,24 @@ export default {
   },
   methods: {
     onMixView(mixId) {
+      //console.log('mixId',mixId)
+	    this.$store.commit({ type: "setMix", mix:this.mix });
+			var autoPlaySong = this.mix.songs[0];
+			this.$store.commit({
+				type: "setCurrSong",
+				song: autoPlaySong,
+			});
+			this.$store.commit({
+				type: "startSongPlaying",
+			});
+			var updatedMix = JSON.parse(JSON.stringify(this.mix));
+			updatedMix.songs[0].isPlaying = true;
+			console.log("@@@: ", updatedMix);
+			this.$store.dispatch({
+				type: "saveMix",
+				mix: updatedMix,
+			});
+
       this.$router.push(`/mix/details/${mixId}`)
     },
     playMixFromPreview(){

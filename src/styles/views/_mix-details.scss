@@ -1,7 +1,7 @@
 .mix-details{
     width: 100%;
     gap: 40px;
-    margin-top: 60px;
+    margin-top: 40px;
 
     i.fas:hover ,i.far:hover , i.fab:hover{
         color:$primary-color;
@@ -21,7 +21,7 @@
     flex-direction: column;
     color:#ffffff;
     font-size: 1.125rem;
-    max-width: 800px;
+    max-width: 1020px;
     width: 100%;
 
     .search-song-and-social{
@@ -43,15 +43,15 @@
     .header-mix-info{
         width: 100%;
         flex-direction: row;
-        margin-top: 40px;
         margin-bottom: 40px;
         text-align: left;
 
         .mix-img{
 
             img{
-                min-width: 320px;
-                max-width: 320px;
+                min-width: 360px;
+                max-width: 360px;
+                min-height: 240px;
                 height: auto;
                 margin-right: 20px;
             }
@@ -96,6 +96,7 @@
                     display: none;
                 }
             }
+
             .mix-title:hover{
                 .edit-txt{
                     i{
@@ -108,6 +109,7 @@
         .mix-info{
         text-align: left;
         margin-bottom: 10px;
+
 
             .edit{
 
@@ -154,17 +156,18 @@
 
             .stats{
                 display: flex;
+                flex-direction: column;
 
                 .mix-like{
                     width: 100%;
-                    text-align: right;
+                    text-align: left;   
                     display: flex;
-                    justify-content: flex-end;
-                    margin: 24px 0;
-                    
+                    justify-content: flex-start;
+                    margin: 5px 0;
+                   
                     .like-song{
                         width: 100%;
-                        text-align: right;   
+                        text-align: left;   
 
                         .likes-count{
                             margin-right: 8px;
@@ -179,21 +182,22 @@
 
                 .mix-views{
                     width: 100%;
-                    text-align: right;
+                    text-align: left;   
                     display: flex;
-                    justify-content: flex-end;
-                    margin: 24px 0;
+                    justify-content: flex-start;
+                    margin: 0px 0;
                     h4{
                         margin-right: 8px;
                     }
                     i{
                         font-size: 22px;
-                        color: #be1e2d;    
+                        color: $secondery-color;    
                     }
                 }
             }
             h2{
                 font-size: 2.625rem;
+                font-family: 'Caveat', cursive;
             }
         }
 
@@ -340,9 +344,7 @@
     }
 }
 
-.mix-chat{
-    width: 30%;
-}
+
 
 div.el-input {
     width: 100% !important;

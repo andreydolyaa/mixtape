@@ -2,12 +2,9 @@
 	<div id="app">
 		<appHeader />
 		<router-view />
-					
-					
-		<appFooter />
 		<div class="global">
-          				<globalPlayer />
-    				</div>
+        	<globalPlayer />
+    	</div>
 	</div>
 </template>
  

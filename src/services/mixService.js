@@ -12,23 +12,23 @@ export const mixService = {
 }
 
 function query() {
-    return HttpService.get('mixes');
+    return HttpService.get('mix');
 }
 
 function getById(mixId) {
-    return HttpService.get(`mixes/${mixId}`);
+    return HttpService.get(`mix/${mixId}`);
 }
 
 function remove(mixId) {
-    return HttpService.delete(`mixes/${mixId}`);
+    return HttpService.delete(`mix/${mixId}`);
 }
 
 function save(mix) {
-    return HttpService.post('mixes', mix)
+    return HttpService.post('mix', mix)
 }
 
 function update(mix) {
-    return HttpService.put(`mixes/${mix._id}`, mix);
+    return HttpService.put(`mix/${mix._id}`, mix);
 }
 
 

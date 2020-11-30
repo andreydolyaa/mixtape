@@ -20,17 +20,21 @@
 			</div>
 				<mix-social /> 
 		</div>
-		<ul v-if="mix">
+		<ul v-if="mix" class="songsUl">	
 			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag">
+
 				<li class="songs-details-main flex" v-for="(song,index) in filterBySong" :key="song.id">
+				<!-- <div>	{{song}} </div> -->
+				<!-- <div>	{{currSongPlaying}} </div> -->
 					<div class="songs-details">
 						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,filterBySong)">
 							<i class="far fa-play-circle"></i>
 						</button>
 						<button v-else @click="pauseSong(song);">
 							<i class="far fa-pause-circle"></i>
-						</button>
-						<img :src="song.imgUrl" />
+						</button>					
+						<img :src="song.imgUrl" />						
+						<div>	{{song.isPlaying}} </div>
 						<p :class="song.isPlaying  ? 'highlight-color' : 'default-color'">{{ song.title }}</p>
 						{{song.isPlaying}}
 						<span>{{ song.duration }}</span>
@@ -81,7 +85,9 @@ export default {
 	computed: {
 		mix() {
 			var mix = this.$store.getters.getMix;
+			if(!mix) return
 			this.mixCopy = JSON.parse(JSON.stringify(mix));
+			console.log('this.mixCopy.songs',this.mixCopy.songs)
 			return this.mixCopy;
 		},
 		isNowPlaying() {
@@ -98,6 +104,7 @@ export default {
 				return this.mix.songs
 			}
 				var res = this.mix.songs.filter((song) => {
+					//console.log('song',song.isPlaying)
 					return song.title.toLowerCase().includes(this.songTxt.toLowerCase());
 				});
 				console.log('@@@@@@@@@@@@@@@@@@22: ',res);
@@ -120,6 +127,7 @@ export default {
 			this.$emit("emitRemoveSong", songId);
 		},
 		setIsPlaying() {
+			
 			this.$store.commit({
 				type: "nowPlaying",
 				isPlaying: this.isPlaying,
