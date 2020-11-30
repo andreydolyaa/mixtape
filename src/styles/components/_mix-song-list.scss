@@ -47,7 +47,12 @@
                 gap: 16px;
                 flex-direction: column;
                 width: 100%;
-                
+                max-height: 310px;
+                overflow: scroll;
+                overflow-x: hidden;
+                padding: 0 30px 0 0px;
+
+                @include niceScrollBar(5px , #be1e2d);
 
                 li.songs-details {
                     width: 100%;

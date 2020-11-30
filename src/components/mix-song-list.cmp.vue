@@ -20,7 +20,7 @@
 			</div>
 				<mix-social /> 
 		</div>
-		<ul v-if="mix">
+		<ul v-if="mix" class="songsUl">
 			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag">
 				<li class="songs-details-main flex" v-for="(song,index) in filterBySong" :key="song.id">
 					<div class="songs-details">
