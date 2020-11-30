@@ -1,47 +1,79 @@
-
 <template>
-  <section class="chat-room flex column grow space-between">
-    <div class="chat-msgs">
-      <ul class="clean-list" v-for="(msg, idx) in msgs" :key="idx">
-        <li class="msg-text">{{ msg.txt }}</li>
-      </ul>
-    </div>
-    <form>
-      <div class="user-msg flex">
-        <el-input type="text" v-model="msg.txt" placeholder="Send a message" />
-        <button class="btn send-msg" @click.prevent.stop="onSendMsg(msg)">
-          <img src="https://res.cloudinary.com/hw-projects/image/upload/v1606416732/appmixes/send-messege_s_red_my4iaj.png"/>
-        </button>
-      </div>
-    </form>
-  </section>
+    <section>
+        <div class="chat-app">
+            <h2>chat app</h2>
+            <div class="chat-msgs">
+                <ul>
+                    <li v-for="(msgz,idx) in msgsHistory" :key="idx + msgz">
+                        <p>{{msgz.name}}: {{msgz.txt}}</p>
+                    </li>
+                    <li v-for="(msgz,idx) in msgs" :key="idx">
+                        <p>{{msgz.name}}: {{msgz.txt}}</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="chat-form">
+            {{room}}
+            <p v-if="isTyping">Someone typing...</p>
+                <form @submit.prevent="sendMsg">
+                    <input type="text" v-model="msg.txt" @keydown="isTypingNow" @keyup="isNotTypingNow"/>
+                    <button>SEND</button>
+                </form>
+            </div>
+        </div>
+    </section>
 </template>
-
 <script>
+import socketService from '@/services/socketService.js';
 export default {
-  props: {
-    msgs: {
-      type: Array
+    props:{
+        mixId:String
     },
-
-  },
-  data() {
-    return {
-      msg: { from: '', txt: '' },
+    data() {
+        return {
+            msg: {name:'You',txt:''},
+            msgsHistory:[],
+            msgs: [],
+            room:this.mixId,
+            isTyping:false
+        };
+    },
+    methods: {
+        sendMsg(){
+            SocketService.emit('send message',{msg:this.msg,roomId:this.room});
+            this.msg.txt = '';
+        },
+        isTypingNow(){
+            SocketService.emit('is typing',this.isTyping)
+            this.isTyping = true;
+        },
+        isNotTypingNow(){
+            SocketService.emit('is not typing',this.isTyping)
+            this.isTyping = false;
+        }
+    },
+    created() {
+      console.log('this.room', this.room);
+        SocketService.setup();
+        SocketService.emit('join room',this.room);
+        SocketService.on('chat message',message => {
+            this.msgs.push(message)
+        })
+        SocketService.on('type msg',isTyping => {
+                this.isTyping = true;
+        })
+        SocketService.on('stop type msg',isTyping => {
+            this.isTyping = false;
+        })
+        SocketService.on('message history' , messages => {
+            messages.filter(msg => {
+                if( msg.roomId === this.mixId){
+                    this.msgsHistory.push(msg.msg);
+                }
+            })
+        })
     }
-  },
-  methods: {
-    // onSendMsg(msg) {
-    //   msg = JSON.parse(JSON.stringify(msg))
-    //   this.$store.dispatch({
-    //     type: "sendMsg",
-    //     msg,
-    //   });
-    //   this.msg = { from: '', txt: '' }
-    // },
-  },
-}
+};
 </script>
-
 <style>
 </style>
