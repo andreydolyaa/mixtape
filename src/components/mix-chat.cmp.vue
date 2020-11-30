@@ -40,32 +40,32 @@ export default {
     },
     methods: {
         sendMsg(){
-            SocketService.emit('send message',{msg:this.msg,roomId:this.room});
+            socketService.emit('send message',{msg:this.msg,roomId:this.room});
             this.msg.txt = '';
         },
         isTypingNow(){
-            SocketService.emit('is typing',this.isTyping)
+            socketService.emit('is typing',this.isTyping)
             this.isTyping = true;
         },
         isNotTypingNow(){
-            SocketService.emit('is not typing',this.isTyping)
+            socketService.emit('is not typing',this.isTyping)
             this.isTyping = false;
         }
     },
     created() {
       console.log('this.room', this.room);
-        SocketService.setup();
-        SocketService.emit('join room',this.room);
-        SocketService.on('chat message',message => {
+        socketService.setup();
+        socketService.emit('join room',this.room);
+        socketService.on('chat message',message => {
             this.msgs.push(message)
         })
-        SocketService.on('type msg',isTyping => {
+        socketService.on('type msg',isTyping => {
                 this.isTyping = true;
         })
-        SocketService.on('stop type msg',isTyping => {
+        socketService.on('stop type msg',isTyping => {
             this.isTyping = false;
         })
-        SocketService.on('message history' , messages => {
+        socketService.on('message history' , messages => {
             messages.filter(msg => {
                 if( msg.roomId === this.mixId){
                     this.msgsHistory.push(msg.msg);
