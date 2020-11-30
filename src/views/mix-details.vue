@@ -167,11 +167,10 @@ export default {
     },
     mix() {
       if (this.$store.getters.getMix) {
-      var count = 0;
-      var songIdx;
         this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
 
-        this.currMix.songs[0].isPlaying = true;
+        // this.currMix.songs[0].isPlaying = true;
+        this.startSongOnPreview();
      
         return this.$store.getters.getMix;
       } else {
@@ -189,6 +188,21 @@ export default {
     },
   },
   methods: {
+    startSongOnPreview(){
+      if(!this.currSongPlaying){
+        this.currMix.songs.forEach(song => song.isPlaying = false)
+        this.currMix.songs[0].isPlaying = true
+        this.$store.commit({type: "setCurrSong",song:this.currMix.songs[0]});
+      }else{
+        // var currSongId = this.currMix.songs.find(song => song.id === this.currSongPlaying.id);
+        this.currMix.songs.forEach(song => song.isPlaying = false)
+        this.currMix.songs.forEach(song => {
+          if(song.id === this.currSongPlaying.id){
+            song.isPlaying = true;
+          }
+        })
+      }
+    },
     changeSongPos(songNewPos) {
       var lastSong = this.currMix.songs.length
       if (songNewPos.songIdx === 0 && songNewPos.diff === -1) return
