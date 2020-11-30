@@ -16,12 +16,18 @@
     span{
         i.fas {
             color:$primary-color;
-            font-size: 22px;
+            font-size: 25px;
             padding: 0 10px;
         }
     }
 
     .el-input input::placeholder{
         color: white;
+    }
+    .el-input input:hover{
+        border-bottom: 2px solid $primary-color;
+    }
+    .el-input input:focus{
+        border-bottom: 2px solid $primary-color;
     }
 }

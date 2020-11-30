@@ -13,7 +13,9 @@
                     justify-content: start;
                     gap: 10px;
                 
-                
+                i{
+                    font-size: 25px;
+                }
                     .search-song{
                         margin-bottom: 20px;
                         min-width: 320px;
@@ -29,10 +31,7 @@
                             color: white;
                             border-style: none;
                             border-bottom: 2px solid $primary-color;
-    
-                            input{
-    
-                            }
+                            font-size: 1.1em;
                         }
                     }
         
