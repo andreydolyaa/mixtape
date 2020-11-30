@@ -162,22 +162,25 @@ export default {
     }
   },
   computed: {
+    currSongPlaying(){
+      return this.$store.getters.getCurrSongPlaying;
+    },
     mix() {
       if (this.$store.getters.getMix) {
       var count = 0;
       var songIdx;
         this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
-        this.currMix.songs.forEach((song,idx) => {
-          if(!song.isPlaying) count +=1;
-          else if(song.isPlaying) songIdx = idx;
-        })
-        if(count === 0){
-          this.currMix.songs[0].isPlaying = true;
-        }else{
-          this.currMix.songs[songIdx].isPlaying = true;
-        }
-        
-// this.currMix.songs[0].isPlaying = true;
+        // this.currMix.songs.forEach(song => {
+        //   if(song.isPlaying) return
+        // })
+        // if(!this.currSongPlaying.isPlaying){
+          if(this.currSongPlaying){
+            var idx = this.currMix.songs.findIndex(song => song.id === this.currSongPlaying.id);
+            this.currMix.songs[idx].isPlaying = true;
+            }else{
+            this.currMix.songs[0].isPlaying = true;
+          }
+        // }       
         return this.$store.getters.getMix;
       } else {
         this.currMix = this.newMix;

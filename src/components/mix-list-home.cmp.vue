@@ -47,6 +47,9 @@ export default {
 		};
 	},
 	computed: {
+		currSongPlaying(){
+      		return this.$store.getters.getCurrSongPlaying;
+    	},
 		mixes() {
 			var mixes = this.$store.getters.getMixesForDisplay;
 			if (!mixes) return;
@@ -73,15 +76,18 @@ export default {
 		},
 		startMusic(mix){
 			// this.$store.commit({ type: "setMix", mix });
-			
-			var autoPlaySong = mix.songs[0];
-			this.$store.commit({
-				type: "setCurrSong",
-				song: autoPlaySong,
-			});
-			this.$store.commit({
-				type: "startSongPlaying",
-	  });
+			if(this.currSongPlaying){
+				return
+			}else{
+				var autoPlaySong = mix.songs[0];
+				this.$store.commit({
+					type: "setCurrSong",
+					song: autoPlaySong,
+				});
+				this.$store.commit({
+					type: "startSongPlaying",
+		  });
+			}
 		}
 	},
 	components: {
