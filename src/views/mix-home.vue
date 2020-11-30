@@ -2,7 +2,9 @@
 	<section>
 		<div class="mix-home">
 			<mixHero v-on:refName="scrollMeTo"  />
-			<div class="top-mixes">
+			
+			<div class="top-mixes container">
+				<h2> Top Mixes </h2>
 				<ul>
 					<li v-for="(mix, index) in topMixes" :key="mix._id" >
 						<mix-preview :mix="mix" />
