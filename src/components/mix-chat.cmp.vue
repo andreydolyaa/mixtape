@@ -24,56 +24,52 @@
 <script>
 import socketService from "@/services/socketService.js";
 export default {
-	props: {
-		mix: Object,
-	},
-	data() {
-		return {
-			msg: { name: "You", txt: "" },
-			msgsHistory: [],
-			msgs: [],
-			room: this.mix._id,
-			isTyping: false,
-		};
-	},
-	methods: {
-		sendMsg() {
-			socketService.emit("send message", {
-				msg: this.msg,
-				roomId: this.room,
-			});
-			this.msg.txt = "";
-		},
-		isTypingNow() {
-			socketService.emit("is typing", this.isTyping);
-			this.isTyping = true;
-		},
-		isNotTypingNow() {
-			socketService.emit("is not typing", this.isTyping);
-			this.isTyping = false;
-		},
-	},
-	created() {
-		console.log("this.mix", this.mix);
-		socketService.setup();
-		socketService.emit("join room", this.room);
-		socketService.on("chat message", (message) => {
-			this.msgs.push(message);
-		});
-		socketService.on("type msg", (isTyping) => {
-			this.isTyping = true;
-		});
-		socketService.on("stop type msg", (isTyping) => {
-			this.isTyping = false;
-		});
-		socketService.on("message history", (messages) => {
-			messages.filter((msg) => {
-				if (msg.roomId === this.mixId) {
-					this.msgsHistory.push(msg.msg);
-				}
-			});
-		});
-	},
+    props:{
+        mixId:String
+    },
+    data() {
+        return {
+            msg: {name:'Me',txt:''},
+            msgsHistory:[],
+            msgs: [],
+            room:this.mixId,
+            isTyping:false
+        };
+    },
+    methods: {
+        sendMsg(){
+            socketService.emit('send message',{msg:this.msg,roomId:this.room});
+            this.msg.txt = '';
+        },
+        isTypingNow(){
+            socketService.emit('is typing',this.isTyping)
+            this.isTyping = true;
+        },
+        isNotTypingNow(){
+            socketService.emit('is not typing',this.isTyping)
+            this.isTyping = false;
+        }
+    },
+    created() {
+        socketService.setup();
+        socketService.emit('join room',this.room);
+        socketService.on('chat message',message => {
+            this.msgs.push(message)
+        })
+        socketService.on('type msg',isTyping => {
+                this.isTyping = true;
+        })
+        socketService.on('stop type msg',isTyping => {
+            this.isTyping = false;
+        })
+        socketService.on('message history' , messages => {
+            messages.filter(msg => {
+                if( msg.roomId === this.mixId){
+                    this.msgsHistory.push(msg.msg);
+                }
+            })
+        })
+    },
 };
 </script>
 <style>
