@@ -71,13 +71,16 @@
                 selectType
               />
             </div>
-            <div class="mix-views">
-              <h4>{{ currMix.views }}</h4>
-            </div>
-            <div class="like">
-              <div class="like-song">
-                <span class="likes-count">{{ currMix.likes }}</span>
-                <i @click="addLike" :class="heartMode" class="far fa-heart"></i>
+            <div class="stats">
+              <div class="mix-views">
+                <h4>{{ currMix.views }}</h4>
+                <i class="fas fa-eye"></i>
+              </div>
+              <div class="mix-like">
+                <div class="like-song">
+                  <span class="likes-count">{{ currMix.likes }}</span>
+                  <i @click="addLike" :class="heartMode" class="far fa-heart"></i>
+                </div>
               </div>
             </div>
           </section>
@@ -90,16 +93,18 @@
           <section class="general-info"></section>
         </section>
       </section>
-      <mix-social /> 
-       <!-- v-if="currMix.songs" -->
-      <div class="songs">
-        <mix-song-list 
-          :songs="currMix.songs"
-          :mix="currMix"
-          @emitRemoveSong="removeSongFromMix"
-          @emitSongPos="changeSongPos"
-          @updateMix="saveChange"
-        />
+      <div class="search-and-social">
+          <!-- v-if="currMix.songs" -->
+          <div class="songs">
+            <mix-song-list 
+              :songs="currMix.songs"
+              :mix="currMix"
+              @emitRemoveSong="removeSongFromMix"
+              @emitSongPos="changeSongPos"
+              @updateMix="saveChange"
+            />
+          </div>
+          
       </div>
     </div>
   </section>

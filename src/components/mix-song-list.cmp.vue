@@ -3,19 +3,22 @@
 		<!-- <draggable v-model="myArray" group="people" @start="drag=true" @end="drag=false">
    				<div v-for="element in myArray" :key="element.id">{{element.name}}</div>
 		</draggable> -->
-		<div v-if="mix">
-			<i @click="openInputApi" class="fas fa-plus-circle"></i>
-			<i @click="openInputSearch" class="fas fa-search"></i>
-			<mixApiSearch v-if="isAdd" />
-				<div class="search-song" v-if="!isAdd">
-					<el-input
-       					 type="text"
-       					 placeholder="Search song in mix..."
-  		     			 v-model="songTxt"
-  		     			 @input="filterBySong"
-  		     			 clearable>
-					</el-input>
-  				</div>
+		<div class="search-song-and-social-container" v-if="mix">
+			<div class="search-and-add">
+				<i @click="openInputApi" class="fas fa-plus-circle"></i>
+				<i @click="openInputSearch" class="fas fa-search"></i>
+				<mixApiSearch v-if="isAdd" />
+					<div class="search-song" v-if="!isAdd">
+						<el-input
+							type="text"
+							placeholder="Search song in mix..."
+							v-model="songTxt"
+							@input="filterBySong"
+							clearable>
+						</el-input>
+				</div>
+			</div>
+				<mix-social /> 
 		</div>
 		<ul v-if="mix">
 			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag">
@@ -53,6 +56,7 @@ import { mixService } from "@/services/mixService.js";
 import {eventBus} from '@/main.js';
 import draggable from 'vuedraggable'
 import mixApiSearch from "@/components/mix-api-search.cmp.vue";
+import mixSocial from '@/components/social-mix.cmp.vue'
 
 export default {
 	name: "mix-song-list",
@@ -148,7 +152,8 @@ export default {
 	},
 	components:{
 		mixApiSearch,
-		draggable
+		draggable,
+		mixSocial
 	},
 };
 </script>
