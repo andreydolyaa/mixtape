@@ -17,7 +17,8 @@
 
 			<ul class="ul-mixes">
 				<li class="mix" v-for="mix in mixes" :key="mix._id" >
-					<mix-preview :mix="mix" @click.native="startSong(mix)"/>
+					<mix-preview :mix="mix" />
+					<!-- <button @click="startSong(mix)">play</button> -->
 					
 				</li>
 			</ul>
@@ -64,24 +65,24 @@ export default {
 		},
 	},
 	methods: {
-		startSong(mix){
-			this.$store.commit({ type: "setMix", mix });
-			var autoPlaySong = mix.songs[0];
-			this.$store.commit({
-				type: "setCurrSong",
-				song: autoPlaySong,
-			});
-			this.$store.commit({
-				type: "startSongPlaying",
-			});
-			var updatedMix = JSON.parse(JSON.stringify(mix));
-			updatedMix.songs[0].isPlaying = true;
-			console.log("@@@: ", updatedMix);
-			this.$store.dispatch({
-				type: "saveMix",
-				mix: updatedMix,
-			});
-		},
+		// startSong(mix){
+		// 	this.$store.commit({ type: "setMix", mix });
+		// 	var autoPlaySong = mix.songs[0];
+		// 	this.$store.commit({
+		// 		type: "setCurrSong",
+		// 		song: autoPlaySong,
+		// 	});
+		// 	this.$store.commit({
+		// 		type: "startSongPlaying",
+		// 	});
+		// 	var updatedMix = JSON.parse(JSON.stringify(mix));
+		// 	updatedMix.songs[0].isPlaying = true;
+		// 	console.log("@@@: ", updatedMix);
+		// 	this.$store.dispatch({
+		// 		type: "saveMix",
+		// 		mix: updatedMix,
+		// 	});
+		// },
 		showList(genre) {
 			this.$store.commit({ type: "setGenre", genre });
 			//this.genre = genre
