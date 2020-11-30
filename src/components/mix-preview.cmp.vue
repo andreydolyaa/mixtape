@@ -1,6 +1,7 @@
 <template>
   <section v-if="mix" class="details">
-    <div class="mix shadow" v-on:click="onMixView(mix._id);startSong()">
+    <div class="mix shadow" v-on:click="onMixView(mix._id)">
+      
       <!-- <pre>{{checkTitleLang}}</pre> -->
       <img :src="mix.imgUrl" />
       <img
@@ -11,7 +12,6 @@
         <span class="mix-views">{{ mix.views }} <i class="fas fa-eye"></i></span>
         <span class="mix-likes">{{ mix.likes }} <i class="fas fa-heart"></i></span>
     </div> -->
-
     <div class="info">
       <span class="mix-name"  :class="checkLang">{{ mix.name }}</span>
        <!-- <span class="mix-views">{{ mix.views }} <i class="fas fa-eye"></i></span> -->
@@ -32,7 +32,6 @@ export default {
   },
   methods: {
     onMixView(mixId) {
-      //console.log('mixId',mixId)
       this.$router.push(`/mix/details/${mixId}`)
     },
     playMixFromPreview(){
@@ -49,27 +48,7 @@ export default {
       // var newMix = JASON.prase(JASON.stringify(this.mix.songs[0].isPlaying = true));
       // console.log('NEW MIXXXXXXXXXXXX: ', newMix);
       // this.$store.dispatch({type:'saveMix',mix:newMix});
-    },
-    startSong(){
-			this.$store.commit({ type: "setMix", mix:this.mix });
-			var autoPlaySong = this.mix.songs[0];
-			this.$store.commit({
-				type: "setCurrSong",
-				song: autoPlaySong,
-			});
-			this.$store.commit({
-				type: "startSongPlaying",
-			});
-			var updatedMix = JSON.parse(JSON.stringify(this.mix));
-			updatedMix.songs[0].isPlaying = true;
-			updatedMix.songs[0].title = 'Mac Miller - Good News 2010';
-			console.log("@@@: ", updatedMix);
-			this.$store.dispatch({
-				type: "saveMix",
-				mix: updatedMix,
-			});
-    }
-    
+    }, 
   },
   computed: {
     checkLang() {

@@ -91,12 +91,32 @@ export default {
 			this.$store.commit({
 				type: "stopSongPlaying",
 			});
+			var songId = this.getCurrSongPlaying.songUrlId;
+			const idx = this.currMix.songs.findIndex(
+				(song) => song.songUrlId === songId
+			);
+			var updatedMix = JSON.parse(JSON.stringify(this.currMix));
+			updatedMix.songs[idx].isPlaying = false;
+			this.$store.dispatch({
+				type: "saveMix",
+				mix: updatedMix
+			})
 		},
 		play() {
 			this.$refs.youtube.player.playVideo();
 			this.$store.commit({
 				type: "startSongPlaying",
 			});
+			var songId = this.getCurrSongPlaying.songUrlId;
+			const idx = this.currMix.songs.findIndex(
+				(song) => song.songUrlId === songId
+			);
+			var updatedMix = JSON.parse(JSON.stringify(this.currMix));
+			updatedMix.songs[idx].isPlaying = true;
+			this.$store.dispatch({
+				type: "saveMix",
+				mix: updatedMix
+			})
 		},
 		playing(event) {
 			this.totalTimeInput = Math.floor(event.getDuration());
@@ -139,6 +159,12 @@ export default {
 			this.$store.commit({
 				type: "startSongPlaying",
 			});
+			var updatedMix = JSON.parse(JSON.stringify(this.currMix));
+			updatedMix.songs[idx].isPlaying = false;
+			this.$store.dispatch({
+				type: "saveMix",
+				mix: updatedMix
+			})
 		},
 		async moveTo() {
 			await this.$refs.youtube.player.seekTo(this.currTimePlaying, true);
@@ -171,6 +197,12 @@ export default {
 				type: "setPrevSongNotPlaying",
 				songIdx: idx,
 			});
+			var updatedMix = JSON.parse(JSON.stringify(this.currMix));
+			updatedMix.songs[idx].isPlaying = false;
+			this.$store.dispatch({
+				type: "saveMix",
+				mix: updatedMix
+			})
 		},
 		mute() {
 			this.isMuted = true;
@@ -189,7 +221,13 @@ export default {
 			this.play();
 		});
 		eventBus.$on("play-music", () => {	
-			this.play();
+			// var updatedMix = JSON.parse(JSON.stringify(this.mix));
+			// updatedMix.songs[0].isPlaying = true;
+			// console.log("@@@: ", updatedMix);
+			// this.$store.dispatch({
+			// 	type: "saveMix",
+			// 	mix: updatedMix
+			// })
 		});
 	},
 };

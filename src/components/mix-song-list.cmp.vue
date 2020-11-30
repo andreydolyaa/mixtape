@@ -24,7 +24,7 @@
 			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag">
 				<li class="songs-details-main flex" v-for="(song,index) in filterBySong" :key="song.id">
 					<div class="songs-details">
-						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,mixCopy.songs)">
+						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,filterBySong)">
 							<i class="far fa-play-circle"></i>
 						</button>
 						<button v-else @click="pauseSong(song);">
@@ -32,6 +32,7 @@
 						</button>
 						<img :src="song.imgUrl" />
 						<p :class="song.isPlaying  ? 'highlight-color' : 'default-color'">{{ song.title }}</p>
+						{{song.isPlaying}}
 						<span>{{ song.duration }}</span>
 					</div>
 					<div class="sort-songs-buttons">
@@ -89,9 +90,13 @@ export default {
 			return this.$store.getters.getMix;
 		},
 		filterBySong() {
+			if(!this.songTxt){
+				return this.mix.songs
+			}
 				var res = this.mix.songs.filter((song) => {
 					return song.title.toLowerCase().includes(this.songTxt.toLowerCase());
 				});
+				console.log('@@@@@@@@@@@@@@@@@@22: ',res);
 				return res;
 		},
 		isSongPlaying(){
@@ -123,21 +128,57 @@ export default {
 			});
 		},
 		startSongPlaying(song, songs) {
-			eventBus.$emit("resume-music");
 			this.$store.commit({
-				type: "stopAllPlaying",
+				type: "setCurrSong",
 				song,
-				songs,
 			});
-			this.$store.commit({
-				type: "startSongPlaying",
-			});
+			eventBus.$emit("resume-music");
+			// this.$store.commit({
+			// 	type: "stopAllPlaying",
+			// 	song,
+			// 	songs,
+			// });
+			// this.$store.commit({
+			// 	type: "startSongPlaying",
+			// });
+			// var songId = this.currSongPlaying.songUrlId;
+			// const idx = this.getMix.songs.findIndex(
+			// 	(song) => song.songUrlId === songId
+			// );
+			// var updatedMix = JSON.parse(JSON.stringify(this.getMix));
+			// updatedMix.songs[idx].isPlaying = true;
+			// this.$store.dispatch({
+			// 	type: "saveMix",
+			// 	mix: updatedMix
+			// })
+			var songs = JSON.parse(JSON.stringify(this.getMix))
+			var songId = this.currSongPlaying.songUrlId;
+			const idx = this.getMix.songs.findIndex(
+				(song) => song.songUrlId === songId
+			);
+			songs.songs.forEach(song => song.isPlaying = false);
+			songs.songs[idx].isPlaying = true;
+			this.$store.dispatch({
+				type: "saveMix",
+				mix: songs
+			})
+
 		},
 		pauseSong(song) {
 			eventBus.$emit("pause-music");
 			this.$store.commit({
 				type:'stopSongPlaying',
 				song
+			})
+			var songId = this.currSongPlaying.songUrlId;
+			const idx = this.getMix.songs.findIndex(
+				(song) => song.songUrlId === songId
+			);
+			var updatedMix = JSON.parse(JSON.stringify(this.getMix));
+			updatedMix.songs[idx].isPlaying = false;
+			this.$store.dispatch({
+				type: "saveMix",
+				mix: updatedMix
 			})
 		},
 		openInputApi(){
@@ -148,7 +189,17 @@ export default {
 		},
 	},
 	created() {
-		eventBus.$emit('play-music');
+		eventBus.$on('play-music',()=>{
+		// 	var updatedMix = JSON.parse(JSON.stringify(this.mix));
+		// 	updatedMix.songs[0].isPlaying = true;
+		// 	console.log("@@@: ", updatedMix);
+
+		// 	this.$store.dispatch({
+		// 		type: "saveMix",
+		// 		mix: updatedMix,
+		// })
+		})
+		
 	},
 	components:{
 		mixApiSearch,

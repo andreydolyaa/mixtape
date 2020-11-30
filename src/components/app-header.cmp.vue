@@ -31,7 +31,6 @@ export default {
   computed: {
     isPlaying() {
       var currSong = this.$store.getters.getCurrSongIsPlaying;
-      console.log('currSong',currSong)
       //return currSong
       return currSong ? 'logo-playing' : 'logo-stop'
     },
