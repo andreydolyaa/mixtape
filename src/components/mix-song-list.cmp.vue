@@ -87,7 +87,6 @@ export default {
 			var mix = this.$store.getters.getMix;
 			if(!mix) return
 			this.mixCopy = JSON.parse(JSON.stringify(mix));
-			console.log('this.mixCopy.songs',this.mixCopy.songs)
 			return this.mixCopy;
 		},
 		isNowPlaying() {
@@ -145,24 +144,6 @@ export default {
 				song,
 			});
 			eventBus.$emit("resume-music");
-			// this.$store.commit({
-			// 	type: "stopAllPlaying",
-			// 	song,
-			// 	songs,
-			// });
-			// this.$store.commit({
-			// 	type: "startSongPlaying",
-			// });
-			// var songId = this.currSongPlaying.songUrlId;
-			// const idx = this.getMix.songs.findIndex(
-			// 	(song) => song.songUrlId === songId
-			// );
-			// var updatedMix = JSON.parse(JSON.stringify(this.getMix));
-			// updatedMix.songs[idx].isPlaying = true;
-			// this.$store.dispatch({
-			// 	type: "saveMix",
-			// 	mix: updatedMix
-			// })
 			var songs = JSON.parse(JSON.stringify(this.getMix))
 			var songId = this.currSongPlaying.songUrlId;
 			const idx = this.getMix.songs.findIndex(
@@ -201,16 +182,9 @@ export default {
 		},
 	},
 	created() {
-		eventBus.$on('play-music',()=>{
-		// 	var updatedMix = JSON.parse(JSON.stringify(this.mix));
-		// 	updatedMix.songs[0].isPlaying = true;
-		// 	console.log("@@@: ", updatedMix);
+		// eventBus.$on('reset-icons',()=>{
 
-		// 	this.$store.dispatch({
-		// 		type: "saveMix",
-		// 		mix: updatedMix,
 		// })
-		})
 		
 	},
 	components:{
