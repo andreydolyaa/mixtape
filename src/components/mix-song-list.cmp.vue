@@ -17,12 +17,11 @@
 					</el-input>
   				</div>
 		</div>
-		{{currSongPlaying}}
 		<ul v-if="mix">
 			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag">
 				<li class="songs-details-main flex" v-for="(song,index) in filterBySong" :key="song.id">
 					<div class="songs-details">
-						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,mixCopy.songs);">
+						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,mixCopy.songs)">
 							<i class="far fa-play-circle"></i>
 						</button>
 						<button v-else @click="pauseSong(song);">
@@ -63,15 +62,9 @@ export default {
 	},
 	data() {
 		return {
-			autoPlay:false,
 			songId: null,
 			isAdd: false,
 			isPlaying: false,
-			playerVars: {
-				autoplay: 1,
-				//origin: window.location.origin, // or http(S)://your.domain.com
-				origin: "http://localhost:8080/",
-			},
 			mixCopy: null,
 			songTxt: "",
 		};
@@ -148,10 +141,10 @@ export default {
 		},
 		openInputSearch(){
 			this.isAdd = false;
-		}
+		},
 	},
 	created() {
-		
+		eventBus.$emit('play-music');
 	},
 	components:{
 		mixApiSearch,
