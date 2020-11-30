@@ -34,9 +34,9 @@
 							<i class="far fa-pause-circle"></i>
 						</button>					
 						<img :src="song.imgUrl" />						
-						<div>	{{song.isPlaying}} </div>
+						
 						<p :class="song.isPlaying  ? 'highlight-color' : 'default-color'">{{ song.title }}</p>
-						{{song.isPlaying}}
+						
 						<span>{{ song.duration }}</span>
 					</div>
 					<!-- <div v-if="song.isPlaying" class="img-equalizer">
