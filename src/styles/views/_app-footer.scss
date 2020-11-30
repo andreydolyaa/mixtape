@@ -1,6 +1,27 @@
 
 
 .app-footer{
+    border-top: 1px solid #ffffff30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    margin-top: 60px;
+    margin-bottom: 90px;
+    gap: 20px;
+    
+    .logo{
+
+        img{
+            width: 60px;
+            height: auto;
+        }
+    }
+
+    h2{
+        color: $white-color;
+        font-size: 1em;
+    }
     // background-color: rgb(32, 34, 36);
     // padding:1rem;
     // position: fixed;

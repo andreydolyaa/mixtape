@@ -20,17 +20,21 @@
 			</div>
 				<mix-social /> 
 		</div>
-		<ul v-if="mix" class="songsUl">
+		<ul v-if="mix" class="songsUl">	
 			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag">
+
 				<li class="songs-details-main flex" v-for="(song,index) in filterBySong" :key="song.id">
+				<!-- <div>	{{song}} </div> -->
+				<!-- <div>	{{currSongPlaying}} </div> -->
 					<div class="songs-details">
 						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,mixCopy.songs)">
 							<i class="far fa-play-circle"></i>
 						</button>
 						<button v-else @click="pauseSong(song);">
 							<i class="far fa-pause-circle"></i>
-						</button>
-						<img :src="song.imgUrl" />
+						</button>					
+						<img :src="song.imgUrl" />						
+						<div>	{{song.isPlaying}} </div>
 						<p :class="song.isPlaying  ? 'highlight-color' : 'default-color'">{{ song.title }}</p>
 						<span>{{ song.duration }}</span>
 					</div>
@@ -76,7 +80,9 @@ export default {
 	computed: {
 		mix() {
 			var mix = this.$store.getters.getMix;
+			if(!mix) return
 			this.mixCopy = JSON.parse(JSON.stringify(mix));
+			console.log('this.mixCopy.songs',this.mixCopy.songs)
 			return this.mixCopy;
 		},
 		isNowPlaying() {
@@ -90,6 +96,7 @@ export default {
 		},
 		filterBySong() {
 				var res = this.mix.songs.filter((song) => {
+					//console.log('song',song.isPlaying)
 					return song.title.toLowerCase().includes(this.songTxt.toLowerCase());
 				});
 				return res;
@@ -111,6 +118,7 @@ export default {
 			this.$emit("emitRemoveSong", songId);
 		},
 		setIsPlaying() {
+			
 			this.$store.commit({
 				type: "nowPlaying",
 				isPlaying: this.isPlaying,
@@ -123,7 +131,6 @@ export default {
 			});
 		},
 		startSongPlaying(song, songs) {
-			eventBus.$emit("resume-music");
 			this.$store.commit({
 				type: "stopAllPlaying",
 				song,
@@ -131,6 +138,10 @@ export default {
 			});
 			this.$store.commit({
 				type: "startSongPlaying",
+			});
+			this.$store.dispatch({
+					type: "saveMix",
+					mix:this.mix
 			});
 		},
 		pauseSong(song) {

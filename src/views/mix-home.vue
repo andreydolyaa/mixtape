@@ -9,14 +9,15 @@
 					</li>
 				</ul> 
 			</div>
-    		<ul class="mix-list-home-container" ref="mix-list-home-container" v-if="geners"> 
+    		<ul class="mixes-list-ul" ref="mix-list-home-container" v-if="geners"> 
 			   <!-- <h2> Mixes </h2> class="mix-list-home" -->
-                <li  v-for="(item, index) in geners" :key="item" > 
+                <li class="mixes-list-li" v-for="(item, index) in geners" :key="item" > 
                    	<mix-list-Home v-bind:genre="geners[index]"/>
                 </li>
             </ul> 
 
 		</div>
+		<mix-footer/>
 	</section>
 </template>
  
@@ -26,6 +27,7 @@ import mixHero from '../components/mix-hero.cmp.vue'
 import mixVideo from '../components/mix-video-player.cmp.vue'
 import globalPlayer from '@/components/global-player.cmp.vue';
 import mixPreview from "../components/mix-preview.cmp.vue";
+import mixFooter from "../components/app-footer.cmp.vue";
 
 export default {
 	name:'mix-home',
@@ -39,7 +41,8 @@ export default {
 		mixListHome,
 		mixVideo,
 		globalPlayer,
-		mixPreview
+		mixPreview,
+		mixFooter
   },
   computed : {
 	  geners(){

@@ -17,8 +17,8 @@
 
 			<ul class="ul-mixes">
 				<li class="mix" v-for="mix in mixes" :key="mix._id" >
-					<mix-preview :mix="mix" @click.native="startSong(mix)"/>
-					
+					<mix-preview :mix="mix" />
+					<!-- @click.native="startSong(mix)" -->
 				</li>
 			</ul>
 		</div>
