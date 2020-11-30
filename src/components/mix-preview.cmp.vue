@@ -18,10 +18,13 @@
         <span class="mix-likes">{{ mix.likes }} <i class="fas fa-heart"></i></span>
     </div>
     </div>
+    
+        <!-- <button class="preview-play-btn" @click="playMixFromPreview"><i class="fas fa-play"></i></button> -->
   </section>
 </template>
  
 <script>
+import { eventBus } from "@/main.js";
 export default {
   name: 'mix-preview',
   props: {
@@ -32,6 +35,23 @@ export default {
       //console.log('mixId',mixId)
       this.$router.push(`/mix/details/${mixId}`)
     },
+    playMixFromPreview(){
+      // this.$store.commit({ type: 'setMix', mix:this.mix })
+      // var autoPlaySong = this.mix.songs[0];
+      // this.$store.commit({
+			// 	type: "setCurrSong",
+			// 	song: autoPlaySong,
+      // });
+      // eventBus.$emit('play-music');
+      // this.$store.commit({
+			// 	type: "startSongPlaying",
+      // });
+      // var newMix = JASON.prase(JASON.stringify(this.mix.songs[0].isPlaying = true));
+      // console.log('NEW MIXXXXXXXXXXXX: ', newMix);
+      // this.$store.dispatch({type:'saveMix',mix:newMix});
+    },
+    
+    
   },
   computed: {
     checkLang() {

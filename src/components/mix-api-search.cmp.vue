@@ -8,9 +8,9 @@
 			<form @submit.prevent="getSearchResults()">
 			<el-input v-model="keyword" type="text" placeholder="Add song to mix..." clearable></el-input>
 			</form>
-			<button  @click="getSearchResults() ">
+			<span  @click="getSearchResults() ">
 				<i class="fas fa-search"></i>
-			</button>
+			</span>
 		</div>
 		<div v-if="searchResults">
 			<p>{{searchResults.title}}</p>

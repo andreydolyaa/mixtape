@@ -4,22 +4,24 @@
 
     input {
         min-width: 240px;
-    }
-
-    button{
-        i.fas {
-            color:$primary-color;;
-            font-size: 22px;
-            padding: 0 10px;
-        }
-    }
-    input{
+        background-color:inherit;
+        color: white;
+        border-style: none;
+        border-bottom: 2px solid $primary-color;
         font-size: 1.1em;
         font-weight: 700;
         letter-spacing: 2px;
     }
 
+    span{
+        i.fas {
+            color:$primary-color;
+            font-size: 22px;
+            padding: 0 10px;
+        }
+    }
+
     .el-input input::placeholder{
-        color: $black-color;
+        color: white;
     }
 }

@@ -1,5 +1,5 @@
 <template>
-	<section class="songs-list">
+	<section class="songs-list flex column">
 		<!-- <draggable v-model="myArray" group="people" @start="drag=true" @end="drag=false">
    				<div v-for="element in myArray" :key="element.id">{{element.name}}</div>
 		</draggable> -->
@@ -21,14 +21,14 @@
 			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag">
 				<li class="songs-details-main flex" v-for="(song,index) in filterBySong" :key="song.id">
 					<div class="songs-details">
-						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,mixCopy.songs);">
+						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,mixCopy.songs)">
 							<i class="far fa-play-circle"></i>
 						</button>
-						<button v-if="song.isPlaying" @click="pauseSong(song);">
+						<button v-else @click="pauseSong(song);">
 							<i class="far fa-pause-circle"></i>
 						</button>
 						<img :src="song.imgUrl" />
-						<p>{{ song.title }}</p>
+						<p :class="song.isPlaying  ? 'highlight-color' : 'default-color'">{{ song.title }}</p>
 						<span>{{ song.duration }}</span>
 					</div>
 					<div class="sort-songs-buttons">
@@ -65,11 +65,6 @@ export default {
 			songId: null,
 			isAdd: false,
 			isPlaying: false,
-			playerVars: {
-				autoplay: 1,
-				//origin: window.location.origin, // or http(S)://your.domain.com
-				origin: "http://localhost:8080/",
-			},
 			mixCopy: null,
 			songTxt: "",
 		};
@@ -95,12 +90,15 @@ export default {
 				});
 				return res;
 		},
+		isSongPlaying(){
+			return this.$store.getters.getCurrSongIsPlaying;
+		}
 	},
 	methods: {
 		stopDrag() {
 			this.$emit("updateMix", this.mixCopy);
-			this.$store.commit({ type: "resetIconsState" });
-			this.$store.commit({ type: "startSongPlaying" });
+			// this.$store.commit({ type: "resetIconsState" });
+			// this.$store.commit({ type: "startSongPlaying" });
 		},
 		emitSongPos(songIdx, diff) {
 			this.$emit("emitSongPos", { songIdx: songIdx, diff: diff });
@@ -143,10 +141,10 @@ export default {
 		},
 		openInputSearch(){
 			this.isAdd = false;
-		}
+		},
 	},
 	created() {
-		// console.log('mix data', this.mixes)
+		eventBus.$emit('play-music');
 	},
 	components:{
 		mixApiSearch,

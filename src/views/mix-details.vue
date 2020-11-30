@@ -93,7 +93,6 @@
       <mix-social /> 
        <!-- v-if="currMix.songs" -->
       <div class="songs">
-        {{currMix.songs}}
         <mix-song-list 
           :songs="currMix.songs"
           :mix="currMix"
@@ -243,6 +242,7 @@ export default {
           type: 'saveMix',
           mix: this.currMix
         })
+        
         // const el = this.$createElement;
         // this.$notify({
         //   message: el('i', { style: 'color: green' }, 'You liked the mix')
@@ -284,6 +284,7 @@ export default {
       await this.$store.dispatch({ type: "getMixById", mixId });
       this.updateViews();
     }
+    
   },
   mounted() {
   }
