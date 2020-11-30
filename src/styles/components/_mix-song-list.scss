@@ -22,16 +22,19 @@
                         display: flex;
                         justify-content: start;
         
-                        .el-input__inner::placeholder{
+                        input.el-input__inner::placeholder{
                             color:white;
                         }
                         input.el-input__inner{
                             width: 100%;
+                            font-weight: 700;
+                            letter-spacing: 2px;
                             background-color:inherit;
                             color: white;
                             border-style: none;
                             border-bottom: 2px solid $primary-color;
                             font-size: 1.1em;
+                            padding-left: 30px;
                         }
                     }
         
@@ -50,6 +53,7 @@
 
                 li.songs-details {
                     width: 100%;
+
                 }
                 
             }
