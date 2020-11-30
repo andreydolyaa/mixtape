@@ -4,7 +4,7 @@
     <!-- <h2>mix details </h2> -->
     <div class="mix-chat">
       <!-- <h2 class="title">Mix chat</h2> -->
-      <mix-chat :mix="currMix" />
+      <mix-chat :mixId="currMix._id" />
     </div>
     <div class="mix-full-info flex">
       <section class="header-mix-info flex">
