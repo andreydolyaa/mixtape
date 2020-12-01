@@ -4,7 +4,6 @@
             <ul class="ulMixes"> 
               <!--  -->
                 <li class="mix" v-for="mix in mixes" :key="mix._id" >
-                     <h2> POP </h2> 
                    	<mixListHome />
                 </li>
             </ul> 

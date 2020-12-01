@@ -4,7 +4,7 @@
       <!-- <button>shaffle</button> -->
       <div class="share-container flex">
         <div class="invite">
-          <p>invite a friend to join you:</p>
+          <!-- <p>invite a friend to join you:</p> -->
         </div>
         <div class="mix-social-nav flex space-evenly">
           <i class="fab fa-facebook-square"></i>

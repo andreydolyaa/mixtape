@@ -1,7 +1,7 @@
 <template>
   <el-carousel indicator-position="outside" :interval="24000" :autoplay="true">
 
-    <el-carousel-item v-for="item in imgs" > 
+    <el-carousel-item v-for="item in imgs" :key="item" > 
 <!-- <youtube :video-id="videoId" :player-vars="playerVars" @playing="playing"></youtube> -->
   
       <img class="left" v-bind:src="item"/>
@@ -16,12 +16,11 @@
       data(){
         return{
           imgs:[
-            'https://res.cloudinary.com/hw-projects/image/upload/v1606309302/appmixes/party001.jpg',
+            // 'https://res.cloudinary.com/hw-projects/image/upload/v1606309302/appmixes/party001.jpg',
             'https://res.cloudinary.com/hw-projects/image/upload/v1606309308/appmixes/party002.jpg',
-            'https://res.cloudinary.com/hw-projects/image/upload/v1606309300/appmixes/party003.jpg',
+            // 'https://res.cloudinary.com/hw-projects/image/upload/v1606309300/appmixes/party003.jpg',
          
          ],
-          // img:'party001.jpg'
         }
       },
       props:{

@@ -15,7 +15,7 @@ export default {
             return state.mixes;
         },
         getGenreToDisplay(state) {
-            return state.genre;
+            return state.gener;
         },
         getCurrSongPlaying(state) {
             return state.currSongPlaying;

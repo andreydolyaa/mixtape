@@ -24,6 +24,11 @@
     max-width: 1020px;
     width: 100%;
 
+    @include for-wide-layout {
+        flex-direction: column;
+        padding-left: 40px;
+    }
+
     .search-song-and-social{
         display: flex;
         justify-content: space-between;
@@ -42,10 +47,16 @@
 
     .header-mix-info{
         width: 100%;
-        flex-direction: row;
+        flex-direction: column;
         margin-bottom: 40px;
         text-align: left;
+        padding: 0 20px;
 
+        @include for-wide-layout {
+            flex-direction: row;
+            padding: 0 ;
+        }
+    
         .mix-img{
 
             img{
@@ -191,7 +202,7 @@
                     }
                     i{
                         font-size: 22px;
-                        color: $secondery-color;    
+                        color: $white-color;   
                     }
                 }
             }
@@ -205,6 +216,8 @@
             display: flex; 
             flex-direction: column;
             h5{
+                display: flex; 
+                flex-direction: row;
                 img{
                     width: 40px;
                     height: auto;
@@ -348,5 +361,6 @@
 
 div.el-input {
     width: 100% !important;
+    padding: 0 20px ;
 }
 

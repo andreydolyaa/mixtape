@@ -1,7 +1,7 @@
 <template>
   <section class="hero">
     <div class="hero-text-area" ref="baba">
-    <h2>Pick a mix and join the mixTape</h2>
+    <h2>Enjoy ,Create ,Share an asewome mixTape</h2>
     <div class="buttons">
       <a class="button start-listening" @click="emitScrollMeTo('mix-list-home-container')">Start listening</a>
       <a class="button create-playlist" @click="createNewPlaylist()">Create Playlist</a>

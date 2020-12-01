@@ -3,7 +3,8 @@
           <div>
             <el-input type="text" v-model="filterBySongName" placeholder="Search song..." clearable></el-input>    
           </div>
-           <nav class="mixes-nav">
+          <list-genres-carusselv />
+           <!-- <nav class="mixes-nav">
                 <ul class="mixes-nav-ul">
                     <li class="mix-link" v-on:click="onListSetFilter('funk')">Funk</li>
                     <li class="mix-link" v-on:click="onListSetFilter('pop')">Pop</li>
@@ -12,7 +13,7 @@
                     <li class="mix-link" v-on:click="onListSetFilter('israeli')">Israeli</li>
                     <li class="mix-link" v-on:click="onListSetFilter('Techno')">Trance</li>
                 </ul>            
-            </nav>
+            </nav> -->
             <ul class="ul-mixes"> 
                 <li class="mix" v-for="mix in mixes" :key="mix._id" > 
                   <!-- <pre>{{mix.genre}}</pre> -->
@@ -24,6 +25,8 @@
 
 <script>
 import mixPreview from '../components/mix-preview.cmp.vue';
+import listGenresCarusselv from './list-genres-carusselv.cmp.vue';
+
 
 export default {
     name:'mix-list',
@@ -60,8 +63,7 @@ export default {
             return res
         },
         getGenreToDisplay(){
-            //console.log('this.$store.getters.getGenre',this.$store.getters.getGenreToDisplay)
-            console.log('this.$store.getters.getGenreToDisplay',this.$store.getters.getGenreToDisplay)
+            //console.log('this.$store.getters.getGenreToDisplay',this.$store.getters.getGenreToDisplay)
             return this.$store.getters.getGenreToDisplay
         }
   },
@@ -79,7 +81,8 @@ export default {
       }, 
   },
   components: {
-    mixPreview
+    mixPreview,
+    listGenresCarusselv
   },
   created(){
     //console.log('mix data genre',this.getGenreToDisplay)

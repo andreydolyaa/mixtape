@@ -2,12 +2,6 @@
 <template>
   <section class="mix-details flex" v-if="mix">
     <!-- <h2>mix details </h2> -->
-    <div class="mix-chat">
-      <!-- <h2 class="title">Mix chat</h2> -->
-      
-      
-      <mix-chat :mixId="roomId" />
-    </div>
     <div class="mix-full-info flex">
       <section class="header-mix-info flex">
         <section class="mix-img flex start">
@@ -88,8 +82,8 @@
           </section>
           <section class="user-info">
             <h5>
-              Created by: <img :src="currMix.createdBy.imgUrl" />
-              {{ currMix.createdBy.fullName }}
+              <span>Created by: <img :src="currMix.createdBy.imgUrl" /></span>
+              <span>{{ currMix.createdBy.fullName }}</span>
             </h5>
           </section>
           <section class="general-info"></section>
@@ -108,6 +102,9 @@
           </div>
           
       </div>
+    </div>
+    <div class="mix-chat">
+      <mix-chat :mixId="roomId" />
     </div>
   </section>
 </template>
