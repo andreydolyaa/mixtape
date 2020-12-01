@@ -62,43 +62,9 @@ export default {
   },
   methods: {
     onMixView(mixId) {
-      //console.log('mixId',mixId)
-      // this.$store.commit({ type: "setMix", mix:this.mix });
-      
-      
-
-			// var autoPlaySong = this.mix.songs[0];
-			// this.$store.commit({
-			// 	type: "setCurrSong",
-			// 	song: autoPlaySong,
-			// });
-			// this.$store.commit({
-			// 	type: "startSongPlaying",
-			// });
-			// var updatedMix = JSON.parse(JSON.stringify(this.mix));
-			// updatedMix.songs[0].isPlaying = true;
-			// console.log("@@@: ", updatedMix);
-			// this.$store.dispatch({
-			// 	type: "saveMix",
-			// 	mix: updatedMix,
-			// });
-
       this.$router.push(`/mix/details/${mixId}`)
     },
     playMixFromPreview(){
-      // this.$store.commit({ type: 'setMix', mix:this.mix })
-      // var autoPlaySong = this.mix.songs[0];
-      // this.$store.commit({
-			// 	type: "setCurrSong",
-			// 	song: autoPlaySong,
-      // });
-      // eventBus.$emit('play-music');
-      // this.$store.commit({
-			// 	type: "startSongPlaying",
-      // });
-      // var newMix = JASON.prase(JASON.stringify(this.mix.songs[0].isPlaying = true));
-      // console.log('NEW MIXXXXXXXXXXXX: ', newMix);
-      // this.$store.dispatch({type:'saveMix',mix:newMix});
     }, 
   },
   created() {

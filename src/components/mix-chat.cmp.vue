@@ -13,11 +13,13 @@
 			</ul>
 		</div>
 		<div class="chat-form">
-            
-			{{ room }}
 			<p v-if="isTyping">Someone typing...</p>
 			<form @submit.prevent="sendMsg">
 				<input type="text" v-model="msg.txt" @keydown="isTypingNow" @keyup="isNotTypingNow" />
+                <select name="emojis" v-model="msg.txt">
+                    <option value="😎">😎</option>
+                    <option v-for="emoji in chatEmojis" :value="emoji" :key="emoji">{{emoji}}</option>
+                </select>
 				<button>SEND</button>
 			</form>
 		</div>
@@ -35,7 +37,8 @@ export default {
             msgsHistory:[],
             msgs: [],
             room:this.mixId,
-            isTyping:false
+            isTyping:false,
+            chatEmojis:['🤙','😎','👍','😂','👻','🕺','💃','🤩','🥳','👽','🤖']
         };
     },
     methods: {

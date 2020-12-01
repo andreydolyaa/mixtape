@@ -220,15 +220,6 @@ export default {
 		eventBus.$on("resume-music", () => {
 			this.play();
 		});
-		eventBus.$on("play-music", () => {	
-			// var updatedMix = JSON.parse(JSON.stringify(this.mix));
-			// updatedMix.songs[0].isPlaying = true;
-			// console.log("@@@: ", updatedMix);
-			// this.$store.dispatch({
-			// 	type: "saveMix",
-			// 	mix: updatedMix
-			// })
-		});
 	},
 };
 </script>
