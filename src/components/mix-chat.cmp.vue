@@ -1,17 +1,19 @@
 <template>
-	<section >
+	<section class="chat-app">
 		<h2>chat app</h2>
 		<div class="chat-msgs">
 			<ul>
 				<li v-for="(msgz, idx) in msgsHistory" :key="idx + msgz">
 					<p>{{ msgz.name }}: {{ msgz.txt }}</p>
 				</li>
+                
 				<li v-for="(msgz, idx) in msgs" :key="idx">
 					<p>{{ msgz.name }}: {{ msgz.txt }}</p>
 				</li>
 			</ul>
 		</div>
 		<div class="chat-form">
+            
 			{{ room }}
 			<p v-if="isTyping">Someone typing...</p>
 			<form @submit.prevent="sendMsg">
@@ -38,8 +40,8 @@ export default {
     },
     methods: {
         sendMsg(){
-          console.log('CHAT MSG SENT : ',this.msg);
             socketService.emit('send message',{msg:this.msg,roomId:this.room});
+          console.log('CHAT MSG SENT : ',this.msg);
             this.msg.txt = '';
         },
         isTypingNow(){

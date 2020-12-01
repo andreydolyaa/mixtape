@@ -15,7 +15,6 @@ export default {
             return state.mixes;
         },
         getGenreToDisplay(state) {
-            console.log('get state.genre', state.genre)
             return state.genre;
         },
         getCurrSongPlaying(state) {
@@ -97,13 +96,11 @@ export default {
     },
     actions: {
         async getTopMixes(context) {
-            console.log('getTopMixes')
             var mixes = await mixService.query();
             context.commit({ type: 'setSortedMixes', mixes });
         },
         async getMixById(context, { mixId }) {
             const mix = await mixService.getById(mixId);
-            // console.log('mix',mix);
             context.commit({ type: 'setMix', mix });
         },
         async loadMixes(context) {
@@ -119,8 +116,6 @@ export default {
         async saveMix(context, payload) {
             const mix = await mixService.update(payload.mix);
             context.commit({ type: 'setMix', mix })
-            // context.commit({type:'resetIconsState'})
-            // context.commit({type:'startSongPlaying'})
             return mix
         },
         sortByNumber(array, sortby) {
