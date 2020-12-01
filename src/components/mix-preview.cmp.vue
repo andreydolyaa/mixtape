@@ -1,9 +1,9 @@
 <template>
   <section v-if="mix" class="details">
-    <div class="mix shadow" v-on:click="onMixView(mix._id)">
+    <div class="mix" v-on:click="onMixView(mix._id)">
       
       <!-- <pre>{{checkTitleLang}}</pre> -->
-      <img :src="mix.imgUrl" />
+      <img class="shadow" :src="mix.imgUrl" />
       <img
         class="img-frame"
         src="https://res.cloudinary.com/hw-projects/image/upload/v1606518099/appmixes/logo_frame.png"

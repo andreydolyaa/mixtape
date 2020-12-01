@@ -36,13 +36,17 @@
             color: #fff;
             font-weight: bold;
             align-self: flex-end;  
-            cursor: pointer;       
+                 
         }
         .mix-link-show-all i{
             color: $primary-color;     
         }
-     
+        .mix-link-show-all:hover {
+            cursor: pointer;  
+            color: $primary-color
+        }
     }
+
     ul.ul-mixes {
         display: flex;
         justify-content: left;

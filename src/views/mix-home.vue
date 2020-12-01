@@ -2,10 +2,9 @@
 	<section>
 		<div class="mix-home">
 			<mixHero v-on:refName="scrollMeTo"  />
-			
 			<div class="top-mixes container">
 				<h2> Top Mixes </h2>
-				<ul>
+				<ul class="top-mixes">
 					<li v-for="(mix, index) in topMixes" :key="mix._id" >
 						<mix-preview :mix="mix" />
 					</li>
@@ -44,7 +43,8 @@ export default {
 		mixVideo,
 		globalPlayer,
 		mixPreview,
-		mixFooter
+		mixFooter,
+		
   },
   computed : {
 	  geners(){
