@@ -180,6 +180,7 @@ export default {
 
         // this.currMix.songs[0].isPlaying = true;
         this.startSongOnPreview();
+        
      
         return this.$store.getters.getMix;
       } else {
@@ -202,6 +203,7 @@ export default {
         this.currMix.songs.forEach(song => song.isPlaying = false)
         this.currMix.songs[0].isPlaying = true
         this.$store.commit({type: "setCurrSong",song:this.currMix.songs[0]});
+        socketService.emit('set-song-playing',this.currMix.songs[0]);
       }else{
         // var currSongId = this.currMix.songs.find(song => song.id === this.currSongPlaying.id);
         this.currMix.songs.forEach(song => song.isPlaying = false)
@@ -209,7 +211,10 @@ export default {
           if(song.id === this.currSongPlaying.id){
             song.isPlaying = true;
           }
+          socketService.emit('set-song-playing',this.currSongPlaying);
         })
+        // var currSongId = this.currMix.songs.find(song => song.id === this.currSongPlaying.id);
+        // this.$store.commit({type: "setCurrSong",song:this.currSongPlaying});
       }
     },
     changeSongPos(songNewPos) {
@@ -325,6 +330,7 @@ export default {
     socketService.on('play-song',song => {
       var mixCopy = JSON.parse(JSON.stringify(this.getMix))
       mixCopy.songs.forEach(currSong => currSong.isPlaying = false)
+      if(this.currSongPlaying){
         mixCopy.songs.forEach(songId => {
           if(songId.id === this.currSongPlaying.id){
             songId.isPlaying = true;
@@ -335,23 +341,10 @@ export default {
         this.$store.dispatch({
 				type: "saveMix",
 				mix: mixCopy
-			})
-      // this.reload();
-      // this.startSongOnPreview();
-      
+      })
+      }   
     })
 
-    // socketService.on('start-first-song',()=>{
-    //   this.$store.commit({type: "setCurrSong",song:this.currMix.songs[0]});
-    //   this.currMix.songs[0].isPlaying = true
-      
-    // })
-
-    // socketService.on('play-song',song => {
-    //       this.$store.commit({type: "setCurrSong",song});
-    //       console.log('CURR SONG PLAYING : ',song);
-    // })
-    console.log('ff');
   },
   mounted() {
   }

@@ -174,6 +174,7 @@ export default {
 				type: "saveMix",
 				mix: updatedMix
 			})
+			socketService.emit('pause-song-playing',this.currSongPlaying);
 		},
 		openInputApi(){
 			this.isAdd = true;
@@ -184,11 +185,8 @@ export default {
 		
 	},
 	created() {
-		// socketService.setup();
-    	// socketService.emit('join room',this.roomId);
     	socketService.emit('set-song-playing',this.currSongPlaying)
     	socketService.on('play-song',song => {
-		  console.log('SONG PLAYING :',song);
 		  this.$store.commit({
 				type: "setCurrSong",
 				song,
@@ -196,7 +194,10 @@ export default {
 		})
 		socketService.on('song-time', currTimePlaying => {
 				eventBus.$emit('song-time',currTimePlaying);
-				console.log('CURR TIME PALYING : ',currTimePlaying);
+		})
+
+		socketService.on('pause-song',currSong => {
+			eventBus.$emit('pause-music');
 		})
 		
 	},
