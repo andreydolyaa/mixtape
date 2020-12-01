@@ -3,8 +3,9 @@
   <section class="mix-details flex" v-if="mix">
     <!-- <h2>mix details </h2> -->
     <div class="mix-chat">
-      
       <!-- <h2 class="title">Mix chat</h2> -->
+      
+      
       <mix-chat :mixId="roomId" />
     </div>
     <div class="mix-full-info flex">
@@ -117,7 +118,8 @@ import mixChat from "@/components/mix-chat.cmp.vue";
 import mixSongList from "@/components/mix-song-list.cmp.vue";
 import mixSelectGenre from "@/components/mix-select-genre.cmp.vue";
 import { uploadImg } from "@/services/imgUploadService.js";
-import mixSocial from '@/components/social-mix.cmp.vue'
+import mixSocial from '@/components/social-mix.cmp.vue';
+import socketService from "@/services/socketService.js";
 
 export default {
   data() {
@@ -163,6 +165,9 @@ export default {
     }
   },
   computed: {
+    getMix(){
+      return this.$store.getters.getMix;
+    },
     roomId(){
       return this.$route.params.mixId;
     },
@@ -298,7 +303,10 @@ export default {
         type: 'saveMix',
         mix: this.currMix
       })
-    }
+    },
+    reload() {
+      this.$forceUpdate();
+    },
   },
   components: {
     mixChat,
@@ -314,6 +322,36 @@ export default {
       this.updateViews();
     }
     
+    socketService.on('play-song',song => {
+      var mixCopy = JSON.parse(JSON.stringify(this.getMix))
+      mixCopy.songs.forEach(currSong => currSong.isPlaying = false)
+        mixCopy.songs.forEach(songId => {
+          if(songId.id === this.currSongPlaying.id){
+            songId.isPlaying = true;
+            this.isMixPlaying = true;
+            // this.currSongPlaying.isPlaying = true;
+          }
+        })
+        this.$store.dispatch({
+				type: "saveMix",
+				mix: mixCopy
+			})
+      // this.reload();
+      // this.startSongOnPreview();
+      
+    })
+
+    // socketService.on('start-first-song',()=>{
+    //   this.$store.commit({type: "setCurrSong",song:this.currMix.songs[0]});
+    //   this.currMix.songs[0].isPlaying = true
+      
+    // })
+
+    // socketService.on('play-song',song => {
+    //       this.$store.commit({type: "setCurrSong",song});
+    //       console.log('CURR SONG PLAYING : ',song);
+    // })
+    console.log('ff');
   },
   mounted() {
   }
