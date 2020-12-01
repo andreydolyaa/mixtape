@@ -38,6 +38,7 @@ export default {
     },
     methods: {
         sendMsg(){
+          console.log('CHAT MSG SENT : ',this.msg);
             socketService.emit('send message',{msg:this.msg,roomId:this.room});
             this.msg.txt = '';
         },
