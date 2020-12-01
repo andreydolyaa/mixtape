@@ -306,7 +306,7 @@ export default {
     },
     reload() {
       this.$forceUpdate();
-    }
+    },
   },
   components: {
     mixChat,
@@ -328,6 +328,7 @@ export default {
         mixCopy.songs.forEach(songId => {
           if(songId.id === this.currSongPlaying.id){
             songId.isPlaying = true;
+            this.isMixPlaying = true;
             // this.currSongPlaying.isPlaying = true;
           }
         })
@@ -335,8 +336,22 @@ export default {
 				type: "saveMix",
 				mix: mixCopy
 			})
-      this.reload();
+      // this.reload();
+      // this.startSongOnPreview();
+      
     })
+
+    // socketService.on('start-first-song',()=>{
+    //   this.$store.commit({type: "setCurrSong",song:this.currMix.songs[0]});
+    //   this.currMix.songs[0].isPlaying = true
+      
+    // })
+
+    // socketService.on('play-song',song => {
+    //       this.$store.commit({type: "setCurrSong",song});
+    //       console.log('CURR SONG PLAYING : ',song);
+    // })
+    console.log('ff');
   },
   mounted() {
   }
