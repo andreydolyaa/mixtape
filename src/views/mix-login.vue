@@ -1,14 +1,14 @@
 
 <template>
-  <section class="login-user">
+  <section class="login-user" v-if="!loggedinUser">
     <h1>Login</h1>
-    <div class="checkLogin" v-if="!loggedinUser">
-      <form @submit.prevent="login">
-        <el-input type="text" placeholder="User name" v-model="cerdentials.username" required clearable />
+    <div class="checkLogin" >
+      <form @keyup.enter="login">
+        <el-input type="text" placeholder="User name" v-model="cerdentials.email" required clearable />
         <br/>
         <el-input type="text" placeholder="Password" v-model="cerdentials.password" show-password required clearable />
         <br/>
-        <el-button type="success">Login</el-button>
+        <el-button @click.prevent="login"  type="success">Login</el-button>
       </form>
     </div>
   </section>
@@ -20,25 +20,28 @@ export default {
   data() {
     return {
       cerdentials: {
-        username: '',
+        email: '',
         password: ''
       }
     }
   },
   computed: {
     loggedinUser() {
-      return this.$store.getters.loggedinUser;
+      var user = this.$store.getters.getLoggedinUser;
+      console.log('user', user);
+      return user
     },
   },
   created() {
   },
   methods: {
     login() {
+      console.log('here');
       this.$store.dispatch({
         type: "login",
         userCred: this.cerdentials
       });
-      this.$router.push("/");
+      // console.log('loggedinUser',this.loggedinUser);
     }
   },
   watch: {
