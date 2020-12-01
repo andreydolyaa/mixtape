@@ -7,7 +7,8 @@ import './styles/styles.scss'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import VueYoutube from 'vue-youtube';
- 
+import VueCarousel from 'vue-carousel';
+
 Vue.use(VueYoutube);
 Vue.use(ElementUI);
 

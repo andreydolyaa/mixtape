@@ -8,8 +8,8 @@
         </div>
         <nav>   
           <div class="nav-mix">
-            <router-link to="/genres">Genres</router-link>
-            <router-link to="/mixes">Mixes</router-link>
+            <!-- <router-link to="/genres">Genres</router-link>
+            <router-link to="/mixes">Mixes</router-link> -->
             <!-- <router-link to="/newMix">Create Mix</router-link> -->
           </div>
           <div class="nav-user">
