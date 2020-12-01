@@ -36,7 +36,7 @@
 						<img :src="song.imgUrl" />						
 						
 						<p :class="song.isPlaying  ? 'highlight-color' : 'default-color'">{{ song.title }}</p>
-						
+
 						<span>{{ song.duration }}</span>
 					</div>
 					<!-- <div v-if="song.isPlaying" class="img-equalizer">
@@ -64,7 +64,8 @@ import { mixService } from "@/services/mixService.js";
 import {eventBus} from '@/main.js';
 import draggable from 'vuedraggable'
 import mixApiSearch from "@/components/mix-api-search.cmp.vue";
-import mixSocial from '@/components/social-mix.cmp.vue'
+import mixSocial from '@/components/social-mix.cmp.vue';
+import socketService from "@/services/socketService.js";
 
 export default {
 	name: "mix-song-list",
@@ -155,7 +156,7 @@ export default {
 				type: "saveMix",
 				mix: songs
 			})
-
+			socketService.emit('curr-song-playing',this.currSongPlaying);
 		},
 		pauseSong(song) {
 			eventBus.$emit("pause-music");
@@ -180,11 +181,19 @@ export default {
 		openInputSearch(){
 			this.isAdd = false;
 		},
+		
 	},
 	created() {
-		// eventBus.$on('reset-icons',()=>{
-
-		// })
+		// socketService.setup();
+    	// socketService.emit('join room',this.roomId);
+    	socketService.emit('curr-song-playing',this.currSongPlaying)
+    	socketService.on('play-song',song => {
+		  console.log('SONG PLAYING :',song);
+		  this.$store.commit({
+				type: "setCurrSong",
+				song,
+			});
+    	})
 		
 	},
 	components:{
