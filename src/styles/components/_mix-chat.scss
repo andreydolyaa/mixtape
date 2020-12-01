@@ -1,36 +1,53 @@
 .mix-chat{
     width: 23%;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    
+    align-items: center;
     max-height: 60vh;
     margin-left: 40px;
+    background-color: red;
     
-    .chat-room{
-        display: flex;
-        flex-direction: column;
-        max-height: 70vh;
+    // .chat-room{
+    //     display: flex;
+    //     flex-direction: column;
+    //     max-height: 70vh;
     
-        .chat-msgs{
-            background: $primary-color;
-            background: linear-gradient(0deg, rgba(190,30,45,1) 0%, rgba(173,32,91,1) 24%, rgba(134,56,120,1) 50%, rgba(52,75,113,1) 78%, rgba(47,72,88,1) 100%);
+    //     .chat-msgs{
+    //         background: $primary-color;
+    //         background: linear-gradient(0deg, rgba(190,30,45,1) 0%, rgba(173,32,91,1) 24%, rgba(134,56,120,1) 50%, rgba(52,75,113,1) 78%, rgba(47,72,88,1) 100%);
         
-            color: #fff;
-            width: 100%;
-            height: 70vh;
+    //         color: #fff;
+    //         width: 100%;
+    //         height: 70vh;
         
-        }
-        button.btn.send-msg{
-            background: no-repeat;
-            border: none;
-            padding-left: 14px;
+    //     }
+    //     button.btn.send-msg{
+    //         background: no-repeat;
+    //         border: none;
+    //         padding-left: 14px;
             
-            img{
-                width: 30px;
-                height: auto;
-            }
-        }
+    //         img{
+    //             width: 30px;
+    //             height: auto;
+    //         }
+    //     }
         
+    // }
+    .chat-app{
+        height:100%;
+        display:flex;
+        flex-direction: column;
+        justify-content: space-between;
+        // justify-content: space-between;
+        color:white;
+    }
+    .chat-msgs{
+        
+    }
+    .chat-form{
+        input{
+            
+        }
     }
 
 

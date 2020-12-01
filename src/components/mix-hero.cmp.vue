@@ -44,7 +44,7 @@ export default {
    
   },
   created(){
-    console.log('hero')
+    
   }
 }
 </script>

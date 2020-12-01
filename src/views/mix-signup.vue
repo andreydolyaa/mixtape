@@ -1,8 +1,8 @@
 
 <template>
-  <section class="signup-user">
+  <section class="signup-user" v-if="!loggedinUser">
       <h1>Signup</h1>
-    <form @submit.prevent="signup">
+    <form @keyup.enter="signup">
       <span>*</span>
       <el-input type="email" v-model="cerdentials.email" placeholder="Email" required clearable />
       <br />
@@ -12,11 +12,7 @@
       <span>*</span>
       <el-input type="text" v-model="cerdentials.password" placeholder="Password" show-password required clearable />
       <br />
-      <!-- TODO -->
-      <!-- <el-date-picker type="date" placeholder="Your birthday" v-model="cerdentials.birth"></el-date-picker>
-      <br /> -->
-      <!-- gender place -->
-      <el-button type="success">Signup</el-button>
+      <el-button @click.prevent="signup" type="success">Signup</el-button>
     </form>
     <br/>
     <p><span>*</span> - this is a required field</p>
@@ -32,12 +28,13 @@ name: 'signup',
         email: '',
         username: '',
         password: '',
-        birth: '',
-        gender: ''
       }
     }
   },
   computed: {
+    loggedinUser() {
+      return this.$store.getters.getLoggedinUser;
+    },
   },
   created() {
   },
@@ -47,7 +44,6 @@ name: 'signup',
         type: "signup",
         userCred: this.cerdentials
       });
-      this.$router.push("/");
     }
   },
   components:{

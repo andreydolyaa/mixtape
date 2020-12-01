@@ -53,6 +53,7 @@
 <script>
 import { eventBus } from "@/main.js";
 import { utilService } from "@/services/utilService.js";
+import socketService from "@/services/socketService.js";
 export default {
 	name: "global-player",
 	data() {
@@ -117,6 +118,7 @@ export default {
 				type: "saveMix",
 				mix: updatedMix
 			})
+			// socketService.emit('play-global-player');
 		},
 		playing(event) {
 			this.totalTimeInput = Math.floor(event.getDuration());
@@ -165,9 +167,12 @@ export default {
 				type: "saveMix",
 				mix: updatedMix
 			})
+			// socketService.emit('curr-song-playing',nextSong);
+			socketService.emit('next-song',nextSong)
 		},
 		async moveTo() {
 			await this.$refs.youtube.player.seekTo(this.currTimePlaying, true);
+			socketService.emit('move-to',this.currTimePlaying);
 		},
 		onNextSong() {
 			this.autoPlayNextSong();
@@ -203,6 +208,7 @@ export default {
 				type: "saveMix",
 				mix: updatedMix
 			})
+			socketService.emit('prev-song',nextSong)
 		},
 		mute() {
 			this.isMuted = true;
@@ -220,15 +226,9 @@ export default {
 		eventBus.$on("resume-music", () => {
 			this.play();
 		});
-		eventBus.$on("play-music", () => {	
-			// var updatedMix = JSON.parse(JSON.stringify(this.mix));
-			// updatedMix.songs[0].isPlaying = true;
-			// console.log("@@@: ", updatedMix);
-			// this.$store.dispatch({
-			// 	type: "saveMix",
-			// 	mix: updatedMix
-			// })
-		});
+		eventBus.$on('song-time',currTimePlaying => {
+			this.$refs.youtube.player.seekTo(currTimePlaying, true);
+		})
 	},
 };
 </script>

@@ -4,7 +4,9 @@
     <!-- <h2>mix details </h2> -->
     <div class="mix-chat">
       <!-- <h2 class="title">Mix chat</h2> -->
-      <mix-chat :mixId="currMix._id" />
+      
+      
+      <mix-chat :mixId="roomId" />
     </div>
     <div class="mix-full-info flex">
       <section class="header-mix-info flex">
@@ -116,7 +118,8 @@ import mixChat from "@/components/mix-chat.cmp.vue";
 import mixSongList from "@/components/mix-song-list.cmp.vue";
 import mixSelectGenre from "@/components/mix-select-genre.cmp.vue";
 import { uploadImg } from "@/services/imgUploadService.js";
-import mixSocial from '@/components/social-mix.cmp.vue'
+import mixSocial from '@/components/social-mix.cmp.vue';
+import socketService from "@/services/socketService.js";
 
 export default {
   data() {
@@ -162,6 +165,12 @@ export default {
     }
   },
   computed: {
+    getMix(){
+      return this.$store.getters.getMix;
+    },
+    roomId(){
+      return this.$route.params.mixId;
+    },
     currSongPlaying(){
       return this.$store.getters.getCurrSongPlaying;
     },
@@ -171,6 +180,7 @@ export default {
 
         // this.currMix.songs[0].isPlaying = true;
         this.startSongOnPreview();
+        
      
         return this.$store.getters.getMix;
       } else {
@@ -180,7 +190,7 @@ export default {
       }
     },
     user() {
-      var newUser = this.$store.getters.getUser;
+      var newUser = this.$store.getters.getLoggedinUser;
       return newUser;
     },
     heartMode() {
@@ -193,6 +203,7 @@ export default {
         this.currMix.songs.forEach(song => song.isPlaying = false)
         this.currMix.songs[0].isPlaying = true
         this.$store.commit({type: "setCurrSong",song:this.currMix.songs[0]});
+        socketService.emit('set-song-playing',this.currMix.songs[0]);
       }else{
         // var currSongId = this.currMix.songs.find(song => song.id === this.currSongPlaying.id);
         this.currMix.songs.forEach(song => song.isPlaying = false)
@@ -200,7 +211,10 @@ export default {
           if(song.id === this.currSongPlaying.id){
             song.isPlaying = true;
           }
+          socketService.emit('set-song-playing',this.currSongPlaying);
         })
+        // var currSongId = this.currMix.songs.find(song => song.id === this.currSongPlaying.id);
+        // this.$store.commit({type: "setCurrSong",song:this.currSongPlaying});
       }
     },
     changeSongPos(songNewPos) {
@@ -294,7 +308,10 @@ export default {
         type: 'saveMix',
         mix: this.currMix
       })
-    }
+    },
+    reload() {
+      this.$forceUpdate();
+    },
   },
   components: {
     mixChat,
@@ -310,6 +327,24 @@ export default {
       this.updateViews();
     }
     
+    socketService.on('play-song',song => {
+      var mixCopy = JSON.parse(JSON.stringify(this.getMix))
+      mixCopy.songs.forEach(currSong => currSong.isPlaying = false)
+      if(this.currSongPlaying){
+        mixCopy.songs.forEach(songId => {
+          if(songId.id === this.currSongPlaying.id){
+            songId.isPlaying = true;
+            this.isMixPlaying = true;
+            // this.currSongPlaying.isPlaying = true;
+          }
+        })
+        this.$store.dispatch({
+				type: "saveMix",
+				mix: mixCopy
+      })
+      }   
+    })
+
   },
   mounted() {
   }
