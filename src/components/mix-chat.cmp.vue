@@ -17,7 +17,7 @@
 			<form @submit.prevent="sendMsg">
 				<input type="text" v-model="msg.txt" @keydown="isTypingNow" @keyup="isNotTypingNow" />
                 <select name="emojis" v-model="msg.txt">
-                    <option value="😎">😎</option>
+                    <option value="" selected disabled hidden>{{chatEmojis[0]}}</option>
                     <option v-for="emoji in chatEmojis" :value="emoji" :key="emoji">{{emoji}}</option>
                 </select>
 				<button>SEND</button>
@@ -43,8 +43,9 @@ export default {
     },
     methods: {
         sendMsg(){
+            if(!this.msg.txt) return;
             socketService.emit('send message',{msg:this.msg,roomId:this.room});
-          console.log('CHAT MSG SENT : ',this.msg);
+            console.log('CHAT MSG SENT : ',this.msg);
             this.msg.txt = '';
         },
         isTypingNow(){
