@@ -4,7 +4,7 @@
     <!-- <h2>mix details </h2> -->
     <div class="mix-chat">
       <!-- <h2 class="title">Mix chat</h2> -->
-      <mix-chat />
+      <mix-chat :mixId="currMix._id" />
     </div>
     <div class="mix-full-info flex">
       <section class="header-mix-info flex">
@@ -167,20 +167,11 @@ export default {
     },
     mix() {
       if (this.$store.getters.getMix) {
-      var count = 0;
-      var songIdx;
         this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
-        // this.currMix.songs.forEach(song => {
-        //   if(song.isPlaying) return
-        // })
-        // if(!this.currSongPlaying.isPlaying){
-          if(this.currSongPlaying){
-            var idx = this.currMix.songs.findIndex(song => song.id === this.currSongPlaying.id);
-            this.currMix.songs[idx].isPlaying = true;
-            }else{
-            this.currMix.songs[0].isPlaying = true;
-          }
-        // }       
+
+        // this.currMix.songs[0].isPlaying = true;
+        this.startSongOnPreview();
+     
         return this.$store.getters.getMix;
       } else {
         this.currMix = this.newMix;
@@ -197,6 +188,21 @@ export default {
     },
   },
   methods: {
+    startSongOnPreview(){
+      if(!this.currSongPlaying){
+        this.currMix.songs.forEach(song => song.isPlaying = false)
+        this.currMix.songs[0].isPlaying = true
+        this.$store.commit({type: "setCurrSong",song:this.currMix.songs[0]});
+      }else{
+        // var currSongId = this.currMix.songs.find(song => song.id === this.currSongPlaying.id);
+        this.currMix.songs.forEach(song => song.isPlaying = false)
+        this.currMix.songs.forEach(song => {
+          if(song.id === this.currSongPlaying.id){
+            song.isPlaying = true;
+          }
+        })
+      }
+    },
     changeSongPos(songNewPos) {
       var lastSong = this.currMix.songs.length
       if (songNewPos.songIdx === 0 && songNewPos.diff === -1) return
@@ -311,7 +317,3 @@ export default {
 
 </script>
 
-<style lang="css" scoped>
-
-
-</style>

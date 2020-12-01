@@ -28,7 +28,7 @@ function save(mix) {
 }
 
 function update(mix) {
-    return HttpService.put(`mix/`, mix);
+    return HttpService.put('mix', mix);
 }
 
 

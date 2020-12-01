@@ -14,9 +14,9 @@
     </div> -->
     <div class="info">
         <span class="mix-name"  :class="checkLang">{{ mix.name }}</span>
-        <span class="mix-desc">{{ mix.desc }} <i class="fas fa-heart"></i></span>
+        <span class="mix-desc">{{ mix.desc }}</span>
         <div class="stats">
-          <span class="mix-likes">{{ mix.likes }} <i class="fas fa-heart"></i></span>
+          <span class="mix-likes">{{ mix.likes }} <i class='fas fa-heart'></i></span>
           <span class="mix-views">{{ mix.views }} <i class="fas fa-eye"></i></span>
         </div>
     </div>
@@ -33,25 +33,55 @@ export default {
   props: {
     mix: Object
   },
+    computed: {
+    checkLang() {
+      //console.log('this.mix.genre',this.mix.genre)
+      return this.mix.genre === 'israeli' ? 'mix-name isreali' : 'mix-name'
+    },
+    getMix(){
+      return this.$store.getters.getMix;
+    },
+    getSong(){
+      return this.$store.getters.getCurrSongPlaying;
+    }
+    // mixImg() {
+    //   if (!this.mix) return
+    //   //console.log(this.mix)
+
+    //   //random image not in use
+    //   //var max = this.mix.songs.length 
+    //   //var songIdx = Math.floor(Math.random() * (max - 0) + 0);
+
+    //   // 
+    //   var song = this.mix.songs[0]
+    //   var img = song.imgUrl
+    //   //console.log('img',img)
+    //   return img
+
+    // },
+  },
   methods: {
     onMixView(mixId) {
       //console.log('mixId',mixId)
-	    this.$store.commit({ type: "setMix", mix:this.mix });
-			var autoPlaySong = this.mix.songs[0];
-			this.$store.commit({
-				type: "setCurrSong",
-				song: autoPlaySong,
-			});
-			this.$store.commit({
-				type: "startSongPlaying",
-			});
-			var updatedMix = JSON.parse(JSON.stringify(this.mix));
-			updatedMix.songs[0].isPlaying = true;
-			console.log("@@@: ", updatedMix);
-			this.$store.dispatch({
-				type: "saveMix",
-				mix: updatedMix,
-			});
+      // this.$store.commit({ type: "setMix", mix:this.mix });
+      
+      
+
+			// var autoPlaySong = this.mix.songs[0];
+			// this.$store.commit({
+			// 	type: "setCurrSong",
+			// 	song: autoPlaySong,
+			// });
+			// this.$store.commit({
+			// 	type: "startSongPlaying",
+			// });
+			// var updatedMix = JSON.parse(JSON.stringify(this.mix));
+			// updatedMix.songs[0].isPlaying = true;
+			// console.log("@@@: ", updatedMix);
+			// this.$store.dispatch({
+			// 	type: "saveMix",
+			// 	mix: updatedMix,
+			// });
 
       this.$router.push(`/mix/details/${mixId}`)
     },
@@ -70,27 +100,6 @@ export default {
       // console.log('NEW MIXXXXXXXXXXXX: ', newMix);
       // this.$store.dispatch({type:'saveMix',mix:newMix});
     }, 
-  },
-  computed: {
-    checkLang() {
-      //console.log('this.mix.genre',this.mix.genre)
-      return this.mix.genre === 'israeli' ? 'mix-name isreali' : 'mix-name'
-    },
-    // mixImg() {
-    //   if (!this.mix) return
-    //   //console.log(this.mix)
-
-    //   //random image not in use
-    //   //var max = this.mix.songs.length 
-    //   //var songIdx = Math.floor(Math.random() * (max - 0) + 0);
-
-    //   // 
-    //   var song = this.mix.songs[0]
-    //   var img = song.imgUrl
-    //   //console.log('img',img)
-    //   return img
-
-    // },
   },
   created() {
     //console.log('mix data',this.mix)

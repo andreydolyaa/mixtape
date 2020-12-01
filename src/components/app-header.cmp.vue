@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import {eventBus} from '@/main.js'
 export default {
    data() {
     return{
@@ -30,7 +31,7 @@ export default {
   },
   methods:{
    resetIcon(){
-     
+     eventBus.$emit('reset-icons');
    }
   },
   computed: {

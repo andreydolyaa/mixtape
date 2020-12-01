@@ -35,8 +35,10 @@
 				<li class="mix" v-for="mix in mixes" :key="mix._id" >
 					<mix-preview :mix="mix" @click.native.stop="startMusic(mix)"/>
 					
+					<mix-preview :mix="mix" />
+					 <button @click="startSong(mix)">play</button> 
 					
-				</li>
+				 </li>
 			</ul> -->
 		</div>
 	</section>
@@ -132,21 +134,21 @@ export default {
 			//console.log('genre', this.genre)
 			this.$router.push(`mix/list`);
 		},
-		startMusic(mix){
-			// this.$store.commit({ type: "setMix", mix });
-			if(this.currSongPlaying){
-				return
-			}else{
-				var autoPlaySong = mix.songs[0];
-				this.$store.commit({
-					type: "setCurrSong",
-					song: autoPlaySong,
-				});
-				this.$store.commit({
-					type: "startSongPlaying",
-		  });
-			}
-		}
+		// startMusic(mix){
+		// 	// this.$store.commit({ type: "setMix", mix });
+		// 	if(this.currSongPlaying){
+		// 		return
+		// 	}else{
+		// 		var autoPlaySong = mix.songs[0];
+		// 		this.$store.commit({
+		// 			type: "setCurrSong",
+		// 			song: autoPlaySong,
+		// 		});
+		// 		this.$store.commit({
+		// 			type: "startSongPlaying",
+		//   });
+		// 	}
+		// }
 	},
 	components: {
 		mixPreview,
@@ -155,7 +157,20 @@ export default {
 
 	},
 	created() {
-		//console.log('mix data genre',this.genre)
+		// eventBus.$on('reset-icons',()=>{
+		// 	var mixCopy = JSON.parse(JSON.stringify(this.getMix));
+			
+		// 	mixCopy.songs.forEach(song => {
+		// 		if(song.id !== this.currSongPlaying.id){
+		// 			song.isPlaying = false;
+		// 		}
+		// 		this.$store.dispatch({
+		// 		type: "saveMix",
+		// 		mix: mixCopy
+		// 	})
+		// 	});
+			
+		// })
 	},
 }; // end of export default
 </script>

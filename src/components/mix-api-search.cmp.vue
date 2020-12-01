@@ -43,6 +43,7 @@ export default {
 	},
 	methods: {
 		async getSearchResults() {
+			if(this.keyword === '') return;
 			var res = await youTubeService.query(this.keyword);
 			this.searchResults = res;
 			return this.searchResults;
