@@ -7,7 +7,9 @@ export const userService = {
     remove,
     save,
     update,
-    login
+    login,
+    logout,
+    signup
 }
 
 function query() {
@@ -31,9 +33,18 @@ function update(user) {
 }
 
 async function login(userCred) {
-    const user = await HttpService.post('login', userCred)
+    const user = await HttpService.post('auth/login', userCred)
     return _handleLogin(user)
 }
+async function logout() {
+    await HttpService.post('auth/logout');
+    sessionStorage.clear();
+}
+async function signup(userCred) {
+    const user = await HttpService.post('auth/signup', userCred)
+    return _handleLogin(user)
+}
+
 
 function _handleLogin(user) {
     sessionStorage.setItem('user', JSON.stringify(user))

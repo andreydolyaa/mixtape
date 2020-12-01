@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 
 import mixStore from '../store/mixStore.js';
+import userStore from '../store/userStore.js';
 import socketStore from '../store/socketStore.js';
 
 
@@ -19,6 +20,7 @@ export default new Vuex.Store({
   },
   modules: {
     mixStore,
+    userStore,
     socketStore
   }
 })

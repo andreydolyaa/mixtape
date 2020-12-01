@@ -184,7 +184,7 @@ export default {
       }
     },
     user() {
-      var newUser = this.$store.getters.getUser;
+      var newUser = this.$store.getters.getLoggedinUser;
       return newUser;
     },
     heartMode() {
