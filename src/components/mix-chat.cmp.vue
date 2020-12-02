@@ -16,11 +16,11 @@
 			<p v-if="isTyping">Someone typing...</p>
 			<form @submit.prevent="sendMsg">
 				<input type="text" v-model="msg.txt" @keydown="isTypingNow" @keyup="isNotTypingNow" />
-                <select name="emojis" v-model="msg.txt">
+                <select name="emojis" class="emojis" v-model="msg.txt">
                     <option value="" selected disabled hidden>{{chatEmojis[0]}}</option>
                     <option v-for="emoji in chatEmojis" :value="emoji" :key="emoji">{{emoji}}</option>
                 </select>
-				<button>SEND</button>
+				<button><img src="https://res.cloudinary.com/hw-projects/image/upload/v1606416732/appmixes/send-messege_s_red.png"></button>
 			</form>
 		</div>
 	</section>

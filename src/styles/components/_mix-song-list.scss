@@ -2,23 +2,39 @@
     .songs{
         .songs-list{
             display: flex;
+            padding: 0 20px;
+            @include for-wide-layout {
+                padding: 0;
+            }
+
+
 
             .search-song-and-social-container{
                 display: flex;
                 width: 100%;
                 justify-content: space-between;
+                flex-direction: row;
+
+                @include for-wide-layout {
+                    flex-direction: row;
+                }
 
                 .search-and-add{
                     display: flex;
                     justify-content: start;
                     gap: 10px;
+                    width: 75%;
+                    
+                        @include for-wide-layout {
+                            width: 100%;
+                        }
                 
                 i{
                     font-size: 25px;
                 }
                     .search-song{
                         margin-bottom: 20px;
-                        min-width: 320px;
+                        min-width: 240px;
                         display: flex;
                         justify-content: start;
         
@@ -50,7 +66,7 @@
                 gap: 16px;
                 flex-direction: column;
                 width: 100%;
-                max-height: 310px;
+                max-height: 272px;
                 overflow: scroll;
                 overflow-x: hidden;
                 padding: 0 30px 0 0px;

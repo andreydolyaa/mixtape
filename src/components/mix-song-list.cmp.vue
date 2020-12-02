@@ -28,10 +28,10 @@
 				<!-- <div>	{{currSongPlaying}} </div> -->
 					<div class="songs-details">
 						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,filterBySong)">
-							<i class="far fa-play-circle"></i>
+							<i class="fas fa-play"></i>
 						</button>
 						<button v-else @click="pauseSong(song);">
-							<i class="far fa-pause-circle"></i>
+							<i  :class="song.isPlaying  ? 'highlight-color' : 'default-color'" class="fas fa-pause"></i>
 						</button>					
 						<img :src="song.imgUrl" />						
 						

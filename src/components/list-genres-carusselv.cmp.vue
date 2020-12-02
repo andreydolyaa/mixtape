@@ -1,8 +1,8 @@
-<template>
+<template  v-if="getGenreToDisplay">
   <VueSlickCarousel v-bind="settings" >
-    <li v-for="mix in mixes"  :key="mix._id">
-        {{mix}}
-      </li>
+    <ul class="mixes-nav-ul" v-for="genre in geners" :key="genre">  
+         <li class="mix-link" v-on:click="onListSetFilter(genre)">{{genre}}</li>
+      </ul>
     <template #prevArrow="arrowOption">
       <div class="custom-arrow">
         {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
@@ -31,15 +31,17 @@
             "dots": true,
             "infinite": false,
             "speed": 500,
-            "slidesToShow": 4,
-            "slidesToScroll": 4,
+            "slidesToShow": 8,
+            "slidesToScroll": 8,
             "initialSlide": 0,
+            "centerPadding": '40px',
+            "centerMode": true,
             "responsive": [
               {
                 "breakpoint": 1024,
                 "settings": {
-                  "slidesToShow": 3,
-                  "slidesToScroll": 3,
+                  "slidesToShow": 8,
+                  "slidesToScroll": 8,
                   "infinite": true,
                   "dots": true
                 }
@@ -63,6 +65,12 @@
           }, // end of settings
       } 
     },// end of data
+    computed:{
+        geners(){
+            console.log('this.$store.getters.getGenreToDisplay',this.$store.getters.getGeners)
+            return this.$store.getters.getGeners
+        }
+    },
      methods: {
         next() {
             this.$refs.slick.next();
@@ -83,7 +91,7 @@
 		  VueSlickCarousel
     },
     created(){
-     // console.log('mixes',this.mixes)
+      console.log('getGeners',this.geners)
 
     }
   }
