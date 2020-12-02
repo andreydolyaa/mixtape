@@ -106,6 +106,7 @@ export default {
 			})
 		},
 		play() {
+			console.log('REFS',this.$refs);
 			this.$refs.youtube.player.playVideo();
 			this.$store.commit({
 				type: "startSongPlaying",
