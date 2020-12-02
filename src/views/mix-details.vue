@@ -128,7 +128,7 @@ export default {
       songTxt: '',
       currMix: '',
       newMix: {
-        _id: "cerateNewId()",
+        // _id: "cerateNewId()",
         name: "Mix Name",
         desc: "Mix description",
         genre: "genre",
@@ -243,7 +243,7 @@ export default {
       this.$store.dispatch({
         type: "saveMix",
         mix,
-      }); 
+      });  
       // const el = this.$createElement;
       // this.$notify({
       //   message: el('i', { style: 'color: green' }, 'You updated the mix')
