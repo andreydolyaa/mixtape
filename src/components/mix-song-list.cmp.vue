@@ -189,7 +189,7 @@ export default {
 	created() {
     	socketService.emit('set-song-playing',this.currSongPlaying)
     	socketService.on('play-song',song => {
-		  this.$store.commit({
+			this.$store.commit({
 				type: "setCurrSong",
 				song,
 			});
@@ -201,6 +201,10 @@ export default {
 		socketService.on('pause-song',currSong => {
 			eventBus.$emit('pause-music');
 		})
+
+
+
+	
 		
 	},
 	components:{

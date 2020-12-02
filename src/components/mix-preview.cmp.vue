@@ -28,6 +28,7 @@
  
 <script>
 import { eventBus } from "@/main.js";
+import socketService from "@/services/socketService.js";
 export default {
   name: 'mix-preview',
   props: {
@@ -64,11 +65,20 @@ export default {
     onMixView(mixId) {
       this.$router.push(`/mix/details/${mixId}`)
     },
-    playMixFromPreview(){
-    }, 
+    // playFromPreview(){
+      // if(!this.getCurrSongPlaying){
+      //   socketService.emit('play-preview-no-song');
+      //   console.log('no song');
+      // }else{
+      //   socketService.emit('play-preview-curr-song');
+      //   console.log('yes song');
+      // }
+    // }, 
+    
   },
   created() {
     //console.log('mix data',this.mix)
+    
   }
 }
 </script>
