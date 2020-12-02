@@ -2,9 +2,9 @@
 <template>
   <section class="mix-details flex" v-if="mix">
     <!-- <h2>mix details </h2> -->
-    <div class="mix-chat">
+    <!-- <div class="mix-chat">
       <mix-chat :mixId="roomId" />
-    </div>
+    </div> -->
     <div class="mix-full-info flex">
       <section class="header-mix-info flex">
         <section class="mix-img flex start">
@@ -106,9 +106,9 @@
           
       </div>
     </div>
-    <!-- <div class="mix-chat">
+    <div class="mix-chat">
       <mix-chat :mixId="roomId" />
-    </div> -->
+    </div>
   </section>
 </template>
 
@@ -318,6 +318,8 @@ export default {
     mixSocial
   },
   async created() {
+    socketService.setup();
+    socketService.emit('join room',this.room);
     if(this.$route.params.mixId){
       const mixId = this.$route.params.mixId;
       await this.$store.dispatch({ type: "getMixById", mixId });
