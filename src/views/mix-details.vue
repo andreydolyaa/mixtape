@@ -81,7 +81,7 @@
             </div>
           </section>
           <section class="user-info">
-            <h5>
+            <h5>  
               <span>Created by: <img :src="currMix.createdBy.imgUrl" /></span>
               <span>{{ currMix.createdBy.fullName }}</span>
             </h5>

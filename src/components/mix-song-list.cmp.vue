@@ -145,7 +145,7 @@ export default {
 			this.$store.commit({
 				type: "setCurrSong",
 				song,
-			});
+			}); 
 			eventBus.$emit("resume-music");
 			var songs = JSON.parse(JSON.stringify(this.getMix))
 			var songId = this.currSongPlaying.songUrlId;
@@ -187,7 +187,9 @@ export default {
 		
 	},
 	created() {
-		socketService.emit('set-song-playing',this.currSongPlaying)
+		console.log('this.currSongPlaying',this.currSongPlaying)
+		if(!this.currSongPlaying) return
+    	socketService.emit('set-song-playing',this.currSongPlaying)
     	socketService.on('play-song',song => {
 			this.$store.commit({
 				type: "setCurrSong",
@@ -200,12 +202,7 @@ export default {
 
 		socketService.on('pause-song',currSong => {
 			eventBus.$emit('pause-music');
-		})
-
-
-
-	
-		
+		})	
 	},
 	components:{
 		mixApiSearch,
