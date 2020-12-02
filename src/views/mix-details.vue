@@ -2,6 +2,9 @@
 <template>
   <section class="mix-details flex" v-if="mix">
     <!-- <h2>mix details </h2> -->
+    <!-- <div class="mix-chat">
+      <mix-chat :mixId="roomId" />
+    </div> -->
     <div class="mix-full-info flex">
       <section class="header-mix-info flex">
         <section class="mix-img flex start">
@@ -177,7 +180,7 @@ export default {
         this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
 
         // this.currMix.songs[0].isPlaying = true;
-        this.startSongOnPreview();
+        // this.startSongOnPreview();
         
      
         return this.$store.getters.getMix;
@@ -315,6 +318,8 @@ export default {
     mixSocial
   },
   async created() {
+    socketService.setup();
+    socketService.emit('join room',this.room);
     if(this.$route.params.mixId){
       const mixId = this.$route.params.mixId;
       await this.$store.dispatch({ type: "getMixById", mixId });
@@ -366,17 +371,17 @@ export default {
     })
 
 
-    // this.getMix.songs.forEach(song => {
-    //   if(song.isPlaying){
-    //     socketService.emit('send-song-to-all',song);
-    //     console.log('THERES A SONG PLAYING ALREADY ',song);
-    //   }
-    //   else{
-    //     socketService.emit('send-song-to-all',this.getMix.songs[0]);
-    //     console.log('NO SONGS PLAYING YET.... sending song to socket route ',this.getMix.songs[0]);
-    //     console.log('first song',this.getMix.songs[0]);
-    //   }
-    // })
+    this.getMix.songs.forEach(song => {
+      if(song.isPlaying){
+        socketService.emit('send-song-to-all',song);
+        console.log('THERES A SONG PLAYING ALREADY ',song);
+      }
+      else{
+        socketService.emit('send-song-to-all',this.getMix.songs[0]);
+        console.log('NO SONGS PLAYING YET.... sending song to socket route ',this.getMix.songs[0]);
+        console.log('first song',this.getMix.songs[0]);
+      }
+    })
 
 
 
