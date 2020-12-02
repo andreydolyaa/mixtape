@@ -103,10 +103,8 @@ export default {
 			var mix = this.$store.getters.getMix;
 			var mixCopy = JSON.parse(JSON.stringify(mix));
 			if(!this.songTxt){
-				console.log('all songs')
 				return mixCopy.songs
 			}
-			console.log('filtered songs')
 			return mixCopy.songs.filter((song) => {
 				//console.log('song',song.isPlaying)
 				return song.title.toLowerCase().includes(this.songTxt.toLowerCase());
@@ -188,21 +186,22 @@ export default {
 	},
 	created() {
 		// socketService.setup();
-        // socketService.emit('join room',this.room);
-    	socketService.emit('set-song-playing',this.currSongPlaying)
+        socketService.emit('join room',this.room);
+    	// socketService.emit('set-song-playing',this.currSongPlaying)
     	socketService.on('play-song',song => {
 			this.$store.commit({
 				type: "setCurrSong",
 				song,
 			});
 		})
-		// socketService.on('song-time', currTimePlaying => {
-		// 		eventBus.$emit('song-time',currTimePlaying);
-		// })
+		socketService.on('song-time', currTimePlaying => {
+				eventBus.$emit('song-time',currTimePlaying);
+		})
 
-		// socketService.on('pause-song',currSong => {
-		// 	eventBus.$emit('pause-music');
-		// })	
+		socketService.on('pause-song',currSong => {
+			eventBus.$emit('pause-music');
+		})
+		
 	},
 	components:{
 		mixApiSearch,

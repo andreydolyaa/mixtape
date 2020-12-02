@@ -59,6 +59,7 @@ export default {
         },
         setCurrSong(state, payload) {
             state.currSongPlaying = payload.song;
+            state.currSongPlaying.isPlaying = true;
         },
         removeCurrSong(state, payload) {
             const idx = state.mixes[state.currMix._id].songs.findIndex(song => song.id === payload.song.id);
@@ -114,7 +115,6 @@ export default {
             return song;
         },
         async saveMix(context, payload) {
-            console.log('saveMix',payload.mix)
             const mix = await mixService.update(payload.mix);
             context.commit({ type: 'setMix', mix })
             return mix
