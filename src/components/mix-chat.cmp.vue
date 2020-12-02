@@ -1,14 +1,14 @@
 <template>
 	<section class="chat-app">
-		<h2>chat app</h2>
+		<!-- <h2>chat app</h2> -->
 		<div class="chat-msgs">
 			<ul>
 				<li v-for="(msgz, idx) in msgsHistory" :key="idx + msgz">
-					<p>{{ msgz.name }}: {{ msgz.txt }}</p>
+					<p class="msg">{{ msgz.name }}: {{ msgz.txt }}</p>
 				</li>
                 
 				<li v-for="(msgz, idx) in msgs" :key="idx">
-					<p>{{ msgz.name }}: {{ msgz.txt }}</p>
+					<p class="msg">{{ msgz.name }}: {{ msgz.txt }}</p>
 				</li>
 			</ul>
 		</div>

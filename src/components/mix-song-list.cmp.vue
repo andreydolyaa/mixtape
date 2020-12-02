@@ -20,10 +20,10 @@
 			</div>
 				<mix-social /> 
 		</div>
-		<ul v-if="mix" class="songsUl">	
-			<draggable v-if="mix" v-model="filterBySong" group="people" @start="drag=true" @end="stopDrag">
+		<ul v-if="mix" class="songsUl" >	
+			<draggable v-if="filterBySong" group="people" @start="drag=true" @end="stopDrag">
 
-				<li class="songs-details-main flex" v-for="(song,index) in filterBySong" :key="song.id">
+				<li  class="songs-details-main flex" v-for="(song,index) in filterBySong" :key="song.id">
 				<!-- <div>	{{song}} </div> -->
 				<!-- <div>	{{currSongPlaying}} </div> -->
 					<div class="songs-details">
@@ -37,7 +37,7 @@
 						
 						<p :class="song.isPlaying  ? 'highlight-color' : 'default-color'">{{ song.title }}</p>
 
-						<span>{{ song.duration }}</span>
+						<span class="song-duration">{{ song.duration }}</span>
 					</div>
 					<!-- <div v-if="song.isPlaying" class="img-equalizer">
 						<img src="" />
@@ -100,15 +100,17 @@ export default {
 			return this.$store.getters.getMix;
 		},
 		filterBySong() {
+			var mix = this.$store.getters.getMix;
+			var mixCopy = JSON.parse(JSON.stringify(mix));
 			if(!this.songTxt){
-				return this.mix.songs
+				console.log('all songs')
+				return mixCopy.songs
 			}
-				var res = this.mix.songs.filter((song) => {
-					//console.log('song',song.isPlaying)
-					return song.title.toLowerCase().includes(this.songTxt.toLowerCase());
-				});
-				console.log('@@@@@@@@@@@@@@@@@@22: ',res);
-				return res;
+			console.log('filtered songs')
+			return mixCopy.songs.filter((song) => {
+				//console.log('song',song.isPlaying)
+				return song.title.toLowerCase().includes(this.songTxt.toLowerCase());
+			});
 		},
 		isSongPlaying(){
 			return this.$store.getters.getCurrSongIsPlaying;
