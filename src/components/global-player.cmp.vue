@@ -227,7 +227,8 @@ export default {
 			this.play();
 		});
 		eventBus.$on('song-time',currTimePlaying => {
-			this.$refs.youtube.player.seekTo(currTimePlaying, true);
+			this.$refs.youtube.player.seekTo(currTimePlaying);
+			this.currTimePlaying = currTimePlaying
 		})
 	},
 };
