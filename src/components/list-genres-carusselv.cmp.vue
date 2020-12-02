@@ -1,7 +1,7 @@
 <template  v-if="getGenreToDisplay">
   <VueSlickCarousel v-bind="settings" >
     <ul class="mixes-nav-ul" v-for="genre in geners" :key="genre">  
-         <li class="mix-link" v-on:click="onListSetFilter(genre)">{{genre}}</li>
+         <li class="mix-link" v-on:click="onEmitSetGenre(genre)">{{genre}}</li>
       </ul>
     <template #prevArrow="arrowOption">
       <div class="custom-arrow">
@@ -72,6 +72,10 @@
         }
     },
      methods: {
+       onEmitSetGenre(genre){
+         console.log('genre',genre)
+         this.$emit('setGenre',genre)
+       },
         next() {
             this.$refs.slick.next();
         },

@@ -242,6 +242,7 @@ export default {
       this.isDescHide = !this.isDescHide;
     },
     saveChange(mix) {
+      console.log('saveChange',mix)
       this.$store.dispatch({
         type: "saveMix",
         mix,
@@ -355,6 +356,17 @@ export default {
     //     this.$store.commit({type: "setCurrSong",song});
     //   })
     
+    this.getMix.songs.forEach(song => {
+      if(song.isPlaying){
+        socketService.emit('send-song-to-all',song);
+        console.log('THERES A SONG PLAYING ALREADY ',song);
+      }
+      else{
+        console.log('this.getMix.songs[0]',this.getMix.songs[0])
+        socketService.emit('send-song-to-all',this.getMix.songs[0]);
+        console.log('NO SONGS PLAYING YET.... sending song to socket route ',this.getMix.songs[0]);
+      }
+    })
 
 
     this.getMix.songs.forEach(song => {
@@ -388,7 +400,7 @@ export default {
     //   }else{
     //     socketService.emit('send-song-to-all',this.getMix.songs[0]);
     //     console.log('NO SONGS PLAYING YET.... sending song to socket route');
-    //   }
+    //   } 
     // })
     // this.getMix.songs.some(song => {
     //   if(song.isPlaying){
