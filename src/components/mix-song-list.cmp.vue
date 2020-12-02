@@ -188,7 +188,7 @@ export default {
 	},
 	created() {
 		console.log('this.currSongPlaying',this.currSongPlaying)
-		if(!this.currSongPlaying) return
+		// if(!this.currSongPlaying) return
     	socketService.emit('set-song-playing',this.currSongPlaying)
     	socketService.on('play-song',song => {
 			this.$store.commit({

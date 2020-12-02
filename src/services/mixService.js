@@ -28,7 +28,8 @@ function save(mix) {
 }
 
 function update(mix) {
-    return HttpService.put('mix', mix);
+    console.log('front service mix ',mix);
+    return HttpService.put(`mix/${mix._id}`, mix);
 }
 
 

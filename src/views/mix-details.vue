@@ -177,7 +177,7 @@ export default {
         this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
 
         // this.currMix.songs[0].isPlaying = true;
-        // this.startSongOnPreview();
+        this.startSongOnPreview();
         
      
         return this.$store.getters.getMix;
@@ -333,6 +333,7 @@ export default {
             // this.currSongPlaying.isPlaying = true;
           }
         })
+        console.log('@@@@@@@@@@@ MIXCOPY: ',mixCopy);
         this.$store.dispatch({
 				type: "saveMix",
 				mix: mixCopy
@@ -363,6 +364,22 @@ export default {
         console.log('NO SONGS PLAYING YET.... sending song to socket route ',this.getMix.songs[0]);
       }
     })
+
+
+    // this.getMix.songs.forEach(song => {
+    //   if(song.isPlaying){
+    //     socketService.emit('send-song-to-all',song);
+    //     console.log('THERES A SONG PLAYING ALREADY ',song);
+    //   }
+    //   else{
+    //     socketService.emit('send-song-to-all',this.getMix.songs[0]);
+    //     console.log('NO SONGS PLAYING YET.... sending song to socket route ',this.getMix.songs[0]);
+    //     console.log('first song',this.getMix.songs[0]);
+    //   }
+    // })
+
+
+
     // this.getMix.songs.every(song => {
     //         if(song.isPlaying){
     //     socketService.emit('send-song-to-all',song);
