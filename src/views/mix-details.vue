@@ -332,6 +332,7 @@ export default {
             // this.currSongPlaying.isPlaying = true;
           }
         })
+        console.log('@@@@@@@@@@@ MIXCOPY: ',mixCopy);
         this.$store.dispatch({
 				type: "saveMix",
 				mix: mixCopy
@@ -359,6 +360,7 @@ export default {
       else{
         socketService.emit('send-song-to-all',this.getMix.songs[0]);
         console.log('NO SONGS PLAYING YET.... sending song to socket route ',this.getMix.songs[0]);
+        console.log('first song',this.getMix.songs[0]);
       }
     })
     // this.getMix.songs.every(song => {
