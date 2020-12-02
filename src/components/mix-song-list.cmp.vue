@@ -187,8 +187,8 @@ export default {
 		
 	},
 	created() {
-		console.log('this.currSongPlaying',this.currSongPlaying)
-		// if(!this.currSongPlaying) return
+		// socketService.setup();
+        // socketService.emit('join room',this.room);
     	socketService.emit('set-song-playing',this.currSongPlaying)
     	socketService.on('play-song',song => {
 			this.$store.commit({
@@ -196,13 +196,13 @@ export default {
 				song,
 			});
 		})
-		socketService.on('song-time', currTimePlaying => {
-				eventBus.$emit('song-time',currTimePlaying);
-		})
+		// socketService.on('song-time', currTimePlaying => {
+		// 		eventBus.$emit('song-time',currTimePlaying);
+		// })
 
-		socketService.on('pause-song',currSong => {
-			eventBus.$emit('pause-music');
-		})	
+		// socketService.on('pause-song',currSong => {
+		// 	eventBus.$emit('pause-music');
+		// })	
 	},
 	components:{
 		mixApiSearch,
