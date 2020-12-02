@@ -1,9 +1,9 @@
 <template>
   <section class="mix-list-page container">
-          <div>
+          <div> 
             <el-input type="text" v-model="filterBySongName" placeholder="Search song..." clearable></el-input>    
           </div>
-          <list-genres-carusselv />
+          <list-genres-carusselv :setGenre="setGenre"/>
            <!-- <nav class="mixes-nav">
                 <ul class="mixes-nav-ul">
                     <li class="mix-link" v-on:click="onListSetFilter('funk')">Funk</li>
@@ -42,6 +42,9 @@ export default {
       }
 	},
   computed : {
+        setGenre(genre){
+          console.log('setGenre',genre)
+        },
         mixes(){
             var mixes = this.$store.getters.getMixesForDisplay
             console.log('mixes',mixes)

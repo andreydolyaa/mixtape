@@ -120,7 +120,7 @@ export default {
 				type: "saveMix",
 				mix: updatedMix
 			})
-			// socketService.emit('play-global-player');
+			//socketService.emit('play-global-player');
 		},
 		playing(event) {
 			this.totalTimeInput = Math.floor(event.getDuration());

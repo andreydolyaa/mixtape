@@ -114,6 +114,7 @@ export default {
             return song;
         },
         async saveMix(context, payload) {
+            console.log('saveMix',payload.mix))
             const mix = await mixService.update(payload.mix);
             context.commit({ type: 'setMix', mix })
             return mix
