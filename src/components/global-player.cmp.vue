@@ -64,8 +64,8 @@ export default {
 			playerVars: {
 				autoplay: 1,
 				origin: window.location.origin,
-				host: 'https://www.youtube.com',
-				videoId: this.songId
+				// host: 'https://www.youtube.com',
+				// videoId: this.songId
 			},
 			currTime: 0,
 			currTimePlaying: 0,
