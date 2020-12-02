@@ -102,7 +102,15 @@
     // }
 
     .logo{
+        display: flex;
+        align-items: center;
 
+        .brand-name{
+            font-family: "Caveat", cursive;
+            font-size: 5em;
+            margin-left: 20px;
+            margin-top: -10px;
+        }
         img{
             width: 140px;
             height: auto;
@@ -110,7 +118,7 @@
     }
  
     .logo:hover{
-
+            font-family: "Caveat", cursive;
         img{
             width:160px;
             height: auto;
