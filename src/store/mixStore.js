@@ -15,7 +15,7 @@ export default {
             return state.mixes;
         },
         getGenreToDisplay(state) {
-            return state.gener;
+            return state.genre;
         },
         getCurrSongPlaying(state) {
             return state.currSongPlaying;
@@ -36,6 +36,9 @@ export default {
         },
         getGeners(state) {
             return state.geners
+        },
+        currentRouteName() {
+            return this.$route.name;
         }
     },
     mutations: {
@@ -55,7 +58,9 @@ export default {
             state.mixes = payload.mixes;
         },
         setGenre(state, payload) {
+            
             state.genre = payload.genre
+            console.log('setGenre',state.genre)
         },
         setCurrSong(state, payload) {
             state.currSongPlaying = payload.song;
@@ -114,7 +119,7 @@ export default {
             return song;
         },
         async saveMix(context, payload) {
-            console.log('saveMix',payload.mix)
+            //console.log('saveMix',payload.mix)
             const mix = await mixService.update(payload.mix);
             context.commit({ type: 'setMix', mix })
             return mix

@@ -5,6 +5,23 @@
     flex-direction: column;
     gap: 20px;
 
+    .nav-genres{
+        display: flex;
+        flex-direction: column;
+        padding: 0 20px;
+        align-items: center;
+        margin-bottom: 20px;
+
+        @include for-wide-layout {
+            flex-direction: row;
+        }
+    } 
+
+    .list-genres-carussel{
+        width:100%;
+        height: 25px;
+    }
+
     .mixes-nav{
         display: flex;
         align-items: center;
@@ -19,7 +36,39 @@
         }
     }
 
-    
+    .mix-link{
+        width: 90px;
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        justify-content: flex-start;
+        gap: 70px;
+        font-size: 1.2em;
+        color: #fff;
+        margin-bottom: 40px;
+
+        @include for-wide-layout {
+            margin-bottom: 0;
+        }
+    }
+
+
+    .mix-link-all{
+        width: 100px;
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        justify-content: flex-start;
+        gap: 70px;
+        font-size: 1.4em;
+        color: #fff;
+        margin-bottom: 40px;
+        height: 26px;
+
+        @include for-wide-layout {
+            margin-bottom: 0;
+        }
+    }
 
     ul.mixes-nav-ul {
         display: flex;
@@ -49,7 +98,11 @@
  
    .slick-slide{
         min-height: 40px !important;
-        // width: 100px !important;
+        width: 100px !important;
+        
+        @include for-wide-layout {
+            width: 120px !important;
+        }
    }
 }
 

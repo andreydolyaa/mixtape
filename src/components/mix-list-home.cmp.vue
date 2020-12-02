@@ -129,9 +129,9 @@ export default {
 	},
 	methods: {
 		showList(genre) {
+			console.log('genre', genre)
 			this.$store.commit({ type: "setGenre", genre });
 			//this.genre = genre
-			//console.log('genre', this.genre)
 			this.$router.push(`mix/list`);
 		},
 		

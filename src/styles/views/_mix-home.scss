@@ -9,7 +9,7 @@
         margin-bottom: 40px;
 
         @include for-wide-layout {
-            margin-bottom: 80px;
+            margin-bottom: 10px;
         }
 
 
@@ -19,7 +19,7 @@
             align-self: center;
 
             @include for-wide-layout {
-                align-self: flex-start;
+                align-self: center;
             }
 
    
@@ -77,7 +77,7 @@
         }
         
         li.mixes-list-li{
-            margin-bottom: 80px;
+            margin-bottom: 20px;
         }
     }
     .mixs-list{
