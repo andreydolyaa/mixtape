@@ -187,7 +187,7 @@ export default {
 		
 	},
 	created() {
-    	socketService.emit('set-song-playing',this.currSongPlaying)
+		socketService.emit('set-song-playing',this.currSongPlaying)
     	socketService.on('play-song',song => {
 			this.$store.commit({
 				type: "setCurrSong",
