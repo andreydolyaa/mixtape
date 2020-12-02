@@ -3,11 +3,13 @@
     <div class="mix" v-on:click="onMixView(mix._id)">
       
       <!-- <pre>{{checkTitleLang}}</pre> -->
-      <img class="mix-image shadow" :src="mix.imgUrl" />
-      <img
-        class="img-frame"
-        src="https://res.cloudinary.com/hw-projects/image/upload/v1606518099/appmixes/logo_frame.png"
-      />
+      <div class="images">
+        <img class="mix-image shadow" :src="mix.imgUrl" />
+        <img
+          class="img-frame"
+          src="https://res.cloudinary.com/hw-projects/image/upload/v1606518099/appmixes/logo_frame.png"
+        />
+      </div>
     <!-- <div  class="info-stats">
         <span class="mix-views">{{ mix.views }} <i class="fas fa-eye"></i></span>
         <span class="mix-likes">{{ mix.likes }} <i class="fas fa-heart"></i></span>
