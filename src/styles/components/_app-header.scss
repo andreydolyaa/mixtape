@@ -27,6 +27,13 @@
             z-index: 99;
             top: 0;
             right: 0;
+            .el-submenu__title * {
+                vertical-align: baseline;
+                text-align: right;
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
             .user-avater{
                 i{
                   font-size: 2rem;

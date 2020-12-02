@@ -48,19 +48,22 @@ export default {
   computed : {
         mixes(){
             var mixes = this.$store.getters.getMixesForDisplay
-            console.log('mixes',mixes)
+            //console.log('mixes',mixes)
             if(!mixes) return
             // console.log('f= ',this.filterBySongName)
             //if(!this.filterBySongName) return
             //console.log('this.genre',this.getGenreToDisplay)
             if (!this.genre) return mixes
             //console.log('filter')
-            var res = mixes.filter(mix =>{
-                //console.log('item',item.genre)
-                return mix.genre.toLowerCase() === this.genre.toLowerCase() 
-                && mix.songs.filter(song =>{
-                    console.log('song.title',song.title ,'f= ',this.filterBySongName)
-                    song.title.toLowerCase().includes(this.filterBySongName.toLowerCase());
+            var res=  mixes.filter(mix =>{
+                 //console.log('item',item.genre)
+                  return mix.genre.toLowerCase() === this.genre.toLowerCase()
+                  && mix.songs.filter(song =>{
+                     return song.title.toLowerCase().includes(this.filterBySongName.toLowerCase())
+                  
+                  //console.log('song.title',song.title.toLowerCase() ,'includes ',this.filterBySongName.toLowerCase())  
+                //  ||( song.title.toLowerCase() === this.filterBySongName.toLowerCase())
+        
                 })
             })
             console.log('mix list mixes res',res)
