@@ -1,5 +1,6 @@
 <template  v-if="getGenreToDisplay">
   <VueSlickCarousel v-bind="settings" >
+
     <ul class="mixes-nav-ul" v-for="genre in geners" :key="genre">  
          <li class="mix-link" v-on:click="onEmitSetGenre(genre)">{{genre}}</li>
       </ul>
@@ -67,7 +68,7 @@
     },// end of data
     computed:{
         geners(){
-            console.log('this.$store.getters.getGenreToDisplay',this.$store.getters.getGeners)
+            //console.log('this.$store.getters.getGenreToDisplay',this.$store.getters.getGeners)
             return this.$store.getters.getGeners
         }
     },
@@ -95,7 +96,7 @@
 		  VueSlickCarousel
     },
     created(){
-      console.log('getGeners',this.geners)
+     // console.log('getGeners',this.geners)
 
     }
   }

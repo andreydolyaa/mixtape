@@ -15,7 +15,7 @@ export default {
             return state.mixes;
         },
         getGenreToDisplay(state) {
-            return state.gener;
+            return state.genre;
         },
         getCurrSongPlaying(state) {
             return state.currSongPlaying;
@@ -36,6 +36,9 @@ export default {
         },
         getGeners(state) {
             return state.geners
+        },
+        currentRouteName() {
+            return this.$route.name;
         }
     },
     mutations: {
@@ -55,7 +58,9 @@ export default {
             state.mixes = payload.mixes;
         },
         setGenre(state, payload) {
+            
             state.genre = payload.genre
+            console.log('setGenre',state.genre)
         },
         setCurrSong(state, payload) {
             state.currSongPlaying = payload.song;

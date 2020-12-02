@@ -25,7 +25,9 @@ export default {
 		
 	},
 	computed:{
-		
+		currentRouteName() {
+        	return this.$store.getters.currentRouteName
+    	}
 	},
 	components: {
 		appHeader,

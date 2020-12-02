@@ -3,7 +3,10 @@
           <div> 
             <el-input type="text" v-model="filterBySongName" placeholder="Search song..." clearable></el-input>    
           </div>
-          <list-genres-carusselv :setGenre="setGenre"/>
+          <nav class="nav-genres">
+              <li class="mix-link-all" v-on:click="setGenreShowAll">All mixes</li>
+              <list-genres-carusselv class="list-genres-carussel" @setGenre="onSetGenre"/>
+           </nav>
            <!-- <nav class="mixes-nav">
                 <ul class="mixes-nav-ul">
                     <li class="mix-link" v-on:click="onListSetFilter('funk')">Funk</li>
@@ -31,46 +34,56 @@ import listGenresCarusselv from './list-genres-carusselv.cmp.vue';
 export default {
     name:'mix-list',
     props:{
-        genre:{
-            type:String,
-            default: null
-        }
+        // genre:{
+        //     type:String,
+        //     default: null
+        // }
     },
   data(){
       return{
-        filterBySongName:'',      
+        filterBySongName:'',
+        genre:null     
       }
 	},
   computed : {
-        setGenre(genre){
-          console.log('setGenre',genre)
-        },
         mixes(){
             var mixes = this.$store.getters.getMixesForDisplay
-            console.log('mixes',mixes)
+            //console.log('mixes',mixes)
             if(!mixes) return
             // console.log('f= ',this.filterBySongName)
             //if(!this.filterBySongName) return
             //console.log('this.genre',this.getGenreToDisplay)
-            if (!this.getGenreToDisplay) return mixes
+            if (!this.genre) return mixes
             //console.log('filter')
-            var res = mixes.filter(mix =>{
-                //console.log('item',item.genre)
-                return mix.genre.toLowerCase() === this.getGenreToDisplay.toLowerCase() 
-                && mix.songs.filter(song =>{
-                    //console.log('song.title',song.title,'f= ',this.filterBySongName)
-                    song.title.toLowerCase().includes(this.filterBySongName.toLowerCase());
+            var res=  mixes.filter(mix =>{
+                 //console.log('item',item.genre)
+                  return mix.genre.toLowerCase() === this.genre.toLowerCase()
+                  && mix.songs.filter(song =>{
+                     return song.title.toLowerCase().includes(this.filterBySongName.toLowerCase())
+                  
+                  //console.log('song.title',song.title.toLowerCase() ,'includes ',this.filterBySongName.toLowerCase())  
+                //  ||( song.title.toLowerCase() === this.filterBySongName.toLowerCase())
+        
                 })
             })
             console.log('mix list mixes res',res)
             return res
         },
         getGenreToDisplay(){
-            //console.log('this.$store.getters.getGenreToDisplay',this.$store.getters.getGenreToDisplay)
             return this.$store.getters.getGenreToDisplay
         }
   },
   methods: {
+    setGenreShowAll(){
+      this.genre = null
+    },
+    setGenre(){
+        this.genre = this.$store.getters.getGenreToDisplay
+    },
+     onSetGenre($event){
+       console.log('setGenre', $event)
+      this.genre = $event
+     },
      onListSetFilter(genre){
         //console.log('genre',genre)
         this.$store.commit({type: 'setGenre',genre })
@@ -88,7 +101,8 @@ export default {
     listGenresCarusselv
   },
   created(){
-    //console.log('mix data genre',this.getGenreToDisplay)
+    console.log('this.$store.getters.getGenreToDisplay',this.$store.getters.getGenreToDisplay)
+    this.setGenre();
 
   }
 } // end of export default
