@@ -16,7 +16,7 @@
     background-repeat: no-repeat;
     // background-position-y: -00px;
     box-shadow: 1px 1px 3px rgb(141, 141, 141);
-    
+
     p{
         i{
             color: $primary-color;
@@ -59,6 +59,33 @@
     //          color: var(--white-color);
     //     }
     // }
+
+    // logo css
+    .logo:hover{
+        font-family: "Caveat", cursive;
+        img{
+            width:80px;
+            height: auto;
+            content:url(https://res.cloudinary.com/hw-projects/image/upload/v1606477296/appmixes/logo_r_animated_v3.gif);
+
+        }
+    }
+
+    .logo-playing{
+        img{
+            width:80px;
+            height: auto;
+            content:url(https://res.cloudinary.com/hw-projects/image/upload/v1606477296/appmixes/logo_r_animated_v3.gif);
+        }
+    }
+
+    .logo-stop{
+        img{
+            width:80px;
+            height: auto;
+            content:url(https://res.cloudinary.com/hw-projects/image/upload/v1606479695/appmixes/logo_r_animated_v3_first_Frame.jpg);
+        }
+    }
 }
 //:hover
 

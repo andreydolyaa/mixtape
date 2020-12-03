@@ -5,10 +5,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Shadows+Into+Light&display=swap');
 // font-family: 'Caveat', cursive;
 // font-family: 'Shadows Into Light', cursive;
- *{
-   
-    font-family: helveticaneue;
-}
 
 @font-face {
     font-family: helveticaneue;
@@ -18,3 +14,17 @@
     font-family: retro;
     src: url(https://res.cloudinary.com/hw-projects/raw/upload/v1606904889/appmixes/retrocafe_yztqhe.woff2);
 }
+@font-face {
+    font-family: netflixrg;
+    src: url(https://res.cloudinary.com/hw-projects/raw/upload/v1606942792/appmixes/NetflixSans_W_Rg.woff2
+    );
+}
+@font-face {
+    font-family: netflixmd;
+    src: url(https://res.cloudinary.com/hw-projects/raw/upload/v1606942792/appmixes/NetflixSans_W_Md.woff2);
+}
+
+body , #app{
+    font-family: helveticaneue;
+}
+
