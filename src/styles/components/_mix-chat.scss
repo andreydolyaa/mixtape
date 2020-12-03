@@ -42,6 +42,7 @@
         }
     }
     .chat-msgs{
+        overflow:auto;
         display: flex;
         padding:1rem;
         
@@ -49,17 +50,25 @@
             list-style: none;
             display: flex;
             margin-bottom:1rem;
+            p{
+                max-width:320px;
+                overflow:hidden;
+                word-wrap: break-word;
+            }
         }
 
     }
     .chat-form{
+        overflow:auto;
         form{
+            overflow:auto;
             display: flex;
             flex-direction: row;
             position: absolute;
             bottom: 0;
         width:100%;
             input{
+                position: relative;
                 width: 100%;
                 font-size: 1rem;
                 padding: 10px;
@@ -87,7 +96,10 @@
             }
         }
         .some-typing{
+            position: absolute;
+            bottom:50px;
             
+            left:35%;
         }
     }
 }
