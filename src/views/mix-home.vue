@@ -60,7 +60,7 @@ export default {
   },
    methods: {
     scrollMeTo(refName) {
-		console.log('scrollMeTo',refName)
+	  console.log('scrollMeTo',refName)
       var element = this.$refs[refName];
       console.log('element',element,this.$refs)
       var top = element.offsetTop;
@@ -73,9 +73,8 @@ export default {
   },
 	watch: {
 			status(newValue, oldValue) {
-		//console.log(`Updating from ${oldValue} to ${newValue}`);
-
-		// Do whatever makes sense now
+		    //console.log(`Updating from ${oldValue} to ${newValue}`);
+		   // Do whatever makes sense now
 			if (getCurrSongPlaying.isPlaying) {
 						console.log('playing')
 			}else{

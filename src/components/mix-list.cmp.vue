@@ -42,32 +42,28 @@ export default {
   data(){
       return{
         filterBySongName:'',
-        genre:null     
+        genre:'all'  ,   
       }
 	},
   computed : {
         mixes(){
             var mixes = this.$store.getters.getMixesForDisplay
-            //console.log('mixes',mixes)
-            if(!mixes) return
+            console.log('mixes',mixes)
             // console.log('f= ',this.filterBySongName)
             //if(!this.filterBySongName) return
             //console.log('this.genre',this.getGenreToDisplay)
-            if (!this.genre) return mixes
-            //console.log('filter')
-            var res=  mixes.filter(mix =>{
-                 //console.log('item',item.genre)
-                  return mix.genre.toLowerCase() === this.genre.toLowerCase()
-                  && mix.songs.filter(song =>{
-                     return song.title.toLowerCase().includes(this.filterBySongName.toLowerCase())
-                  
-                  //console.log('song.title',song.title.toLowerCase() ,'includes ',this.filterBySongName.toLowerCase())  
-                //  ||( song.title.toLowerCase() === this.filterBySongName.toLowerCase())
-        
+            var filteredMixes = mixes
+            //console.log('filteredMixes',filteredMixes)
+            if (this.genre !== 'all') {
+               filteredMixes =  filteredMixes.filter(mix =>mix.genre.toLowerCase() === this.genre )
+            }
+            return filteredMixes.filter(mix =>{
+                return mix.songs.some(song =>{
+                        //console.log('song.title',song.title.toLowerCase() ,'includes ',this.filterBySongName.toLowerCase())  
+                        return song.title.toLowerCase().includes(this.filterBySongName.toLowerCase())   
                 })
             })
-            console.log('mix list mixes res',res)
-            return res
+
         },
         getGenreToDisplay(){
             return this.$store.getters.getGenreToDisplay
@@ -75,7 +71,7 @@ export default {
   },
   methods: {
     setGenreShowAll(){
-      this.genre = null
+      this.genre = 'all'
     },
     setGenre(){
         this.genre = this.$store.getters.getGenreToDisplay
@@ -102,8 +98,8 @@ export default {
   },
   created(){
     console.log('this.$store.getters.getGenreToDisplay',this.$store.getters.getGenreToDisplay)
+    this.$store.dispatch({type: "loadMixes"});
     this.setGenre();
-
   }
 } // end of export default
 </script>
