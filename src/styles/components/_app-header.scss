@@ -36,9 +36,10 @@
             }
             .user-avater{
                 i{
-                  font-size: 2rem;
+                  font-size: 2.5rem;
                   color: white;
                   cursor: pointer;
+                  right: 20px;
                 }
                 i:hover{
                     color:$primary-color;
@@ -55,6 +56,12 @@
                 .el-menu--inline{
                     border-radius: 10px;
                 }
+            }
+            .el-submenu__title *{
+                position: absolute;
+                top: 0;
+                right: 0;
+                vertical-align: baseline;
             }
             .el-submenu__title:hover , .el-submenu__title:focus{
                 cursor: default;
