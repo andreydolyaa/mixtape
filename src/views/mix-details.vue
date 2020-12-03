@@ -370,28 +370,16 @@ export default {
     this.playSongOnStart();
     this.getSongTime();
     socketService.on('song-time-new',time => {
-      // this.songTime = time
       socketService.emit('song-time-new-semi',time);
     })
 
-    // eventBus.$emit('song-time',timez)
-    
-    //   var counter = 0;
-    // this.getMix.songs.forEach(song => {
-    //   if(song.isPlaying ){
-    //     counter++;
-    //     console.log('counter: ',counter);
-    //     if(counter === this.getMix.songs.length){
-    //     socketService.emit('send-song-to-all',this.getMix.songs[0]);
-    //     console.log('NO SONGS PLAYING YET.... sending song to socket route ',this.getMix.songs[0]);
-    //     }
-    //     else{
-    //     socketService.emit('send-song-to-all',song);
-    //     console.log('THERES A SONG PLAYING ALREADY ',song);
-    //     }
-    //   }
-    // })
- //////////////////////////^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    socketService.on('mix-is-updated',mix=>{
+      console.log(' MIX UPDATE VIA SOCKET :::',mix);
+      this.$store.dispatch({
+				type: "saveMix",
+				mix,
+			});
+    })
   },
   mounted() {
   }
