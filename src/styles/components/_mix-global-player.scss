@@ -16,7 +16,15 @@
     background-repeat: no-repeat;
     // background-position-y: -00px;
     box-shadow: 1px 1px 3px rgb(141, 141, 141);
-    
+
+    .logo{
+       display: flex;
+        img{
+            width:80px;
+            height: auto;
+        }
+    }
+
     p{
         i{
             color: $primary-color;

@@ -9,9 +9,17 @@
 			</div>
 		</div>
 		<div class="global-player">
-			<p>
-				<i class="fas fa-music"></i>
-			</p>
+		 <div class="logo" :class="isPlaying" @click="resetIcon">
+        		<router-link to="/">
+				<img
+					class="reflect"
+					src="https://res.cloudinary.com/hw-projects/image/upload/v1606479695/appmixes/logo_r_animated_v3_first_Frame"
+				/>
+				
+				</router-link>
+				<router-link to="/">
+				</router-link>
+			</div>
 			<h2 v-if="getCurrSongPlaying">{{getCurrSongPlaying.title}}</h2>
 			<h2 v-else>Artist - Unknown</h2>
 
@@ -86,6 +94,11 @@ export default {
 		},
 		currMix() {
 			return this.$store.getters.getMix;
+		},
+		 isPlaying() {
+			var currSong = this.$store.getters.getCurrSongIsPlaying;
+			//return currSong
+			return currSong ? 'logo-playing' : 'logo-stop'
 		},
 	},
 	methods: {
