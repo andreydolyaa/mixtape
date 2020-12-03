@@ -9,15 +9,14 @@
 			</div>
 		</div>
 		<div class="global-player">
-		 <div class="logo" :class="isPlaying" @click="resetIcon">
+		 <!-- // todo check @click="resetIcon" -->
+		 <div class="logo" :class="isPlayingClass" >
         		<router-link to="/">
 				<img
 					class="reflect"
 					src="https://res.cloudinary.com/hw-projects/image/upload/v1606479695/appmixes/logo_r_animated_v3_first_Frame"
 				/>
 				
-				</router-link>
-				<router-link to="/">
 				</router-link>
 			</div>
 			<h2 v-if="getCurrSongPlaying">{{getCurrSongPlaying.title}}</h2>
@@ -95,7 +94,7 @@ export default {
 		currMix() {
 			return this.$store.getters.getMix;
 		},
-		 isPlaying() {
+		 isPlayingClass() {
 			var currSong = this.$store.getters.getCurrSongIsPlaying;
 			//return currSong
 			return currSong ? 'logo-playing' : 'logo-stop'

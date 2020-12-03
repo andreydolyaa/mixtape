@@ -16,45 +16,50 @@
          </router-link>
       </div>
       <div class="user-display" v-if="user">Hello {{ user.username }}</div>
-      <nav class="main-nav">
+        <nav class="main-nav">
         <!-- <div class="nav-mix"> -->
           <!-- <router-link to="/genres">Genres</router-link>
             <router-link to="/mixes">Mixes</router-link> -->
           <!-- <router-link to="/newMix">Create Mix</router-link> -->
         <!-- </div> -->
-        <div class="nav-user">
-          <el-menu
-            default-active="2"
-            @open="handleOpen"
-            @close="handleClose"
-            :collapse="isCollapse"
-          >
-            <el-submenu index="1">
-              <template slot="title">
-                <span class="user-avater"
-                  ><i class="fas fa-user-circle"></i
-                ></span>
-              </template>
-              <el-menu-item-group>
-                <el-menu-item v-if="!user" @click="onSetLogin" index="1-1"
-                  >Login</el-menu-item
-                >
-                <el-menu-item v-else @click="onSetLogout" index="1-1"
-                  >Logout</el-menu-item
-                >
-                <el-menu-item v-if="!user" @click="onSetSignup" index="1-2"
-                  >Signup</el-menu-item
-                >
-              </el-menu-item-group>
-            </el-submenu>
-          </el-menu>
-          <!-- <span v-if="!user" class="nav-display" @click="onSetLogin"
-            >Login</span
-          > -->
-          <!-- <span v-else class="nav-display" @click="onSetLogout">Logout</span> -->
-          <!-- <span v-if="!user" class="nav-display" @click="onSetSignup"
-            >Signup</span
-          > -->
+        <div class="nav-user-pos">
+            <div class="nav-user">
+              <el-menu
+                default-active="2"
+                @open="handleOpen"
+                @close="handleClose"
+                :collapse="isCollapse"
+              >
+                <el-submenu index="1">
+                  <template slot="title">
+                    <span class="user-avater"
+                      ><i class="fas fa-user-circle"></i
+                    ></span>
+                  </template>
+                  <el-menu-item-group>
+                    <el-menu-item v-if="!user" @click="onSetLogin" index="1-1"
+                      >Login</el-menu-item
+                    >
+                    <el-menu-item v-else @click="onSetLogout" index="1-1"
+                      >Logout</el-menu-item
+                    >
+                    <el-menu-item v-if="!user" @click="onSetSignup" index="1-2"
+                      >Signup</el-menu-item
+                    >
+                  </el-menu-item-group>
+                </el-submenu>
+              </el-menu>
+              <!-- <span v-if="!user" class="nav-display" @click="onSetLogin"
+                >Login</span
+              > -->
+              <!-- <span v-else class="nav-display" @click="onSetLogout">Logout</span> -->
+              <!-- <span v-if="!user" class="nav-display" @click="onSetSignup"
+                >Signup</span
+              > -->
+          
+          
+            </div>
+     
         </div>
       </nav>
     </div>
