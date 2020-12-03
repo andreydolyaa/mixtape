@@ -8,7 +8,7 @@
 			<form @submit.prevent="getSearchResults()">
 			<el-input v-model="keyword" type="text" placeholder="Add song to mix..." clearable></el-input>
 			</form>
-			<span  @click="getSearchResults() ">
+			<span @click="getSearchResults()">
 				<i class="fas fa-search"></i>
 			</span>
 		</div>

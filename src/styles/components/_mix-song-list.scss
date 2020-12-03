@@ -38,20 +38,14 @@
                         display: flex;
                         justify-content: start;
                         border-bottom: 2px solid $primary-color;
-        
+                        
                         input.el-input__inner::placeholder{
                             color:white;
                         }
+                        // input.el-input__inner:visited{
+                        //     filter: brightness(1.5);
+                        // }
                         input.el-input__inner{
-                            // width: 100%;
-                            // font-weight: 700;
-                            // letter-spacing: 2px;
-                            // background-color:inherit;
-                            // color: white;
-                            // border-style: none;
-                            // border-radius: 0;
-                            // font-size: 1.1em;
-                            // padding-left: 30px;
                             min-width: 270px;
                             background-color:inherit;
                             color: white;
@@ -64,7 +58,9 @@
                     }
         
                 }
-
+                .search-song:hover, .search-song:focus-within{
+                    filter: brightness(1.5);
+                }
                
             }
 
