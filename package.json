@@ -4,7 +4,11 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+<<<<<<< HEAD
     "build": "vue-cli-service build --dest ../backend/public",
+=======
+    "build": "vue-cli-service build  --dest ../mixtape-backend/public",
+>>>>>>> 8912511ccbfa6abeb9303e356f59723c33d6da54
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e"
   },

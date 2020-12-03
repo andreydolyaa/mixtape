@@ -2,7 +2,7 @@ import { mixService } from '@/services/mixService.js'
 
 export default {
     state: {
-        mixes: [],
+        mixes: null,
         topMixes:null,
         genre: 'all',
         currMix: null,

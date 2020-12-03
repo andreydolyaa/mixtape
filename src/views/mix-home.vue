@@ -4,7 +4,7 @@
 			<mixHero v-on:refName="scrollMeTo"  />
 			<div class="top-mixes container">
 				<h2> Top Mixes </h2>
-				<ul class="top-mixes">
+				<ul class="top-mixes" v-if="topMixes">
 					<li v-for="(mix) in topMixes" :key="mix._id" >
 						<mix-preview :mix="mix" />
 					</li>

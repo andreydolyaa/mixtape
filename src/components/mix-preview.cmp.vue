@@ -38,34 +38,34 @@ export default {
     mix: Object
   },
     computed: {
-    checkLang() {
-      //console.log('this.mix.genre',this.mix.genre)
-      return this.mix.genre === 'israeli' ? 'mix-name isreali' : 'mix-name'
-    },
-    getMix(){
-      return this.$store.getters.getMix;
-    },
-    getSong(){
-      return this.$store.getters.getCurrSongPlaying;
-    },
-    // mixImg() {
-    //   if (!this.mix) return
-    //   //console.log(this.mix)
+      checkLang() {
+        //console.log('this.mix.genre',this.mix.genre)
+        return this.mix.genre === 'israeli' ? 'mix-name isreali' : 'mix-name'
+      },
+      getMix(){
+        return this.$store.getters.getMix;
+      },
+      getSong(){
+        return this.$store.getters.getCurrSongPlaying;
+      },
+      // mixImg() {
+      //   if (!this.mix) return
+      //   //console.log(this.mix)
 
-    //   //random image not in use
-    //   //var max = this.mix.songs.length 
-    //   //var songIdx = Math.floor(Math.random() * (max - 0) + 0);
+      //   //random image not in use
+      //   //var max = this.mix.songs.length 
+      //   //var songIdx = Math.floor(Math.random() * (max - 0) + 0);
 
-    //   // 
-    //   var song = this.mix.songs[0]
-    //   var img = song.imgUrl
-    //   //console.log('img',img)
-    //   return img
+      //   // 
+      //   var song = this.mix.songs[0]
+      //   var img = song.imgUrl
+      //   //console.log('img',img)
+      //   return img
 
-    // },
-     songsAmount(){
-      return this.mix.songs.length;
-    }
+      // },
+      songsAmount(){
+        return this.mix.songs.length;
+      }
   },
   methods: {
     onMixView(mixId) {

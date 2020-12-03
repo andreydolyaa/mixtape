@@ -16,17 +16,15 @@
 					</li>
 				</ul>
 			</nav>
-
-
-			<template>
-				<VueSlickCarousel v-bind="settings" v-if="mixes">
+			<template v-if="mixes && genre">	
+				<VueSlickCarousel v-bind="settings">	
 					<li v-for="mix in mixes"  :key="mix._id">
 						<mix-preview :mix="mix" />
 					</li>
 					<template #prevArrow="arrowOption">
-					<div class="custom-arrow">
-						{{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
-					</div>
+						<div class="custom-arrow">		
+							{{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
+						</div>
 					</template>
 				</VueSlickCarousel>
 			</template>
@@ -70,6 +68,7 @@ export default {
 			mixTopA: null,
 			currMix:'',
 			settings: {
+				"lazyLoad": "ondemand",
 				"dots": true,
 				"infinite": false,
 				"speed": 500,
