@@ -1,18 +1,16 @@
 .searchTest{
     min-width: 240px;
     display: flex;
-
+    border-bottom: 2px solid $primary-color;
     input {
-        min-width: 320px;
+        min-width: 270px;
         background-color:inherit;
         color: white;
         border-style: none;
         border-radius: 0;
-        border-bottom: 2px solid $primary-color;
         font-size: 1.1em;
         font-weight: 700;
         letter-spacing: 2px;
-        padding-left: 30px;
     }
 
     span{
@@ -27,9 +25,9 @@
         color: white;
     }
     .el-input input:hover{
-        border-bottom: 2px solid $primary-color;
+        // border-bottom: 2px solid $primary-color;
     }
     .el-input input:focus{
-        border-bottom: 2px solid $primary-color;
+        // border-bottom: 2px solid $primary-color;
     }
 }
