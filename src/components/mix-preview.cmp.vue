@@ -20,6 +20,7 @@
         <div class="stats">
           <span class="mix-likes">{{ mix.likes }} <i class='fas fa-heart'></i></span>
           <span class="mix-views">{{ mix.views }} <i class="fas fa-eye"></i></span>
+          <span class="mix-amount">{{ songsAmount }} <i class="fas fa-compact-disc"></i></span>
         </div>
     </div>
     </div>
@@ -46,7 +47,7 @@ export default {
     },
     getSong(){
       return this.$store.getters.getCurrSongPlaying;
-    }
+    },
     // mixImg() {
     //   if (!this.mix) return
     //   //console.log(this.mix)
@@ -62,6 +63,9 @@ export default {
     //   return img
 
     // },
+     songsAmount(){
+      return this.mix.songs.length;
+    }
   },
   methods: {
     onMixView(mixId) {

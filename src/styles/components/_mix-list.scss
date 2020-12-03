@@ -4,7 +4,34 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-
+    input.el-input__inner{
+        max-width: 50%;
+        background-color:inherit;
+        color: white;
+        border-style: none;
+        border-radius: 0;
+        border-bottom: 2px solid $primary-color;
+        font-size: 1.1em;
+        font-weight: 700;
+        letter-spacing: 2px;
+        padding-left: 30px;
+    }
+    .el-input input::placeholder{
+        color: white;
+    }
+    .el-input input:hover{
+        border-bottom: 2px solid $primary-color;
+    }
+    .el-input input:focus{
+        border-bottom: 2px solid $primary-color;
+    }
+    span{
+        i.fas {
+            color:$primary-color;
+            font-size: 25px;
+            padding: 10px;
+        }
+    }
     .nav-genres{
         display: flex;
         flex-direction: column;
