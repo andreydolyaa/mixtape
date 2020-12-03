@@ -309,6 +309,25 @@ export default {
     reload() {
       this.$forceUpdate();
     },
+    playSongOnStart(){
+      var counter = 0;
+      var currSong;
+      this.getMix.songs.forEach(song => {
+        if(song.isPlaying){
+          counter++;
+          currSong = song
+        }
+      })
+      if(counter > 0){
+        socketService.emit('send-song-to-all',currSong);
+        socketService.on('song-time-new',currTimePlaying => {
+            // eventBus.$emit('song-time', currTimePlaying)
+        })
+      }
+      else{
+        socketService.emit('send-song-to-all',this.getMix.songs[0]);
+      }
+    }
   },
   components: {
     mixChat,
@@ -338,7 +357,6 @@ export default {
             // this.currSongPlaying.isPlaying = true;
           }
         })
-        console.log('@@@@@@@@@@@ MIXCOPY: ',mixCopy);
         this.$store.dispatch({
 				type: "saveMix",
 				mix: mixCopy
@@ -346,86 +364,23 @@ export default {
       }   
     })
 
-    // if(!this.currSongPlaying){
+    this.playSongOnStart();
+    //   var counter = 0;
+    // this.getMix.songs.forEach(song => {
+    //   if(song.isPlaying ){
+    //     counter++;
+    //     console.log('counter: ',counter);
+    //     if(counter === this.getMix.songs.length){
     //     socketService.emit('send-song-to-all',this.getMix.songs[0]);
-    //     console.log('no song.....Setting up new song to all stations' );
-    //   }
-    //   else{
-    //     console.log('song found, syncing songs', this.currSongPlaying.title);
-    //   }
-
-		// socketService.on('play-preview-new',song => {
-    //     this.$store.commit({type: "setCurrSong",song});
-    //   })
-    
-    this.getMix.songs.forEach(song => {
-      if(song.isPlaying){
-        socketService.emit('send-song-to-all',song);
-        console.log('THERES A SONG PLAYING ALREADY ',song);
-      }
-      else{
-        console.log('this.getMix.songs[0]',this.getMix.songs[0])
-        socketService.emit('send-song-to-all',this.getMix.songs[0]);
-        console.log('NO SONGS PLAYING YET.... sending song to socket route ',this.getMix.songs[0]);
-      }
-    })
-
-
-    this.getMix.songs.forEach(song => {
-      if(song.isPlaying){
-        socketService.emit('send-song-to-all',song);
-        console.log('THERES A SONG PLAYING ALREADY ',song);
-      }
-      else{
-        socketService.emit('send-song-to-all',this.getMix.songs[0]);
-        console.log('NO SONGS PLAYING YET.... sending song to socket route ',this.getMix.songs[0]);
-        console.log('first song',this.getMix.songs[0]);
-      }
-    })
-
-
-
-    // this.getMix.songs.every(song => {
-    //         if(song.isPlaying){
+    //     console.log('NO SONGS PLAYING YET.... sending song to socket route ',this.getMix.songs[0]);
+    //     }
+    //     else{
     //     socketService.emit('send-song-to-all',song);
-    //     console.log('THERES A SONG PLAYING ALREADY');
-    //   }
-    //   else{
-    //     socketService.emit('send-song-to-all',this.getMix.songs[0]);
-    //     console.log('NO SONGS PLAYING YET.... sending song to socket route');
+    //     console.log('THERES A SONG PLAYING ALREADY ',song);
+    //     }
     //   }
     // })
-    // this.getMix.songs.find(song => {
-    //   if(song.isPlaying){
-    //     socketService.emit('send-song-to-all',song);
-    //     console.log('THERES A SONG PLAYING ALREADY');
-    //   }else{
-    //     socketService.emit('send-song-to-all',this.getMix.songs[0]);
-    //     console.log('NO SONGS PLAYING YET.... sending song to socket route');
-    //   } 
-    // })
-    // this.getMix.songs.some(song => {
-    //   if(song.isPlaying){
-    //     console.log('THERES A SONG PLAYING ALREADY');
-    //     return socketService.emit('send-song-to-all',song);
-    //   }
-    //   else{
-    //     console.log('NO SONGS PLAYING YET.... sending song to socket route');
-    //     return socketService.emit('send-song-to-all',this.getMix.songs[0]);
-    //   }
-    // })
-    // if(this.getMix){
-    //   var x = this.getMix.songs.every(song => song.isPlaying);
-    //   if(x){
-    //     socketService.emit('send-song-to-all',song);
-    //     console.log('THERES A SONG PLAYING ALREADY');
-    //   }else{
-    //     console.log('NO SONGS PLAYING YET.... sending song to socket route');
-    //     socketService.emit('send-song-to-all',this.getMix.songs[0]);
-    //   }
-    // }
-    
-
+ //////////////////////////^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   },
   mounted() {
   }

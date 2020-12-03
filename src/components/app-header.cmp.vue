@@ -4,11 +4,16 @@
     <div class="app-header">
       <!-- <h1>app header</h1> -->
       <div class="logo" :class="isPlaying" @click="resetIcon">
-        <router-link to="/"
-          ><img
+        <router-link to="/">
+          <img
             class="reflect"
             src="https://res.cloudinary.com/hw-projects/image/upload/v1606479695/appmixes/logo_r_animated_v3_first_Frame"
-        /></router-link>
+          />
+          
+        </router-link>
+        <router-link to="/">
+        <h2 class="brand-name">mixTape</h2>
+         </router-link>
       </div>
       <div class="user-display" v-if="user">Hello {{ user.username }}</div>
       <nav class="main-nav">
@@ -84,10 +89,10 @@ export default {
       })
     },
     handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+      //console.log(key, keyPath);
     },
     handleClose(key, keyPath) {
-      console.log(key, keyPath);
+      //console.log(key, keyPath);
     }
   },
   computed: {

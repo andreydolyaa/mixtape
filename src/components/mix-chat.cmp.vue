@@ -59,7 +59,7 @@ export default {
     },
     created() {
         // socketService.setup();
-        // socketService.emit('join room',this.room);
+        socketService.emit('join room',this.room);
         socketService.on('chat message',message => {
             this.msgs.push(message)
         })

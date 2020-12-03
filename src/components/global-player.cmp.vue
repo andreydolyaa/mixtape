@@ -106,7 +106,6 @@ export default {
 			})
 		},
 		play() {
-			console.log('REFS',this.$refs);
 			this.$refs.youtube.player.playVideo();
 			this.$store.commit({
 				type: "startSongPlaying",
@@ -121,7 +120,6 @@ export default {
 				type: "saveMix",
 				mix: updatedMix
 			})
-			//socketService.emit('play-global-player');
 		},
 		playing(event) {
 			this.totalTimeInput = Math.floor(event.getDuration());
@@ -133,8 +131,10 @@ export default {
 					Math.floor(event.getCurrentTime())
 				);
 				this.currTimePlaying = Math.floor(event.getCurrentTime());
-			}, 1000);
+			}, 1000);	
+			socketService.emit('move-to-new-time',this.currTimePlaying);
 		},
+		
 		ended() {
 			this.autoPlayNextSong();
 		},
@@ -170,7 +170,6 @@ export default {
 				type: "saveMix",
 				mix: updatedMix
 			})
-			// socketService.emit('curr-song-playing',nextSong);
 			socketService.emit('next-song',nextSong)
 		},
 		async moveTo() {
@@ -223,6 +222,8 @@ export default {
 		},
 	},
 	created() {
+		socketService.setup();
+    	socketService.emit('join room',this.room);
 		eventBus.$on("pause-music", () => {
 			this.pause();
 		});
@@ -230,7 +231,7 @@ export default {
 			this.play();
 		});
 		eventBus.$on('song-time',currTimePlaying => {
-			this.$refs.youtube.player.seekTo(currTimePlaying);
+			this.$refs.youtube.player.seekTo(currTimePlaying,true);
 			this.currTimePlaying = currTimePlaying
 		})
 	},
