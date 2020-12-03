@@ -25,7 +25,7 @@
 <script>
 import { youTubeService } from "@/services/youTubeService.js";
 import { mixService } from "@/services/mixService.js";
-
+import socketService from "@/services/socketService.js";
 export default {
 	data() {
 		return {
@@ -63,6 +63,10 @@ export default {
 			this.createNewSong = mixService.createNewSong();
 		},
 	},
+	created(){
+		socketService.setup();
+    	
+	}
 };
 </script>
 
