@@ -87,6 +87,9 @@ export default {
 		currMix() {
 			return this.$store.getters.getMix;
 		},
+		timePlaying(){
+			return this.currTimePlaying;
+		}
 	},
 	methods: {
 		pause() {
@@ -221,7 +224,7 @@ export default {
 			this.$refs.youtube.player.unMute();
 		},
 	},
-	created() {
+		created() {
 		socketService.setup();
     	socketService.emit('join room',this.room);
 		eventBus.$on("pause-music", () => {
@@ -234,6 +237,9 @@ export default {
 			this.$refs.youtube.player.seekTo(currTimePlaying,true);
 			this.currTimePlaying = currTimePlaying
 		})
+
+		
+		
 	},
 };
 </script>
