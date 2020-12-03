@@ -146,8 +146,11 @@ export default {
 					Math.floor(event.getCurrentTime())
 				);
 				this.currTimePlaying = Math.floor(event.getCurrentTime());
-			}, 1000);	
-			socketService.emit('move-to-new-time',this.currTimePlaying);
+				eventBus.$emit('songTime',Math.floor(event.getCurrentTime()));
+			}, 1000);
+			// eventBus.$on('getTime',()=>{
+			// 	socketService.emit('move-to-new-time',this.currTimePlaying);
+			// })
 		},
 		
 		ended() {
@@ -250,7 +253,9 @@ export default {
 			this.currTimePlaying = currTimePlaying
 		})
 
-		
+		// socketService.on('song-time-new',songTime => {
+        //     console.log('CUR TIME PLAYING : ',songTime);
+        // })
 		
 	},
 };

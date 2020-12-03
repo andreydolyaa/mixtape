@@ -125,7 +125,6 @@ import { eventBus } from "@/main.js";
 export default {
   data() {
     return {
-      newTimeToSet:0,
       isTitleHide: false,
       isDescHide: false,
       isLoading: false,
@@ -320,13 +319,18 @@ export default {
         }
       })
       if(counter > 0){
+        var time;
         socketService.emit('send-song-to-all',currSong);
-          socketService.on('song-time-new',currTime=>{
-            eventBus.$emit('song-time',currTime)
-          });
+        eventBus.$on('songTime',songTime => {
+          console.log('TIME : ',time);
+        })
+        socketService.emit('move-to-new-time',time);
       }
       else{
         socketService.emit('send-song-to-all',this.getMix.songs[0]);
+        eventBus.$on('setTime',time => {
+          console.log('time playing ',time);
+        })
       }
     }
   },
@@ -365,9 +369,8 @@ export default {
       })
       }   
     })
-
     this.playSongOnStart();
-
+    
     //   var counter = 0;
     // this.getMix.songs.forEach(song => {
     //   if(song.isPlaying ){
