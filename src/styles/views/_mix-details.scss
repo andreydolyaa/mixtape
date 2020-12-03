@@ -219,9 +219,11 @@
             h5{
                 display: flex; 
                 flex-direction: row;
+                align-items: baseline;
                 img{
                     width: 40px;
                     height: auto;
+                    margin-top: 5px;
                 }    
             }
             img{
