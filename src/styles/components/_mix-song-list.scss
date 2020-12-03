@@ -37,21 +37,29 @@
                         min-width: 240px;
                         display: flex;
                         justify-content: start;
+                        border-bottom: 2px solid $primary-color;
         
                         input.el-input__inner::placeholder{
                             color:white;
                         }
                         input.el-input__inner{
-                            width: 100%;
-                            font-weight: 700;
-                            letter-spacing: 2px;
+                            // width: 100%;
+                            // font-weight: 700;
+                            // letter-spacing: 2px;
+                            // background-color:inherit;
+                            // color: white;
+                            // border-style: none;
+                            // border-radius: 0;
+                            // font-size: 1.1em;
+                            // padding-left: 30px;
+                            min-width: 270px;
                             background-color:inherit;
                             color: white;
                             border-style: none;
                             border-radius: 0;
-                            border-bottom: 2px solid $primary-color;
                             font-size: 1.1em;
-                            // padding-left: 30px;
+                            font-weight: 700;
+                            letter-spacing: 2px;
                         }
                     }
         

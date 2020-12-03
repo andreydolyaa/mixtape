@@ -146,11 +146,12 @@ export default {
 					Math.floor(event.getCurrentTime())
 				);
 				this.currTimePlaying = Math.floor(event.getCurrentTime());
-				eventBus.$emit('songTime',Math.floor(event.getCurrentTime()));
+				socketService.emit('move-to-new-time',this.currTimePlaying);
 			}, 1000);
-			// eventBus.$on('getTime',()=>{
-			// 	socketService.emit('move-to-new-time',this.currTimePlaying);
-			// })
+
+			eventBus.$on('getTime',()=>{
+				socketService.emit('move-to-new-time',this.currTimePlaying);
+			})
 		},
 		
 		ended() {
@@ -252,10 +253,12 @@ export default {
 			this.$refs.youtube.player.seekTo(currTimePlaying,true);
 			this.currTimePlaying = currTimePlaying
 		})
+		eventBus.$on('song-time-sync',currTimePlaying => {
+			this.$refs.youtube.player.seekTo(currTimePlaying,true);
+			this.currTimePlaying = currTimePlaying
+			eventBus.$off('song-time-sync');
+		})
 
-		// socketService.on('song-time-new',songTime => {
-        //     console.log('CUR TIME PLAYING : ',songTime);
-        // })
 		
 	},
 };

@@ -125,6 +125,7 @@ import { eventBus } from "@/main.js";
 export default {
   data() {
     return {
+      songTime:0,
       isTitleHide: false,
       isDescHide: false,
       isLoading: false,
@@ -310,7 +311,6 @@ export default {
     playSongOnStart(){
       var counter = 0;
       var currSong;
-      console.log('this.getMix',this.getMix)
       if(!this.getMix) return
       this.getMix.songs.forEach(song => {
         if(song.isPlaying){
@@ -319,19 +319,17 @@ export default {
         }
       })
       if(counter > 0){
-        var time;
         socketService.emit('send-song-to-all',currSong);
-        eventBus.$on('songTime',songTime => {
-          console.log('TIME : ',time);
+        socketService.on('song-time-final',time => {
+        eventBus.$emit('song-time-sync',time)
         })
-        socketService.emit('move-to-new-time',time);
       }
       else{
         socketService.emit('send-song-to-all',this.getMix.songs[0]);
-        eventBus.$on('setTime',time => {
-          console.log('time playing ',time);
-        })
       }
+    },
+    getSongTime(){
+      eventBus.$emit('getTime');
     }
   },
   components: {
@@ -370,6 +368,13 @@ export default {
       }   
     })
     this.playSongOnStart();
+    this.getSongTime();
+    socketService.on('song-time-new',time => {
+      // this.songTime = time
+      socketService.emit('song-time-new-semi',time);
+    })
+
+    // eventBus.$emit('song-time',timez)
     
     //   var counter = 0;
     // this.getMix.songs.forEach(song => {
