@@ -9,6 +9,10 @@
         margin: 0 auto;
         border-bottom: 2px solid $primary-color;
     }
+    .input-list:hover , .input-list:focus-within{
+        filter: brightness(1.5);
+
+    }
     input.el-input__inner{
         width: 100%;
         background-color:inherit;
@@ -28,12 +32,6 @@
 
     .el-input input::placeholder{
         color: white;
-    }
-    .el-input input:hover{
-        // border-bottom: 2px solid $primary-color;
-    }
-    .el-input input:focus{
-        // border-bottom: 2px solid $primary-color;
     }
     span{
         i.fas {

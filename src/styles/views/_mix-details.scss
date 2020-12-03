@@ -64,6 +64,7 @@
                 max-width: 360px;
                 min-height: 240px;
                 height: auto;
+                object-fit: cover;
                 margin-right: 20px;
                 object-fit:contain; 
             }
@@ -125,9 +126,6 @@
         margin-bottom: 10px;
 
 
-            .edit{
-
-            }
             .description{
                 min-width: 140px;
                 display: flex;

@@ -8,7 +8,7 @@
 			<form @submit.prevent="getSearchResults()">
 			<el-input v-model="keyword" type="text" placeholder="Add song to mix..." clearable></el-input>
 			</form>
-			<span  @click="getSearchResults() ">
+			<span @click="getSearchResults()">
 				<i class="fas fa-search"></i>
 			</span>
 		</div>
@@ -26,6 +26,7 @@
 import { youTubeService } from "@/services/youTubeService.js";
 import { mixService } from "@/services/mixService.js";
 import socketService from "@/services/socketService.js";
+import { eventBus } from "@/main.js";
 export default {
 	data() {
 		return {
@@ -60,11 +61,11 @@ export default {
 				type: "saveMix",
 				mix: mixCopy,
 			});
+			socketService.emit('mix-updated',mixCopy);
 			this.createNewSong = mixService.createNewSong();
 		},
 	},
 	created(){
-		socketService.setup();
     	
 	}
 };

@@ -37,6 +37,11 @@ export default {
   props: {
     mix: Object
   },
+  data(){
+    return{
+      currMix: null
+    }
+  },
     computed: {
       checkLang() {
         //console.log('this.mix.genre',this.mix.genre)
