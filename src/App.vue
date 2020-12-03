@@ -1,5 +1,7 @@
 <template>
 	<div id="app">
+		<mix-login v-if="isLogin" class="centered" />
+      	<mix-signup v-if="isSignup" class="centered" />
 		<appHeader />
 		<router-view />
 		<div class="global">
@@ -9,10 +11,13 @@
 </template>
     
 <script>
+import mixLogin from '@/views/mix-login.vue';
+import mixSignup from '@/views/mix-signup.vue';
 import appHeader from "@/components/app-header.cmp.vue";
 import appFooter from "@/components/app-footer.cmp.vue";
 import { mixService } from "@/services/mixService.js";
 import globalPlayer from '@/components/global-player.cmp.vue';
+
 
 export default {
 	props:{
@@ -27,9 +32,17 @@ export default {
 	computed:{
 		currentRouteName() {
         	return this.$store.getters.currentRouteName
-    	}
+		},
+		isLogin(){
+			return this.$store.getters.getIsLogin;
+		},
+		isSignup(){
+			return this.$store.getters.getIsSignup;
+		},
 	},
 	components: {
+		mixLogin,
+    	mixSignup,
 		appHeader,
 		appFooter,
 		globalPlayer
