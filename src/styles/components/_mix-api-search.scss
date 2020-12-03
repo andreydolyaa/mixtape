@@ -24,10 +24,7 @@
     .el-input input::placeholder{
         color: white;
     }
-    .el-input input:hover{
-        // border-bottom: 2px solid $primary-color;
-    }
-    .el-input input:focus{
-        // border-bottom: 2px solid $primary-color;
-    }
+}
+.searchTest:hover, .searchTest:focus-within{
+    filter: brightness(1.5);
 }
