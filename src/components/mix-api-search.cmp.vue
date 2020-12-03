@@ -12,7 +12,7 @@
 				<i class="fas fa-search"></i>
 			</span>
 		</div>
-		<div v-if="searchResults">
+		<div class="searchResults" v-if="searchResults">
 			<p>{{searchResults.title}}</p>
 			<img :src="searchResults.thumbnails.default.url" alt />
 			<button @click="addSongToMix()">

@@ -23,7 +23,13 @@
         font-weight: 700;
         letter-spacing: 2px;
         padding-left: 30px;
+       
     }
+
+    input.el-input__inner:hover {
+        filter: brightness(1.5);
+    }
+
     .el-input input::placeholder{
         color: white;
     }

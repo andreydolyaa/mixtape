@@ -9,7 +9,7 @@
     	</div>
 	</div>
 </template>
-   
+    
 <script>
 import mixLogin from '@/views/mix-login.vue';
 import mixSignup from '@/views/mix-signup.vue';

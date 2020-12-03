@@ -1,13 +1,11 @@
 
 <template>
   <section class="login-user" v-if="!loggedinUser">
-    <h1>Login</h1>
+    <div class="screen"></div>
     <div class="checkLogin" >
       <form @keyup.enter="login">
         <el-input type="text" placeholder="User name" v-model="cerdentials.email" required clearable />
-        <br/>
         <el-input type="text" placeholder="Password" v-model="cerdentials.password" show-password required clearable />
-        <br/>
         <el-button @click.prevent="login"  type="success">Login</el-button>
       </form>
     </div>

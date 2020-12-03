@@ -1,0 +1,35 @@
+.login-user{
+    .screen{
+        position: absolute;
+        left: 0;
+        width: 100vw;
+        height: 100vw;
+        background: aqua;
+    }
+    .checkLogin{
+        background: white;
+        padding: 20px 0px;
+        border-radius: 5px;
+
+        form{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            el-input{
+
+            }
+
+            div.el-input{
+                width: 30%;
+            }
+            .el-button--success{
+                width: 80%;
+
+            }
+        }
+    }
+
+}
