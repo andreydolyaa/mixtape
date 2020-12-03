@@ -8,7 +8,7 @@
     width: 100%;
     background: #000000c9;
 
-    nav{
+    nav.main-nav{
         background-color: transparent;
         position: relative;
         display: flex;
@@ -22,72 +22,72 @@
         a:hover{
             color:$primary-color;
         }
-        .nav-user{
-            position: absolute;
-            z-index: 99;
-            top: 0;
-            right: 0;
-            .el-submenu__title * {
-                vertical-align: baseline;
-                text-align: right;
+        .nav-user-pos{
+            position: relative;
+            height: 40px;
+            width: 40px;
+            
+            .nav-user{
                 position: absolute;
+                z-index: 99;
                 top: 0;
                 right: 0;
-            }
-            .user-avater{
-                i{
-                  font-size: 2.5rem;
-                  color: white;
-                  cursor: pointer;
-                  right: 20px;
+                .el-submenu__title * {
+                    vertical-align: baseline;
+                    text-align: right;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
                 }
-                i:hover{
-                    color:$primary-color;
-                }
-            }
-            .el-submenu__icon-arrow , .el-icon-arrow-down{
-                display: none;
-            }
-            .el-menu {
-                // background-color: black;
-                background-color: transparent;
-                border: transparent;
-                width: 100%;
-                .el-menu--inline{
-                    border-radius: 10px;
-                }
-            }
-            .el-submenu__title *{
-                position: absolute;
-                top: 0;
-                right: 0;
-                vertical-align: baseline;
-            }
-            .el-submenu__title:hover , .el-submenu__title:focus{
-                cursor: default;
-                outline: 0;
-                background-color: transparent;
-            }
-            .el-submenu {
-                // background-color: black;
-                width: 100%;
-                .el-menu-item {
-                    min-width: 0;  
-                    border-radius: 10px; 
-                    margin: 5px;
-                    background-color: rgba(255, 255, 255, 0.911);  
-                }
-                .el-menu-item:hover {
-                    background-color:$primary-color;
+                .user-avater{
+                    i{
+                    font-size: 2.5rem;
                     color: white;
+                    cursor: pointer;
+                  
+                    }
+                    i:hover{
+                        color:$primary-color;
+                    }
                 }
-                .el-menu-item.is-active {
-                }
-            }
-            .el-menu-item-group{
-                border-radius: 10px; 
-                .el-menu-item-group__title{
+                .el-submenu__icon-arrow , .el-icon-arrow-down{
                     display: none;
+                }
+                .el-menu {
+                    // background-color: black;
+                    background-color: transparent;
+                    border: transparent;
+                    width: 100%;
+                    .el-menu--inline{
+                        border-radius: 10px;
+                    }
+                }
+                .el-submenu__title:hover , .el-submenu__title:focus{
+                    cursor: default;
+                    outline: 0;
+                    background-color: transparent;
+                }
+                .el-submenu {
+                    // background-color: black;
+                    width: 100%;
+                    .el-menu-item {
+                        min-width: 0;  
+                        border-radius: 10px; 
+                        margin: 5px;
+                        background-color: rgba(255, 255, 255, 0.911);  
+                    }
+                    .el-menu-item:hover {
+                        background-color:$primary-color;
+                        color: white;
+                    }
+                    .el-menu-item.is-active {
+                    }
+                }
+                .el-menu-item-group{
+                    border-radius: 10px; 
+                    .el-menu-item-group__title{
+                        display: none;
+                    }
                 }
             }
         }
@@ -114,7 +114,7 @@
 
         .brand-name{
             font-family: "Caveat", cursive;
-            font-size: 5em;
+            font-size: 4em;
             margin-left: 20px;
             margin-top: -10px;
         }

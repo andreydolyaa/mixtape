@@ -93,7 +93,7 @@
         </section>
       </section>
       <div class="search-and-social">
-          <!-- v-if="currMix.songs" -->
+        <!-- {{currMix.songs}} -->
           <div class="songs">
             <mix-song-list 
               :songs="currMix.songs"
@@ -167,6 +167,7 @@ export default {
   },
   computed: {
     getMix(){
+      if(!this.$store.getters.getMix) return this.newMix
       return this.$store.getters.getMix;
     },
     roomId(){
@@ -178,11 +179,8 @@ export default {
     mix() {
       if (this.$store.getters.getMix) {
         this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
-
-        // this.currMix.songs[0].isPlaying = true;
-        // this.startSongOnPreview();
-        
-     
+       // this.currMix.songs[0].isPlaying = true;
+        // this.startSongOnPreview();           
         return this.$store.getters.getMix;
       } else {
         this.currMix = this.newMix;
@@ -312,6 +310,8 @@ export default {
     playSongOnStart(){
       var counter = 0;
       var currSong;
+      console.log('this.getMix',this.getMix)
+      if(!this.getMix) return
       this.getMix.songs.forEach(song => {
         if(song.isPlaying){
           counter++;

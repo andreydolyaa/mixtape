@@ -17,11 +17,10 @@
       </div>
       <div class="user-display" v-if="user">Hello {{ user.username }}</div>
         <nav class="main-nav">
-        <!-- <div class="nav-mix"> -->
-          <!-- <router-link to="/genres">Genres</router-link>
-            <router-link to="/mixes">Mixes</router-link> -->
-          <!-- <router-link to="/newMix">Create Mix</router-link> -->
-        <!-- </div> -->
+        <div class="nav-mix">
+            <router-link to="/mix/list">Mixes</router-link> 
+            <router-link to="/mix/details">Create Mix</router-link>
+        </div> 
         <div class="nav-user-pos">
             <div class="nav-user">
               <el-menu
