@@ -65,6 +65,7 @@
                 min-height: 240px;
                 height: auto;
                 margin-right: 20px;
+                object-fit:contain; 
             }
             .update-img-mix{
                 position: relative;
@@ -108,7 +109,7 @@
                 }
             }
             .mix-title{
-                font-family: retro,serif;
+                font-family: netflixmd;
             }
             .mix-title:hover{
                 .edit-txt{
@@ -289,6 +290,8 @@
         display: flex;
         flex-direction: row;
         width: 100%;
+        transition: 0.3s all ease-in-out;
+
 
         button{
             color: $primary-color;
@@ -333,6 +336,19 @@
         }
     }
 
+    .songs-details:hover {
+        background-color: #fffadf0a;
+        padding: 10px;
+        border-radius: 3px;
+        box-shadow: 0 0 8px #0000008c;
+        transition: 0.3s all ease-in-out;
+        cursor: grab;
+    }
+    .songs-details:active {
+        cursor: grabbing;
+
+    }
+    
     .sort-songs-buttons{
         display: flex;
         flex-direction: column;
