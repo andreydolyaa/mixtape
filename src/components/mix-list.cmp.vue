@@ -1,7 +1,8 @@
 <template>
   <section class="mix-list-page container">
-          <div> 
-            <el-input type="text" v-model="filterBySongName" placeholder="Search song..." clearable></el-input>    
+          <div class="search-list flex"> 
+            <el-input type="text" v-model="filterBySongName" placeholder="Search song..." clearable></el-input> 
+            <span><i class="fas fa-search"></i></span>   
           </div>
           <nav class="nav-genres">
               <li class="mix-link-all" v-on:click="setGenreShowAll">All mixes</li>
