@@ -19,8 +19,10 @@
 				
 				</router-link>
 			</div>
+			<marquee-text class="title-width">
 			<h2 v-if="getCurrSongPlaying">{{getCurrSongPlaying.title}}</h2>
 			<h2 v-else>Artist - Unknown</h2>
+			</marquee-text>
 
 			<!--------------- THIS IS THE PLAYER PROGRESS BAR  ! ------------------->
 			<div class="progress-bar">
