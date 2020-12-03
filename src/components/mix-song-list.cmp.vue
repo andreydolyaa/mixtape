@@ -202,11 +202,6 @@ export default {
 			eventBus.$emit('pause-music');
 		})
 		
-
-
-		// socketService.on('song-time-final',currTimePlaying => {
-		// 	eventBus.$emit('song-time-sync',currTimePlaying);
-		// })
 		
 	},
 	components:{

@@ -26,6 +26,7 @@
 import { youTubeService } from "@/services/youTubeService.js";
 import { mixService } from "@/services/mixService.js";
 import socketService from "@/services/socketService.js";
+import { eventBus } from "@/main.js";
 export default {
 	data() {
 		return {
@@ -60,11 +61,11 @@ export default {
 				type: "saveMix",
 				mix: mixCopy,
 			});
+			socketService.emit('mix-updated',mixCopy);
 			this.createNewSong = mixService.createNewSong();
 		},
 	},
 	created(){
-		socketService.setup();
     	
 	}
 };
