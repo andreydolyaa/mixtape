@@ -8,7 +8,9 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import VueYoutube from 'vue-youtube';
 import VueCarousel from 'vue-carousel';
-
+import MarqueeText from 'vue-marquee-text-component'
+ 
+Vue.component('marquee-text', MarqueeText)
 Vue.use(VueYoutube);
 Vue.use(ElementUI);
 

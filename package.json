@@ -4,11 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-<<<<<<< HEAD
-    "build": "vue-cli-service build --dest ../backend/public",
-=======
-    "build": "vue-cli-service build  --dest ../mixtape-backend/public",
->>>>>>> 8912511ccbfa6abeb9303e356f59723c33d6da54
+    "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e"
   },
@@ -22,6 +18,7 @@
     "socket.io-client": "^2.2.0",
     "vue": "^2.6.11",
     "vue-carousel": "^0.18.0",
+    "vue-marquee-text-component": "^1.2.0",
     "vue-router": "^3.2.0",
     "vue-slick-carousel": "^1.0.6",
     "vue-youtube": "^1.4.0",
