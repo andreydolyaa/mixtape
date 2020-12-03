@@ -202,6 +202,7 @@ export default {
 			eventBus.$emit('pause-music');
 		})
 		
+		
 	},
 	components:{
 		mixApiSearch,

@@ -93,7 +93,7 @@
         </section>
       </section>
       <div class="search-and-social">
-          <!-- v-if="currMix.songs" -->
+        <!-- {{currMix.songs}} -->
           <div class="songs">
             <mix-song-list 
               :songs="currMix.songs"
@@ -167,6 +167,7 @@ export default {
   },
   computed: {
     getMix(){
+      if(!this.$store.getters.getMix) return this.newMix
       return this.$store.getters.getMix;
     },
     roomId(){
@@ -178,11 +179,8 @@ export default {
     mix() {
       if (this.$store.getters.getMix) {
         this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
-
-        // this.currMix.songs[0].isPlaying = true;
-        // this.startSongOnPreview();
-        
-     
+       // this.currMix.songs[0].isPlaying = true;
+        // this.startSongOnPreview();           
         return this.$store.getters.getMix;
       } else {
         this.currMix = this.newMix;
@@ -312,6 +310,8 @@ export default {
     playSongOnStart(){
       var counter = 0;
       var currSong;
+      console.log('this.getMix',this.getMix)
+      if(!this.getMix) return
       this.getMix.songs.forEach(song => {
         if(song.isPlaying){
           counter++;
@@ -319,13 +319,18 @@ export default {
         }
       })
       if(counter > 0){
+        var time;
         socketService.emit('send-song-to-all',currSong);
-        socketService.on('song-time-new',currTimePlaying => {
-            // eventBus.$emit('song-time', currTimePlaying)
+        eventBus.$on('songTime',songTime => {
+          console.log('TIME : ',time);
         })
+        socketService.emit('move-to-new-time',time);
       }
       else{
         socketService.emit('send-song-to-all',this.getMix.songs[0]);
+        eventBus.$on('setTime',time => {
+          console.log('time playing ',time);
+        })
       }
     }
   },
@@ -349,6 +354,7 @@ export default {
       var mixCopy = JSON.parse(JSON.stringify(this.getMix))
       mixCopy.songs.forEach(currSong => currSong.isPlaying = false);
       // eventBus.$emit('song-time',150)
+      
       if(this.currSongPlaying){
         mixCopy.songs.forEach(songId => {
           if(songId.id === this.currSongPlaying.id){
@@ -363,8 +369,8 @@ export default {
       })
       }   
     })
-
     this.playSongOnStart();
+    
     //   var counter = 0;
     // this.getMix.songs.forEach(song => {
     //   if(song.isPlaying ){

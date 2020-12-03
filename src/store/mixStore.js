@@ -2,9 +2,9 @@ import { mixService } from '@/services/mixService.js'
 
 export default {
     state: {
-        mixes: null,
+        mixes: [],
         topMixes:null,
-        genre: null,
+        genre: 'all',
         currMix: null,
         currSongPlaying: null,
         isPlaying: false,
