@@ -319,7 +319,7 @@ export default {
         }
       })
       if(counter > 0){
-        socketService.emit('send-song-to-all',currSong);
+        socketService.emit('DD',currSong);
         socketService.on('song-time-final',time => {
         eventBus.$emit('song-time-sync',time)
         })
@@ -366,12 +366,13 @@ export default {
 				mix: mixCopy
       })
       }   
-    })
+    });
+
     this.playSongOnStart();
     this.getSongTime();
     socketService.on('song-time-new',time => {
       socketService.emit('song-time-new-semi',time);
-    })
+    });
 
     socketService.on('mix-is-updated',mix=>{
       console.log(' MIX UPDATE VIA SOCKET :::',mix);
@@ -379,7 +380,10 @@ export default {
 				type: "saveMix",
 				mix,
 			});
-    })
+    });
+    socketService.on('play-song',song => {
+        console.log('socket.on play-song',song)
+    });
   },
   mounted() {
   }
