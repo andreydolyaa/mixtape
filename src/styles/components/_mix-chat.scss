@@ -1,6 +1,6 @@
 .mix-chat{
-    font-family: "Caveat", cursive;
-    font-size:1.2rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size:1rem;
     width: 100%;
     display: flex;
     // min-height:40vh;
@@ -33,9 +33,9 @@
         // justify-content: space-between;
         color:white;
         .now-playing{
-            padding:1rem;
             color: rgb(255, 255, 255);
             font-weight: bold;
+            margin-top:2rem;
             span{
                 color:red;
             }
@@ -108,4 +108,13 @@
 
 .title-width{
     width:20%;
+}
+
+.setUser{
+    position: absolute;
+    width:100%;
+    input{
+        width:100%;
+        border-radius: 3px;
+    }
 }

@@ -19,6 +19,12 @@
 				</li>
 			</ul>
 		</div>
+        <div class="setUser">
+
+            <form @submit.prevent="setUserName">
+            <input type="text" placeholder="Select nickname..." v-model="msg.name">
+            </form>
+        </div>
 		<div class="chat-form">
 			<p class="some-typing" v-if="isTyping">Someone typing...</p>
 			<form @submit.prevent="sendMsg">
@@ -41,7 +47,7 @@ export default {
     },
     data() {
         return {
-            msg: {name:'Me',txt:''},
+            msg: {name:'',txt:''},
             msgsHistory:[],
             msgs: [],
             room:this.mixId,
@@ -69,6 +75,9 @@ export default {
         isNotTypingNow(){
             socketService.emit('is not typing',this.isTyping)
             this.isTyping = false;
+        },
+        setUserName(){
+
         }
     },
     created() {
@@ -89,6 +98,10 @@ export default {
                     this.msgsHistory.push(msg.msg);
                 }
             })
+        })
+        socketService.on('user joined',username => {
+            this.msgs.push(username)
+            console.log('username ',username);
         })
     },
 };
