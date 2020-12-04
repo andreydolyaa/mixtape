@@ -42,7 +42,8 @@
         }
     }
     .chat-msgs{
-        overflow:auto;
+        overflow-y:auto;
+        @include niceScrollBar(5px , #BE1E2D);
         display: flex;
         padding:1rem;
         
