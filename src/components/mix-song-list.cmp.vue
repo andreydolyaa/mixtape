@@ -116,6 +116,7 @@ export default {
 	},
 	methods: {
 		stopDrag() {
+			console.log('this.mixcopy mix-list-songs',this.mixCopy);
 			this.$emit("updateMix", this.mixCopy);
 			// this.$store.commit({ type: "resetIconsState" });
 			// this.$store.commit({ type: "startSongPlaying" });

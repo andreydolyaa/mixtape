@@ -144,9 +144,9 @@ export default {
           "Happy"
         ],
         createdBy: {
-          "_id": "u101",
-          "fullName": "Puki Ben David",
-          "imgUrl": "http://some-photo/"
+          _id: "u101",
+          fullName: `guest ${this._id}`,
+          imgUrl:'https://res.cloudinary.com/hw-projects/image/upload/v1606654351/appmixes/user_headphones.png'
         },
         likedByUsers: [
 
