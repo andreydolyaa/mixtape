@@ -151,9 +151,6 @@ export default {
 				socketService.emit('move-to-new-time',this.currTimePlaying);
 			}, 1000);
 
-			eventBus.$on('getTime',()=>{
-				socketService.emit('move-to-new-time',this.currTimePlaying);
-			})
 		},
 		
 		ended() {
@@ -243,8 +240,8 @@ export default {
 		},
 	},
 		created() {
-		socketService.setup();
-    	socketService.emit('join room',this.room);
+		// socketService.setup();
+    	// socketService.emit('join room',this.room);
 		eventBus.$on("pause-music", () => {
 			this.pause();
 		});
@@ -258,15 +255,10 @@ export default {
 		eventBus.$on('song-time-sync',currTimePlaying => {
 			this.$refs.youtube.player.seekTo(currTimePlaying,true);
 			this.currTimePlaying = currTimePlaying
-			eventBus.$off('song-time-sync');
 			console.log('SONGS SYNCED');
+			socketService.emit('newTime',this.currTimePlaying);
+			eventBus.$off('song-time-sync');
 		})
-
-		// socketService.on('sync-songs-time',time => {
-		// 	this.$refs.youtube.player.seekTo(time,true);
-		// 	this.currTimePlaying = time
-		// 	console.log('TIMEEEEEEEEEE:',time);
-		// })
 	},
 };
 </script>
