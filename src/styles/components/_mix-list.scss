@@ -23,7 +23,13 @@
         font-weight: 700;
         letter-spacing: 2px;
         padding-left: 30px;
+       
     }
+
+    input.el-input__inner:hover {
+        filter: brightness(1.5);
+    }
+
     .el-input input::placeholder{
         color: white;
     }
@@ -40,6 +46,7 @@
         padding: 0 20px;
         align-items: center;
         margin-bottom: 20px;
+        cursor: pointer;
 
         @include for-wide-layout {
             flex-direction: row;
@@ -76,9 +83,16 @@
         color: #fff;
         margin-bottom: 40px;
 
-        @include for-wide-layout {
-            margin-bottom: 0;
-        }
+       
+    }
+    .mix-link:hover{
+        color: $primary-color;   
+    }
+    .slick-slide::after{
+        color: $primary-color;
+    }
+    @include for-wide-layout {
+        margin-bottom: 0;
     }
 
 
@@ -98,7 +112,6 @@
             margin-bottom: 0;
         }
     }
-
     ul.mixes-nav-ul {
         display: flex;
         flex-direction: row;
@@ -118,7 +131,7 @@
         list-style: none;
         gap: 40px;
         margin-bottom: 90px;
-
+        
         @include for-wide-layout {
             justify-content: left;
             margin-bottom: 0px;
