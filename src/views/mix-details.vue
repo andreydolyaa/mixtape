@@ -360,7 +360,8 @@ export default {
 				mix: mixCopy
       })
       }   
-    })
+    });
+
     this.playSongOnStart();
 
     socketService.on('song-time-new',time => {
@@ -374,12 +375,12 @@ export default {
 				type: "saveMix",
 				mix,
 			});
-    })
-
+    });
+    socketService.on('play-song',song => {
+        console.log('socket.on play-song',song)
+    });
   },
   mounted() {
   }
 }
-
 </script>
-
