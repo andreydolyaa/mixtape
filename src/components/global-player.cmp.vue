@@ -259,9 +259,14 @@ export default {
 			this.$refs.youtube.player.seekTo(currTimePlaying,true);
 			this.currTimePlaying = currTimePlaying
 			eventBus.$off('song-time-sync');
+			console.log('SONGS SYNCED');
 		})
 
-		
+		// socketService.on('sync-songs-time',time => {
+		// 	this.$refs.youtube.player.seekTo(time,true);
+		// 	this.currTimePlaying = time
+		// 	console.log('TIMEEEEEEEEEE:',time);
+		// })
 	},
 };
 </script>

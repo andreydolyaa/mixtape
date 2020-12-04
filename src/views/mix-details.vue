@@ -322,6 +322,7 @@ export default {
         socketService.emit('send-song-to-all',currSong);
         socketService.on('song-time-final',time => {
         eventBus.$emit('song-time-sync',time)
+        // socketService.emit('sync-songs',time);
         })
       }
       else{
@@ -367,8 +368,8 @@ export default {
       })
       }   
     })
-    this.playSongOnStart();
-    this.getSongTime();
+    // this.playSongOnStart();
+    // this.getSongTime();
     socketService.on('song-time-new',time => {
       socketService.emit('song-time-new-semi',time);
     })
@@ -380,6 +381,8 @@ export default {
 				mix,
 			});
     })
+    this.getSongTime();
+    this.playSongOnStart();
   },
   mounted() {
   }
