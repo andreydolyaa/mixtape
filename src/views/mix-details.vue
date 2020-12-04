@@ -320,11 +320,6 @@ export default {
       })
       if(counter > 0){
         socketService.emit('send-song-to-all',currSong);
-        // socketService.on('song-time-new',time => {
-        // eventBus.$emit('song-time-sync',time)
-        
-        // // socketService.emit('sync-songs',time);
-        // })
       }
       else{
         socketService.emit('send-song-to-all',this.getMix.songs[0]);
@@ -343,7 +338,7 @@ export default {
   },
   async created() {
     socketService.setup();
-    // socketService.emit('join room',this.room);
+    socketService.emit('join room',this.room);
     if(this.$route.params.mixId){
       const mixId = this.$route.params.mixId;
       await this.$store.dispatch({ type: "getMixById", mixId });
@@ -370,6 +365,7 @@ export default {
 
     socketService.on('song-time-new',time => {
         eventBus.$emit('song-time-sync',time)
+        // console.log('time playing ', time,' seconds');
     })
 
     socketService.on('mix-is-updated',mix=>{
