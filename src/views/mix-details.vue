@@ -320,10 +320,11 @@ export default {
       })
       if(counter > 0){
         socketService.emit('send-song-to-all',currSong);
-        socketService.on('song-time-final',time => {
-        eventBus.$emit('song-time-sync',time)
-        // socketService.emit('sync-songs',time);
-        })
+        // socketService.on('song-time-new',time => {
+        // eventBus.$emit('song-time-sync',time)
+        
+        // // socketService.emit('sync-songs',time);
+        // })
       }
       else{
         socketService.emit('send-song-to-all',this.getMix.songs[0]);
@@ -342,24 +343,21 @@ export default {
   },
   async created() {
     socketService.setup();
-    socketService.emit('join room',this.room);
+    // socketService.emit('join room',this.room);
     if(this.$route.params.mixId){
       const mixId = this.$route.params.mixId;
       await this.$store.dispatch({ type: "getMixById", mixId });
       this.updateViews();
     }
-    // this.$store.commit({type:'setMix',mix:this.getMix})
     socketService.on('play-song',song => {
       var mixCopy = JSON.parse(JSON.stringify(this.getMix))
       mixCopy.songs.forEach(currSong => currSong.isPlaying = false);
-      // eventBus.$emit('song-time',150)
-      
+      // eventBus.$emit('song-time',this.songTime)
       if(this.currSongPlaying){
         mixCopy.songs.forEach(songId => {
           if(songId.id === this.currSongPlaying.id){
             songId.isPlaying = true;
             this.isMixPlaying = true;
-            // this.currSongPlaying.isPlaying = true;
           }
         })
         this.$store.dispatch({
@@ -367,11 +365,12 @@ export default {
 				mix: mixCopy
       })
       }   
-    })
-    // this.playSongOnStart();
-    // this.getSongTime();
+    });
+
+    this.playSongOnStart();
+
     socketService.on('song-time-new',time => {
-      socketService.emit('song-time-new-semi',time);
+        eventBus.$emit('song-time-sync',time)
     })
 
     socketService.on('mix-is-updated',mix=>{
@@ -380,13 +379,12 @@ export default {
 				type: "saveMix",
 				mix,
 			});
-    })
-    this.getSongTime();
-    this.playSongOnStart();
+    });
+    socketService.on('play-song',song => {
+        console.log('socket.on play-song',song)
+    });
   },
   mounted() {
   }
 }
-
 </script>
-
