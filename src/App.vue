@@ -25,7 +25,7 @@ import appHeader from "@/components/app-header.cmp.vue";
 import appFooter from "@/components/app-footer.cmp.vue";
 import { mixService } from "@/services/mixService.js";
 import globalPlayer from '@/components/global-player.cmp.vue';
-
+// import socketService from "@/services/socketService.js";
 
 export default {
   props: {

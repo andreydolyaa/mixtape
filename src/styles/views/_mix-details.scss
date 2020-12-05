@@ -129,7 +129,15 @@
         text-align: left;
         margin-bottom: 10px;
 
-
+            input.input-title{
+                border: none;
+                background-color: transparent;
+                color: white;
+                font-family: netflixmd;
+                font-size: 2.625rem;
+                font-weight: bold;
+                width: 80%;
+            }
             .description{
                 min-width: 140px;
                 display: flex;
@@ -148,7 +156,18 @@
                     }
                 }
             }
+            .textarea-container{
+                align-items: baseline;
+                textarea{
+                  font-size: 1.125rem;
+                  background-color: transparent;
+                  color: white;  
+                  font-family: helveticaneue;
+                  border: none;
+                  resize: none;
+                }
 
+            }
             .mix-genre{
                 display: flex;
                 flex-direction: row;

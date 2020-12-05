@@ -39,8 +39,8 @@
                 ><i class="edit fas fa-pen"></i
               ></span>
             </h2>
-            <div v-else>
-              <input v-model="currMix.name" type="text" /><span
+            <div class="input-container" v-else>
+              <input class="input-title" v-model="currMix.name" type="text" /><span
                 @click.prevent="saveChange(currMix)"
                 ><i class="far fa-save"></i
               ></span>
@@ -49,13 +49,11 @@
               {{ currMix.desc }}
               <span @click="toggleEditDesc"><i class="fas fa-pen"></i></span>
             </p>
-            <div v-else>
+            <div class="textarea-container flex" v-else>
               <textarea
                 v-model="currMix.desc"
                 name="desc"
                 id="desc"
-                cols="30"
-                rows="10"
               ></textarea
               ><span @click="saveChange(currMix)"
                 ><i class="far fa-save"></i
@@ -318,10 +316,17 @@ export default {
       })
       if(counter > 0){
         socketService.emit('send-song-to-all',currSong);
+<<<<<<< HEAD
+    //     socketService.on('song-time-new',time => {
+    //       eventBus.$emit('song-time-sync',time)
+    //     // console.log('time playing ', time,' seconds');
+    // })
+=======
         socketService.on('song-time-new',time => {
         eventBus.$emit('song-time-sync',time)
         //console.log('time playing ', time,' seconds');
     })
+>>>>>>> f19ba7b6d3d7faf5622b89b19936164114ec167c
         // console.log('curr song : ',currSong);
       }
       else{
@@ -342,7 +347,7 @@ export default {
   async created() {
 
     socketService.setup();
-    // socketService.emit('join room',this.$route.params.mixId);
+    socketService.emit('join room',this.$route.params.mixId);
     console.log('details joined room ',this.$route.params.mixId);
     if(this.$route.params.mixId){
       const mixId = this.$route.params.mixId;
@@ -369,10 +374,10 @@ export default {
 
     this.playSongOnStart();
 
-    // socketService.on('song-time-new',time => {
-    //     eventBus.$emit('song-time-sync',time)
-    //     console.log('time playing ', time,' seconds');
-    // })
+    socketService.on('song-time-new',time => {
+        eventBus.$emit('song-time-sync',time)
+        // console.log('time playing ', time,' seconds');
+    })
 
     // socketService.on('mix-is-updated',mix=>{
     //     console.log(' MIX UPDATE VIA SOCKET 2 :::',mix);
@@ -391,6 +396,7 @@ export default {
           mix,
       });
     });
+
     // socketService.on('play-song',song => {
     //     console.log('socket.on play-song',song)
     // });
@@ -398,7 +404,16 @@ export default {
   mounted() {
   },
   destroyed(){
+<<<<<<< HEAD
+    socketService.emit('disconnect',this.$route.params.mixId)
+    // socketService.emit('disconnect',this.$route.params.mixId)
+    // // socketService.off('join room',this.$route.params.mixId);
+    // // socketService.terminate();
+    // console.log('join room has destroyed');
+    
+=======
    
+>>>>>>> f19ba7b6d3d7faf5622b89b19936164114ec167c
   }
 }
 </script>

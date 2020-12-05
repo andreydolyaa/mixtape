@@ -67,6 +67,7 @@ export default {
 	name: "global-player",
 	data() {
 		return {
+			url:'',
 			songId: "",
 			isPlaying: false,
 			isPause: false,
@@ -148,7 +149,10 @@ export default {
 					Math.floor(event.getCurrentTime())
 				);
 				this.currTimePlaying = Math.floor(event.getCurrentTime());
+
+
 				socketService.emit('move-to-new-time',this.currTimePlaying);
+
 			}, 1000);
 
 		},
@@ -241,7 +245,8 @@ export default {
 	},
 		created() {
 		// socketService.setup();
-    	// socketService.emit('join room',this.room);
+		// socketService.emit('join room',this.$route.params.mixId);
+		// console.log('JOINED ROOM GLOBAL :',this.currMix);
 		eventBus.$on("pause-music", () => {
 			this.pause();
 		});
@@ -258,10 +263,12 @@ export default {
 			this.currTimePlaying = currTimePlaying
 
 			console.log('SONGS SYNCED');
-			// socketService.emit('newTime',this.currTimePlaying);
 			eventBus.$off('song-time-sync');
 
 		})
+	},
+	destroyed() {
+		
 	},
 };
 </script>
