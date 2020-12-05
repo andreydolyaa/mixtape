@@ -68,9 +68,11 @@
                 margin-right: 20px;
                 object-fit:contain; 
             }
-            .loader{
-                width: 20px;
-                height: 20px;
+            form{
+                .loader{
+                    width: 10px;
+                    height: 10px;
+                }
             }
             .update-img-mix{
                 position: relative;
