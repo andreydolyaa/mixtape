@@ -3,11 +3,11 @@
     <mix-login v-if="isLogin" class="centered" />
     <mix-signup v-if="isSignup" class="centered" />
     <appHeader />
+	<div class="loader reflect" v-if="isLoading">	
     <img
-      v-if="isLoading"
-      class="loader"
-      src="https://res.cloudinary.com/hw-projects/image/upload/v1606477296/appmixes/logo_r_animated_v3.gif"
+      src="@/assets/imgs/logo_r_animated_v3.gif"
     />
+	</div>
     <div v-else>
       <router-view />
       <div class="global">
@@ -74,10 +74,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #000000;
-  .loader {
-    img {
-      width: 50px;
-    }
+  .loader{
+	  img {
+		max-width: 200px;
+		max-height: 200px;
+		margin-top: 250px;
+		opacity: .8;
+	  }
   }
 }
 

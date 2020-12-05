@@ -68,6 +68,10 @@
                 margin-right: 20px;
                 object-fit:contain; 
             }
+            .loader{
+                width: 20px;
+                height: 20px;
+            }
             .update-img-mix{
                 position: relative;
                 .imgUploader{
@@ -198,12 +202,14 @@
                     display: flex;
                     justify-content: flex-start;
                     margin: 0px 0;
+                    
                     h4{
                         margin-right: 8px;
                     }
                     i{
                         font-size: 22px;
                         color: $white-color;   
+                        cursor: default;
                     }
                 }
             }
