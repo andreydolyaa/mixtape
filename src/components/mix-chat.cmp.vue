@@ -41,7 +41,10 @@ export default {
     },
     data() {
         return {
-            msg: {name:'Guest',txt:''},
+            msg: {
+                name:this.getUser,
+                txt:'',
+            },
             msgsHistory:[],
             msgs: [],
             room:this.mixId,
@@ -53,6 +56,9 @@ export default {
         getSong(){
             return this.$store.getters.getCurrSongPlaying;
         },
+        getUser(){
+             return this.$store.getters.getLoggedinUser;
+        }
     },
     methods: {
 

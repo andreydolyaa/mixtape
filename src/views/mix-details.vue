@@ -198,6 +198,10 @@ export default {
     },
   },
   methods: {
+    saveMix(mix){
+      this.$store.dispatch({ type: "saveMix", mix:mix});
+      socketService.emit('mix-updated', mix);
+    },
     startSongOnPreview(){
       if(!this.currSongPlaying){
         this.currMix.songs.forEach(song => song.isPlaying = false)
@@ -226,10 +230,11 @@ export default {
       numberOfDeletedElm = 0;
       input.splice(to, numberOfDeletedElm, elm);
 
-      this.$store.dispatch({
-        type: "saveMix",
-        mix:this.currMix
-      });
+      this.saveMix(this.currMix)
+      // this.$store.dispatch({
+      //   type: "saveMix",
+      //   mix:this.currMix
+      // });
     },
     setGenre(genre) {
       this.currMix.genre = genre;
@@ -242,10 +247,11 @@ export default {
     },
     saveChange(mix) {
       console.log('saveChange',mix)
-      this.$store.dispatch({
-        type: "saveMix",
-        mix,
-      });  
+      this.saveMix(mix)
+      // this.$store.dispatch({
+      //   type: "saveMix",
+      //   mix,
+      // });  
       // const el = this.$createElement;
       // this.$notify({
       //   message: el('i', { style: 'color: green' }, 'You updated the mix')
@@ -256,27 +262,25 @@ export default {
     removeSongFromMix(songId) {
       var songIdx = this.currMix.songs.findIndex((song) => song.id === songId);
       this.currMix.songs.splice(songIdx, 1);
-      this.$store.dispatch({
-        type: "saveMix",
-        mix: this.currMix,
-      });
+
+       this.saveMix(this.currMix)
+      // this.$store.dispatch({
+      //   type: "saveMix",
+      //   mix:this.currMix
+      // });
     },
     addLike() {
       if (this.currMix.isLiked) {
         this.currMix.isLiked = false;
         this.currMix.likes--;
         // console.log(this.currMix.likes);
-        this.$store.dispatch({
-          type: "saveMix",
-          mix: this.currMix,
-        });
+        this.saveMix(this.currMix)
+
       } else {
         this.currMix.isLiked = true;
         this.currMix.likes++;
-        this.$store.dispatch({
-          type: 'saveMix',
-          mix: this.currMix
-        })
+        this.saveMix(this.currMix)
+
         
         // const el = this.$createElement;
         // this.$notify({
@@ -293,17 +297,11 @@ export default {
         this.currMix.imgUrl = res.url
       }
       this.isLoading = false;
-      this.$store.dispatch({
-        type: 'saveMix',
-        mix: this.currMix
-      })
+      this.saveMix(this.currMix)
     },
     updateViews() {
       this.currMix.views++;
-      this.$store.dispatch({
-        type: 'saveMix',
-        mix: this.currMix
-      })
+      this.saveMix(this.currMix)
     },
     reload() {
       this.$forceUpdate();
@@ -322,7 +320,7 @@ export default {
         socketService.emit('send-song-to-all',currSong);
         socketService.on('song-time-new',time => {
         eventBus.$emit('song-time-sync',time)
-        console.log('time playing ', time,' seconds');
+        //console.log('time playing ', time,' seconds');
     })
         // console.log('curr song : ',currSong);
       }
@@ -376,13 +374,10 @@ export default {
     //     console.log('time playing ', time,' seconds');
     // })
 
-    socketService.on('mix-is-updated',mix=>{
-        console.log(' MIX UPDATE VIA SOCKET 2 :::',mix);
-        this.$store.dispatch({
-          type: "loadMixes",
-          mix,
-        });
-    })
+    // socketService.on('mix-is-updated',mix=>{
+    //     console.log(' MIX UPDATE VIA SOCKET 2 :::',mix);
+      
+    // })
 
     socketService.on('mix-is-updated',mix=>{
       console.log(' MIX UPDATE VIA SOCKET :::',mix);
@@ -391,7 +386,10 @@ export default {
 				type: "saveMix",
 				mix,
       });
-
+      this.$store.dispatch({
+          type: "loadMixes",
+          mix,
+      });
     });
     // socketService.on('play-song',song => {
     //     console.log('socket.on play-song',song)
@@ -400,7 +398,7 @@ export default {
   mounted() {
   },
   destroyed(){
-    this.$
+   
   }
 }
 </script>
