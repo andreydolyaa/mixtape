@@ -47,14 +47,18 @@
         display: flex;
         padding:1rem;
         
+        
         ul li{
             list-style: none;
             display: flex;
+            justify-content: flex-start;
             margin-bottom:1rem;
+            
             p{
-                max-width:320px;
+                max-width:390px;
                 overflow:hidden;
                 word-wrap: break-word;
+                
             }
         }
 
