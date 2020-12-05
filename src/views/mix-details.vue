@@ -27,9 +27,8 @@
             <img
               class="loader"
               v-else
-              src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif"
+              src="@/assets/imgs/loader.gif"
             />
-            <!-- <i class="fas fa-pen"></i> -->
           </form>
         </section>
         <section class="mix-info-main">
@@ -126,6 +125,7 @@ export default {
   data() {
     return {
       songTime:0,
+      imgUrls: [],
       isTitleHide: false,
       isDescHide: false,
       isLoading: false,
