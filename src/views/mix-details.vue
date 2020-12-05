@@ -374,10 +374,10 @@ export default {
 
     this.playSongOnStart();
 
-    socketService.on('song-time-new',time => {
-        eventBus.$emit('song-time-sync',time)
-        // console.log('time playing ', time,' seconds');
-    })
+    // socketService.on('song-time-new',time => {
+    //     eventBus.$emit('song-time-sync',time)
+    //     // console.log('time playing ', time,' seconds');
+    // })
 
     socketService.on('mix-is-updated',mix=>{
       console.log(' MIX UPDATE VIA SOCKET :::',mix);
