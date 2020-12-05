@@ -120,7 +120,6 @@ export default {
 		filterBySong() {
 			// var mix = this.$store.getters.getMix;
 			var mix = this.mix;
-			console.log('mix',mix)
 			if(!mix) return
 			var mixCopy = JSON.parse(JSON.stringify(mix));
 			if(!this.songTxt){
@@ -189,7 +188,7 @@ export default {
 				song,
 			});
 		},
-		startSongPlaying(song, songs) {
+		startSongPlaying(song,songs) {
 			this.$store.commit({
 				type: "setCurrSong",
 				song,
@@ -202,6 +201,7 @@ export default {
 			);
 			songs.songs.forEach(song => song.isPlaying = false);
 			songs.songs[idx].isPlaying = true;
+			console.log('AONG SONGS SONGS :',songs.songs);
 			this.$store.dispatch({
 				type: "saveMix",
 				mix: songs
@@ -245,7 +245,6 @@ export default {
 		// 	});
 
     	 socketService.on('play-song',song => {
-			console.log('play-song on',song)
 			this.$store.commit({
 				type: "setCurrSong",
 				song,

@@ -10,12 +10,12 @@
         </marquee-text>
 		<div class="chat-msgs">
 			<ul>
-				<li v-for="(msgz, idx) in msgsHistory" :key="idx + msgz">
-					<p class="msg">{{ msgz.name }}: {{ msgz.txt }}</p>
+				<li v-for="(mesg, idx) in msgsHistory" :key="idx + mesg">
+					<p class="msg">{{ mesg.name }}: {{ mesg.txt }}</p>
 				</li>
                 
-				<li v-for="(msgz, idx) in msgs" :key="idx">
-					<p class="msg">{{ msgz.name }}: {{ msgz.txt }}</p>
+				<li v-for="(mesg, idx) in msgs" :key="idx">
+					<p class="msg">{{ mesg.name }}: {{ mesg.txt }}</p>
 				</li>
 			</ul>
 		</div>
