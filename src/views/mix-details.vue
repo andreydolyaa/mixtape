@@ -316,17 +316,10 @@ export default {
       })
       if(counter > 0){
         socketService.emit('send-song-to-all',currSong);
-<<<<<<< HEAD
-    //     socketService.on('song-time-new',time => {
-    //       eventBus.$emit('song-time-sync',time)
-    //     // console.log('time playing ', time,' seconds');
-    // })
-=======
         socketService.on('song-time-new',time => {
         eventBus.$emit('song-time-sync',time)
         //console.log('time playing ', time,' seconds');
     })
->>>>>>> f19ba7b6d3d7faf5622b89b19936164114ec167c
         // console.log('curr song : ',currSong);
       }
       else{
@@ -374,10 +367,10 @@ export default {
 
     this.playSongOnStart();
 
-    socketService.on('song-time-new',time => {
-        eventBus.$emit('song-time-sync',time)
-        // console.log('time playing ', time,' seconds');
-    })
+    // socketService.on('song-time-new',time => {
+    //     eventBus.$emit('song-time-sync',time)
+    //     // console.log('time playing ', time,' seconds');
+    // })
 
     // socketService.on('mix-is-updated',mix=>{
     //     console.log(' MIX UPDATE VIA SOCKET 2 :::',mix);
@@ -404,16 +397,7 @@ export default {
   mounted() {
   },
   destroyed(){
-<<<<<<< HEAD
-    socketService.emit('disconnect',this.$route.params.mixId)
-    // socketService.emit('disconnect',this.$route.params.mixId)
-    // // socketService.off('join room',this.$route.params.mixId);
-    // // socketService.terminate();
-    // console.log('join room has destroyed');
-    
-=======
    
->>>>>>> f19ba7b6d3d7faf5622b89b19936164114ec167c
   }
 }
 </script>

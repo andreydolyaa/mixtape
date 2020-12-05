@@ -239,7 +239,7 @@ export default {
 		
 	},
 	created() {
-		socketService.setup();
+		// socketService.setup();
         // socketService.emit('join room',this.room);
     	// socketService.emit('set-song-playing',this.currSongPlaying)
     	socketService.on('play-song',song => {

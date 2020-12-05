@@ -45,6 +45,19 @@ export default {
 			searchResults: null,
 			createNewSong: mixService.createNewSong(),
 			currMix: "",
+			song:[{
+				id:{
+					videoId:'D2heCoIKa1U'
+				},
+				snippet:{
+					thumbnails:{
+						default:{
+							url:"https://i.ytimg.com/vi/D2heCoIKa1U/default.jpg"
+						}
+					},
+					title:"Natanael Cano x Ovi x Snoop Dogg x Snow Tha Product x CNG - Feeling Good [Official Video]"
+				}
+			}]
 		};
 	},
 	computed: {
@@ -55,11 +68,12 @@ export default {
 	},
 	methods: {
 		async getSearchResults() {
-			if(this.keyword === '') return;
-			var res = await youTubeService.query(this.keyword);
-			this.searchResults = res;
-			console.log('SERACH RESULT : ',this.searchResults);
-			return this.searchResults;
+			// if(this.keyword === '') return;
+			// var res = await youTubeService.query(this.keyword);
+			// this.searchResults = res;
+			// console.log('SERACH RESULT : ',this.searchResults);
+			// return this.searchResults;
+			return this.song
 		},
 		addSongToMix(result) {
 			console.log('THIS SONG' ,result);
@@ -68,6 +82,8 @@ export default {
 			this.createNewSong.title = result.snipprt.title;
 			this.createNewSong.songUrlId = result.id.videoId;
 			this.createNewSong.imgUrl = result.snippet.thumbnails.default.url;
+			console.log('createNewSong: ',this.createNewSong);
+			console.log('MIX COPY SEARCH :', mixCopy);
 			mixCopy.songs.unshift(this.createNewSong);
 			console.log(mixCopy);
 
