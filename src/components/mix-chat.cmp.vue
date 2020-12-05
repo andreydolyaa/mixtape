@@ -19,6 +19,9 @@
 				</li>
 			</ul>
 		</div>
+<<<<<<< HEAD
+		<div class="chat-form raised">
+=======
         <!-- <div class="setUser">
 
             <form @submit.prevent="setUserName">
@@ -26,9 +29,10 @@
             </form>
         </div> -->
 		<div class="chat-form">
+>>>>>>> 05d47fa36c667e1a3d4deeef2d7a8ce32760a83a
 			<p class="some-typing" v-if="isTyping">Someone typing...</p>
 			<form @submit.prevent="sendMsg">
-				<input type="text" v-model="msg.txt" @keydown="isTypingNow" @keyup="isNotTypingNow" placeholder="Share your thoughts..."/>
+				<input  type="text" v-model="msg.txt" @keydown="isTypingNow" @keyup="isNotTypingNow" placeholder="Share your thoughts..."/>
 				<button><i class="far fa-paper-plane"></i></button>
                 <select name="emojis" class="emojis" v-model="msg.txt">
                     <option value="" selected disabled hidden>{{chatEmojis[1]}}</option>

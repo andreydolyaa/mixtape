@@ -12,11 +12,11 @@
     position: absolute;
     bottom: 0;
     display: none;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.62), 
-              0 2px 2px rgba(0,0,0,0.62), 
-              0 4px 4px rgba(0,0,0,0.62), 
-              0 8px 8px rgba(0,0,0,0.62),
-              0 16px 16px rgba(0,0,0,0.62);
+    // box-shadow: 0 1px 1px rgba(0,0,0,0.62), 
+    //           0 2px 2px rgba(0,0,0,0.62), 
+    //           0 4px 4px rgba(0,0,0,0.62), 
+    //           0 8px 8px rgba(0,0,0,0.62),
+    //           0 16px 16px rgba(0,0,0,0.62);
 
 
     @include for-wide-layout {
@@ -108,6 +108,49 @@
             left:35%;
         }
     }
+}
+
+.effect5
+{
+  position: relative;
+}
+.effect5:before, .effect5:after
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 25px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: rgb(0, 0, 0);
+  -webkit-box-shadow: 0 35px 20px #000;
+  -moz-box-shadow: 0 35px 20px rgb(0, 0, 0);
+  box-shadow: 0 35px 20px  #000;
+  -webkit-transform: rotate(-14deg);
+  -moz-transform: rotate(-14deg);
+  -o-transform: rotate(-14deg);
+  -ms-transform: rotate(-14deg);
+  transform: rotate(-14deg);
+}
+
+.effect5:after
+{
+  -webkit-transform: rotate(14deg);
+  -moz-transform: rotate(14deg);
+  -o-transform: rotate(14deg);
+  -ms-transform: rotate(14deg);
+  transform: rotate(14deg);
+  right: 10px;
+  left: auto;
+}
+
+.raised {
+    -webkit-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5) , 0 1px 4px rgba(0, 0, 0, 0.3) , 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -mox-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5) , 0 1px 4px rgba(0, 0, 0, 0.3) , 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5) , 0 1px 4px rgba(0, 0, 0, 0.3) , 0 0 40px rgba(0, 0, 0, 0.1) inset;
+
 }
 
 .title-width{

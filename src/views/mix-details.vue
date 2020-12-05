@@ -105,7 +105,7 @@
           
       </div>
     </div>
-    <div class="mix-chat">
+    <div class="mix-chat effect5">
       <mix-chat :mixId="roomId" />
     </div>
   </section>
@@ -377,11 +377,21 @@ export default {
     // })
 
     socketService.on('mix-is-updated',mix=>{
+        console.log(' MIX UPDATE VIA SOCKET 2 :::',mix);
+        this.$store.dispatch({
+          type: "loadMixes",
+          mix,
+        });
+    })
+
+    socketService.on('mix-is-updated',mix=>{
       console.log(' MIX UPDATE VIA SOCKET :::',mix);
+
       this.$store.dispatch({
 				type: "saveMix",
 				mix,
-			});
+      });
+
     });
     // socketService.on('play-song',song => {
     //     console.log('socket.on play-song',song)
