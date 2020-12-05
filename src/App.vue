@@ -1,13 +1,20 @@
 <template>
-	<div id="app">
-		<mix-login v-if="isLogin" class="centered" />
-      	<mix-signup v-if="isSignup" class="centered" />
-		<appHeader />
-		<router-view />
-		<div class="global">
-        	<globalPlayer />
-    	</div>
+  <div id="app">
+    <mix-login v-if="isLogin" class="centered" />
+    <mix-signup v-if="isSignup" class="centered" />
+    <appHeader />
+	<div class="loader reflect" v-if="isLoading">	
+    <img
+      src="@/assets/imgs/logo_r_animated_v3.gif"
+    />
 	</div>
+    <div v-else>
+      <router-view />
+      <div class="global">
+        <globalPlayer />
+      </div>
+    </div>
+  </div>
 </template>
     
 <script>
@@ -20,42 +27,61 @@ import globalPlayer from '@/components/global-player.cmp.vue';
 
 
 export default {
-	props:{
-		
-	},
-	created(){
-		this.$store.dispatch({
-			type:'loadMixes'
-		})
-		
-	},
-	computed:{
-		currentRouteName() {
-        	return this.$store.getters.currentRouteName
-		},
-		isLogin(){
-			return this.$store.getters.getIsLogin;
-		},
-		isSignup(){
-			return this.$store.getters.getIsSignup;
-		},
-	},
-	components: {
-		mixLogin,
-    	mixSignup,
-		appHeader,
-		appFooter,
-		globalPlayer
-	},
+  props: {
+
+  },
+  data() {
+    return {
+      isLoading: true
+    }
+  },
+  created() {
+    this.isLoading = true
+    this.$store.dispatch({
+      type: 'loadMixes'
+    })
+
+  },
+  mounted() {
+    setInterval(() => {
+      this.isLoading = false;
+    }, 2000);
+  },
+  computed: {
+    currentRouteName() {
+      return this.$store.getters.currentRouteName
+    },
+    isLogin() {
+      return this.$store.getters.getIsLogin;
+    },
+    isSignup() {
+      return this.$store.getters.getIsSignup;
+    },
+  },
+  components: {
+    mixLogin,
+    mixSignup,
+    appHeader,
+    appFooter,
+    globalPlayer
+  },
 };
 </script>
 <style lang="scss">
 #app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #000000;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #000000;
+  .loader{
+	  img {
+		max-width: 200px;
+		max-height: 200px;
+		margin-top: 250px;
+		opacity: .8;
+	  }
+  }
 }
 
 // #nav {
