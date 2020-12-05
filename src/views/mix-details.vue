@@ -39,8 +39,8 @@
                 ><i class="edit fas fa-pen"></i
               ></span>
             </h2>
-            <div v-else>
-              <input v-model="currMix.name" type="text" /><span
+            <div class="input-container" v-else>
+              <input class="input-title" v-model="currMix.name" type="text" /><span
                 @click.prevent="saveChange(currMix)"
                 ><i class="far fa-save"></i
               ></span>
@@ -49,13 +49,11 @@
               {{ currMix.desc }}
               <span @click="toggleEditDesc"><i class="fas fa-pen"></i></span>
             </p>
-            <div v-else>
+            <div class="textarea-container flex" v-else>
               <textarea
                 v-model="currMix.desc"
                 name="desc"
                 id="desc"
-                cols="30"
-                rows="10"
               ></textarea
               ><span @click="saveChange(currMix)"
                 ><i class="far fa-save"></i

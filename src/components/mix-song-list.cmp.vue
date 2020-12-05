@@ -55,7 +55,9 @@
 
 								<span class="song-duration">{{ song.duration }}</span>
 							</div>
-							
+							<div class="img-equalizer" v-if="song.isPlaying">
+								<img src="@/assets/imgs/equalizer.gif" >
+							</div>
 							<div class="actions">
 								<div class="sort-songs-buttons">
 									<button v-on:click="emitSongPos(index,-1)">
@@ -100,7 +102,6 @@ export default {
 			isPlaying: false,
 			mixCopy: null,
 			songTxt: "",
-			equalizer: '',
 			songsListDragable: null,
 		};
 	},
