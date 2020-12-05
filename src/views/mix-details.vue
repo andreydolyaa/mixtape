@@ -25,8 +25,8 @@
               />
             </template>
             <img
-              class="loader"
               v-else
+              class="loader"
               src="@/assets/imgs/loader.gif"
             />
           </form>
