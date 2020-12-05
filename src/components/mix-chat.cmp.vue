@@ -8,7 +8,6 @@
 
         </div>
         </marquee-text>
-        <h1>{{users}}</h1>
 		<div class="chat-msgs">
 			<ul>
 				<li v-for="(msgz, idx) in msgsHistory" :key="idx + msgz">
