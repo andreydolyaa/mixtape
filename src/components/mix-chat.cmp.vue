@@ -19,12 +19,12 @@
 				</li>
 			</ul>
 		</div>
-        <div class="setUser">
+        <!-- <div class="setUser">
 
             <form @submit.prevent="setUserName">
             <input type="text" placeholder="Select nickname..." v-model="msg.name">
             </form>
-        </div>
+        </div> -->
 		<div class="chat-form">
 			<p class="some-typing" v-if="isTyping">Someone typing...</p>
 			<form @submit.prevent="sendMsg">
@@ -47,7 +47,7 @@ export default {
     },
     data() {
         return {
-            msg: {name:'',txt:''},
+            msg: {name:'Guest',txt:''},
             msgsHistory:[],
             msgs: [],
             room:this.mixId,
