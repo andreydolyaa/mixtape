@@ -25,8 +25,7 @@ export const youTubeService = {
 // }
 
 async function query(keyword){
-    var res = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${keyword}&type=video&key=${API_KEY}`)
-    console.log('RES ggggggggg',res.data.items);
+    var res = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${keyword}&type=video&key=${API_KEY}`)
     return res.data.items;
 }
 
