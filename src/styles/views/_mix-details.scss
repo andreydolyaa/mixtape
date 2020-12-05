@@ -68,6 +68,10 @@
                 margin-right: 20px;
                 object-fit:contain; 
             }
+            .loader{
+                width: 20px;
+                height: 20px;
+            }
             .update-img-mix{
                 position: relative;
                 .imgUploader{
@@ -125,7 +129,15 @@
         text-align: left;
         margin-bottom: 10px;
 
-
+            input.input-title{
+                border: none;
+                background-color: transparent;
+                color: white;
+                font-family: netflixmd;
+                font-size: 2.625rem;
+                font-weight: bold;
+                width: 80%;
+            }
             .description{
                 min-width: 140px;
                 display: flex;
@@ -144,7 +156,18 @@
                     }
                 }
             }
+            .textarea-container{
+                align-items: baseline;
+                textarea{
+                  font-size: 1.125rem;
+                  background-color: transparent;
+                  color: white;  
+                  font-family: helveticaneue;
+                  border: none;
+                  resize: none;
+                }
 
+            }
             .mix-genre{
                 display: flex;
                 flex-direction: row;
@@ -198,12 +221,14 @@
                     display: flex;
                     justify-content: flex-start;
                     margin: 0px 0;
+                    
                     h4{
                         margin-right: 8px;
                     }
                     i{
                         font-size: 22px;
                         color: $white-color;   
+                        cursor: default;
                     }
                 }
             }
@@ -283,92 +308,115 @@
     flex-direction: row;
     margin-bottom: 12px;
     
-    .songs-details{
-        gap: 10px;
-        justify-content: left;
-        align-items: center;
-        display: flex;
-        flex-direction: row;
+    .list-group-item{
+        list-style: none;
         width: 100%;
-        transition: 0.3s all ease-in-out;
+
+        .song-container{
+            display: flex;
+            width: 100%;
+            align-items: center;
+
+            .songs-details{
+                    gap: 10px;
+                    justify-content: left;
+                    align-items: center;
+                    display: flex;
+                    flex-direction: row;
+                    width: 100%;
+                    transition: 0.3s all ease-in-out;
 
 
-        button{
-            color: $primary-color;
-            background: #fff0;
-            outline: none;
-            border: none;
-            margin: 0 16px 0 0px;
-        }
+                    button{
+                        color: $primary-color;
+                        background: #fff0;
+                        outline: none;
+                        border: none;
+                        margin: 0 16px 0 0px;
 
-        i{
-            font-size: 22px;
-            color: $white-color;
-        }
+             
+                    }
 
-        i:hover{
-            font-size: 22px;
-            color: $primary-color;
-        }
+                    i{
+                        font-size: 22px;
+                        color: $white-color;
+                    }
 
-        i.far.fa-trash-alt{
-            font-size: 22px;
-            background-color: #fffadf29;
-            align-self: flex-end;
-        }
-        img{
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            display: none;
+                    i:hover{
+                        font-size: 22px;
+                        color: $primary-color;
+                    }
 
-            @include for-wide-layout {
-                display: block;
+                    i.far.fa-trash-alt{
+                        font-size: 22px;
+                        background-color: #fffadf29;
+                        align-self: flex-end;
+                    }
+                    img{
+                        width: 50px;
+                        height: 50px;
+                        object-fit: cover;
+                        display: none;
+
+                        @include for-wide-layout {
+                            display: block;
+                        }
+                
+                    }
+                    .song-duration{
+                        display: none;
+
+                        @include for-wide-layout {
+                            display: block;
+                        }
+                    }
+                
+
+                &:hover {
+                    background-color: #fffadf0a;
+                    padding: 10px;
+                    border-radius: 3px;
+                    box-shadow: 0 0 8px #0000008c;
+                    transition: 0.3s all ease-in-out;
+                    cursor: grab;
+                }
+                &:active {
+                    cursor: grabbing;
+
+                }
+                
+              
             }
-    
-        }
-        .song-duration{
-            display: none;
 
-            @include for-wide-layout {
-                display: block;
+            .actions{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                .sort-songs-buttons{
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: -8px;
+
+                    button{
+                        color: #fff;
+                        background: none;
+                        outline: none;
+                        border: 1px solid #18191a;
+                        height: 12px;
+
+                        i{
+                            font-size: 19px;
+                            color: #fff; 
+                            height: 0;
+                        }
+                        
+                        i:hover{
+                            color: #be1e2d;
+                        }
+                    }
+                }
             }
-        }
-    }
-
-    .songs-details:hover {
-        background-color: #fffadf0a;
-        padding: 10px;
-        border-radius: 3px;
-        box-shadow: 0 0 8px #0000008c;
-        transition: 0.3s all ease-in-out;
-        cursor: grab;
-    }
-    .songs-details:active {
-        cursor: grabbing;
-
-    }
-    
-    .sort-songs-buttons{
-        display: flex;
-        flex-direction: column;
-        margin-top: -8px;
-
-        button{
-            color: #fff;
-            background: none;
-            outline: none;
-            border: 1px solid #18191a;
-            height: 12px;
-
-            i{
-                font-size: 19px;
-                color: #fff; 
-                height: 0;
-            }
-            i:hover{
-                color: #be1e2d;
-            }
+            
         }
     }
 }

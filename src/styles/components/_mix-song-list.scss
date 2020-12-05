@@ -7,7 +7,7 @@
                 padding: 0;
             }
 
-
+           
  
             .search-song-and-social-container{
                 display: flex;
@@ -86,5 +86,12 @@
 
           
         }
-    }
 
+    }
+ .songs-details-main{
+   .img-equalizer img{
+       width: 55px;
+       height: 30px;
+       padding-right: 10px;
+   }            
+}

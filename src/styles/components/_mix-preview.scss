@@ -60,6 +60,7 @@
         padding: 10px 11px;
         text-align: left;
         gap: 3px;
+        max-width: 300px;
 
         .mix-name{
             color: $white-color;
@@ -70,11 +71,12 @@
             color: $white-color;
             text-shadow: -1px 1px #000;
             font-size: 1.0em;
+            font-weight: 100;
         }
         .stats{
             display: flex;
-            // justify-content: space-between;
-            // gap:10px;
+            justify-content: space-between;
+            font-weight: 100;
             .mix-likes{
                 font-family: 'netflixmd';
                 color: $primary-color;
@@ -100,8 +102,6 @@
                 color: $white-color;
                 text-shadow: -1px 1px  $black-color;
                 font-size: 1em;
-                margin-right:10px;
-
                 i{
                     color: $white-color;
                     margin-right:5px 

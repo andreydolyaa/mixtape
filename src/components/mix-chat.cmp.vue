@@ -20,16 +20,10 @@
 				</li>
 			</ul>
 		</div>
-        <!-- <div class="setUser">
-
-            <form @submit.prevent="setUserName">
-            <input type="text" placeholder="Select nickname..." v-model="msg.name">
-            </form>
-        </div> -->
-		<div class="chat-form">
+		<div class="chat-form raised">
 			<p class="some-typing" v-if="isTyping">Someone typing...</p>
 			<form @submit.prevent="sendMsg">
-				<input type="text" v-model="msg.txt" @keydown="isTypingNow" @keyup="isNotTypingNow" placeholder="Share your thoughts..."/>
+				<input  type="text" v-model="msg.txt" @keydown="isTypingNow" @keyup="isNotTypingNow" placeholder="Share your thoughts..."/>
 				<button><i class="far fa-paper-plane"></i></button>
                 <select name="emojis" class="emojis" v-model="msg.txt">
                     <option value="" selected disabled hidden>{{chatEmojis[1]}}</option>
@@ -48,7 +42,10 @@ export default {
     },
     data() {
         return {
-            msg: {name:'Guest',txt:''},
+            msg: {
+                name:this.getUser,
+                txt:'',
+            },
             msgsHistory:[],
             msgs: [],
             room:this.mixId,
@@ -61,6 +58,9 @@ export default {
         getSong(){
             return this.$store.getters.getCurrSongPlaying;
         },
+        getUser(){
+             return this.$store.getters.getLoggedinUser;
+        }
     },
     methods: {
 

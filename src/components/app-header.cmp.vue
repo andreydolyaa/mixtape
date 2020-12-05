@@ -7,7 +7,7 @@
         <router-link to="/">
           <img
             class="reflect"
-            src="https://res.cloudinary.com/hw-projects/image/upload/v1606479695/appmixes/logo_r_animated_v3_first_Frame"
+            src="https://res.cloudinary.com/hw-projects/image/upload/v1607170425/appmixes/logo_r_animated_v3_160x105.gif"
           />
           
         </router-link>
@@ -67,6 +67,7 @@
 
 <script>
 import { eventBus } from '@/main.js'
+
 export default {
   data() {
     return {

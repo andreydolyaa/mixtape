@@ -88,9 +88,6 @@
     .mix-link:hover{
         color: $primary-color;   
     }
-    .slick-slide::after{
-        color: $primary-color;
-    }
     @include for-wide-layout {
         margin-bottom: 0;
     }
@@ -111,6 +108,9 @@
         @include for-wide-layout {
             margin-bottom: 0;
         }
+    }
+    .mix-link-all:hover{
+        color: $primary-color;
     }
     ul.mixes-nav-ul {
         display: flex;

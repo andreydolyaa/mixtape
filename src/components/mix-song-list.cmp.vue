@@ -1,61 +1,79 @@
 <template>
 	<section class="songs-list flex column">
-		<!-- <draggable v-model="myArray" group="people" @start="drag=true" @end="drag=false">
-   				<div v-for="element in myArray" :key="element.id">{{element.name}}</div>
-		</draggable> -->
 		<div class="search-song-and-social-container" v-if="mix">
 			<div class="search-and-add">
 				<i @click="openInputApi" class="fas fa-plus-circle"></i>
 				<i @click="openInputSearch" class="fas fa-search"></i>
+
 				<mixApiSearch v-if="isAdd" />
-					<div class="search-song" v-if="!isAdd">
-						<el-input
-							type="text"
-							placeholder="Search song in mix..."
-							v-model="songTxt"
-							@input="filterBySong"
-							clearable>
-						</el-input>
+
+				<div class="search-song" v-if="!isAdd">
+					<el-input
+						type="text"
+						placeholder="Search song in mix..."
+						v-model="songTxt"
+						@input="filterBySong"
+						clearable>
+				</el-input>
+
 				</div>
 			</div>
 				<mix-social /> 
 		</div>
-		<ul v-if="mix" class="songsUl" >	
-			<draggable v-if="filterBySong" group="people" @start="drag=true" @end="stopDrag">
+			
+		
 
-				<li  class="songs-details-main flex" v-for="(song,index) in filterBySong" :key="song.id">
-				<!-- <div>	{{song}} </div> -->
-				<!-- <div>	{{currSongPlaying}} </div> -->
-					<div class="songs-details">
-						<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,filterBySong)">
-							<i class="fas fa-play"></i>
-						</button>
-						<button v-else @click="pauseSong(song);">
-							<i  :class="song.isPlaying  ? 'highlight-color' : 'default-color'" class="fas fa-pause"></i>
-						</button>					
-						<img :src="song.imgUrl" />						
+	<!-- <vue-draggable-resizable  @dragging="onDrag" :resizable="false" :parent="true">
+					</vue-draggable-resizable> -->
+
+			<!-- <template> -->
+				<!-- <div style="height: 500px; width: 500px; border: 1px solid red; position: relative;" > -->
+				
+				<!-- <li  class="songs-details-main flex" v-for="(song,index) in filterBySong" :key="song.id" >
+					</li> -->   
+					<!-- @add="onAdd($event, true)" group:'visbility' -->
+					<!-- mix -->
+					<!-- {{mix}} -->
+   				<draggable v-if="mix" class="list-group min-height songs-details-main" 
+				:list="mix.songs" :options="{animation:200 }"  
+				:element="'ul'" @change="update">
+					
+					<li class="list-group-item" v-for="(song, index) in mix.songs" :key="song.id" :data-id="song.id">
 						
-						<p :class="song.isPlaying  ? 'highlight-color' : 'default-color'">{{ song.title }}</p>
+						<div class="song-container">
 
-						<span class="song-duration">{{ song.duration }}</span>
-					</div>
-					<!-- <div v-if="song.isPlaying" class="img-equalizer">
-						<img src="" />
-					</div> -->
-					<div class="sort-songs-buttons">
-						<button v-on:click="emitSongPos(index,-1)">
-							<i class="fas fa-sort-up"></i>
-						</button>
-						<button v-on:click="emitSongPos(index,1)">
-							<i class="fas fa-sort-down"></i>
-						</button>
-					</div>
-					<span class="delete-song" @click="emitSongId(song.id)">
-						<i class="far fa-trash-alt"></i>
-					</span>
-				</li>
-			</draggable>
-		</ul>
+							<div class="songs-details">
+								<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,filterBySong)">
+									<i class="fas fa-play"></i>
+								</button>
+								<button v-else @click="pauseSong(song);">
+									<i  :class="song.isPlaying  ? 'highlight-color' : 'default-color'" class="fas fa-pause"></i>
+								</button>					
+								<img :src="song.imgUrl" />						
+								
+								<p :class="song.isPlaying  ? 'highlight-color' : 'default-color'">{{ song.title }}</p>
+
+								<span class="song-duration">{{ song.duration }}</span>
+							</div>
+							<div class="img-equalizer" v-if="song.isPlaying">
+								<img src="@/assets/imgs/equalizer.gif" >
+							</div>
+							<div class="actions">
+								<div class="sort-songs-buttons">
+									<button v-on:click="emitSongPos(index,-1)">
+										<i class="fas fa-sort-up"></i>
+									</button>
+									<button v-on:click="emitSongPos(index,1)">
+										<i class="fas fa-sort-down"></i>
+									</button>
+								</div>
+								<span class="delete-song" @click="emitSongId(song.id)">
+									<i class="far fa-trash-alt"></i>
+								</span>
+							</div>
+						</div>
+					</li>
+            	</draggable>
 	</section>
 </template>
 
@@ -66,6 +84,10 @@ import draggable from 'vuedraggable'
 import mixApiSearch from "@/components/mix-api-search.cmp.vue";
 import mixSocial from '@/components/social-mix.cmp.vue';
 import socketService from "@/services/socketService.js";
+
+
+
+
 
 export default {
 	name: "mix-song-list",
@@ -80,7 +102,7 @@ export default {
 			isPlaying: false,
 			mixCopy: null,
 			songTxt: "",
-			equalizer: ''
+			songsListDragable: null,
 		};
 	},
 	computed: {
@@ -100,7 +122,10 @@ export default {
 			return this.$store.getters.getMix;
 		},
 		filterBySong() {
-			var mix = this.$store.getters.getMix;
+			// var mix = this.$store.getters.getMix;
+			var mix = this.mix;
+			console.log('mix',mix)
+			if(!mix) return
 			var mixCopy = JSON.parse(JSON.stringify(mix));
 			if(!this.songTxt){
 				return mixCopy.songs
@@ -115,7 +140,35 @@ export default {
 		}
 	},
 	methods: {
-		stopDrag() {
+		onAdd(event, visible) {
+				let id = event.item.getAttribute('data-id');
+				console.log('id',id)
+
+            },
+		update() {
+			this.filterBySong.map((songs, index) => {
+				songs.order = index + 1;
+			})
+			this.$store.dispatch({
+				type: "saveMix",
+				mix: this.mix
+			})
+			socketService.emit('mix-updated', this.mix);
+			console.log('filterBySong', this.mix)
+		
+		},
+		onResize: function (x, y, width, height) {
+			this.x = x
+			this.y = y
+			this.width = width
+			this.height = height
+			},
+			onDrag: function (x, y) {
+			this.x = x
+			this.y = y
+		},
+		stopDrag(songIdx) {
+			console.log('stopDrag',this.filterBySong,songIdx)
 			this.$emit("updateMix", this.mixCopy);
 
 			// this.$store.commit({ type: "resetIconsState" });
@@ -186,7 +239,7 @@ export default {
 		
 	},
 	created() {
-		// socketService.setup();
+		socketService.setup();
         // socketService.emit('join room',this.room);
     	// socketService.emit('set-song-playing',this.currSongPlaying)
     	socketService.on('play-song',song => {
@@ -212,4 +265,12 @@ export default {
 	},
 };
 </script>
+
+<style>
+
+.draggable{
+width: 100% !important;
+height: 40px !important;
+}
+</style>
 
