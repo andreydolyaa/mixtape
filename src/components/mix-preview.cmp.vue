@@ -72,6 +72,7 @@ export default {
     onMixView(mixId) {
       this.$router.push(`/mix/details/${mixId}`)
     },
+
     // playFromPreview(){
       // if(!this.getCurrSongPlaying){
       //   socketService.emit('play-preview-no-song');

@@ -19,7 +19,17 @@
 				</li>
 			</ul>
 		</div>
+<<<<<<< HEAD
 		<div class="chat-form raised">
+=======
+        <!-- <div class="setUser">
+
+            <form @submit.prevent="setUserName">
+            <input type="text" placeholder="Select nickname..." v-model="msg.name">
+            </form>
+        </div> -->
+		<div class="chat-form">
+>>>>>>> 05d47fa36c667e1a3d4deeef2d7a8ce32760a83a
 			<p class="some-typing" v-if="isTyping">Someone typing...</p>
 			<form @submit.prevent="sendMsg">
 				<input  type="text" v-model="msg.txt" @keydown="isTypingNow" @keyup="isNotTypingNow" placeholder="Share your thoughts..."/>
@@ -41,7 +51,7 @@ export default {
     },
     data() {
         return {
-            msg: {name:'Me',txt:''},
+            msg: {name:'Guest',txt:''},
             msgsHistory:[],
             msgs: [],
             room:this.mixId,
@@ -69,6 +79,9 @@ export default {
         isNotTypingNow(){
             socketService.emit('is not typing',this.isTyping)
             this.isTyping = false;
+        },
+        setUserName(){
+
         }
     },
     created() {
@@ -89,6 +102,10 @@ export default {
                     this.msgsHistory.push(msg.msg);
                 }
             })
+        })
+        socketService.on('user joined',username => {
+            this.msgs.push(username)
+            console.log('username ',username);
         })
     },
 };

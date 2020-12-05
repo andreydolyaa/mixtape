@@ -320,11 +320,11 @@ export default {
       })
       if(counter > 0){
         socketService.emit('send-song-to-all',currSong);
-        // socketService.on('song-time-new',time => {
-        // eventBus.$emit('song-time-sync',time)
-        
-        // // socketService.emit('sync-songs',time);
-        // })
+        socketService.on('song-time-new',time => {
+        eventBus.$emit('song-time-sync',time)
+        console.log('time playing ', time,' seconds');
+    })
+        // console.log('curr song : ',currSong);
       }
       else{
         socketService.emit('send-song-to-all',this.getMix.songs[0]);
@@ -342,8 +342,10 @@ export default {
     mixSocial
   },
   async created() {
+
     socketService.setup();
-    // socketService.emit('join room',this.room);
+    // socketService.emit('join room',this.$route.params.mixId);
+    console.log('details joined room ',this.$route.params.mixId);
     if(this.$route.params.mixId){
       const mixId = this.$route.params.mixId;
       await this.$store.dispatch({ type: "getMixById", mixId });
@@ -369,9 +371,10 @@ export default {
 
     this.playSongOnStart();
 
-    socketService.on('song-time-new',time => {
-        eventBus.$emit('song-time-sync',time)
-    })
+    // socketService.on('song-time-new',time => {
+    //     eventBus.$emit('song-time-sync',time)
+    //     console.log('time playing ', time,' seconds');
+    // })
 
     socketService.on('mix-is-updated',mix=>{
         console.log(' MIX UPDATE VIA SOCKET 2 :::',mix);
@@ -390,11 +393,14 @@ export default {
       });
 
     });
-    socketService.on('play-song',song => {
-        console.log('socket.on play-song',song)
-    });
+    // socketService.on('play-song',song => {
+    //     console.log('socket.on play-song',song)
+    // });
   },
   mounted() {
+  },
+  destroyed(){
+    this.$
   }
 }
 </script>
