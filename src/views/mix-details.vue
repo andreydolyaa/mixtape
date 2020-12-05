@@ -307,30 +307,25 @@ export default {
     playSongOnStart(){
       var counter = 0;
       var currSong;
-      if(!this.getMix) return
-      this.getMix.songs.forEach(song => {
+      console.log('this.mix',this.mix)
+      if(!this.mix) return
+      this.mix.songs.forEach(song => {
         if(song.isPlaying){
           counter++;
           currSong = song
         }
       })
       if(counter > 0){
+        console.log('currSong',currSong)
         socketService.emit('send-song-to-all',currSong);
-<<<<<<< HEAD
-    //     socketService.on('song-time-new',time => {
-    //       eventBus.$emit('song-time-sync',time)
-    //     // console.log('time playing ', time,' seconds');
-    // })
-=======
         socketService.on('song-time-new',time => {
         eventBus.$emit('song-time-sync',time)
         //console.log('time playing ', time,' seconds');
     })
->>>>>>> f19ba7b6d3d7faf5622b89b19936164114ec167c
         // console.log('curr song : ',currSong);
       }
       else{
-        socketService.emit('send-song-to-all',this.getMix.songs[0]);
+        socketService.emit('send-song-to-all',this.mix.songs[0]);
       }
     },
     getSongTime(){
@@ -354,6 +349,11 @@ export default {
       await this.$store.dispatch({ type: "getMixById", mixId });
       this.updateViews();
     }
+
+    socketService.on('play-song',song => {
+        console.log('socket.on play-song',song)
+    });
+    
     socketService.on('play-song',song => {
       var mixCopy = JSON.parse(JSON.stringify(this.getMix))
       mixCopy.songs.forEach(currSong => currSong.isPlaying = false);
@@ -379,11 +379,6 @@ export default {
         // console.log('time playing ', time,' seconds');
     })
 
-    // socketService.on('mix-is-updated',mix=>{
-    //     console.log(' MIX UPDATE VIA SOCKET 2 :::',mix);
-      
-    // })
-
     socketService.on('mix-is-updated',mix=>{
       console.log(' MIX UPDATE VIA SOCKET :::',mix);
 
@@ -397,23 +392,12 @@ export default {
       });
     });
 
-    // socketService.on('play-song',song => {
-    //     console.log('socket.on play-song',song)
-    // });
+
   },
   mounted() {
   },
   destroyed(){
-<<<<<<< HEAD
-    socketService.emit('disconnect',this.$route.params.mixId)
-    // socketService.emit('disconnect',this.$route.params.mixId)
-    // // socketService.off('join room',this.$route.params.mixId);
-    // // socketService.terminate();
-    // console.log('join room has destroyed');
-    
-=======
    
->>>>>>> f19ba7b6d3d7faf5622b89b19936164114ec167c
   }
 }
 </script>
