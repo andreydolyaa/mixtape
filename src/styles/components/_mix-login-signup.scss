@@ -1,15 +1,38 @@
-.login-user{
-    .screen{
-        position: absolute;
-        left: 0;
-        width: 100vw;
-        height: 100vw;
-        background: aqua;
+.login-user , .signup-user{
+    top:200px;
+
+
+
+    h2{
+        background: white;
+        color: #000;
+        // text-shadow: 1px 1px #fff;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .header-login{
+        background: #fff;
+        padding: 5px 0 0 0;
+
+        .close{
+            font-size: 1.4em;
+            padding: 5px 10px;
+            border: none;
+            background: #fff;
+            outline: none;
+            position: absolute;
+            z-index: 11;
+            right: 0;
+
+            i{
+
+            }
+        }
     }
     .checkLogin{
         background: white;
-        padding: 20px 0px;
-        border-radius: 5px;
+        padding: 40px 0px 20px;
+        border-radius: 0 5px 5px 5px;
 
         form{
             display: flex;
@@ -32,4 +55,27 @@
         }
     }
 
+    .rub{
+        display: flex;
+        padding: 5px 60px;
+        .req{
+            font-size: 1.2em;
+        
+        }
+        .el-input{
+            padding: 0;
+        }
+    }
+}
+
+
+
+.screen{
+    
+    position: absolute;
+    left: 0;
+    width: 100vw;
+    height: 100vw;
+    background: #0000009c;
+    z-index: 98;
 }
