@@ -20,20 +20,7 @@
 			</div>
 				<mix-social /> 
 		</div>
-			
-		
-
-	<!-- <vue-draggable-resizable  @dragging="onDrag" :resizable="false" :parent="true">
-					</vue-draggable-resizable> -->
-
-			<!-- <template> -->
-				<!-- <div style="height: 500px; width: 500px; border: 1px solid red; position: relative;" > -->
-				
-				<!-- <li  class="songs-details-main flex" v-for="(song,index) in filterBySong" :key="song.id" >
-					</li> -->   
-					<!-- @add="onAdd($event, true)" group:'visbility' -->
-					<!-- mix -->
-					<!-- {{mix}} -->
+	
    				<draggable v-if="mix" class="list-group min-height songs-details-main" 
 				:list="mix.songs" :options="{animation:200 }"  
 				:element="'ul'" @change="update">
@@ -43,7 +30,7 @@
 						<div class="song-container">
 
 							<div class="songs-details">
-								<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,filterBySong)">
+								<button v-if="!song.isPlaying" @click="setCurrSongPlaying(song);startSongPlaying(song,mix)">
 									<i class="fas fa-play"></i>
 								</button>
 								<button v-else @click="pauseSong(song);">
@@ -103,6 +90,15 @@ export default {
 			mixCopy: null,
 			songTxt: "",
 			songsListDragable: null,
+			songForDev:  {
+				title: "Mac Miller - Good News",
+				id: "i6Hdm",
+				songUrlId: "aIHF7u9Wwiw",
+				imgUrl: "https://i.ytimg.com/vi/aIHF7u9Wwiw/default.jpg",
+				addedBy: "minimal-user",
+				duration: "3:21",
+				isPlaying: false
+          	},
 		};
 	},
 	computed: {
@@ -146,7 +142,7 @@ export default {
 
             },
 		update() {
-			this.filterBySong.map((songs, index) => {
+			this.mix.songs.map((songs, index) => {
 				songs.order = index + 1;
 			})
 			this.$store.dispatch({
@@ -239,15 +235,23 @@ export default {
 		
 	},
 	created() {
-		socketService.setup();
+		//socketService.setup();
         // socketService.emit('join room',this.room);
-    	// socketService.emit('set-song-playing',this.currSongPlaying)
-    	socketService.on('play-song',song => {
+		// socketService.emit('set-song-playing',this.currSongPlaying)
+		console.log('created',this.songForDev)
+		// this.$store.commit({
+		// 		type: "setCurrSong",
+		// 		song:this.songForDev
+		// 	});
+
+    	 socketService.on('play-song',song => {
+			console.log('play-song on',song)
 			this.$store.commit({
 				type: "setCurrSong",
 				song,
 			});
 		})
+
 		socketService.on('song-time', currTimePlaying => {
 				eventBus.$emit('song-time',currTimePlaying);
 		})

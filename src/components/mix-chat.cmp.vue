@@ -4,10 +4,11 @@
 		<!-- <h2>chat app</h2> -->
         <marquee-text>
         <div class="now-playing" v-if="getSong">
-        <p><span>Now Playing - </span>{{getSong.title}}</p>
+        <p><span> Now Playing - </span> {{getSong.title}} </p>
 
         </div>
         </marquee-text>
+        <h1>{{users}}</h1>
 		<div class="chat-msgs">
 			<ul>
 				<li v-for="(msgz, idx) in msgsHistory" :key="idx + msgz">
@@ -49,7 +50,8 @@ export default {
             msgs: [],
             room:this.mixId,
             isTyping:false,
-            chatEmojis:['🤙','😎','👍','😂','👻','🕺','💃','🤩','🥳','👽','🤖']
+            chatEmojis:['🤙','😎','👍','😂','👻','🕺','💃','🤩','🥳','👽','🤖'],
+            users:null
         };
     },
     computed:{
@@ -81,7 +83,7 @@ export default {
         }
     },
     created() {
-        // socketService.setup();
+        socketService.setup();
         socketService.emit('join room',this.room);
         socketService.on('chat message',message => {
             this.msgs.push(message)
@@ -103,7 +105,14 @@ export default {
             this.msgs.push(username)
             console.log('username ',username);
         })
+
+        socketService.on('getCount',totalConnected => {
+            this.users = totalConnected;
+        })
+
+        
     },
+    
 };
 </script>
 <style>

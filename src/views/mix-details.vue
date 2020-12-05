@@ -307,14 +307,16 @@ export default {
     playSongOnStart(){
       var counter = 0;
       var currSong;
-      if(!this.getMix) return
-      this.getMix.songs.forEach(song => {
+      console.log('this.mix',this.mix)
+      if(!this.mix) return
+      this.mix.songs.forEach(song => {
         if(song.isPlaying){
           counter++;
           currSong = song
         }
       })
       if(counter > 0){
+        console.log('currSong',currSong)
         socketService.emit('send-song-to-all',currSong);
         socketService.on('song-time-new',time => {
         eventBus.$emit('song-time-sync',time)
@@ -323,7 +325,7 @@ export default {
         // console.log('curr song : ',currSong);
       }
       else{
-        socketService.emit('send-song-to-all',this.getMix.songs[0]);
+        socketService.emit('send-song-to-all',this.mix.songs[0]);
       }
     },
     getSongTime(){
@@ -340,13 +342,18 @@ export default {
   async created() {
 
     socketService.setup();
-    // socketService.emit('join room',this.$route.params.mixId);
+    socketService.emit('join room',this.$route.params.mixId);
     console.log('details joined room ',this.$route.params.mixId);
     if(this.$route.params.mixId){
       const mixId = this.$route.params.mixId;
       await this.$store.dispatch({ type: "getMixById", mixId });
       this.updateViews();
     }
+
+    socketService.on('play-song',song => {
+        console.log('socket.on play-song',song)
+    });
+    
     socketService.on('play-song',song => {
       var mixCopy = JSON.parse(JSON.stringify(this.getMix))
       mixCopy.songs.forEach(currSong => currSong.isPlaying = false);
@@ -369,12 +376,7 @@ export default {
 
     // socketService.on('song-time-new',time => {
     //     eventBus.$emit('song-time-sync',time)
-    //     console.log('time playing ', time,' seconds');
-    // })
-
-    // socketService.on('mix-is-updated',mix=>{
-    //     console.log(' MIX UPDATE VIA SOCKET 2 :::',mix);
-      
+    //     // console.log('time playing ', time,' seconds');
     // })
 
     socketService.on('mix-is-updated',mix=>{
@@ -389,9 +391,8 @@ export default {
           mix,
       });
     });
-    // socketService.on('play-song',song => {
-    //     console.log('socket.on play-song',song)
-    // });
+
+
   },
   mounted() {
   },

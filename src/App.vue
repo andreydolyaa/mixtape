@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div class="screen"  v-if="isLogin || isSignup" @click.prevent="close"></div>
     <mix-login v-if="isLogin" class="centered" />
     <mix-signup v-if="isSignup" class="centered" />
     <appHeader />
@@ -24,7 +25,7 @@ import appHeader from "@/components/app-header.cmp.vue";
 import appFooter from "@/components/app-footer.cmp.vue";
 import { mixService } from "@/services/mixService.js";
 import globalPlayer from '@/components/global-player.cmp.vue';
-
+// import socketService from "@/services/socketService.js";
 
 export default {
   props: {
@@ -46,6 +47,18 @@ export default {
     setInterval(() => {
       this.isLoading = false;
     }, 2000);
+  },
+  methods: {
+    close(){ 
+      console.log('close screen')
+      if(this.isLogin){
+        console.log('close screen setLogin')
+        this.$store.commit({type: "setLogin"});
+      }
+      if(this.isSignup){
+        this.$store.commit({type: "setSignup"});
+      }
+    },
   },
   computed: {
     currentRouteName() {
