@@ -18,6 +18,7 @@
     "socket.io-client": "^2.2.0",
     "vue": "^2.6.11",
     "vue-carousel": "^0.18.0",
+    "vue-draggable-resizable": "^2.2.0",
     "vue-marquee-text-component": "^1.2.0",
     "vue-router": "^3.2.0",
     "vue-slick-carousel": "^1.0.6",

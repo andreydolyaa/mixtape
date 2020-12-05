@@ -19,10 +19,10 @@
 				</li>
 			</ul>
 		</div>
-		<div class="chat-form">
+		<div class="chat-form raised">
 			<p class="some-typing" v-if="isTyping">Someone typing...</p>
 			<form @submit.prevent="sendMsg">
-				<input type="text" v-model="msg.txt" @keydown="isTypingNow" @keyup="isNotTypingNow" placeholder="Share your thoughts..."/>
+				<input  type="text" v-model="msg.txt" @keydown="isTypingNow" @keyup="isNotTypingNow" placeholder="Share your thoughts..."/>
 				<button><i class="far fa-paper-plane"></i></button>
                 <select name="emojis" class="emojis" v-model="msg.txt">
                     <option value="" selected disabled hidden>{{chatEmojis[1]}}</option>
