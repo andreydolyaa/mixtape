@@ -320,10 +320,10 @@ export default {
       })
       if(counter > 0){
         socketService.emit('send-song-to-all',currSong);
-        socketService.on('song-time-new',time => {
-        eventBus.$emit('song-time-sync',time)
-        console.log('time playing ', time,' seconds');
-    })
+    //     socketService.on('song-time-new',time => {
+    //       eventBus.$emit('song-time-sync',time)
+    //     // console.log('time playing ', time,' seconds');
+    // })
         // console.log('curr song : ',currSong);
       }
       else{
@@ -344,7 +344,7 @@ export default {
   async created() {
 
     socketService.setup();
-    // socketService.emit('join room',this.$route.params.mixId);
+    socketService.emit('join room',this.$route.params.mixId);
     console.log('details joined room ',this.$route.params.mixId);
     if(this.$route.params.mixId){
       const mixId = this.$route.params.mixId;
@@ -371,10 +371,10 @@ export default {
 
     this.playSongOnStart();
 
-    // socketService.on('song-time-new',time => {
-    //     eventBus.$emit('song-time-sync',time)
-    //     console.log('time playing ', time,' seconds');
-    // })
+    socketService.on('song-time-new',time => {
+        eventBus.$emit('song-time-sync',time)
+        // console.log('time playing ', time,' seconds');
+    })
 
     socketService.on('mix-is-updated',mix=>{
       console.log(' MIX UPDATE VIA SOCKET :::',mix);
@@ -383,6 +383,7 @@ export default {
 				mix,
 			});
     });
+
     // socketService.on('play-song',song => {
     //     console.log('socket.on play-song',song)
     // });
@@ -390,7 +391,12 @@ export default {
   mounted() {
   },
   destroyed(){
-    this.$
+    socketService.emit('disconnect',this.$route.params.mixId)
+    // socketService.emit('disconnect',this.$route.params.mixId)
+    // // socketService.off('join room',this.$route.params.mixId);
+    // // socketService.terminate();
+    // console.log('join room has destroyed');
+    
   }
 }
 </script>

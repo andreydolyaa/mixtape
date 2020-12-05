@@ -12,12 +12,23 @@
 				<i class="fas fa-search"></i>
 			</span>
 		</div>
-		<div class="searchResults" v-if="searchResults">
+		<!-- <div class="searchResults" v-if="searchResults">
 			<p>{{searchResults.title}}</p>
 			<img :src="searchResults.thumbnails.default.url" alt />
 			<button @click="addSongToMix()">
 				<i class="fas fa-plus"></i>
 			</button>
+		</div> -->
+		<div class="searchResults" v-if="searchResults">
+			<ul>
+				<li v-for="result in searchResults" :key="result.id.videoId">
+					<p>{{result.snippet.title}}</p>
+					<img :src="result.snippet.thumbnails.default.url">
+					<button @click.prevent="addSongToMix(result)">
+						<i class="fas fa-plus"></i>
+					</button>
+				</li>
+			</ul>
 		</div>
 	</section>
 </template>
@@ -47,13 +58,16 @@ export default {
 			if(this.keyword === '') return;
 			var res = await youTubeService.query(this.keyword);
 			this.searchResults = res;
+			console.log('SERACH RESULT : ',this.searchResults);
 			return this.searchResults;
 		},
-		addSongToMix() {
+		addSongToMix(result) {
+			console.log('THIS SONG' ,result);
+			console.log('ADD SONG BUTTON CLICKED');
 			var mixCopy = JSON.parse(JSON.stringify(this.getCurrMix));
-			this.createNewSong.title = this.searchResults.title;
-			this.createNewSong.songUrlId = this.searchResults.songId;
-			this.createNewSong.imgUrl = this.searchResults.thumbnails.default.url;
+			this.createNewSong.title = result.snipprt.title;
+			this.createNewSong.songUrlId = result.id.videoId;
+			this.createNewSong.imgUrl = result.snippet.thumbnails.default.url;
 			mixCopy.songs.unshift(this.createNewSong);
 			console.log(mixCopy);
 
