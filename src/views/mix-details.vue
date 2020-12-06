@@ -122,6 +122,7 @@ import { eventBus } from "@/main.js";
 export default {
   data() {
     return {
+      isConnected:false,
       songTime:0,
       imgUrls: [],
       isTitleHide: false,
@@ -305,23 +306,20 @@ export default {
       this.$forceUpdate();
     },
     playSongOnStart(){
-      var counter = 0;
+      var playingCounter = 0;
       var currSong;
-      console.log('this.mix',this.mix)
       if(!this.getMix) return
       this.mix.songs.forEach(song => {
         if(song.isPlaying){
-          counter++;
+          playingCounter++;
           currSong = song
         }
       })
-      if(counter > 0){
+      if(playingCounter > 0){
         socketService.emit('send-song-to-all',currSong);
         socketService.on('song-time-new',time => {
         eventBus.$emit('song-time-sync',time)
-        //console.log('time playing ', time,' seconds');
         })
-        // console.log('curr song : ',currSong);
       }
       else{
         socketService.emit('send-song-to-all',this.getMix.songs[0]);
@@ -339,8 +337,10 @@ export default {
     mixSocial
   },
   async created() {
-
-    socketService.setup();
+    if(!this.isConnected) {
+      socketService.setup();
+      this.isConnected = true;
+    }
     socketService.emit('join room',this.$route.params.mixId);
     console.log('details joined room ',this.$route.params.mixId);
     if(this.$route.params.mixId){
@@ -348,15 +348,9 @@ export default {
       await this.$store.dispatch({ type: "getMixById", mixId });
       this.updateViews();
     }
-
-    // socketService.on('play-song',song => {
-    //     console.log('socket.on play-song',song)
-    // });
-    
     socketService.on('play-song',song => {
       var mixCopy = JSON.parse(JSON.stringify(this.getMix))
       mixCopy.songs.forEach(currSong => currSong.isPlaying = false);
-      // eventBus.$emit('song-time',this.songTime)
       if(this.currSongPlaying){
         mixCopy.songs.forEach(songId => {
           if(songId.id === this.currSongPlaying.id){
@@ -370,14 +364,7 @@ export default {
       })
       }   
     });
-
     this.playSongOnStart();
-
-    // socketService.on('song-time-new',time => {
-    //     eventBus.$emit('song-time-sync',time)
-    //     // console.log('time playing ', time,' seconds');
-    // })
-
     socketService.on('mix-is-updated',mix=>{
       this.$store.dispatch({
 				type: "saveMix",
@@ -388,13 +375,6 @@ export default {
           mix,
       });
     });
-
-
   },
-  mounted() {
-  },
-  destroyed(){
-   
-  }
 }
 </script>
