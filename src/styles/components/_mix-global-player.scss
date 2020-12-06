@@ -128,7 +128,7 @@
 
 @media(max-width:1350px){
     .global-player{
-        
+        height: 60px;
         gap:0;
         h2{
             font-size:10px;
@@ -182,7 +182,7 @@
 }
 @media(max-width:1060px){
     .global-player{
-        
+        height: 50px;
         gap:0;
         h2{
             font-size:10px;
@@ -236,7 +236,7 @@
 }
 @media(max-width:750px){
     .global-player{
-        
+        height: 40px;
         gap:0;
         h2{
             font-size:10px;
@@ -306,7 +306,7 @@
         }
         input[type="range"]{
 
-            width:100px;
+            width:70px;
             height:5px;
         }
         input[type="range"]::-moz-focus-outer {
