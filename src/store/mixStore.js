@@ -1,4 +1,5 @@
 import { mixService } from '@/services/mixService.js'
+import { msgservice } from '@/services/msg.service.js'
 
 export default {
     state: {
@@ -100,7 +101,11 @@ export default {
                 state.currMix.songs.forEach(song => song.isPlaying = false)
         },
     },
-    actions: {
+    actions: {   
+        async sendMsgWhatsApp(context) {
+            var msg = await msgservice.sendMsg();
+            console.log('msgs',msg)
+        },
         async getTopMixes(context) {
             var mixes = await mixService.query();
             context.commit({ type: 'setSortedMixes', mixes });

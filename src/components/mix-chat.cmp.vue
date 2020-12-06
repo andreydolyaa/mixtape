@@ -2,6 +2,8 @@
 
 	<section class="chat-app">
 		<!-- <h2>chat app</h2> -->
+        test
+        <!-- just a test dont use<a @click="sendMsgWhatsapp"> whatsapp link njs</a> -->
         <marquee-text>
         <div class="now-playing" v-if="getSong">
         <p><span> Now Playing - </span> {{getSong.title}} </p>
@@ -62,7 +64,9 @@ export default {
         }
     },
     methods: {
-
+        sendMsgWhatsapp(){
+            this.$store.dispatch({ type: "sendMsgWhatsApp"});
+        },
         sendMsg(){
             if(!this.msg.txt) return;
             socketService.emit('send message',{msg:this.msg,roomId:this.room});

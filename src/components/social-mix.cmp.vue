@@ -7,8 +7,11 @@
           <!-- <p>invite a friend to join you:</p> -->
         </div>
         <div class="mix-social-nav flex space-evenly">
-          <i class="fab fa-facebook-square"></i>
-          <i class="fab fa-whatsapp"></i>
+          <input v-model="phoneNumber" placeholder="Messege to..." name="phone-number" type="number"/>
+          <!-- {{phoneNumber}} {{link}} dev -->
+          <a @click="sendwMsg"> <i class="fab fa-whatsapp"></i></a>
+          <a  @click="shareOnFB" > <i class="fab fa-facebook-square"></i> </a>
+          
         </div>
       </div>
     </section>
@@ -16,32 +19,45 @@
 </template>
 
 <script>
+const axios = require("axios");
 
 export default {
-  // name: 'mix-social',
-  // props: {
-  //   mix: Object
-  // },
-  // data() {
-  //   return {
-  //     songTxt: ''
-  //   }
-  // },
-  // methods: {
-  // },
-  // computed: {
-  //   filterBySong() {
-  //     var res = this.mix.songs.filter(song => {
-  //       console.log('song title', song.title);
-  //      return song.title.toLowerCase().includes(this.songTxt.toLowerCase());
-  //     })
-  //     console.log('res',res);
-  //     return res
-  //   }
-  // },
-  // components: {
-  // },
-  // created() {
-  // }
+
+
+  name: 'mix-social',
+  props: {
+    mix: Object
+  },
+  data() {
+    return {
+      phoneNumber:null,
+      link: window.location.href,
+    }
+  },
+  methods: {
+    shareOnFB(){
+      var link = this.link
+        console.log('link',link)
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${{link}}`);
+    },
+    sendwMsg(){
+      console.log(this.phoneNumber)
+      console.log(window.location.href)
+
+      if(!this.phoneNumber) return
+      //window.open(`https://wa.me/${{phoneNumber}}?text=hi%20there`,"_blank" );
+      var number = this.phoneNumber
+      var link = window.location.href
+      axios
+        .post(`https://wa.me/${{number}}?text=hi%20there%20${{link}}`,)
+    }
+  },
+  computed: {
+
+  },
+  components: {
+  },
+  created() {
+  }
 } 
 </script>
