@@ -2,7 +2,7 @@
 
 	<section class="chat-app">
 		<!-- <h2>chat app</h2> -->
-        test
+        <!-- test -->
         <!-- just a test dont use<a @click="sendMsgWhatsapp"> whatsapp link njs</a> -->
         <marquee-text>
         <div class="now-playing" v-if="getSong">
