@@ -194,7 +194,7 @@ export default {
     heartMode() {
       return this.currMix.isLiked ? 'fas fa-heart' : 'far fa-heart'
     },
-  },
+  }, 
   methods: {
     saveMix(mix){
       this.$store.dispatch({ type: "saveMix", mix:mix});

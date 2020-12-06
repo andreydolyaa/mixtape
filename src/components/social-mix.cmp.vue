@@ -6,11 +6,15 @@
         <div class="invite">
           <!-- <p>invite a friend to join you:</p> -->
         </div>
+         
         <div class="mix-social-nav flex space-evenly">
+         
           <input v-model="phoneNumber" placeholder="Messege to..." name="phone-number" type="number"/>
-          <!-- {{phoneNumber}} {{link}} dev -->
-          <a @click="sendwMsg"> <i class="fab fa-whatsapp"></i></a>
-          <a  @click="shareOnFB" > <i class="fab fa-facebook-square"></i> </a>
+          
+
+          <a :href="`https://wa.me/972${this.phoneNumber}?text=Hi%20there%20check%20this%20mixTape%20${this.linkToSendEdited}`" target="_blank" > <i class="fab fa-whatsapp"></i></a>
+          <!-- <a :href="`${this.linkToSend}`" target="_blank" > <i class="fab fa-whatsapp"></i></a> -->
+          <a @click="shareOnFB" > <i class="fab fa-facebook-square"></i> </a>
           
         </div>
       </div>
@@ -31,14 +35,16 @@ export default {
   data() {
     return {
       phoneNumber:null,
-      link: window.location.href,
+      link: 'https://awesome-mixtape.herokuapp.com/#/mix/details/5fcc9d2ae69386fbefff032c',
+      // link: 'https://awesome-mixtape.herokuapp.com/#/mix/details/5fcc9d2ae69386fbefff032c',
+      linkToSend:null
     }
   },
   methods: {
     shareOnFB(){
       var link = this.link
         console.log('link',link)
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${{link}}`);
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${link}`);
     },
     sendwMsg(){
       console.log(this.phoneNumber)
@@ -48,8 +54,8 @@ export default {
       //window.open(`https://wa.me/${{phoneNumber}}?text=hi%20there`,"_blank" );
       var number = this.phoneNumber
       var link = window.location.href
-      axios
-        .post(`https://wa.me/${{number}}?text=hi%20there%20${{link}}`,)
+      //${link}
+      axios.post(`https://wa.me/${number}?text=hi%20there%20`,{headers: {"Access-Control-Allow-Origin": "*"}})
     }
   },
   computed: {
@@ -58,6 +64,20 @@ export default {
   components: {
   },
   created() {
+    //var id = this.$route.params.mixId
+    this.linkToSend = window.location.href
+    this.linkToSendEdited = this.linkToSend.replace('#/','');
+    console.log('this.linkToSend',this.linkToSendEdited)
   }
 } 
 </script>
+
+<style scoped>
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+</style>
