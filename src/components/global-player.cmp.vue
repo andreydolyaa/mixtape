@@ -47,7 +47,7 @@
 					<i class="fas fa-step-forward"></i>
 				</button>
 			</div>
-			<div>
+			<div class="mute">
 				<button v-if="!isMuted" @click="mute">
 					<i class="fas fa-volume-up"></i>
 				</button>
