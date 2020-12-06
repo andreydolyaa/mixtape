@@ -38,8 +38,8 @@
                     <option value="" selected disabled hidden>{{chatEmojis[1]}}</option>
                     <option v-for="emoji in chatEmojis" :value="emoji" :key="emoji">{{emoji}}</option>
                 </select>
-            <select name="gifs" v-model="msg.gif" @change="sendMsg">
-                <option value="" selected disabled hidden>GIF</option>
+            <select name="gifs" class="gif-select" v-model="msg.gif" @change="sendMsg">
+                <option value="" selected disabled hidden class="gif-option">GIF</option>
                     <option v-for="(gif,index) in gifs" :key="gif" :value="gif">GIF#{{index}}</option>
             </select>
             <button @click="clearChat"><i class="far fa-trash-alt"></i></button>
