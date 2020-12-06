@@ -15,7 +15,11 @@
 		<div class="chat-msgs">
 			<ul>
 				<li v-for="(mesg, idx) in msgsHistory" :key="idx + mesg">
-					<p class="msg">{{ mesg.name }}: {{ mesg.txt }}</p>
+					<p v-if="mesg.txt" class="msg">{{ mesg.name }}: {{ mesg.txt }}</p>
+                    <div v-if="mesg.gif">
+                        {{mesg.name}}:
+                        <img :src="mesg.gif" class="gif">
+                    </div>
 				</li>
                 
 				<li v-for="(mesg, idx) in msgs" :key="idx">
@@ -124,7 +128,7 @@ export default {
         socketService.on('message history' , messages => {
             messages.filter(msg => {
                 if( msg.roomId === this.mixId){
-                    this.msgsHistory.push(msg.msg);
+                    this.msgsHistory.unshift(msg.msg);
                 }
             })
         })
