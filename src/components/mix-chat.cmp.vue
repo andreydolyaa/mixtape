@@ -70,7 +70,7 @@ export default {
             isTyping:false,
             chatEmojis:['🤙','😎','👍','😂','👻','🕺','💃','🤩','🥳','👽','🤖'],
             users:null,
-            gifs:["https://www.icegif.com/wp-content/uploads/dancing-icegif-3.gif",'https://media0.giphy.com/media/Qz5jqYCH9l5t4Dz1Di/giphy.gif','https://gif-free.com/uploads/posts/2017-11/1509959847_snoopy-dancing.gif','https://www.askideas.com/media/08/Funny-Dancing-Gif-Image.gif','https://media4.giphy.com/media/e7QR593l1Vl94uqs9x/source.gif','https://media4.giphy.com/media/l3V0pGcu4HosNs57a/source.gif','https://media1.giphy.com/media/4QFzDdeLmo19MTm9AF/source.gif','https://i.pinimg.com/originals/5a/c5/50/5ac550d16dc31f593fd3b316eaf47d42.gif']
+            gifs:["https://www.icegif.com/wp-content/uploads/dancing-icegif-3.gif",'https://media0.giphy.com/media/Qz5jqYCH9l5t4Dz1Di/giphy.gif','https://gif-free.com/uploads/posts/2017-11/1509959847_snoopy-dancing.gif','https://www.askideas.com/media/08/Funny-Dancing-Gif-Image.gif','https://media4.giphy.com/media/e7QR593l1Vl94uqs9x/source.gif','https://media4.giphy.com/media/l3V0pGcu4HosNs57a/source.gif','https://media1.giphy.com/media/4QFzDdeLmo19MTm9AF/source.gif','https://i.pinimg.com/originals/5a/c5/50/5ac550d16dc31f593fd3b316eaf47d42.gif','https://media2.giphy.com/media/3o7qE2VAxuXWeyvJIY/giphy.gif','https://dancegifs.com/wp-content/uploads/2019/12/giphy-1.gif','https://25.media.tumblr.com/a0621edc06165983d99c2986b1f815a8/tumblr_mhj0cxDe8A1qgy528o1_400.gif']
         };
     },
     computed:{
