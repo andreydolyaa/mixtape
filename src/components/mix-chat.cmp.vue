@@ -40,7 +40,7 @@
                 </select>
             <select name="gifs" v-model="msg.gif" @change="sendMsg">
                 <option value="" selected disabled hidden>GIF</option>
-                    <option v-for="gif in gifs" :key="gif" :value="gif">gif</option>
+                    <option v-for="(gif,index) in gifs" :key="gif" :value="gif">GIF#{{index}}</option>
             </select>
             <button @click="clearChat"><i class="far fa-trash-alt"></i></button>
 				<!-- <button><img src="https://res.cloudinary.com/hw-projects/image/upload/v1606416732/appmixes/send-messege_s_red.png"></button> -->
