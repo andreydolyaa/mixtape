@@ -14,11 +14,9 @@
         <span class="mix-name"  :class="checkLang">{{ mix.name }}</span>
         <span class="mix-desc">{{ mix.desc }}</span>
         <div class="stats">
-          <div>
           <span class="mix-likes">{{ mix.likes }} <i class='fas fa-heart'></i></span>
           <span class="mix-views">{{ mix.views }} <i class="fas fa-eye"></i></span>
-          </div>
-          <span class="mix-amount">{{ songsAmount }} <i class="fas fa-compact-disc"></i></span>
+          <span class="mix-amount">{{ songsAmount }} <i class="fas fa-music"></i></span>
         </div>
     </div>
     </div>
