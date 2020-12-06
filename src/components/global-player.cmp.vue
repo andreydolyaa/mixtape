@@ -106,6 +106,20 @@ export default {
 			return currSong ? 'logo-playing' : 'logo-stop'
 		},
 	},
+	watch:{
+		'getCurrSongPlaying'(){
+		// 	console.log('SONG CHANGED');
+		// 	eventBus.$on('song-time-sync',currTimePlaying => {
+		// 	// console.log('CURR TIME PLAYING : ',currTimePlaying);
+		// 	this.$refs.youtube.player.seekTo(currTimePlaying,true);
+		// 	this.currTimePlaying = currTimePlaying
+
+		// 	console.log('SONGS SYNCED');
+		// 	eventBus.$off('song-time-sync');
+
+		// })
+		}
+	},
 	methods: {
 		pause() {
 			this.$refs.youtube.player.pauseVideo();
