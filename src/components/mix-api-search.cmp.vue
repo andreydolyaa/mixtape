@@ -44,7 +44,7 @@ export default {
 			keyword: "",
 			searchResults: null,
 			createNewSong: mixService.createNewSong(),
-			currMix: "",
+			currMix: null,
 			song:[{
 				id:{
 					videoId:'D2heCoIKa1U'
@@ -68,24 +68,20 @@ export default {
 	},
 	methods: {
 		async getSearchResults() {
-			// if(this.keyword === '') return;
-			// var res = await youTubeService.query(this.keyword);
-			// this.searchResults = res;
-			// console.log('SERACH RESULT : ',this.searchResults);
-			// return this.searchResults;
-			return this.song
+			if(this.keyword === '') return;
+			var res = await youTubeService.query(this.keyword);
+			this.searchResults = res;
+			console.log('SERACH RESULT : ',this.searchResults);
+			return this.searchResults;
+			// this.searchResults = this.song;
+			// return this.song
 		},
 		addSongToMix(result) {
-			console.log('THIS SONG' ,result);
-			console.log('ADD SONG BUTTON CLICKED');
 			var mixCopy = JSON.parse(JSON.stringify(this.getCurrMix));
-			this.createNewSong.title = result.snipprt.title;
+			this.createNewSong.title = result.snippet.title;
 			this.createNewSong.songUrlId = result.id.videoId;
 			this.createNewSong.imgUrl = result.snippet.thumbnails.default.url;
-			console.log('createNewSong: ',this.createNewSong);
-			console.log('MIX COPY SEARCH :', mixCopy);
 			mixCopy.songs.unshift(this.createNewSong);
-			console.log(mixCopy);
 
 			this.$store.dispatch({
 				type: "saveMix",

@@ -25,8 +25,8 @@
               />
             </template>
             <img
-              class="loader"
               v-else
+              class="loader"
               src="@/assets/imgs/loader.gif"
             />
           </form>
@@ -308,7 +308,7 @@ export default {
       var counter = 0;
       var currSong;
       console.log('this.mix',this.mix)
-      if(!this.mix) return
+      if(!this.getMix) return
       this.mix.songs.forEach(song => {
         if(song.isPlaying){
           counter++;
@@ -316,16 +316,15 @@ export default {
         }
       })
       if(counter > 0){
-        console.log('currSong',currSong)
         socketService.emit('send-song-to-all',currSong);
         socketService.on('song-time-new',time => {
         eventBus.$emit('song-time-sync',time)
         //console.log('time playing ', time,' seconds');
-    })
+        })
         // console.log('curr song : ',currSong);
       }
       else{
-        socketService.emit('send-song-to-all',this.mix.songs[0]);
+        socketService.emit('send-song-to-all',this.getMix.songs[0]);
       }
     },
     getSongTime(){
@@ -350,9 +349,9 @@ export default {
       this.updateViews();
     }
 
-    socketService.on('play-song',song => {
-        console.log('socket.on play-song',song)
-    });
+    // socketService.on('play-song',song => {
+    //     console.log('socket.on play-song',song)
+    // });
     
     socketService.on('play-song',song => {
       var mixCopy = JSON.parse(JSON.stringify(this.getMix))
@@ -380,8 +379,6 @@ export default {
     // })
 
     socketService.on('mix-is-updated',mix=>{
-      console.log(' MIX UPDATE VIA SOCKET :::',mix);
-
       this.$store.dispatch({
 				type: "saveMix",
 				mix,
