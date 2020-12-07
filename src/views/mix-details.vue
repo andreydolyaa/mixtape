@@ -127,7 +127,7 @@ import { eventBus } from "@/main.js";
 export default {
   data() {
     return {
-      chatIsShow: false,
+      chatIsShow: true,
       isConnected:false,
       songTime:0,
       imgUrls: [],
