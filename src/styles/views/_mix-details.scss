@@ -442,8 +442,32 @@
         }
     }
 }
-
-
+.chat-icon{
+    display: block;
+    position: fixed;
+    bottom: 60px;
+    right: 10px;
+    z-index: 113;
+    border-radius: 50%;
+    background-color: #18191a;
+    padding: 10px;
+    border-color: rgba(223,225,229,0);
+    box-shadow: 0 1px 6px #9d9e9f78;
+    i{
+        font-size: 30px;
+        color: white;
+    }
+    @include for-wide-layout {
+        display: none;
+    }
+}
+.display-chat{
+    display: block !important;
+}
+.hide-chat{
+    display: none !important;
+   
+}
 
 div.el-input {
     width: 100% !important;

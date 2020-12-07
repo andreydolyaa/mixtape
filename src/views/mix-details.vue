@@ -103,7 +103,12 @@
           
       </div>
     </div>
-    <div class="mix-chat effect5">
+     <span class="chat-icon"
+      @click="toggleShow">
+      <i class="far fa-comments"></i>
+     </span>
+     {{chatIsShow}}
+    <div :class="chatMode" class="mix-chat effect5">
       <mix-chat :mixId="roomId" />
     </div>
   </section>
@@ -122,6 +127,7 @@ import { eventBus } from "@/main.js";
 export default {
   data() {
     return {
+      chatIsShow: false,
       isConnected:false,
       songTime:0,
       imgUrls: [],
@@ -195,6 +201,9 @@ export default {
     heartMode() {
       return this.currMix.isLiked ? 'fas fa-heart' : 'far fa-heart'
     },
+    chatMode(){
+      return this.chatIsShow ? 'display-chat' : 'hide-chat'
+    }
   }, 
   methods: {
     saveMix(mix){
@@ -327,7 +336,10 @@ export default {
     },
     getSongTime(){
       eventBus.$emit('getTime');
-    }
+    },
+    toggleShow(){
+      this.chatIsShow = !this.chatIsShow;
+    },
   },
   components: {
     mixChat,
