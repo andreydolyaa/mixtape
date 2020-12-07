@@ -158,12 +158,12 @@ export default {
         ],
         songs: [
           {
-            title: "Mac Miller - Good News",
+            title: "songs goes here",
             id: "i6Hdm",
-            songUrlId: "aIHF7u9Wwiw",
+            songUrlId: "",
             imgUrl: "https://i.ytimg.com/vi/aIHF7u9Wwiw/default.jpg",
             addedBy: "minimal-user",
-            duration: "3:21",
+            duration: "0:00",
             isPlaying: false
           },
 
