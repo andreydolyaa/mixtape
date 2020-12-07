@@ -131,7 +131,11 @@
         appearance: none;
         width:450px;
         height:11px;
-        background-color: rgb(255, 255, 255);
+        // background-color: rgb(255, 255, 255);
+        background-image: url(https://cdn.dribbble.com/users/339336/screenshots/4644736/comp-35-dribbble.gif);
+        background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: -200px;
         border:none;
         transition: 0.3s;
         cursor: pointer;
@@ -201,7 +205,7 @@
                 appearance: none;
                 width:30px;
                 height:8px;
-                background-color: rgb(255, 255, 255);
+                // background-color: rgb(255, 255, 255);
                 border:none;
                 transition: 0.3s;
                 cursor: pointer;
@@ -265,7 +269,7 @@
         appearance: none;
         width:30px;
         height:11px;
-        background-color: rgb(255, 255, 255);
+        // background-color: rgb(255, 255, 255);
         border:none;
         transition: 0.3s;
         cursor: pointer;
@@ -364,7 +368,7 @@
             padding:15px;
         }
         input[type="range"]{
-
+            background-position-y: -100px;
             width:250px;
             height:8px;
         }
@@ -431,7 +435,7 @@
             padding:15px;
         }
         input[type="range"]{
-
+            background-position-y: -60px;
             width:150px;
             height:5px;
         }
@@ -485,7 +489,7 @@
             padding:15px;
         }
         input[type="range"]{
-
+            background-position-y: -30px;
             width:70px;
             height:5px;
         }
