@@ -179,7 +179,7 @@ export default {
     mix() {
       if (this.$store.getters.getMix) {
         this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
-       // this.currMix.songs[0].isPlaying = true;
+        // this.currMix.songs[0].isPlaying = true;
         // this.startSongOnPreview();           
         return this.$store.getters.getMix;
       } else {
