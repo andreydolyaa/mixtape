@@ -53,7 +53,7 @@
               <!-- <span v-if="!user" class="nav-display" @click="onSetSignup"
                 >Signup</span
               > -->
-          
+           
               
             </div>
      
