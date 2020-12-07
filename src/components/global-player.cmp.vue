@@ -28,7 +28,8 @@
 			<div class="progress-bar">
 				<p v-if="currTime">{{currTime}}</p>
 				<p v-else>00:00</p>
-				<input :class="getCurrSongPlaying.isPlaying ? 'player-animation' : 'player-no-animation'" @input="moveTo()" type="range" :min="currTime" :max="totalTimeInput" v-model="currTimePlaying"  />
+				<input  @input="moveTo()" type="range" :min="currTime" :max="totalTimeInput" v-model="currTimePlaying"  />
+				<!-- :class="getCurrSongPlaying.isPlaying ? 'player-animation' : 'player-no-animation'" -->
 				<p v-if="totalTime">{{totalTime}}</p>
 				<p v-else>00:00</p>
 			</div>
