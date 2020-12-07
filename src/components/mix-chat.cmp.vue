@@ -21,7 +21,6 @@
                         <img :src="mesg.gif" class="gif">
                     </div>
 				</li>
-                
 				<li v-for="(mesg, idx) in msgs" :key="idx">
 					<p v-if="mesg.txt" class="msg">{{ mesg.name }}: {{ mesg.txt }}</p>
                     <div v-if="mesg.gif">
@@ -29,7 +28,6 @@
                         <img :src="mesg.gif" class="gif">
                     </div>
 				</li>
-
                 
 			</ul>
 		</div>
@@ -62,7 +60,7 @@ export default {
     data() {
         return {
             msg: {
-                name:this.getUser,
+                name:null,
                 txt:'',
                 gif:'',
             },
@@ -82,8 +80,15 @@ export default {
             return this.$store.getters.getCurrSongPlaying;
         },
         getUser(){
-             return this.$store.getters.getLoggedinUser;
+            return this.$store.getters.getLoggedinUser;
         }
+    },
+    mounted(){
+        // var username = this.getUser;
+        console.log('userrrrrrrrrrrrr',this.getUser);
+        // if(username){
+        //     this.msg.name = username
+        // }
     },
     methods: {
         sendMsgWhatsapp(){
