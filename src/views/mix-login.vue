@@ -10,6 +10,7 @@
         <el-input type="text" placeholder="User name" v-model="cerdentials.email" required clearable />
         <el-input type="text" placeholder="Password" v-model="cerdentials.password" show-password required clearable />
         <el-button @click.prevent="login"  type="success">Login</el-button>
+        <span v-if="isError" class="err">Email or Password incorrect</span>
       </form>
     </div>
   </section>
@@ -23,7 +24,8 @@ export default {
       cerdentials: {
         email: '',
         password: ''
-      }
+      },
+      isError:false
     }
   },
   computed: {
@@ -38,17 +40,21 @@ export default {
     isSignup() {
         return this.$store.getters.getIsSignup;
     }
-  },
+  }, 
   created() {
   },
   methods: {
-      login() {
+      async login() {
         console.log('here');
-        this.$store.dispatch({
-          type: "login",
-          userCred: this.cerdentials
-        });
-        // console.log('loggedinUser',this.loggedinUser);
+        try {
+          this.$store.dispatch({ type: "login",userCred: this.cerdentials });
+          console.log('this.loggedinUser',this.loggedinUser) 
+          console.log('setLogin')
+          this.$store.commit({type: "setLogin"});
+        } catch(err) {
+          console.log('email or password inncorect',err)
+          this.isError = true
+        }
       },
       close(){ 
         console.log('close screen')

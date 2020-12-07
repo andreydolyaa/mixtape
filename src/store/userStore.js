@@ -42,11 +42,12 @@ export default {
         // removeUser(state, {userId}) {
         //     state.users = state.users.filter(user => user._id !== userId)
         // },
-    },
+    }, 
     actions: {
         async login(context, payload) {
             console.log('userCred',payload.userCred);
             const user = await userService.login(payload.userCred);
+            console.log('login() user',user)
             context.commit({ type: 'setUser', user })
             return user;
         },

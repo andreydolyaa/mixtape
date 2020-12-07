@@ -13,7 +13,7 @@
                 display: flex;
                 width: 100%;
                 justify-content: space-between;
-                flex-direction: row;
+                flex-direction: column;
 
                 @include for-wide-layout {
                     flex-direction: row;
