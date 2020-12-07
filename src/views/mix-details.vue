@@ -107,7 +107,7 @@
       @click="toggleShow">
       <i class="far fa-comments"></i>
      </span>
-     {{chatIsShow}}
+     <!-- {{chatIsShow}} -->
     <div :class="chatMode" class="mix-chat effect5">
       <mix-chat :mixId="roomId" />
     </div>
@@ -191,6 +191,7 @@ export default {
       } else {
         this.currMix = this.newMix;
         console.log('this.currMix',this.currMix)
+        this.$store.dispatch({ type: "saveMix", mix:this.currMix});
         return this.currMix;
       }
     },
