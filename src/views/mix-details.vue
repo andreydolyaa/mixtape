@@ -131,7 +131,7 @@ export default {
       songTxt: '',
       currMix: '',
       newMix: {
-        // _id: "cerateNewId()",
+        // _id: "3463467347347347347347347",
         name: "Mix Name",
         desc: "Mix description",
         genre: "genre",
