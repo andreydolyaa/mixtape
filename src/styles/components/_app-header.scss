@@ -26,35 +26,50 @@
         }
         .nav-user-pos{
             position: relative;
-            height: 40px;
-            width: 40px;
+            height: 60px;
+            width: 60px;
             
             .nav-user{
                 position: absolute;
                 z-index: 99;
                 top: 0;
                 right: 0;
-                .el-submenu__title * {
+                //.el-submenu__title * {
+                .el-submenu__title {
                     vertical-align: baseline;
                     text-align: right;
-                    position: absolute;
+                    // position: absolute;
                     top: 0;
                     right: 0;
-                }
-                .user-avater{
-                    i{
-                    font-size: 2.5rem;
-                    color: white;
-                    cursor: pointer;
-                  
+                    .user-avater{
+                        i{
+                        font-size: 2.5rem;
+                        color: white;
+                        cursor: pointer;
+                      
+                        }
+                        i:hover{
+                            color:$primary-color;
+                        }
                     }
-                    i:hover{
-                        color:$primary-color;
+                    .user-display {
+                        color: white;
+                        font-size: 1.8em;
+                        text-transform: capitalize;
+                        height: auto;
+                        line-height: initial;
+                        margin-top: -8px;
+                        margin-right: -10px;
+                        font-family: "Caveat", cursive;
+                        font-weight: 900;
+                        letter-spacing: 4px;
+                      }
+                      .el-submenu__icon-arrow , .el-icon-arrow-down{
+                        display: none;
                     }
                 }
-                .el-submenu__icon-arrow , .el-icon-arrow-down{
-                    display: none;
-                }
+               
+
                 .el-menu {
                     // background-color: black;
                     background-color: transparent;
@@ -102,6 +117,10 @@
         display: flex;
         gap: 20px;
         font-weight: 900;
+
+        a{
+            font-size: 0.8em;
+        }
     }
 
     // .nav-user{
@@ -119,7 +138,7 @@
             font-size: 4em;
             margin-left: 20px;
             margin-top: -10px;
-            
+
             display: none;
             @include for-wide-layout {
                 padding: 0;
@@ -130,34 +149,46 @@
         img{
             width: 140px;
             height: auto;
+
         }
     }
  
     .logo:hover{
             font-family: "Caveat", cursive;
         img{
-            width:160px;
+            width:120px;
             height: auto;
             content:url(https://res.cloudinary.com/hw-projects/image/upload/v1607170035/appmixes/logo_r_animated_v3_first_Frame_160x105.jpg);
 
+            @include for-wide-layout {
+                width:160px;
+            }
         }
     }
 
     .logo-playing{
         img{
-            width:160px;
+            width:120px;
             height: auto;
             content:url(https://res.cloudinary.com/hw-projects/image/upload/v1607170425/appmixes/logo_r_animated_v3_160x105.gif);
             
+            @include for-wide-layout {
+                width:160px;
+            }
         }
     }
 
     .logo-stop{
         img{
-            width:160px;
+            width:120px;
             height: auto;
             content:url(https://res.cloudinary.com/hw-projects/image/upload/v1607170035/appmixes/logo_r_animated_v3_first_Frame_160x105.jpg );
+       
+            @include for-wide-layout {
+                width:160px;
+            }
         }
     }
    
 }
+

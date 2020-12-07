@@ -36,7 +36,10 @@
             color: #fff;
             font-weight: bold;
             align-self: flex-end;  
-            padding-right: 40px;
+            padding-right: 0px;
+            @include for-wide-layout {
+                margin-bottom:40px;
+            }
         }
         .mix-link-show-all i{
             color: $primary-color;     
