@@ -55,6 +55,11 @@
 					<i class="fas fa-volume-mute"></i>
 				</button>
 			</div>
+			<div class="player-volume">
+				<input type="range" min="0" max="100" v-model="volume"  @input="changeVolume">
+				<p v-if="volume">{{volume}}</p>
+				<p v-else>50</p>
+			</div>
 		</div>
 	</section>
 </template>
@@ -121,6 +126,9 @@ export default {
 		}
 	},
 	methods: {
+		changeVolume(){
+            this.$refs.youtube.player.setVolume(this.volume)
+		},
 		pause() {
 			this.$refs.youtube.player.pauseVideo();
 			this.$store.commit({
