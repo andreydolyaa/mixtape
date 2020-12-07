@@ -38,7 +38,7 @@
             align-self: flex-end;  
             padding-right: 0px;
             @include for-wide-layout {
-                margin-bottom:40px;
+                padding-right: 40px;
             }
         }
         .mix-link-show-all i{

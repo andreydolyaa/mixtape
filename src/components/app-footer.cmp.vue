@@ -6,8 +6,12 @@
        <div class="logo" :class="isPlaying" >
           <router-link to="/" ><img class="reflect" src="https://res.cloudinary.com/hw-projects/image/upload/v1606479695/appmixes/logo_r_animated_v3_first_Frame" ></router-link> 
         </div>
-      <h2>Created by: Andery Dolya <span><i class="fab fa-linkedin"></i></span> <span><i class="fab fa-github"></i></span> | Eilon Shetrit <span><i class="fab fa-linkedin"></i></span> <span><i class="fab fa-github"></i></span> | Harel Weingarten <span><i class="fab fa-linkedin"></i></span> <span><i class="fab fa-github"></i></span></h2>
-
+           <span>Created by:</span>
+        <h2>
+          <p>Andery Dolya  <i class="fab fa-linkedin"></i>  <i class="fab fa-github"></i> |&nbsp;&nbsp;</p> 
+          <p> Eilon Shetrit  <i class="fab fa-linkedin"></i>  <i class="fab fa-github"></i> |&nbsp;&nbsp;</p>  
+          <p> Harel Weingarten  <i class="fab fa-linkedin"></i>  <i class="fab fa-github"></i>&nbsp;&nbsp;</p>
+        </h2>
     </div>
   </section>
 </template>
