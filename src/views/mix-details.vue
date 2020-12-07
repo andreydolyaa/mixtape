@@ -191,7 +191,7 @@ export default {
       } else {
         this.currMix = this.newMix;
         console.log('this.currMix',this.currMix)
-        this.$store.dispatch({ type: "saveMix", mix:this.currMix});
+        // this.$store.dispatch({ type: "saveMix", mix:this.currMix});
         return this.currMix;
       }
     },
