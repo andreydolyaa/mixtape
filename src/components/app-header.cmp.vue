@@ -18,9 +18,8 @@
       
         <nav class="main-nav">
         <div class="nav-mix">
-            <!-- <router-link to="/mix/list">Mixes</router-link>  -->
-            <!-- to="/mix/details" -->
-            <!-- <a @click="createNewPlaylist" >Create Mix</a> -->
+            <router-link to="/mix/list">Mixes</router-link> 
+            <a @click="createNewPlaylist" >Create Mix</a>
         </div> 
         <div class="nav-user-pos">
             <div class="nav-user">
