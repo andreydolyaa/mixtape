@@ -75,8 +75,8 @@ export default {
   methods: {
     createNewPlaylist(){
       this.$store.commit({type:'setMixEmpty'})
-      this.$router.push(`mix/details`) 
-    },
+      this.$router.push(`/mix/details`) 
+    }, 
     resetIcon() {
       eventBus.$emit('reset-icons');
     },
