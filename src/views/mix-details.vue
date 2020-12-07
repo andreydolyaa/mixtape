@@ -131,7 +131,7 @@ export default {
       songTxt: '',
       currMix: '',
       newMix: {
-        // _id: "cerateNewId()",
+        // _id: "3463467347347347347347347",
         name: "Mix Name",
         desc: "Mix description",
         genre: "genre",
@@ -179,7 +179,7 @@ export default {
     mix() {
       if (this.$store.getters.getMix) {
         this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
-       // this.currMix.songs[0].isPlaying = true;
+        // this.currMix.songs[0].isPlaying = true;
         // this.startSongOnPreview();           
         return this.$store.getters.getMix;
       } else {

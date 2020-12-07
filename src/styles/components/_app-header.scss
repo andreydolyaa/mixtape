@@ -108,7 +108,7 @@
     //     display: flex;
     //     gap: 20px;
     //     font-weight: 900;
-    // }
+    // } 
 
     .logo{
         display: flex;
@@ -119,6 +119,13 @@
             font-size: 4em;
             margin-left: 20px;
             margin-top: -10px;
+            
+            display: none;
+            @include for-wide-layout {
+                padding: 0;
+                display: block;
+            }
+    
         }
         img{
             width: 140px;
