@@ -12,6 +12,7 @@
           <p> Eilon Shetrit  <i class="fab fa-linkedin"></i>  <i class="fab fa-github"></i> |&nbsp;&nbsp;</p>  
           <p> Harel Weingarten  <i class="fab fa-linkedin"></i>  <i class="fab fa-github"></i>&nbsp;&nbsp;</p>
         </h2>
+        <small>© Coffee Rights mixTape 2020</small>
     </div>
   </section>
 </template>
