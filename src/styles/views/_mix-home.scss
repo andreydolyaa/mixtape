@@ -12,6 +12,20 @@
             margin-bottom: 10px;
         }
 
+        .mix {
+            color: blue;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.2s ease-in-out;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        @include for-wide-layout {
+            margin-bottom: 10px;
+        }
 
         h2{
             color: #ffffff;
@@ -38,10 +52,10 @@
 
             li{
                 color: #fff;
-                margin-bottom: 80px;
+                margin-bottom: 10px;
 
                 @include for-wide-layout {
-                    margin-bottom: 0;
+                    margin-bottom: 10px;
                 }
 
                 .details{
