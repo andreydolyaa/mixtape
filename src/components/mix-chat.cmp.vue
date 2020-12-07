@@ -21,7 +21,6 @@
                         <img :src="mesg.gif" class="gif">
                     </div>
 				</li>
-                
 				<li v-for="(mesg, idx) in msgs" :key="idx">
 					<p v-if="mesg.txt" class="msg">{{ mesg.name }}: {{ mesg.txt }}</p>
                     <div v-if="mesg.gif">
@@ -29,7 +28,6 @@
                         <img :src="mesg.gif" class="gif">
                     </div>
 				</li>
-
                 
 			</ul>
 		</div>
@@ -43,7 +41,7 @@
                     <option v-for="emoji in chatEmojis" :value="emoji" :key="emoji">{{emoji}}</option>
                 </select>
             <select name="gifs" class="gif-select" v-model="msg.gif" @change="sendMsg">
-                <option value="" selected disabled hidden class="gif-option">GIF</option>
+                    <option value="" selected disabled hidden class="gif-option">GIF</option>
                     <option v-for="(gif,index) in gifs" :key="gif" :value="gif">GIF#{{index}}</option>
             </select>
             <button @click="clearChat"><i class="far fa-trash-alt"></i></button>
@@ -62,7 +60,7 @@ export default {
     data() {
         return {
             msg: {
-                name:this.getUser,
+                name:'',
                 txt:'',
                 gif:'',
             },
@@ -82,19 +80,30 @@ export default {
             return this.$store.getters.getCurrSongPlaying;
         },
         getUser(){
-             return this.$store.getters.getLoggedinUser;
+            return this.$store.getters.getLoggedinUser;
         }
+    },
+    mounted(){
+        // var username = this.getUser;
+        console.log('userrrrrrrrrrrrr',this.getUser);
+        // if(username){
+        //     this.msg.name = username
+        // }
     },
     methods: {
         sendMsgWhatsapp(){
             this.$store.dispatch({ type: "sendMsgWhatsApp"});
         },
         sendMsg(){
-            // if(!this.msg.txt || !this.msg.gif) return;
+            if(this.getUser){
+                this.msg.name = this.getUser.username
+            }else{
+                this.msg.name = 'Guest'
+            }
             socketService.emit('send message',{msg:this.msg,roomId:this.room});
-            console.log('CHAT MSG SENT : ',this.msg);
             this.msg.txt = '';
             this.msg.gif = '';
+            this.msg.name = '';
         },
         isTypingNow(){
             socketService.emit('is typing',this.isTyping)
