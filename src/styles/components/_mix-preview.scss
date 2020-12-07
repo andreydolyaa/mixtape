@@ -77,27 +77,31 @@
             display: flex;
             justify-content: space-between;
             font-weight: 100;
-            .mix-likes{
-                font-family: 'netflixmd';
-                color: $primary-color;
-                font-size: 1em;
-                
-                i{
-                    margin-right:5px
+            .likes{
+                gap: 10px;
+                .mix-likes{
+                    font-family: 'netflixmd';
+                    color: $primary-color;
+                    font-size: 1em;
+                    
+                    i{
+                        margin-right:5px
+                    }
                 }
-            }
 
-            .mix-views{
-                color: $white-color;
-                text-shadow: -1px 1px  $black-color;
-                font-size: 1em;
-                margin-right:10px;
-
-                i{
+                .mix-views{
                     color: $white-color;
-                    margin-right:5px 
+                    text-shadow: -1px 1px  $black-color;
+                    font-size: 1em;
+                    margin-right:10px;
+    
+                    i{
+                        color: $white-color;
+                        margin-right:5px 
+                    }
                 }
             }
+
             .mix-amount{
                 color: $white-color;
                 text-shadow: -1px 1px  $black-color;
@@ -108,6 +112,7 @@
                 }
             }
         }
+
     }
 
     .info-stats {
