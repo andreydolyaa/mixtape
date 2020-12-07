@@ -21,14 +21,14 @@
 			</div>
 			<marquee-text class="title-width">
 			<h2 v-if="getCurrSongPlaying">{{getCurrSongPlaying.title}}</h2>
-			<h2 v-else>Artist - Unknown</h2>
+			<h2 v-else>Unknown Mix</h2>
 			</marquee-text>
 
 			<!--------------- THIS IS THE PLAYER PROGRESS BAR  ! ------------------->
 			<div class="progress-bar">
 				<p v-if="currTime">{{currTime}}</p>
 				<p v-else>00:00</p>
-				<input @input="moveTo()" type="range" :min="currTime" :max="totalTimeInput" v-model="currTimePlaying" />
+				<input :class="getCurrSongPlaying.isPlaying ? 'player-animation' : 'player-no-animation'" @input="moveTo()" type="range" :min="currTime" :max="totalTimeInput" v-model="currTimePlaying"  />
 				<p v-if="totalTime">{{totalTime}}</p>
 				<p v-else>00:00</p>
 			</div>

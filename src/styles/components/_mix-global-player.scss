@@ -132,10 +132,10 @@
         width:450px;
         height:11px;
         // background-color: rgb(255, 255, 255);
-        background-image: url(https://cdn.dribbble.com/users/339336/screenshots/4644736/comp-35-dribbble.gif);
-        background-size: cover;
-    background-repeat: no-repeat;
-    background-position-y: -200px;
+    //     background-image: url(https://cdn.dribbble.com/users/339336/screenshots/4644736/comp-35-dribbble.gif);
+    //     background-size: cover;
+    // background-repeat: no-repeat;
+    // background-position-y: -200px;
         border:none;
         transition: 0.3s;
         cursor: pointer;
@@ -584,6 +584,15 @@
 }
 
 
+.player-animation{
+    background-image: url(https://cdn.dribbble.com/users/339336/screenshots/4644736/comp-35-dribbble.gif);
+    background-size: cover;
+background-repeat: no-repeat;
+background-position-y: -200px;
+}
+.player-no-animation{
+    background-color: white;
+}
 
 
 // .global-player{

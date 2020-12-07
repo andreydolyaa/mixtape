@@ -104,13 +104,17 @@ export default {
     sendMsgWhatsapp() {
       this.$store.dispatch({ type: "sendMsgWhatsApp" });
     },
-    sendMsg() {
-      // if(!this.msg.txt || !this.msg.gif) return;
-      socketService.emit('send message', { msg: this.msg, roomId: this.room });
-      console.log('CHAT MSG SENT : ', this.msg);
-      this.msg.txt = '';
-      this.msg.gif = '';
-    },
+    sendMsg(){
+            if(this.getUser){
+                this.msg.name = this.getUser.username
+            }else{
+                this.msg.name = 'Guest'
+            }
+            socketService.emit('send message',{msg:this.msg,roomId:this.room});
+            this.msg.txt = '';
+            this.msg.gif = '';
+            this.msg.name = '';
+        },
     isTypingNow() {
       socketService.emit('is typing', this.isTyping)
       this.isTyping = true;
