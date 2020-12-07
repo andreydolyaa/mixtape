@@ -19,7 +19,8 @@
         <nav class="main-nav">
         <div class="nav-mix">
             <router-link to="/mix/list">Mixes</router-link> 
-            <router-link to="/mix/details">Create Mix</router-link>
+            <!-- to="/mix/details" -->
+            <a @click="createNewPlaylist" >Create Mix</a>
         </div> 
         <div class="nav-user-pos">
             <div class="nav-user">
@@ -72,6 +73,10 @@ export default {
     }
   },
   methods: {
+    createNewPlaylist(){
+      this.$store.commit({type:'setMixEmpty'})
+      this.$router.push(`mix/details`) 
+    },
     resetIcon() {
       eventBus.$emit('reset-icons');
     },
