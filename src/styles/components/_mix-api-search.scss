@@ -3,6 +3,7 @@
     min-width: 240px;
     display: flex;
     border-bottom: 2px solid $primary-color;
+    margin-bottom: 10px;
     input {
         min-width: 270px;
         background-color:inherit;
@@ -36,6 +37,8 @@
     align-items: center;
     background: #8c8c8cbf;
     padding: 10px 20px;
+    width: 50%;
+    max-width: 800px;
     p{
         color: #fff;
         text-shadow: -1px 1px #000;
@@ -54,6 +57,17 @@
     img{
         width: 50px;
         height: auto;
+    }
+    ul{
+        li{
+           display:flex;
+           justify-content: space-between; 
+           .info{
+                display:flex;
+                gap:10px;
+                align-items: center;
+           }
+        }
     }
 }
 .searchTest:hover, .searchTest:focus-within{

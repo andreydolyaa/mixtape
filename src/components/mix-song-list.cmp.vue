@@ -1,12 +1,13 @@
 <template>
 	<section class="songs-list flex column">
-		<div class="search-song-and-social-container" v-if="mix">
+		 <!-- -->
+		<div class="search-song-and-social-container"  v-if="mix">
 			<div class="search-and-add">
 				<i @click="openInputApi" class="fas fa-plus-circle"></i>
 				<i @click="openInputSearch" class="fas fa-search"></i>
 
 				<mixApiSearch v-if="isAdd" />
-
+ 
 				<div class="search-song" v-if="!isAdd">
 					<el-input
 						type="text"
@@ -20,12 +21,14 @@
 			</div>
 				<mix-social /> 
 		</div>
-	
-   				<draggable v-if="mix" class="list-group min-height songs-details-main" 
-				:list="mix.songs" :options="{animation:200 }"  
-				:element="'ul'" @change="update">
+				<div class="currMixHide">{{mixSongs}} {{songTxt}}</div> 
+				<!-- <div class="currMixHide"> {{mixSongs}}</div> -->
+<!-- {{mixSongs}} -->
+   				<draggable v-if="mixSongs" class="list-group min-height songs-details-main" 
+				:list="mixSongs" :options="{animation:200 }"  
+				:element="'ul'" @change="update" :sort="true">
 					
-					<li class="list-group-item" v-for="(song, index) in mix.songs" :key="song.id" :data-id="song.id">
+					<li class="list-group-item" v-for="(song, index) in mixSongs" :key="song.id" :data-id="song.id">
 						
 						<div class="song-container">
 
@@ -80,7 +83,7 @@ export default {
 	name: "mix-song-list",
 	props: {
 		songs: Array,
-		//mix: Object,
+		mixEmited: Object,
 	},
 	data() {
 		return {
@@ -88,25 +91,54 @@ export default {
 			isAdd: false,
 			isPlaying: false,
 			mixCopy: null,
-			songTxt: "",
+			songTxt: '',
 			songsListDragable: null,
-			songForDev:  {
-				title: "Mac Miller - Good News",
-				id: "i6Hdm",
-				songUrlId: "aIHF7u9Wwiw",
-				imgUrl: "https://i.ytimg.com/vi/aIHF7u9Wwiw/default.jpg",
-				addedBy: "minimal-user",
-				duration: "3:21",
-				isPlaying: false
-          	},
+			mixId:null,
+			// songForDev:  {
+			// 	title: "Mac Miller - Good News",
+			// 	id: "i6Hdm",
+			// 	songUrlId: "aIHF7u9Wwiw",
+			// 	imgUrl: "https://i.ytimg.com/vi/aIHF7u9Wwiw/default.jpg",
+			// 	addedBy: "minimal-user",
+			// 	duration: "3:21",
+			// 	isPlaying: false
+          	// },
 		};
 	},
 	computed: {
 		mix() {
+			// //var mix = this.mixEmited;
+			// var mix = this.$store.getters.getMix;
+			// if(!mix) return
+			// this.mixCopy = JSON.parse(JSON.stringify(mix));
+
+			// return this.mixCopy;
+
+
+			if (this.mixId) {
+				console.log('getting mix')
+				this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
+				// this.currMix.songs[0].isPlaying = true;
+				// this.startSongOnPreview();           
+				return this.currMix
+			}else{
+				console.log('getting new mix')
+				this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getEmptyMix));
+				return this.currMix
+			}
+		},
+		mixSongs(){
+			//var mix = this.mixEmited;
 			var mix = this.$store.getters.getMix;
 			if(!mix) return
 			this.mixCopy = JSON.parse(JSON.stringify(mix));
-			return this.mixCopy;
+			//console.log('this.mixCopy',this.mixCopy)
+ 			return this.mixCopy.songs.filter(song => {
+				 return song.title.toLowerCase().includes(this.songTxt.toLowerCase());
+				// return this.mixCopy.songs.some(song => {
+				// 	//console.log('song.title',song.title.toLowerCase() ,'includes ',this.songTxt.toLowerCase())  	
+				// })
+			})
 		},
 		isNowPlaying() {
 			return this.$store.getters.getThisIsPlaying;
@@ -115,6 +147,8 @@ export default {
 			return this.$store.getters.getCurrSongPlaying;
 		},
 		getMix() {
+			//if(!this.mixEmited) return
+			//return this.mixEmited
 			return this.$store.getters.getMix;
 		},
 		filterBySong() {
@@ -125,7 +159,7 @@ export default {
 			if(!this.songTxt){
 				return mixCopy.songs
 			}
-			return mixCopy.songs.filter((song) => {
+			return mixCopy.songs.some((song) => {
 				//console.log('song',song.isPlaying)
 				return song.title.toLowerCase().includes(this.songTxt.toLowerCase());
 			});
@@ -238,11 +272,13 @@ export default {
 		//socketService.setup();
         // socketService.emit('join room',this.room);
 		// socketService.emit('set-song-playing',this.currSongPlaying)
-		console.log('created',this.songForDev)
+		//console.log('created',this.songForDev)
 		// this.$store.commit({
 		// 		type: "setCurrSong",
 		// 		song:this.songForDev
 		// 	});
+		 this.mixId = this.$route.params.mixId 
+		  console.log('songs this.mixId ',this.mixId )
 
     	 socketService.on('play-song',song => {
 			this.$store.commit({

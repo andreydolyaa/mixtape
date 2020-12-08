@@ -9,19 +9,21 @@
             class="reflect"
             src="https://res.cloudinary.com/hw-projects/image/upload/v1607170425/appmixes/logo_r_animated_v3_160x105.gif"
           />
-          
+         
         </router-link>
         <router-link to="/">
         <h2 class="brand-name">mixTape</h2>
          </router-link>
       </div>
-      
+
+        <img class="imgroot" src="https://res.cloudinary.com/hw-projects/image/upload/v1607380891/appmixes/imgroot200x200.gif" />
         <nav class="main-nav">
         <div class="nav-mix">
-            <router-link to="/mix/list">Mixes</router-link> 
+            <!-- <router-link to="/mix/list">Mixes</router-link>  -->
             <!-- to="/mix/details" -->
-            <a @click="createNewPlaylist" >Create Mix</a>
+            <!-- <a @click="createNewPlaylist" >Create Mix</a> -->
         </div> 
+       <navbar /> 
         <div class="nav-user-pos">
             <div class="nav-user">
               <el-menu
@@ -65,6 +67,7 @@
 
 <script>
 import { eventBus } from '@/main.js'
+import  navbar from '../components/mix-navbar-ham.cmp.vue'
 
 export default {
   data() {
@@ -74,7 +77,8 @@ export default {
   },
   methods: {
     createNewPlaylist(){
-      this.$store.commit({type:'setMixEmpty'})
+      // this.$store.commit({type:'setMixEmpty'})
+      // this.$router.push(`/`) 
       this.$router.push(`/mix/details`) 
     }, 
     resetIcon() {
@@ -120,7 +124,10 @@ export default {
     isLogin() {
       return this.$store.getters.getIsLogin;
     },
-  }
+  },
+  components: {
+    navbar
+  },
 }
 </script>
 

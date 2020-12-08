@@ -253,6 +253,7 @@
                     width: 40px;
                     height: auto;
                     margin-top: 5px;
+                    border-radius: 50%;
                 }    
             }
             img{
@@ -481,3 +482,11 @@ div.el-input {
     padding: 0 20px ;
 }
 
+.currMixHide{
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    position: fixed;
+    top: 0!important;
+    left: 0!important;
+}

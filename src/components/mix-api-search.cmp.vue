@@ -22,8 +22,10 @@
 		<div class="searchResults" v-if="searchResults">
 			<ul>
 				<li v-for="result in searchResults" :key="result.id.videoId">
-					<p>{{result.snippet.title}}</p>
-					<img :src="result.snippet.thumbnails.default.url">
+					<div class="info">
+						<p>{{result.snippet.title}}</p>
+						<img :src="result.snippet.thumbnails.default.url">
+					</div>
 					<button @click.prevent="addSongToMix(result)">
 						<i class="fas fa-plus"></i>
 					</button>
@@ -57,13 +59,25 @@ export default {
 					},
 					title:"Natanael Cano x Ovi x Snoop Dogg x Snow Tha Product x CNG - Feeling Good [Official Video]"
 				}
-			}]
+			}],
+			mixId:null,
 		};
-	},
+	}, 
 	computed: {
 		getCurrMix() {
-			this.currMix = this.$store.getters.getMix;
-			return this.currMix;
+			// this.currMix = this.$store.getters.getMix;
+			// return this.currMix;
+			if (this.mixId) {
+				console.log('getting mix')
+				this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
+				// this.currMix.songs[0].isPlaying = true;
+				// this.startSongOnPreview();           
+				return this.currMix
+			}else{
+				console.log('getting new mix')
+				this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getEmptyMix));
+				return this.currMix
+			}
 		},
 	},
 	methods: {
@@ -82,17 +96,18 @@ export default {
 			this.createNewSong.songUrlId = result.id.videoId;
 			this.createNewSong.imgUrl = result.snippet.thumbnails.default.url;
 			mixCopy.songs.unshift(this.createNewSong);
-
-			this.$store.dispatch({
-				type: "saveMix",
-				mix: mixCopy,
-			});
+				this.$store.dispatch({
+					type: "saveMix",
+					mix: mixCopy,
+				});
 			socketService.emit('mix-updated',mixCopy);
 			this.createNewSong = mixService.createNewSong();
 		},
 	},
 	created(){
-    	
+
+    	this.mixId = this.$route.params.mixId 
+		  console.log('songs this.mixId ',this.mixId )
 	}
 };
 </script>

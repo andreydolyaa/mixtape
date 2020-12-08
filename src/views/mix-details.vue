@@ -1,6 +1,7 @@
 
 <template>
   <section class="mix-details flex" v-if="mix">
+ 
     <!-- <h2>mix details </h2> -->
     <!-- <div class="mix-chat">
       <mix-chat :mixId="roomId" />
@@ -34,8 +35,8 @@
         <section class="mix-info-main">
           <section class="mix-info">
             <h2 class="mix-title" v-if="!isTitleHide">
-              {{ currMix.name
-              }}<span @click="toggleEditTitle" class="edit-txt"
+              {{ currMix.name}}
+              <span @click="toggleEditTitle" class="edit-txt"
                 ><i class="edit fas fa-pen"></i
               ></span>
             </h2>
@@ -90,11 +91,12 @@
         </section>
       </section>
       <div class="search-and-social">
-        <!-- {{currMix.songs}} -->
+         <!-- <div class="currMixHide"> {{currMix}}</div> -->
+        
           <div class="songs">
             <mix-song-list 
               :songs="currMix.songs"
-              :mix="currMix"
+              :mixEmited="currMix"
               @emitRemoveSong="removeSongFromMix"
               @emitSongPos="changeSongPos"
               @updateMix="saveChange"
@@ -136,6 +138,7 @@ export default {
       isLoading: false,
       songTxt: '',
       currMix: '',
+      mixId:null,
       newMix: {
         // _id: "3463467347347347347347347",
         name: "Mix Name",
@@ -173,8 +176,21 @@ export default {
   },
   computed: {
     getMix(){
-      if(!this.$store.getters.getMix) return this.newMix
-      return this.$store.getters.getMix;
+      this.mixId = this.$route.params.mixId 
+      console.log('details this.mixId ',this.mixId )
+  
+      if (this.mixId) {
+        console.log('getting mix')
+        this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
+        // this.currMix.songs[0].isPlaying = true;
+        // this.startSongOnPreview();           
+        return this.$store.getters.getMix;
+      }else{
+         console.log('getting new mix')
+        this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getEmptyMix));
+         return this.$store.getters.getEmptyMix
+      }
+
     },
     roomId(){
       return this.$route.params.mixId;
@@ -182,17 +198,20 @@ export default {
     currSongPlaying(){
       return this.$store.getters.getCurrSongPlaying;
     },
-    mix() {
-      if (this.$store.getters.getMix) {
+    mix() {   
+      this.mixId = this.$route.params.mixId 
+      console.log('details this.mixId ',this.mixId )
+
+      if (this.mixId) {
+        console.log('getting mix')
         this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getMix));
         // this.currMix.songs[0].isPlaying = true;
         // this.startSongOnPreview();           
         return this.$store.getters.getMix;
-      } else {
-        this.currMix = this.newMix;
-        console.log('this.currMix',this.currMix)
-        // this.$store.dispatch({ type: "saveMix", mix:this.currMix});
-        return this.currMix;
+      }else{
+         console.log('getting new mix')
+        this.currMix = JSON.parse(JSON.stringify(this.$store.getters.getEmptyMix));
+         return this.$store.getters.getEmptyMix
       }
     },
     user() {
@@ -246,7 +265,9 @@ export default {
       // });
     },
     setGenre(genre) {
+      console.log('setGenre',genre)
       this.currMix.genre = genre;
+      this.saveMix(this.currMix)
     },
     toggleEditTitle() {
       this.isTitleHide = !this.isTitleHide;
@@ -260,7 +281,7 @@ export default {
       // this.$store.dispatch({
       //   type: "saveMix",
       //   mix,
-      // });  
+      // });   
       // const el = this.$createElement;
       // this.$notify({
       //   message: el('i', { style: 'color: green' }, 'You updated the mix')
@@ -350,6 +371,10 @@ export default {
     mixSocial
   },
   async created() {
+    this.mixId = this.$route.params.mixId 
+
+    console.log('details this.mixId ',this.mixId )
+
     if(!this.isConnected) {
       socketService.setup();
       this.isConnected = true;
