@@ -9,4 +9,5 @@ Song drag and drop is available, to change songs play positions.
 ## Tools used in this app
 This app uses ```Socket.io``` for synchronisation between songs/play/pause/next/prev/adding/delete/drag&drop/chat in each channel
 ```javascript
-Vue.js, Vuex, Node.js, Express.js, mongoDB & Atlas, Sass, CSS3, HTML5, YoutubeAPI```
+Vue.js, Vuex, Node.js, Express.js, mongoDB & Atlas, Sass, CSS3, HTML5, YoutubeAPI
+```
