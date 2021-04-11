@@ -1,4 +1,8 @@
 ## About this project
+
+http://mixtape-pagaz.herokuapp.com/#/
+
+
 This app contains music "rooms" of many music genres.  
 Whenever a user enters a "room" the playlist starts to play, and from that point the song and the time is broadcasted to every user which enters the same "room".  
 Playing next/previous songs is available and it will also broadcast to all the users in the same channel.  
